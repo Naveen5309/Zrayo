@@ -5,7 +5,8 @@ import 'state_notifiers/login_notifiers.dart';
 import 'states/login_states.dart';
 
 // Define a Provider for AuthDataSource
-final authDataProvider = Provider.autoDispose<AuthDataSource>((ref) => AuthDataSourceImpl());
+final authDataProvider =
+    Provider.autoDispose<AuthDataSource>((ref) => AuthDataSourceImpl());
 
 // Define a Provider for AuthRepository
 final authRepoProvider = Provider.autoDispose<AuthRepository>((ref) {
@@ -13,10 +14,11 @@ final authRepoProvider = Provider.autoDispose<AuthRepository>((ref) {
   return AuthRepoImpl(dataSource: dataSource);
 });
 
-
-
 // Define a StateNotifierProvider for LoginNotifier
-final loginProvider = StateNotifierProvider.autoDispose<LoginNotifier, LoginState>((ref) {
+final loginProvider =
+    StateNotifierProvider.autoDispose<LoginNotifier, LoginState>((ref) {
   final authRepo = ref.watch(authRepoProvider);
   return LoginNotifier(authRepo: authRepo);
 });
+final isPasswordVisible =
+    StateProvider.autoDispose<bool>((ref) => false, name: "isPswdVisible");

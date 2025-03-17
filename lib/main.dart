@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
               useMaterial3: false,
             ),
-            initialRoute: Routes.splash,
+            initialRoute: Routes.addAddressView,
             onGenerateRoute: RouteGenerator.generateRoute,
             onGenerateInitialRoutes: (String initialRouteName) {
               return [

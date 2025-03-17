@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/provider/sign_up_provider.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/provider/state_notifiers/sign_up_notifier.dart';
 import 'package:zrayo_flutter/feature/common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/common_widgets/custom_text_field.dart';
@@ -47,7 +48,7 @@ class SignUpView extends ConsumerWidget {
                     color: AppColor.black4A4A4A,
                   ),
                   yHeight(context.height * 0.04),
-                  formsFieldsSection(),
+                  formsFieldsSection(signUpNotifier),
                   yHeight(context.height * 0.02),
                   CommonAppBtn(
                     title: AppString.signUp,
@@ -79,7 +80,7 @@ class SignUpView extends ConsumerWidget {
   }
 }
 
-Widget formsFieldsSection() {
+Widget formsFieldsSection(SignUpNotifier signUpNotifier) {
   return Column(
     children: [
       //EMAIL ADDRESS
@@ -102,7 +103,7 @@ Widget formsFieldsSection() {
           labelText: AppString.password,
           isObscure: !isVisible,
           hintText: '********',
-          controller: TextEditingController(),
+          controller: signUpNotifier.passwordController,
           prefixIcon: SvgPicture.asset(Assets.lock),
           suffixIcon: !isVisible
               ? SvgPicture.asset(Assets.eye)
@@ -125,7 +126,7 @@ Widget formsFieldsSection() {
           labelText: AppString.confirmPassword,
           isObscure: !isVisible,
           hintText: '********',
-          controller: TextEditingController(),
+          controller: signUpNotifier.confirmPasswordController,
           prefixIcon: SvgPicture.asset(Assets.lock),
           suffixIcon: !isVisible
               ? SvgPicture.asset(Assets.eye)

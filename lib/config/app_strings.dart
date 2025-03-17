@@ -23,11 +23,23 @@ abstract final class AppString {
   static const String newUser = "New User?";
   static const String signUp = "Sign Up";
   static const String password = "Password";
+
   static const String confirmPassword = "Confirm Password";
   static const String alreadyHaveAccount = "Already have an account?";
   static const String startYourJourney = "Start Your Journey";
   static const String createAccountToAccessAllFeature =
       "Create an account to access all the\nfeatures of Zrayo";
+  static const String address = "Address";
+  static const String city = "City";
+  static const String state = "State";
+  static const String country = "Country";
+  static const String enterAddress = "Enter address";
+  static const String selectCity = "Select city";
+  static const String selectSate = "Select state";
+  static const String selectCountry = "Select country";
+  // static const String password = "Password";
+  // static const String password = "Password";
+  // static const String password = "Password";
 }
 
 abstract final class AppConstants {
