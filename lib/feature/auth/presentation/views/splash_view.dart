@@ -7,11 +7,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../config/assets.dart';
 import '../../../../config/helper.dart';
 import '../../../../core/utils/routing/routes.dart';
-import '../../../common_widgets/app_text.dart';
-import '../../../common_widgets/custom_toast.dart';
-import '../provider/login_provider.dart';
 import '../provider/splash_provider.dart';
-import '../provider/states/auth_states.dart';
 
 class SplashView extends ConsumerStatefulWidget {
   const SplashView({super.key});

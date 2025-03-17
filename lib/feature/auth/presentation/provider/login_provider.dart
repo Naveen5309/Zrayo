@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../data/data_source/auth_data_source.dart';
 import '../../data/repositories/auth_repo_implementation.dart';
 import 'state_notifiers/login_notifiers.dart';
-import 'states/auth_states.dart';
+import 'states/login_states.dart';
 
 // Define a Provider for AuthDataSource
 final authDataProvider = Provider.autoDispose<AuthDataSource>((ref) => AuthDataSourceImpl());

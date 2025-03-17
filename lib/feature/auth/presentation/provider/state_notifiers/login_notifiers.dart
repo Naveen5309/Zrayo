@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../../core/helpers/all_getter.dart';
 import '../../../data/repositories/auth_repo_implementation.dart';
-import '../states/auth_states.dart';
+import '../states/login_states.dart';
 
 class LoginNotifier extends StateNotifier<LoginState> {
   final AuthRepository authRepo;
