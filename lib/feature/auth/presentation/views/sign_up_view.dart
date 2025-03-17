@@ -1,20 +1,24 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/provider/sign_up_provider.dart';
 import 'package:zrayo_flutter/feature/common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/common_widgets/custom_text_field.dart';
 
 import '../../../../core/utils/routing/routes.dart';
 
-class SignUpView extends StatelessWidget {
+class SignUpView extends ConsumerWidget {
   const SignUpView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final signUpNotifier = ref.watch(signUpProvider.notifier);
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -69,7 +73,6 @@ class SignUpView extends StatelessWidget {
                     ),
                   ),
                   yHeight(context.height * 0.01),
-
                 ])),
       ),
     );
@@ -89,22 +92,50 @@ Widget formsFieldsSection() {
       10.verticalSpace,
       //PASSWORD
 
-      CustomTextField(
-        labelText: AppString.password,
-        isObscure: true,
-        controller: TextEditingController(),
-        prefixIcon: SvgPicture.asset(Assets.lock),
-        suffixIcon: SvgPicture.asset(Assets.eye),
-      ),
+      Consumer(builder: (BuildContext context, WidgetRef ref, Widget? child) {
+        var isVisible = ref.watch(isPswdVisible);
+        return CustomTextField(
+          onTapOnSuffixIcon: () {
+            ref.read(isPswdVisible.notifier).state =
+                !ref.read(isPswdVisible.notifier).state;
+          },
+          labelText: AppString.password,
+          isObscure: !isVisible,
+          hintText: '********',
+          controller: TextEditingController(),
+          prefixIcon: SvgPicture.asset(Assets.lock),
+          suffixIcon: !isVisible
+              ? SvgPicture.asset(Assets.eye)
+              : SvgPicture.asset(
+                  Assets.eyeOff,
+                  colorFilter:
+                      ColorFilter.mode(AppColor.black4A4A4A, BlendMode.srcIn),
+                ),
+        );
+      }),
       // Confirm PASSWORD
       10.verticalSpace,
-      CustomTextField(
-        labelText: AppString.confirmPassword,
-        isObscure: true,
-        controller: TextEditingController(),
-        prefixIcon: SvgPicture.asset(Assets.lock),
-        suffixIcon: SvgPicture.asset(Assets.eye),
-      ),
+      Consumer(builder: (BuildContext context, WidgetRef ref, Widget? child) {
+        var isVisible = ref.watch(isConfirmPswdVisible);
+        return CustomTextField(
+          onTapOnSuffixIcon: () {
+            ref.read(isConfirmPswdVisible.notifier).state =
+                !ref.read(isConfirmPswdVisible.notifier).state;
+          },
+          labelText: AppString.confirmPassword,
+          isObscure: !isVisible,
+          hintText: '********',
+          controller: TextEditingController(),
+          prefixIcon: SvgPicture.asset(Assets.lock),
+          suffixIcon: !isVisible
+              ? SvgPicture.asset(Assets.eye)
+              : SvgPicture.asset(
+                  Assets.eyeOff,
+                  colorFilter:
+                      ColorFilter.mode(AppColor.black4A4A4A, BlendMode.srcIn),
+                ),
+        );
+      })
     ],
   );
 }
