@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zrayo_flutter/config/helper.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/views/add_address.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/views/login_view.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/views/sign_up_view.dart';
 import 'package:zrayo_flutter/feature/common_widgets/app_text.dart';
@@ -21,7 +22,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const LoginView());
       case Routes.signUpView:
         return MaterialPageRoute(builder: (_) => const SignUpView());
-
+      case Routes.addAddressView:
+        return MaterialPageRoute(builder: (_) => const AddAddressView());
       default:
         return MaterialPageRoute(builder: (_) => const ErrorRoute());
     }
@@ -35,7 +37,7 @@ class ErrorRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const AppText(text:'Error'),
+        title: const AppText(text: 'Error'),
       ),
       body: const Center(
         child: AppText(text: 'No Such screen found in route generator'),

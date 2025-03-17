@@ -1,19 +1,24 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/provider/login_provider.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/provider/state_notifiers/login_notifiers.dart';
 import 'package:zrayo_flutter/feature/common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/common_widgets/custom_text_field.dart';
 
-class LoginView extends StatelessWidget {
+class LoginView extends ConsumerWidget {
   const LoginView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final loginNotifier = ref.watch(loginProvider.notifier);
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -40,7 +45,7 @@ class LoginView extends StatelessWidget {
                     color: AppColor.black4A4A4A,
                   ),
                   yHeight(context.height * 0.05),
-                  formsFieldsSection(),
+                  formsFieldsSection(loginNotifier),
                   yHeight(context.height * 0.01),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -83,7 +88,6 @@ class LoginView extends StatelessWidget {
                     ),
                   ),
                   yHeight(context.height * 0.01),
-
                 ],
               ),
             ),
@@ -94,7 +98,7 @@ class LoginView extends StatelessWidget {
   }
 }
 
-Widget formsFieldsSection() {
+Widget formsFieldsSection(LoginNotifier loginNotifier) {
   return Column(
     children: [
       //EMAIL ADDRESS
@@ -107,14 +111,27 @@ Widget formsFieldsSection() {
       10.verticalSpace,
 
       //PASSWORD
-      CustomTextField(
-        labelText: AppString.password,
-        hintText: "********",
-        isObscure: true,
-        controller: TextEditingController(),
-        prefixIcon: SvgPicture.asset(Assets.lock),
-        suffixIcon: SvgPicture.asset(Assets.eye),
-      ),
+      Consumer(builder: (BuildContext context, WidgetRef ref, Widget? child) {
+        var isVisible = ref.watch(isPasswordVisible);
+        return CustomTextField(
+          onTapOnSuffixIcon: () {
+            ref.read(isPasswordVisible.notifier).state =
+                !ref.read(isPasswordVisible.notifier).state;
+          },
+          labelText: AppString.password,
+          isObscure: !isVisible,
+          hintText: '********',
+          controller: loginNotifier.passwordController,
+          prefixIcon: SvgPicture.asset(Assets.lock),
+          suffixIcon: !isVisible
+              ? SvgPicture.asset(Assets.eye)
+              : SvgPicture.asset(
+                  Assets.eyeOff,
+                  colorFilter:
+                      ColorFilter.mode(AppColor.black4A4A4A, BlendMode.srcIn),
+                ),
+        );
+      }),
     ],
   );
 }

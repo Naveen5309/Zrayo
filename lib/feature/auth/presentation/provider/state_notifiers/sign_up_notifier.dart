@@ -12,6 +12,9 @@ class SignUpNotifier extends StateNotifier<SignUpState> {
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+
   final referralController = TextEditingController();
 
   SignUpNotifier({required this.authRepo}) : super(SignUpInitial());

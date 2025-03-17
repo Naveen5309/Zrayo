@@ -4,7 +4,6 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zrayo_flutter/feature/auth/presentation/views/create_profile_steps/create_profile.dart';
 import 'config/helper.dart';
 import 'config/provider_logs.dart';
 import 'core/helpers/app_injector.dart';
@@ -46,16 +45,15 @@ class MyApp extends StatelessWidget {
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
               useMaterial3: false,
             ),
-            home: CreateProfile(),
-            // initialRoute: Routes.splash,
-            // onGenerateRoute: RouteGenerator.generateRoute,
-            // onGenerateInitialRoutes: (String initialRouteName) {
-            //   return [
-            //     RouteGenerator.generateRoute(RouteSettings(
-            //       name: initialRouteName,
-            //     )),
-            //   ];
-            // },
+            initialRoute: Routes.addAddressView,
+            onGenerateRoute: RouteGenerator.generateRoute,
+            onGenerateInitialRoutes: (String initialRouteName) {
+              return [
+                RouteGenerator.generateRoute(RouteSettings(
+                  name: initialRouteName,
+                )),
+              ];
+            },
           );
         });
   }
