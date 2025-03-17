@@ -6,6 +6,8 @@ class Assets {
   static const String email = 'assets/icons/email.svg';
   static const String lock = 'assets/icons/lock.svg';
   static const String eye = 'assets/icons/eye.svg';
+  static const String eyeOff = 'assets/icons/eye_off.svg';
+
   static const String iconGoogle = "assets/icons/google.svg";
   static const String iconApple = "assets/icons/apple.svg";
 
