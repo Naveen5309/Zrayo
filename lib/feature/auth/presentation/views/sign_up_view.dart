@@ -18,7 +18,7 @@ class SignUpView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final signUpNotifier = ref.watch(signUpProvider.notifier);
+    final signUpNotifier = ref.watch(signUpProvider.notifier);
 
     return Scaffold(
       body: SingleChildScrollView(
