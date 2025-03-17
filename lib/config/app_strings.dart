@@ -26,8 +26,18 @@ abstract final class AppString {
   static const String confirmPassword = "Confirm Password";
   static const String alreadyHaveAccount = "Already have an account?";
   static const String startYourJourney = "Start Your Journey";
-  static const String createAccountToAccessAllFeature =
-      "Create an account to access all the\nfeatures of Zrayo";
+  static const String createAccountToAccessAllFeature = "Create an account to access all the\nfeatures of Zrayo";
+  static const String createProfile = "Create Profile";
+  static const String firstName = "First Name";
+  static const String enterFirstName = "Enter first name";
+  static const String lastName = "Last Name";
+  static const String enterLastName = "Enter last name";
+  static const String mobileNumber = "Mobile Number";
+  static const String enterPhoneNumber = "Enter phone number";
+  static const String dateOfBirth = "Date of birth";
+  static const String ninNumberOrBvnNumber = "Nin Number or Bvn Number";
+  static const String enterNinNumberOrBvnNumber = "Enter Nin Number or Bvn Number";
+  static const String saveAndContinue = "Save and Continue";
 }
 
 abstract final class AppConstants {

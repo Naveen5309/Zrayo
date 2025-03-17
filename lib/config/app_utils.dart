@@ -2,6 +2,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:mime/mime.dart';
+import 'package:zrayo_flutter/feature/common_widgets/custom_bottom_sheet.dart';
 import '../feature/common_widgets/custom_toast.dart';
 
 class Utils {
@@ -51,5 +52,31 @@ class Utils {
 
   static void hideKeyboard(context) {
     FocusScope.of(context).requestFocus(FocusNode());
+  }
+
+  /// used to return the type.
+  static Future<void> appBottomSheet({
+    required BuildContext context,
+    required Widget widget,
+    MainAxisSize? mainSize,
+    bool isScrolled = true,
+    bool isDismissible = true,
+  }) async {
+    showModalBottomSheet(
+      context: context,
+      enableDrag: true,
+      shape: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.transparent),
+      ),
+      useSafeArea: false,
+      isScrollControlled: isScrolled,
+      builder: (context) {
+        return CustomBottomSheet(
+          content: widget,
+          mainAxisSize: mainSize ?? MainAxisSize.min,
+        );
+      },
+    );
+    return null;
   }
 }

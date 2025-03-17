@@ -17,7 +17,7 @@ class SignUpView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final signUpNotifier = ref.watch(signUpProvider.notifier);
+    // final signUpNotifier = ref.watch(signUpProvider.notifier);
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -93,11 +93,11 @@ Widget formsFieldsSection() {
       //PASSWORD
 
       Consumer(builder: (BuildContext context, WidgetRef ref, Widget? child) {
-        var isVisible = ref.watch(isPswdVisible);
+        var isVisible = ref.watch(isPassVisible);
         return CustomTextField(
           onTapOnSuffixIcon: () {
-            ref.read(isPswdVisible.notifier).state =
-                !ref.read(isPswdVisible.notifier).state;
+            ref.read(isPassVisible.notifier).state =
+                !ref.read(isPassVisible.notifier).state;
           },
           labelText: AppString.password,
           isObscure: !isVisible,
@@ -116,11 +116,11 @@ Widget formsFieldsSection() {
       // Confirm PASSWORD
       10.verticalSpace,
       Consumer(builder: (BuildContext context, WidgetRef ref, Widget? child) {
-        var isVisible = ref.watch(isConfirmPswdVisible);
+        var isVisible = ref.watch(isConfirmPassVisible);
         return CustomTextField(
           onTapOnSuffixIcon: () {
-            ref.read(isConfirmPswdVisible.notifier).state =
-                !ref.read(isConfirmPswdVisible.notifier).state;
+            ref.read(isConfirmPassVisible.notifier).state =
+                !ref.read(isConfirmPassVisible.notifier).state;
           },
           labelText: AppString.confirmPassword,
           isObscure: !isVisible,

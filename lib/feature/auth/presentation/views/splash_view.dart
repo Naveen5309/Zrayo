@@ -34,8 +34,8 @@ class _SplashViewState extends ConsumerState<SplashView> {
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 1000),
           curve: Curves.linearToEaseOut,
-          height: animation.state ? screenHeight(context) / 5 : 0,
-          width: animation.state ? screenWidth(context) / 3 : 0,
+          height: true ? screenHeight(context) / 5 : 0,
+          width: true ? screenWidth(context) / 3 : 0,
           child: SvgPicture.asset(
             Assets.zrayoSplash,
             fit: BoxFit.cover,

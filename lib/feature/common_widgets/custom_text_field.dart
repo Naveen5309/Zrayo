@@ -70,21 +70,22 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var textStyle = TextStyle(
-        color: AppColor.black4A4A4A,
-        fontSize: 15,
-        fontFamily: AppFonts.satoshiMedium);
+      color: AppColor.black4A4A4A,
+      fontSize: 15.sp,
+      fontFamily: AppFonts.satoshiMedium,
+    );
 
     return Column(
       children: [
-        if(labelText?.isNotEmpty??false)
-        Row(
-          children: [
-            AppText(
-              text: labelText??"",
-              color: AppColor.black232323,
-            ),
-          ],
-        ),
+        if (labelText?.isNotEmpty ?? false)
+          Row(
+            children: [
+              AppText(
+                text: labelText ?? "",
+                color: AppColor.black232323,
+              ),
+            ],
+          ),
         Padding(
           padding: padding ?? const EdgeInsets.symmetric(vertical: 10.0),
           child: TextFormField(
@@ -106,10 +107,10 @@ class CustomTextField extends StatelessWidget {
             onSaved: onSaved,
             decoration: InputDecoration(
               contentPadding: contentPadding ??
-                  const EdgeInsets.symmetric(vertical: 13.0, horizontal: 20.0),
+                  const EdgeInsets.symmetric(vertical: 16.0, horizontal: 20.0),
               // Adjust the vertical padding as needed
-              fillColor: fillColor ,
-              filled: fillColor!=null,
+              fillColor: fillColor,
+              filled: fillColor != null,
               border: border ??
                   OutlineInputBorder(
                     gapPadding: 0,
@@ -134,7 +135,7 @@ class CustomTextField extends StatelessWidget {
               hintStyle: hintStyle ??
                   TextStyle(
                       color: AppColor.black4A4A4A.withValues(alpha: .6),
-                      fontSize: 16.sp,
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.w500),
               prefixIconConstraints: const BoxConstraints(
                 maxHeight: 80,
@@ -157,8 +158,8 @@ class CustomTextField extends StatelessWidget {
                   : GestureDetector(
                       onTap: onTapOnSuffixIcon ?? () {},
                       child: Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 15.w, vertical: 10),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 15.w, vertical: 10),
                         child: suffixIcon,
                       ),
                     ),

@@ -1,3 +1,4 @@
+
 class Assets {
   Assets._();
 
@@ -15,16 +16,15 @@ class Assets {
   static const String location = 'assets/icons/location.svg';
   static const String city = 'assets/icons/city.svg';
   static const String state = 'assets/icons/state.svg';
-  static const String dumyImage = 'assets/images/dumy.png';
   static const String barcode = 'assets/icons/barcode.svg';
   static const String cake = 'assets/icons/cake.svg';
   static const String calling = 'assets/icons/calling.svg';
   static const String global = 'assets/icons/global.svg';
   static const String person = 'assets/icons/person.svg';
   static const String upload = 'assets/icons/upload.svg';
-// static const String city = 'assets/icons/city.svg';
-// static const String city = 'assets/icons/city.svg';
-// static const String city = 'assets/icons/city.svg';
+static const String camera = 'assets/icons/camera.svg';
+static const String gallery = 'assets/icons/gallery.svg';
+static const String placeholder = 'assets/icons/placeholder.svg';
 // static const String city = 'assets/icons/city.svg';
 // static const String city = 'assets/icons/city.svg';
 // static const String city = 'assets/icons/city.svg';

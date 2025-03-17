@@ -21,8 +21,8 @@ final signUpProvider =
   return SignUpNotifier(authRepo: authRepo);
 });
 
-final isConfirmPswdVisible = StateProvider.autoDispose<bool>((ref) => false,
-    name: "isPswdConfirmVisible");
+final isConfirmPassVisible = StateProvider.autoDispose<bool>((ref) => false,
+    name: "isPassConfirmVisible");
 
-final isPswdVisible =
-    StateProvider.autoDispose<bool>((ref) => false, name: "isPswdVisible");
+final isPassVisible =
+    StateProvider.autoDispose<bool>((ref) => false, name: "isPassVisible");
