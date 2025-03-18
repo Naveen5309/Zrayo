@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/provider/change_password_provider.dart';
 
 import '../../../../config/assets.dart';
 import '../../../../config/helper.dart';
@@ -9,11 +11,13 @@ import '../../../common_widgets/custom_app_bar.dart';
 import '../../../common_widgets/custom_btn.dart';
 import '../../../common_widgets/custom_text_field.dart';
 
-class ChangePasswordView extends StatelessWidget {
+class ChangePasswordView extends ConsumerWidget {
   const ChangePasswordView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final changePasswordNotifier = ref.watch(changePasswordProvider.notifier);
+
     return Scaffold(
       body: Column(
         children: [
@@ -27,7 +31,7 @@ class ChangePasswordView extends StatelessWidget {
                 SvgPicture.asset(Assets.changePassIcon),
                 yHeight(15.sp),
                 AppText(
-                  text: AppString.createNewPassword ,
+                  text: AppString.createNewPassword,
                   textSize: 24.sp,
                   fontFamily: AppFonts.satoshiBold,
                 ),
@@ -40,44 +44,55 @@ class ChangePasswordView extends StatelessWidget {
                 ),
                 yHeight(20.sp),
 
-                CustomTextField(
-                  onTapOnSuffixIcon: () {
-                    // ref.read(isPassVisible.notifier).state =
-                    // !ref.read(isPassVisible.notifier).state;
-                  },
-                  labelText: AppString.newPassword,
-                  isObscure: false,
-                  hintText: '********',
-                  // controller: signUpNotifier.passwordController,
-                  prefixIcon: SvgPicture.asset(Assets.lock),
-                  suffixIcon: false
-                      ? SvgPicture.asset(Assets.eye)
-                      : SvgPicture.asset(
-                    Assets.eyeOff,
-                    colorFilter:
-                    ColorFilter.mode(AppColor.black4A4A4A, BlendMode.srcIn),
-                  ),
-                ),
+                Consumer(builder:
+                    (BuildContext context, WidgetRef ref, Widget? child) {
+                  var isVisible = ref.watch(isNewPassVisible);
+
+                  return CustomTextField(
+                    onTapOnSuffixIcon: () {
+                      ref.read(isNewPassVisible.notifier).state =
+                          !ref.read(isNewPassVisible.notifier).state;
+                    },
+                    labelText: AppString.newPassword,
+                    isObscure: !isVisible,
+                    hintText: '********',
+                    controller: changePasswordNotifier.newPasswordController,
+                    prefixIcon: SvgPicture.asset(Assets.lock),
+                    suffixIcon: !isVisible
+                        ? SvgPicture.asset(Assets.eye)
+                        : SvgPicture.asset(
+                            Assets.eyeOff,
+                            colorFilter: ColorFilter.mode(
+                                AppColor.black4A4A4A, BlendMode.srcIn),
+                          ),
+                  );
+                }),
                 // Confirm PASSWORD
                 10.verticalSpace,
-                CustomTextField(
-                  onTapOnSuffixIcon: () {
-                    // ref.read(isConfirmPassVisible.notifier).state =
-                    // !ref.read(isConfirmPassVisible.notifier).state;
-                  },
-                  labelText: AppString.confirmPassword,
-                  isObscure: true,
-                  hintText: '********',
-                  // controller: signUpNotifier.confirmPasswordController,
-                  prefixIcon: SvgPicture.asset(Assets.lock),
-                  suffixIcon: true
-                      ? SvgPicture.asset(Assets.eye)
-                      : SvgPicture.asset(
-                    Assets.eyeOff,
-                    colorFilter:
-                    ColorFilter.mode(AppColor.black4A4A4A, BlendMode.srcIn),
-                  ),
-                )
+                Consumer(builder:
+                    (BuildContext context, WidgetRef ref, Widget? child) {
+                  var isVisible = ref.watch(isConfirmPassVisible);
+
+                  return CustomTextField(
+                    onTapOnSuffixIcon: () {
+                      ref.read(isConfirmPassVisible.notifier).state =
+                          !ref.read(isConfirmPassVisible.notifier).state;
+                    },
+                    labelText: AppString.confirmPassword,
+                    isObscure: !isVisible,
+                    hintText: '********',
+                    controller:
+                        changePasswordNotifier.confirmPasswordController,
+                    prefixIcon: SvgPicture.asset(Assets.lock),
+                    suffixIcon: !isVisible
+                        ? SvgPicture.asset(Assets.eye)
+                        : SvgPicture.asset(
+                            Assets.eyeOff,
+                            colorFilter: ColorFilter.mode(
+                                AppColor.black4A4A4A, BlendMode.srcIn),
+                          ),
+                  );
+                })
               ],
             ),
           ),

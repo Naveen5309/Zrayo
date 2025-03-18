@@ -14,6 +14,8 @@ class LoginNotifier extends StateNotifier<LoginState> {
   final lastNameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final newPasswordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
   final referralController = TextEditingController();
 
