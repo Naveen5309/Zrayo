@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/views/add_address.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/views/create_profile_steps/add_bank_detail.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/views/create_profile_steps/create_profile.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/views/login_view.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/views/sign_up_view.dart';
@@ -31,6 +32,8 @@ class RouteGenerator {
 
       case Routes.createProfile:
         return _fadeTransitionRoute(const CreateProfile());
+      case Routes.addBankDetail:
+        return _fadeTransitionRoute(const AddBankDetail());
 
       case Routes.addAddressView:
         return _fadeTransitionRoute(const AddAddressView());
@@ -49,14 +52,14 @@ class RouteGenerator {
         const end = Offset.zero; // End at the center
         const curve = Curves.easeInOut;
 
-        var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+        var tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
         var offsetAnimation = animation.drive(tween);
 
         return SlideTransition(position: offsetAnimation, child: child);
       },
     );
   }
-
 }
 
 class ErrorRoute extends StatelessWidget {

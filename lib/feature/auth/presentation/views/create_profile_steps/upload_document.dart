@@ -29,7 +29,7 @@ class UploadDocument extends StatelessWidget {
                 children: [
                   Container(
                     height: 5,
-                    width:(screenWidth(context) / 5) *3,
+                    width: (screenWidth(context) / 5) * 3,
                     color: AppColor.primary,
                   ),
                 ],
@@ -91,7 +91,7 @@ class UploadDocument extends StatelessWidget {
                     Spacer(),
                     CommonAppBtn(
                       title: AppString.saveAndContinue,
-                      onTap: () => toNamed(context, Routes.uploadDocument),
+                      onTap: () => toNamed(context, Routes.addBankDetail),
                     ),
                     yHeight(20),
                   ],
