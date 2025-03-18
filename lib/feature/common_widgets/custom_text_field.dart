@@ -159,7 +159,7 @@ class CustomTextField extends StatelessWidget {
                       onTap: onTapOnSuffixIcon ?? () {},
                       child: Padding(
                         padding: EdgeInsets.symmetric(
-                            horizontal: 15.w, vertical: 10),
+                            horizontal: 11.w, vertical: 10),
                         child: suffixIcon,
                       ),
                     ),

@@ -55,6 +55,8 @@ abstract final class AppString {
   static const String uploadFrontSide = "Upload Front Side";
   static const String backSide = "Back Side";
   static const String uploadBackSide = "Upload Back Side";
+  static const String addAddress = "Add Address";
+
 }
 
 abstract final class AppConstants {

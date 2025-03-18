@@ -33,13 +33,11 @@ class CustomDropdown extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide(color: AppColor.black4A4A4A),
         ),
-        prefixIcon: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: SvgPicture.asset(iconPath, height: 24, width: 24),
-        ),
+        prefixIcon: SvgPicture.asset(iconPath),
       ),
       hint: Text(hintText, style: TextStyle(color: AppColor.black4A4A4A)),
-      icon: Icon(Icons.keyboard_arrow_down, color: AppColor.black4A4A4A),
+      // icon: SvgPicture.asset(iconPath, height: 24, width: 24),
+      // icon: Icon(Icons.keyboard_arrow_down, color: AppColor.black4A4A4A),
       items: items.map((String value) {
         return DropdownMenuItem<String>(
           value: value,
