@@ -7,6 +7,7 @@ import 'package:zrayo_flutter/feature/auth/presentation/views/create_profile_ste
 import 'package:zrayo_flutter/feature/auth/presentation/views/login_view.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/views/sign_up_view.dart';
 import 'package:zrayo_flutter/feature/common_widgets/app_text.dart';
+import '../../../feature/auth/presentation/views/choose_interface_view.dart';
 import '../../../feature/auth/presentation/views/create_profile_steps/upload_document.dart';
 import '../../../feature/auth/presentation/views/splash_view.dart';
 import 'routes.dart';
@@ -21,6 +22,8 @@ class RouteGenerator {
     switch (settings.name) {
       case Routes.splash:
         return _fadeTransitionRoute(const SplashView());
+      case Routes.chooseInterfaceView:
+        return _fadeTransitionRoute(const ChooseInterfaceView());
 
       case Routes.loginView:
         return _fadeTransitionRoute(const LoginView());

@@ -27,7 +27,7 @@ class CustomBottomSheet extends StatelessWidget {
               borderRadius: BorderRadius.circular(22),
             ),
           ),
-          Flexible(child: content),
+          content,
         ],
       ),
     );

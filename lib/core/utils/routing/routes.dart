@@ -2,6 +2,7 @@ class Routes {
   Routes._();
 
   static const String splash = '/splash';
+  static const String chooseInterfaceView = '/chooseInterfaceView';
   static const String loginView = '/loginView';
   static const String signUpView = '/signUpView';
   static const String addAddressView = '/addAddressView';

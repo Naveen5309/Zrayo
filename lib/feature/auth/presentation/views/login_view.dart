@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:zrayo_flutter/config/app_utils.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/provider/login_provider.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/provider/state_notifiers/login_notifiers.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/views/forgot_password_sheet.dart';
 import 'package:zrayo_flutter/feature/common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/common_widgets/custom_text_field.dart';
@@ -47,15 +49,17 @@ class LoginView extends ConsumerWidget {
                   yHeight(context.height * 0.05),
                   formsFieldsSection(loginNotifier),
                   yHeight(context.height * 0.01),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      AppText(
-                        text: AppString.forgetPassword,
-                        fontFamily: AppFonts.satoshiBold,
-                        color: AppColor.primary,
-                      ),
-                    ],
+                  InkWell(
+                    onTap: () {
+                      Utils.appBottomSheet(
+                       isScrolled: true,
+                          context: context, widget: ForgotPasswordSheet());
+                    },
+                    child: AppText(
+                      text: AppString.forgetPassword,
+                      fontFamily: AppFonts.satoshiBold,
+                      color: AppColor.primary,
+                    ).align(alignment: Alignment.centerRight),
                   ),
                   yHeight(context.height * 0.02),
                   CommonAppBtn(

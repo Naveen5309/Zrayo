@@ -76,12 +76,15 @@ class Utils {
       useSafeArea: false,
       isScrollControlled: isScrolled,
       builder: (context) {
-        return CustomBottomSheet(
-          content: widget,
-          mainAxisSize: mainSize ?? MainAxisSize.min,
+        return Padding(
+          padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: CustomBottomSheet(
+            content: widget,
+            mainAxisSize: mainSize ?? MainAxisSize.min,
+          ),
         );
       },
     );
-    return null;
   }
 }

@@ -52,6 +52,7 @@ class SignUpView extends ConsumerWidget {
                   yHeight(context.height * 0.02),
                   CommonAppBtn(
                     title: AppString.signUp,
+                    onTap: () => toNamed(context, Routes.createProfile),
                   ),
                   yHeight(context.height * 0.12),
                   Text.rich(

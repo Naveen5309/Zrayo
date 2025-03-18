@@ -5,7 +5,20 @@ class AppImagesInitialize {
 
   static assetsImagesInitialize(BuildContext context) {
     precacheImage(const AssetImage(Assets.zrayoSplash), context);
+    precacheImage(const AssetImage(Assets.chooseRole), context);
   }
+}
+
+abstract final class AppConstants {
+  static const String appName = "Zrayo";
+  static const String localDirectory = "Zrayo";
+}
+
+abstract final class AppFonts {
+  static const String satoshiBold = "Satoshi-Bold"; // 700
+  static const String satoshiLight = "Satoshi-Light"; //300
+  static const String satoshiMedium = "Satoshi-Medium"; //500
+  static const String satoshiRegular = "Satoshi-Regular"; //400
 }
 
 abstract final class AppString {
@@ -65,17 +78,12 @@ abstract final class AppString {
   static const String routingNumber = "Routing Number";
   static const String enterRoutingNumber = "Enter routing number";
   static const String addBankDetail = "Add Bank Detail";
-
-}
-
-abstract final class AppConstants {
-  static const String appName = "Zrayo";
-  static const String localDirectory = "Zrayo";
-}
-
-abstract final class AppFonts {
-  static const String satoshiBold = "Satoshi-Bold"; // 700
-  static const String satoshiLight = "Satoshi-Light"; //300
-  static const String satoshiMedium = "Satoshi-Medium"; //500
-  static const String satoshiRegular = "Satoshi-Regular"; //400
+  static const String skip = "Skip";
+  static const String customer = "Customer";
+  static const String agent = "Agent";
+  static const String logInAsACustomerToFindProperties =
+      "Log in as a customer to find properties or \n as an agent to assist buyers and sellers.";
+  static const String chooseInterface = "Choose Interface";
+  static const String pleaseEnterEmailAddressAssociated = "Don’t wary, Please enter email address associated\nwith your account.";
+  static const String submit = "Submit";
 }

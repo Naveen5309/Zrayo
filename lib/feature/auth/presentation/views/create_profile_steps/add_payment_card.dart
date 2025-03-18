@@ -45,7 +45,7 @@ class AddPaymentCard extends StatelessWidget {
                           padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: AppColor.orange0xffFFECD6,
+                            color: AppColor.secondry,
                           ),
                           child: Icon(CupertinoIcons.plus),
                         ),

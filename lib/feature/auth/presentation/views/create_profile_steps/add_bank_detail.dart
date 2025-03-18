@@ -76,6 +76,16 @@ class AddBankDetail extends StatelessWidget {
               margin: const EdgeInsets.all(16),
               onTap: () => toNamed(context, Routes.addPaymentCard),
             ),
+            CommonAppBtn(
+              title: AppString.skip,
+              margin: const EdgeInsets.only(bottom: 16,left: 16,right: 16),
+
+              borderColor: AppColor.transparent,
+              backGroundColor: AppColor.secondry,
+              textColor: AppColor.primary,
+              onTap: () => toNamed(context, Routes.addPaymentCard),
+
+            ),
           ],
         ),
       ),
