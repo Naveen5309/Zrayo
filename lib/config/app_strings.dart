@@ -27,6 +27,11 @@ abstract final class AppString {
   static const String emailAddress = "Email Address";
   static const String exampleEamil = "example@gmail.com";
   static const String forgetPassword = "Forgot password?";
+  static const String otpVerification = "OTP Verification";
+  static const String createNewPassword = "Create new password";
+  static const String yourNewPasswordMustBeUnique =
+      "Your new password must be unique from\nthose previously used.";
+
   static const String or = "OR";
   static const String login = "Login";
   static const String google = "Google";
@@ -34,6 +39,7 @@ abstract final class AppString {
   static const String newUser = "New User?";
   static const String signUp = "Sign Up";
   static const String password = "Password";
+  static const String newPassword = "New Password";
 
   static const String confirmPassword = "Confirm Password";
   static const String alreadyHaveAccount = "Already have an account?";
@@ -84,6 +90,13 @@ abstract final class AppString {
   static const String logInAsACustomerToFindProperties =
       "Log in as a customer to find properties or \n as an agent to assist buyers and sellers.";
   static const String chooseInterface = "Choose Interface";
-  static const String pleaseEnterEmailAddressAssociated = "Don’t wary, Please enter email address associated\nwith your account.";
+  static const String pleaseEnterEmailAddressAssociated =
+      "Don’t wary, Please enter email address associated\nwith your account.";
+  static const String pleaseEnterYourOtpCodeSentToYour =
+      "Please enter your OTP code sent to your\nemail address.";
   static const String submit = "Submit";
+  static const String didNotReceiveTheOtp = "Didn’t receive the OTP?";
+  static const String youCanResendOtpIn = "̌You can resend OTP in:";
+  static const String verify = "Verify";
+  static const String change = "Change";
 }

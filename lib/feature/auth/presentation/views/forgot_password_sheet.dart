@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
+import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/common_widgets/custom_text_field.dart';
@@ -13,7 +14,6 @@ class ForgotPasswordSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -34,7 +34,6 @@ class ForgotPasswordSheet extends StatelessWidget {
               lineHeight: 1.2,
             ),
             yHeight(10.sp),
-
             CustomTextField(
               hintText: AppString.exampleEamil,
               prefixIcon: SvgPicture.asset(Assets.email),
@@ -42,7 +41,10 @@ class ForgotPasswordSheet extends StatelessWidget {
               labelText: AppString.emailAddress,
             ),
             yHeight(10.sp),
-            CommonAppBtn(title: AppString.submit,)
+            CommonAppBtn(
+              title: AppString.submit,
+              onTap: () => toNamed(context, Routes.otpVerificationView),
+            )
           ],
         ),
       ),

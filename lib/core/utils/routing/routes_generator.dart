@@ -5,8 +5,10 @@ import 'package:zrayo_flutter/feature/auth/presentation/views/create_profile_ste
 import 'package:zrayo_flutter/feature/auth/presentation/views/create_profile_steps/add_payment_card.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/views/create_profile_steps/create_profile.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/views/login_view.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/views/otp_verification_view.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/views/sign_up_view.dart';
 import 'package:zrayo_flutter/feature/common_widgets/app_text.dart';
+import '../../../feature/auth/presentation/views/change_password_view.dart';
 import '../../../feature/auth/presentation/views/choose_interface_view.dart';
 import '../../../feature/auth/presentation/views/create_profile_steps/upload_document.dart';
 import '../../../feature/auth/presentation/views/splash_view.dart';
@@ -43,6 +45,10 @@ class RouteGenerator {
         return _fadeTransitionRoute(const AddAddressView());
       case Routes.addPaymentCard:
         return _fadeTransitionRoute(const AddPaymentCard());
+      case Routes.otpVerificationView:
+        return _fadeTransitionRoute(const OtpVerificationView());
+      case Routes.changePasswordView:
+        return _fadeTransitionRoute(const ChangePasswordView());
 
       default:
         return MaterialPageRoute(builder: (_) => const ErrorRoute());

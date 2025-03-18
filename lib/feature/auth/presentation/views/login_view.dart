@@ -49,7 +49,7 @@ class LoginView extends ConsumerWidget {
                   yHeight(context.height * 0.05),
                   formsFieldsSection(loginNotifier),
                   yHeight(context.height * 0.01),
-                  InkWell(
+                  GestureDetector(
                     onTap: () {
                       Utils.appBottomSheet(
                        isScrolled: true,

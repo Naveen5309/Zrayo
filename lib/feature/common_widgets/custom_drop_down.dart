@@ -38,6 +38,7 @@ class CustomDropdownButton extends StatelessWidget {
     this.offset = Offset.zero,
     super.key,
   });
+
   final String hint;
   final String? value;
   final List<String> dropdownItems;
@@ -75,7 +76,6 @@ class CustomDropdownButton extends StatelessWidget {
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButton2<String>(
-          //To avoid long text overflowing.
           isExpanded: true,
           hint: Row(
             children: [
@@ -102,7 +102,6 @@ class CustomDropdownButton extends StatelessWidget {
                   ))
               .toList(),
           onChanged: onChanged,
-
           selectedItemBuilder: selectedItemBuilder,
           buttonStyleData: ButtonStyleData(
             height: buttonHeight ?? 60,
