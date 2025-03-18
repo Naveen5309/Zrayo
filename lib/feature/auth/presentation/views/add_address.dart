@@ -55,6 +55,7 @@ class AddAddressView extends ConsumerWidget {
 
 Widget formsFieldsSection() {
   return Column(
+    spacing: 10.sp,
     children: [
       //EMAIL ADDRESS
       CustomTextField(
@@ -63,7 +64,7 @@ Widget formsFieldsSection() {
         controller: TextEditingController(),
         labelText: AppString.address,
       ),
-      10.verticalSpace,
+
       //PASSWORD
 
       Consumer(builder: (BuildContext context, WidgetRef ref, Widget? child) {
@@ -76,7 +77,6 @@ Widget formsFieldsSection() {
         );
       }),
       // Confirm PASSWORD
-      10.verticalSpace,
       Consumer(builder: (BuildContext context, WidgetRef ref, Widget? child) {
         // var isVisible = ref.watch(isConfirmPswdVisible);
         return CustomTextField(
