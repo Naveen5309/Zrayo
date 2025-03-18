@@ -1,6 +1,5 @@
 part of 'helper.dart';
 
-
 abstract final class AppColor {
   static const Color primary = Color(0xffEA8913);
   static const Color whiteFFFFFF = Color(0xffFFFFFF);
@@ -17,7 +16,6 @@ abstract final class AppColor {
   static const Color orangeF285000F = Color(0xfffff8f0);
   static const Color orangeD7d3d0 = Color(0xffd7d3d0);
   static const Color orange878787 = Color(0xff878787);
-  // static const Color orangeEa8913 = Color(0xffEA8913);
-  // static const Color orangeEa8913 = Color(0xffEA8913);
-
+  static const Color orangeFFECD6 = Color(0xffFFECD6);
+  // static const Color grey = Color(0xff040F25);
 }

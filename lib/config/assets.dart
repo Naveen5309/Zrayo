@@ -29,5 +29,6 @@ class Assets {
 static const String mailImage = 'assets/images/mail_image.svg';
 static const String otpView = 'assets/images/otp_view.svg';
 static const String changePassIcon = 'assets/images/change_pass_icon.svg';
-// static const String city = 'assets/icons/city.svg';
+  static const String checkTrue = 'assets/icons/check_true.svg';
+  static const String checkFalse = 'assets/icons/check_false.svg';
 }

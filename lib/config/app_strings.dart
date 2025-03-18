@@ -95,6 +95,17 @@ abstract final class AppString {
   static const String pleaseEnterYourOtpCodeSentToYour =
       "Please enter your OTP code sent to your\nemail address.";
   static const String submit = "Submit";
+  static const String choosePlan = "Choose Your Plan";
+  static const String oneMonthFreeTrial =
+      "Get one month free trial and you can cancel a subscription before your free trial ends.";
+  static const String free = "Free";
+  static const String givesDesignatedContact =
+      "Gives designated contacts secure, read-only access to shared information, ensuring they have what they need when it matters most.";
+  static const String basic = "Basic";
+  static const String accessToBasiscTabs =
+      "Access to basic tabs and features with limited entries per category, 2GB of secure storage, and email support.";
+  static const String free7DaysTrial = "7-Day Free Trial";
+  static const String continueText = "Continue";
   static const String didNotReceiveTheOtp = "Didn’t receive the OTP?";
   static const String youCanResendOtpIn = "̌You can resend OTP in:";
   static const String verify = "Verify";

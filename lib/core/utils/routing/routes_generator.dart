@@ -4,6 +4,7 @@ import 'package:zrayo_flutter/feature/auth/presentation/views/add_address.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/views/create_profile_steps/add_bank_detail.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/views/create_profile_steps/add_payment_card.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/views/create_profile_steps/create_profile.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/views/create_profile_steps/subscription_plan.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/views/login_view.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/views/otp_verification_view.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/views/sign_up_view.dart';
@@ -49,6 +50,8 @@ class RouteGenerator {
         return _fadeTransitionRoute(const OtpVerificationView());
       case Routes.changePasswordView:
         return _fadeTransitionRoute(const ChangePasswordView());
+      case Routes.subscriptionPlanView:
+        return _fadeTransitionRoute(const SubscriptionPlanView());
 
       default:
         return MaterialPageRoute(builder: (_) => const ErrorRoute());
