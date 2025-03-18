@@ -23,7 +23,7 @@ class Assets {
   static const String upload = 'assets/icons/upload.svg';
   static const String camera = 'assets/icons/camera.svg';
   static const String gallery = 'assets/icons/gallery.svg';
-  static const String placeholder = 'assets/icons/placeholder.svg';
+  static const String placeholder = 'assets/icons/place_holder.svg';
   static const String arrowDown = 'assets/icons/arrow_down.svg';
 // static const String city = 'assets/icons/city.svg';
 // static const String city = 'assets/icons/city.svg';

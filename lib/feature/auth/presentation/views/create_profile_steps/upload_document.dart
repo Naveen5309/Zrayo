@@ -43,7 +43,6 @@ class UploadDocument extends StatelessWidget {
                     yHeight(40.sp),
                     CommonDottedBorder(
                       child: UploadDocumentTile(
-                        isUploadedView: true,
                         filePath: "",
                         title: AppString.uploadIdentityDocument,
                         subTitle: AppString.frontSide,
@@ -67,7 +66,6 @@ class UploadDocument extends StatelessWidget {
                     yHeight(40.sp),
                     CommonDottedBorder(
                       child: UploadDocumentTile(
-                        isUploadedView: true,
                         filePath: "",
                         title: AppString.uploadIdentityDocument,
                         subTitle: AppString.backSide,

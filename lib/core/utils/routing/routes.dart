@@ -8,4 +8,5 @@ class Routes {
   static const String uploadDocument = '/uploadDocument';
   static const String createProfile = '/createProfile';
   static const String addBankDetail = '/addBankDetail';
+  static const String addPaymentCard = '/addPaymentCard';
 }

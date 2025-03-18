@@ -13,21 +13,17 @@ class UploadDocumentTile extends StatelessWidget {
       {super.key,
       required this.title,
       required this.subTitle,
-      this.isUploadedView = false,
-      this.contentPadding,
       this.filePath,
+      this.iconWidget,
       this.assetSize,
-      this.height,
       required this.onTap});
 
   final String title;
   final String subTitle;
   final String? filePath;
+  final Widget? iconWidget;
   final Function() onTap;
-  final bool isUploadedView;
   final double? assetSize;
-  final double? height;
-  final EdgeInsets? contentPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +31,8 @@ class UploadDocumentTile extends StatelessWidget {
       onTap: onTap,
       child: Container(
         alignment: Alignment.center,
-        height: height ?? screenHeight(context) / 4.4,
-        padding: contentPadding ?? EdgeInsets.all(20.sp),
+        height: screenHeight(context) / 4.4,
+        padding: EdgeInsets.all(20.sp),
         decoration: BoxDecoration(
             color: AppColor.orangeF285000F,
             borderRadius: BorderRadius.circular(12.sp),
@@ -53,28 +49,21 @@ class UploadDocumentTile extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SvgPicture.asset(
-                    Assets.upload,
-                    height: 30,
-                    width: 30,
-                    fit: BoxFit.cover,
-                    // colorFilter: isUploadedView
-                    //     ? null
-                    //     : ColorFilter.mode(context.textTheme.labelSmall!.color!,
-                    //         BlendMode.srcIn),
-                  ),
-                  // isUploadedView ? Dimens.box8 : Dimens.box16,
+                  if (iconWidget != null) ...{iconWidget!} else
+                    SvgPicture.asset(
+                      Assets.upload,
+                      height: 30,
+                      width: 30,
+                      fit: BoxFit.cover,
+                    ),
                   yHeight(10),
-
                   AppText(
                     text: title,
                     textAlign: TextAlign.center,
                     overflow: TextOverflow.ellipsis,
                     fontFamily: AppFonts.satoshiMedium,
                   ),
-
                   yHeight(10),
-
                   AppText(
                     text: subTitle,
                     textAlign: TextAlign.center,
