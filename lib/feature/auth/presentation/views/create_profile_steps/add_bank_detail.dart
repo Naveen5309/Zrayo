@@ -18,7 +18,7 @@ class AddBankDetail extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            CustomAppBar(title: "Add Bank Detail"),
+            CustomAppBar(title: AppString.addBankDetail),
             yHeight(10.sp),
             Container(
               height: 5,
@@ -43,36 +43,39 @@ class AddBankDetail extends StatelessWidget {
                       Column(
                         spacing: 10.sp,
                         children: [
+                          yHeight(0),
                           CustomTextField(
                             prefixIcon: SvgPicture.asset(Assets.calling),
-                            labelText: "Account Holder Name",
+                            labelText: AppString.accountHolderName,
                             keyboardType: TextInputType.name,
-                            hintText: "Enter account holder name",
+                            hintText: AppString.enterAccountHolderName,
                           ),
                           CustomTextField(
                             prefixIcon: SvgPicture.asset(Assets.cake),
-                            labelText: "Account Number",
+                            labelText: AppString.accountNumber,
                             keyboardType: TextInputType.number,
-                            hintText: "Enter account number",
+                            hintText: AppString.enterAccountNumber,
                           ),
                           CustomTextField(
                             prefixIcon: SvgPicture.asset(Assets.cake),
-                            labelText: "Routing Number",
+                            labelText: AppString.routingNumber,
                             keyboardType: TextInputType.number,
-                            hintText: "Enter routing number",
+                            hintText: AppString.enterRoutingNumber,
                           ),
                         ],
                       ),
-                      yHeight(60.sp),
-                      CommonAppBtn(
-                        title: AppString.saveAndContinue,
-                        onTap: () => toNamed(context, Routes.addAddressView),
-                      ),
+
                     ],
                   ),
                 ),
               ),
-            )
+            ),
+            Spacer(),
+            CommonAppBtn(
+              title: AppString.saveAndContinue,
+              margin: const EdgeInsets.all(16),
+              onTap: () => toNamed(context, Routes.addPaymentCard),
+            ),
           ],
         ),
       ),

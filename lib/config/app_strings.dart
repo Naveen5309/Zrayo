@@ -56,6 +56,15 @@ abstract final class AppString {
   static const String backSide = "Back Side";
   static const String uploadBackSide = "Upload Back Side";
   static const String addAddress = "Add Address";
+  static const String linkYourCardWithUs = "Link your card with us";
+  static const String addCardDetail = "Add Card Detail";
+  static const String accountHolderName = "Account Holder Name";
+  static const String enterAccountHolderName = "Enter account holder name";
+  static const String accountNumber = "Account Number";
+  static const String enterAccountNumber = "Enter account number";
+  static const String routingNumber = "Routing Number";
+  static const String enterRoutingNumber = "Enter routing number";
+  static const String addBankDetail = "Add Bank Detail";
 
 }
 
