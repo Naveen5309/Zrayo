@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
+import 'package:zrayo_flutter/feature/common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/common_widgets/custom_drop_down.dart';
 import 'package:zrayo_flutter/feature/common_widgets/custom_text_field.dart';
 
@@ -17,7 +18,8 @@ class AddAddressView extends ConsumerWidget {
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Column(
           children: [
-            yHeight(context.height * 0.21),
+            CustomAppBar(title: AppString.addAddress),
+            yHeight(context.height * 0.03),
             formsFieldsSection(),
           ],
         ),
@@ -53,16 +55,18 @@ Widget formsFieldsSection() {
       Consumer(builder: (BuildContext context, WidgetRef ref, Widget? child) {
         // var isVisible = ref.watch(isConfirmPswdVisible);
         return CustomTextField(
-          labelText: AppString.state,
-          hintText: AppString.selectSate,
-          controller: TextEditingController(),
-          prefixIcon: SvgPicture.asset(Assets.state),
-          suffixIcon: CustomDropdown(
-              hintText: '', iconPath: Assets.barcode, items: ['dcd', 'dsad']),
-          onChanged: (value) {
-            print("Selected City: $value");
-          },
-        );
+            labelText: AppString.state,
+            hintText: AppString.selectSate,
+            controller: TextEditingController(),
+            prefixIcon: SvgPicture.asset(Assets.state),
+            suffixIcon: CustomDropdown(
+              hintText: 'city',
+              iconPath: Assets.arrowDown,
+              items: ["New York", "Los Angeles", "Chicago", "Houston", "Miami"],
+              onChanged: (value) {
+                print("Selected City: $value");
+              },
+            ));
       }),
       Consumer(builder: (BuildContext context, WidgetRef ref, Widget? child) {
         // var isVisible = ref.watch(isConfirmPswdVisible);

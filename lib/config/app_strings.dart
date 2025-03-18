@@ -49,7 +49,7 @@ abstract final class AppString {
   static const String selectCity = "Select city";
   static const String selectSate = "Select state";
   static const String selectCountry = "Select country";
-// static const String password = "Password";
+  static const String addAddress = "Add Address";
 // static const String password = "Password";
 // static const String password = "Password";
 }
