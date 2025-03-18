@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/views/add_address.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/views/create_profile_steps/create_profile.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/views/login_view.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/views/sign_up_view.dart';
 import 'package:zrayo_flutter/feature/common_widgets/app_text.dart';
+import '../../../feature/auth/presentation/views/create_profile_steps/upload_document.dart';
 import '../../../feature/auth/presentation/views/splash_view.dart';
 import 'routes.dart';
 
@@ -16,18 +18,45 @@ class RouteGenerator {
     }
     switch (settings.name) {
       case Routes.splash:
-        return MaterialPageRoute(builder: (_) => const SplashView());
+        return _fadeTransitionRoute(const SplashView());
 
       case Routes.loginView:
-        return MaterialPageRoute(builder: (_) => const LoginView());
+        return _fadeTransitionRoute(const LoginView());
+
       case Routes.signUpView:
-        return MaterialPageRoute(builder: (_) => const SignUpView());
+        return _fadeTransitionRoute(const SignUpView());
+
+      case Routes.uploadDocument:
+        return _fadeTransitionRoute(const UploadDocument());
+
+      case Routes.createProfile:
+        return _fadeTransitionRoute(const CreateProfile());
+
       case Routes.addAddressView:
-        return MaterialPageRoute(builder: (_) => const AddAddressView());
+        return _fadeTransitionRoute(const AddAddressView());
+
       default:
         return MaterialPageRoute(builder: (_) => const ErrorRoute());
     }
   }
+
+  static PageRouteBuilder _fadeTransitionRoute(Widget page) {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => page,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        // Right to Left Slide transition
+        const begin = Offset(1.0, 0.0); // Slide from right to left
+        const end = Offset.zero; // End at the center
+        const curve = Curves.easeInOut;
+
+        var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+        var offsetAnimation = animation.drive(tween);
+
+        return SlideTransition(position: offsetAnimation, child: child);
+      },
+    );
+  }
+
 }
 
 class ErrorRoute extends StatelessWidget {

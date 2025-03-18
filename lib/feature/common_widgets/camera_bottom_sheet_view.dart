@@ -101,16 +101,13 @@ class CameraBottomSheetView extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.all(10.sp),
                     decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        // color: context.textTheme.labelMedium?.color
-                        //     ?.withValues(alpha: .10)
-                    ),
+                        shape: BoxShape.circle, color: AppColor.orangeFff9f0),
                     child: SvgPicture.asset(
                       Assets.camera,
                     ),
                   ),
                   AppText(
-                    text: "Take Photo",
+                    text: AppString.takePhoto,
                     textAlign: TextAlign.center,
                     fontFamily: AppFonts.satoshiMedium,
                     maxlines: 1,
@@ -143,21 +140,18 @@ class CameraBottomSheetView extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.all(10.sp),
                     decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        // color: context.textTheme.labelMedium?.color
-                        //     ?.withValues(alpha: .10)
-                    ),
+                        shape: BoxShape.circle, color: AppColor.orangeFff9f0),
                     child: SvgPicture.asset(
                       Assets.gallery,
                       // colorFilter: ColorFilter.mode(
-                        // context.textTheme.labelMedium!.color!
-                        //     .withValues(alpha: .50),
+                      // context.textTheme.labelMedium!.color!
+                      //     .withValues(alpha: .50),
                       //   BlendMode.srcIn,
                       // ),
                     ),
                   ),
                   AppText(
-                    text: "Upload From Gallery",
+                    text: AppString.uploadFromGallery,
                     textAlign: TextAlign.center,
                     fontWeight: FontWeight.w600,
                     maxlines: 1,
@@ -175,7 +169,7 @@ class CameraBottomSheetView extends StatelessWidget {
             ],
           ),
         ),
-       yHeight(0.sp),
+        yHeight(0.sp),
       ],
     );
   }

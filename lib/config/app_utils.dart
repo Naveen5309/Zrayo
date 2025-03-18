@@ -1,6 +1,7 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mime/mime.dart';
 import 'package:zrayo_flutter/feature/common_widgets/custom_bottom_sheet.dart';
 import '../feature/common_widgets/custom_toast.dart';
@@ -66,6 +67,10 @@ class Utils {
       context: context,
       enableDrag: true,
       shape: OutlineInputBorder(
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(18.sp),
+          topLeft: Radius.circular(18.sp),
+        ),
         borderSide: BorderSide(color: Colors.transparent),
       ),
       useSafeArea: false,

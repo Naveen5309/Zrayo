@@ -11,25 +11,19 @@ class CustomBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          // color: context.theme.bottomSheetTheme.backgroundColor,
-          borderRadius: BorderRadius.only(
-            topRight: Radius.circular(18.sp),
-            topLeft: Radius.circular(18.sp),
-          ),
-          border: Border.all(color: Colors.transparent)),
-      padding: EdgeInsets.all(22.sp),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
       child: Column(
         mainAxisSize: mainAxisSize,
         spacing: 14.sp,
         children: [
+          yHeight(0),
           Container(
-            padding: EdgeInsets.all(4.sp),
-            width: 60.sp,
+            padding: EdgeInsets.all(3.sp),
+            width: 70.sp,
             decoration: BoxDecoration(
               color:
-                  AppColor.grey040F2529,
+                  AppColor.primary,
               borderRadius: BorderRadius.circular(22),
             ),
           ),

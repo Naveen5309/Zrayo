@@ -3,11 +3,9 @@ part of 'helper.dart';
 class AppImagesInitialize {
   AppImagesInitialize._();
 
-/*  static assetsImagesInitialize(BuildContext context) {
-    precacheImage(const AssetImage(Assets.forgotPassImage), context);
-    precacheImage(AssetImage(Assets.setPassImage), context);
-    precacheImage(AssetImage(Assets.loginImage), context);
-  }*/
+  static assetsImagesInitialize(BuildContext context) {
+    precacheImage(const AssetImage(Assets.zrayoSplash), context);
+  }
 }
 
 abstract final class AppString {
@@ -49,9 +47,14 @@ abstract final class AppString {
   static const String selectCity = "Select city";
   static const String selectSate = "Select state";
   static const String selectCountry = "Select country";
-// static const String password = "Password";
-// static const String password = "Password";
-// static const String password = "Password";
+  static const String uploadFromGallery = "Upload From Gallery";
+  static const String takePhoto = "Take Photo";
+  static const String uploadDocument = "Upload Document";
+  static const String uploadIdentityDocument = "Upload Identity Document";
+  static const String frontSide = "Front Side";
+  static const String uploadFrontSide = "Upload Front Side";
+  static const String backSide = "Back Side";
+  static const String uploadBackSide = "Upload Back Side";
 }
 
 abstract final class AppConstants {

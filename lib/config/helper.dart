@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:zrayo_flutter/config/assets.dart';
 
 part 'extensions.dart';
 
@@ -67,7 +68,7 @@ void offAllNamed(BuildContext context, String routesName) {
 }
 
 void toNamed(BuildContext context, String routesName, {Object? args}) {
-  Navigator.pushNamed(context, routesName, arguments: args);
+  Navigator.pushNamed(context, routesName, arguments: args,);
 }
 
 void back(BuildContext context) {
