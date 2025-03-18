@@ -26,6 +26,13 @@ class Assets {
   static const String placeholder = 'assets/icons/place_holder.svg';
   static const String arrowDown = 'assets/icons/arrow_down.svg';
   static const String chooseRole = 'assets/images/choose_role.png';
-static const String mailImage = 'assets/images/mail_image.svg';
+  static const String mailImage = 'assets/images/mail_image.svg';
+  static const String checkTrue = 'assets/icons/check_true.svg';
+  static const String checkFalse = 'assets/icons/check_false.svg';
+// static const String city = 'assets/icons/city.svg';
+// static const String city = 'assets/icons/city.svg';
+// static const String city = 'assets/icons/city.svg';
+// static const String city = 'assets/icons/city.svg';
+// static const String city = 'assets/icons/city.svg';
 // static const String city = 'assets/icons/city.svg';
 }

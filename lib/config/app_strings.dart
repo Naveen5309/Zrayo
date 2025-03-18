@@ -84,6 +84,22 @@ abstract final class AppString {
   static const String logInAsACustomerToFindProperties =
       "Log in as a customer to find properties or \n as an agent to assist buyers and sellers.";
   static const String chooseInterface = "Choose Interface";
-  static const String pleaseEnterEmailAddressAssociated = "Don’t wary, Please enter email address associated\nwith your account.";
+  static const String pleaseEnterEmailAddressAssociated =
+      "Don’t wary, Please enter email address associated\nwith your account.";
   static const String submit = "Submit";
+  static const String choosePlan = "Choose Your Plan";
+  static const String oneMonthFreeTrial =
+      "Get one month free trial and you can cancel a subscription before your free trial ends.";
+  static const String free = "Free";
+  static const String givesDesignatedContact =
+      "Gives designated contacts secure, read-only access to shared information, ensuring they have what they need when it matters most.";
+  static const String basic = "Basic";
+  static const String accessToBasiscTabs =
+      "Access to basic tabs and features with limited entries per category, 2GB of secure storage, and email support.";
+  static const String free7DaysTrial = "7-Day Free Trial";
+  static const String continueText = "Continue";
+  // static const String submit = "Submit";
+  // static const String submit = "Submit";
+  // static const String submit = "Submit";
+  // static const String submit = "Submit";
 }

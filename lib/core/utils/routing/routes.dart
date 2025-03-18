@@ -10,4 +10,5 @@ class Routes {
   static const String createProfile = '/createProfile';
   static const String addBankDetail = '/addBankDetail';
   static const String addPaymentCard = '/addPaymentCard';
+  static const String subscriptionPlanView = '/subscriptionPlanView';
 }

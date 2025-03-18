@@ -4,8 +4,6 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zrayo_flutter/feature/auth/presentation/views/create_profile_steps/create_profile.dart';
-import 'package:zrayo_flutter/feature/auth/presentation/views/create_profile_steps/upload_document.dart';
 import 'config/helper.dart';
 import 'config/provider_logs.dart';
 import 'core/helpers/app_injector.dart';
