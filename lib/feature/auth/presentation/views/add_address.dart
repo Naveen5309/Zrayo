@@ -5,8 +5,11 @@ import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/feature/common_widgets/custom_app_bar.dart';
+import 'package:zrayo_flutter/feature/common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/common_widgets/custom_drop_down.dart';
 import 'package:zrayo_flutter/feature/common_widgets/custom_text_field.dart';
+
+import '../../../../core/utils/routing/routes.dart';
 
 class AddAddressView extends ConsumerWidget {
   const AddAddressView({super.key});
@@ -14,15 +17,37 @@ class AddAddressView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
-        child: Column(
-          children: [
-            CustomAppBar(title: AppString.addAddress),
-            yHeight(context.height * 0.03),
-            formsFieldsSection(),
-          ],
-        ),
+      body: Column(
+        children: [
+          CustomAppBar(title: AppString.addAddress),
+          yHeight(10.sp),
+          Container(
+            height: 5,
+            color: AppColor.orangeFff9f0,
+            width: screenWidth(context),
+            child: Row(
+              children: [
+                Container(
+                  height: 5,
+                  width: (screenWidth(context) / 5)*2,
+                  color: AppColor.primary,
+                ),
+              ],
+            ),
+          ),
+          yHeight(20.sp),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: formsFieldsSection(),
+            ),
+          ),
+          CommonAppBtn(
+            title: AppString.saveAndContinue,
+            margin: const EdgeInsets.all(16),
+            onTap: () => toNamed(context, Routes.uploadDocument),
+          )
+        ],
       ),
     );
   }
@@ -76,7 +101,7 @@ Widget formsFieldsSection() {
           controller: TextEditingController(),
           prefixIcon: SvgPicture.asset(Assets.global),
         );
-      })
+      }),
     ],
   );
 }

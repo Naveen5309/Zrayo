@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zrayo_flutter/config/helper.dart';
+import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/views/create_profile_steps/upload_document_tile.dart';
 
 import '../../../../../config/app_utils.dart';
@@ -90,6 +91,7 @@ class UploadDocument extends StatelessWidget {
                     Spacer(),
                     CommonAppBtn(
                       title: AppString.saveAndContinue,
+                      onTap: () => toNamed(context, Routes.uploadDocument),
                     ),
                     yHeight(20),
                   ],

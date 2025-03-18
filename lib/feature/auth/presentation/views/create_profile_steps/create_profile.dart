@@ -150,7 +150,7 @@ class CreateProfile extends StatelessWidget {
                     yHeight(60.sp),
                     CommonAppBtn(
                       title: AppString.saveAndContinue,
-                      onTap: () => toNamed(context, Routes.uploadDocument),
+                      onTap: () => toNamed(context, Routes.addAddressView),
                     ),
                   ],
                 ),
