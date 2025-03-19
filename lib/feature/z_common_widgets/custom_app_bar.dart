@@ -8,16 +8,22 @@ import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String title;
+  final String? subTitle;
   final bool? centerTitle;
+  final bool? showNotificationIcon;
   final bool? showBackButton;
   final VoidCallback? onBackIconTap;
   final Widget? action;
+  final Color? titleColor;
 
   const CustomAppBar({
     super.key,
     required this.title,
+    this.subTitle,
     this.centerTitle,
     this.showBackButton = true,
+    this.showNotificationIcon = false,
+    this.titleColor,
     this.onBackIconTap,
     this.action,
   });
@@ -38,17 +44,63 @@ class CustomAppBar extends StatelessWidget {
                 if ((centerTitle ?? false) && !(showBackButton ?? false)) ...{
                   const SizedBox()
                 },
-                AppText(
-                  text: title,
-                  fontFamily: AppFonts.satoshiBold,
-                  textSize: 20.sp,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AppText(
+                      text: title,
+                      fontFamily: AppFonts.satoshiBold,
+                      textSize: 20.sp,
+                      color: titleColor,
+                    ),
+                    if (subTitle != null) ...{
+                      yHeight(3),
+                      AppText(
+                        text: subTitle ?? "",
+                        fontFamily: AppFonts.satoshiMedium,
+                        textSize: 12.sp,
+                        color: titleColor,
+                      ),
+                    }
+                  ],
                 ),
-                action ?? xWidth(30),
+                action ??
+                    ((showNotificationIcon ?? false)
+                        ? notificationIcon()
+                        : xWidth(30)),
               ],
             ),
           ),
         ],
       ),
+    );
+  }
+
+  Widget notificationIcon() {
+    return Stack(
+      children: [
+        Container(
+          padding: EdgeInsets.all(15),
+          decoration: BoxDecoration(
+              color: AppColor.primaryEC9529, shape: BoxShape.circle),
+          child: SvgPicture.asset(Assets.bellRinging),
+        ),
+        Positioned(
+          top: 0,
+          right: 0,
+          child: Container(
+            padding: EdgeInsets.all(5),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: AppColor.whiteFFFFFF,
+            ),
+            child: AppText(
+              text: "3",
+              textSize: 10.sp,
+            ).align(),
+          ),
+        ),
+      ],
     );
   }
 }

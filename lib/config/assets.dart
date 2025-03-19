@@ -44,4 +44,10 @@ class Assets {
   static const String dashVisitUnselected = 'assets/icons/dashboard_icons/visit_unselected.svg';
   static const String dashHistoryUnselected = 'assets/icons/dashboard_icons/history_unSelected.svg';
   static const String dashHistorySelected = 'assets/icons/dashboard_icons/history_selected.svg';
+  static const String bellRinging = 'assets/icons/bell_ringing.svg';
+  static const String mapTrifold = 'assets/icons/map_trifold.svg';
+  static const String listBulletsIcon = 'assets/icons/list_bullets_icon.svg';
+  static const String filterIcon = 'assets/icons/filter_icon.svg';
+  static const String searchIcon = 'assets/icons/search_icon.svg';
+  static const String heartUnselected = 'assets/icons/heart_unselected.svg';
 }

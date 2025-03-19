@@ -9,6 +9,7 @@ class CustomCacheNetworkImage extends StatelessWidget {
   final String img;
   final double size;
   final double? width;
+  final double? height;
   final double imageRadius;
   final BorderRadiusGeometry? imageBorderRadius;
   final BoxFit? fit;
@@ -16,8 +17,9 @@ class CustomCacheNetworkImage extends StatelessWidget {
   const CustomCacheNetworkImage({
     super.key,
     required this.img,
-    required this.size,
+    this.size = 120,
     this.width,
+    this.height,
     required this.imageRadius,
     this.imageBorderRadius,
     this.fit,
@@ -27,25 +29,25 @@ class CustomCacheNetworkImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return (img.isEmpty)
         ? Container(
-            height: size,
-            width: size,
+            height: height ?? size,
+            width: width ?? size,
             decoration: BoxDecoration(
               borderRadius: imageBorderRadius ?? BorderRadius.circular(100),
             ),
             child: SvgPicture.asset(
               Assets.placeholder,
-              height: size,
-              width: size,
+              height: height ?? size,
+              width: width ?? size,
               fit: BoxFit.cover,
             ),
           )
         : CachedNetworkImage(
             imageUrl: img,
-            height: size,
+            height: height ?? size,
             width: width ?? size,
             fit: BoxFit.cover,
             imageBuilder: (context, imageProvider) => Container(
-              height: size,
+              height: height??size,
               width: width ?? size,
               decoration: BoxDecoration(
                 borderRadius:
@@ -58,7 +60,7 @@ class CustomCacheNetworkImage extends StatelessWidget {
             ),
             progressIndicatorBuilder: (context, url, downloadProgress) {
               return Container(
-                height: size,
+                height: height??size,
                 width: width ?? size,
                 decoration: BoxDecoration(
                   borderRadius:
@@ -66,8 +68,8 @@ class CustomCacheNetworkImage extends StatelessWidget {
                 ),
                 child: Center(
                   child: SizedBox(
-                    height: size / 2,
-                    width: size / 2,
+                    height: (height??size) / 2,
+                    width: (width??size)  / 2,
                     child: CircularProgressIndicator(
                       value: downloadProgress.progress,
                       color: AppColor.primary,
