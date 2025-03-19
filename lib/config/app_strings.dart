@@ -112,9 +112,28 @@ abstract final class AppString {
   static const String change = "Change";
   static const String priceAbove0 = "\$4.99";
   static const String price0 = "\$0.00";
-  // static const String change = "Change";
-  // static const String change = "Change";
-  // static const String change = "Change";
-  // static const String change = "Change";
-  // static const String change = "Change";
+  static const String getOneMonth = "Get one month ";
+  static const String freeTrial = "free trial";
+  static const String freeTrialEnds =
+      " and you can cancel a subscription before your free trial ends.";
+  static const String allow = "Allow ";
+  static const String deny = "Deny";
+  static const String zrayoText = '"Zrayo"';
+  static const String accessDeviceLocation =
+      " to access the device precise location?";
+  // static const String deny = "Deny";
+  // static const String deny = "Deny";
+  // static const String deny = "Deny";
+  // static const String deny = "Deny";
+  // static const String deny = "Deny";
+  // static const String deny = "Deny";
+  // static const String deny = "Deny";
+  // static const String deny = "Deny";
+  // static const String deny = "Deny";
+  // static const String deny = "Deny";
+  // static const String deny = "Deny";
+  // static const String deny = "Deny";
+  // static const String deny = "Deny";
+  // static const String deny = "Deny";
+  static const String enableLocation = "Enable Location";
 }

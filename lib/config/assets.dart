@@ -31,17 +31,35 @@ class Assets {
   static const String changePassIcon = 'assets/images/change_pass_icon.svg';
   static const String checkTrue = 'assets/icons/check_true.svg';
   static const String checkFalse = 'assets/icons/check_false.svg';
-  static const String dashFavorite = 'assets/icons/dashboard_icons/favorite.svg';
-  static const String dashHomeSelected = 'assets/icons/dashboard_icons/home_selected.svg';
-  static const String dashHomeUnselected = 'assets/icons/dashboard_icons/home_unselected.svg';
-  static const String dashMsgSelected = 'assets/icons/dashboard_icons/msg_selected.svg';
-  static const String dashMsgUnselected = 'assets/icons/dashboard_icons/msg_unselected.svg';
-  static const String dashProfileSelected = 'assets/icons/dashboard_icons/profile_selected.svg';
-  static const String dashProfileUnselected = 'assets/icons/dashboard_icons/profile_unselected.svg';
-  static const String dashPropertySelected = 'assets/icons/dashboard_icons/property_selected.svg';
-  static const String dashPropertyUnselected = 'assets/icons/dashboard_icons/property_unselected.svg';
-  static const String dashVisitSelected = 'assets/icons/dashboard_icons/visit_selected.svg';
-  static const String dashVisitUnselected = 'assets/icons/dashboard_icons/visit_unselected.svg';
-  static const String dashHistoryUnselected = 'assets/icons/dashboard_icons/history_unSelected.svg';
-  static const String dashHistorySelected = 'assets/icons/dashboard_icons/history_selected.svg';
+  static const String dashFavorite =
+      'assets/icons/dashboard_icons/favorite.svg';
+  static const String dashHomeSelected =
+      'assets/icons/dashboard_icons/home_selected.svg';
+  static const String dashHomeUnselected =
+      'assets/icons/dashboard_icons/home_unselected.svg';
+  static const String dashMsgSelected =
+      'assets/icons/dashboard_icons/msg_selected.svg';
+  static const String dashMsgUnselected =
+      'assets/icons/dashboard_icons/msg_unselected.svg';
+  static const String dashProfileSelected =
+      'assets/icons/dashboard_icons/profile_selected.svg';
+  static const String dashProfileUnselected =
+      'assets/icons/dashboard_icons/profile_unselected.svg';
+  static const String dashPropertySelected =
+      'assets/icons/dashboard_icons/property_selected.svg';
+  static const String dashPropertyUnselected =
+      'assets/icons/dashboard_icons/property_unselected.svg';
+  static const String dashVisitSelected =
+      'assets/icons/dashboard_icons/visit_selected.svg';
+  static const String dashVisitUnselected =
+      'assets/icons/dashboard_icons/visit_unselected.svg';
+  static const String dashHistoryUnselected =
+      'assets/icons/dashboard_icons/history_unSelected.svg';
+  static const String dashHistorySelected =
+      'assets/icons/dashboard_icons/history_selected.svg';
+  static const String mapLocation =
+      'assets/icons/dashboard_icons/map_location.svg';
+  // static const String dashHistorySelected = 'assets/icons/dashboard_icons/history_selected.svg';
+  // static const String dashHistorySelected = 'assets/icons/dashboard_icons/history_selected.svg';
+  // static const String dashHistorySelected = 'assets/icons/dashboard_icons/history_selected.svg';
 }

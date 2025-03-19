@@ -1,16 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
+import 'package:zrayo_flutter/feature/dashboard/presentation/view/location_access_content.dart';
+import 'package:zrayo_flutter/feature/Messages/view/messages.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/custom_dialog.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_subscription_plan.dart';
 
-class SubscriptionPlanView extends StatelessWidget {
+class SubscriptionPlanView extends StatefulWidget {
   const SubscriptionPlanView({super.key});
 
   @override
+  State<SubscriptionPlanView> createState() => _SubscriptionPlanViewState();
+}
+
+class _SubscriptionPlanViewState extends State<SubscriptionPlanView> {
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      showCustomDialog(context, content: LocationAccessContent());
+    });
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
         body: Column(spacing: 5.sp, children: [
@@ -26,7 +44,7 @@ class SubscriptionPlanView extends StatelessWidget {
               textSize: 24.sp,
               fontFamily: AppFonts.satoshiBold,
             ),
-            SizedBox(height: 5),
+            yHeight(5),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Row(
@@ -34,20 +52,19 @@ class SubscriptionPlanView extends StatelessWidget {
                   Expanded(
                     child: Text.rich(
                       TextSpan(
-                        text: "Get one month ",
+                        text: AppString.getOneMonth,
                         style: TextStyle(
                             fontSize: 14.sp,
                             fontFamily: AppFonts.satoshiRegular),
                         children: [
                           TextSpan(
-                            text: "free trial",
+                            text: AppString.freeTrial,
                             style: TextStyle(
                                 fontSize: 14.sp,
                                 fontFamily: AppFonts.satoshiBold),
                           ),
                           TextSpan(
-                            text:
-                                " and you can cancel a subscription before your free trial ends.",
+                            text: AppString.freeTrialEnds,
                             style: TextStyle(
                               fontFamily: AppFonts.satoshiRegular,
                               fontSize: 14.sp,
@@ -63,7 +80,7 @@ class SubscriptionPlanView extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 20),
+            yHeight(30),
             Column(
               spacing: 15.sp,
               children: [
@@ -87,7 +104,9 @@ class SubscriptionPlanView extends StatelessWidget {
             yHeight(context.height / 7),
             CommonAppBtn(
               title: AppString.continueText,
-              onTap: () => offAllNamed(context, Routes.dashboard),
+              // onTap: () => offAllNamed(context, Routes.dashboard),
+              onTap: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => MessagesView())),
             ),
           ],
         ),
