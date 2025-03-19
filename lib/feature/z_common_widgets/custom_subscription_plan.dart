@@ -14,7 +14,8 @@ class PlanCard extends StatelessWidget {
   final bool isHighlighted;
   final VoidCallback onTap;
 
-  const PlanCard({super.key,
+  const PlanCard({
+    super.key,
     required this.title,
     required this.price,
     required this.description,
@@ -29,7 +30,7 @@ class PlanCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.all(16),
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 18),
         decoration: BoxDecoration(
           color: (isHighlighted) ? AppColor.orangeFFECD6 : AppColor.whiteFFFFFF,
           borderRadius: BorderRadius.circular(12),
@@ -63,7 +64,7 @@ class PlanCard extends StatelessWidget {
                       ),
                   ],
                 ),
-                SizedBox(width: 10),
+                xWidth(10),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
@@ -98,6 +99,9 @@ class PlanCard extends StatelessWidget {
                     : SvgPicture.asset(Assets.checkFalse)
               ],
             ),
+            yHeight(
+              3,
+            ),
             if (trialText != null)
               Padding(
                 padding: const EdgeInsets.only(top: 4.0),
@@ -108,7 +112,7 @@ class PlanCard extends StatelessWidget {
                   color: AppColor.black232323,
                 ),
               ),
-            SizedBox(height: 10),
+            yHeight(15),
             AppText(
               text: description,
               color: AppColor.black4A4A4A,
