@@ -121,8 +121,8 @@ abstract final class AppString {
   static const String zrayoText = '"Zrayo"';
   static const String accessDeviceLocation =
       " to access the device precise location?";
-  // static const String deny = "Deny";
-  // static const String deny = "Deny";
+  static const String message = "Message";
+  static const String searchLocation = "Search location...";
   // static const String deny = "Deny";
   // static const String deny = "Deny";
   // static const String deny = "Deny";

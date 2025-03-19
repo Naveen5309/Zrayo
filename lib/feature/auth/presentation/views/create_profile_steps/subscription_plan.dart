@@ -5,7 +5,7 @@ import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/dashboard/presentation/view/location_access_content.dart';
-import 'package:zrayo_flutter/feature/Messages/view/messages.dart';
+import 'package:zrayo_flutter/feature/messages/presentation/view/messages.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
@@ -104,9 +104,7 @@ class _SubscriptionPlanViewState extends State<SubscriptionPlanView> {
             yHeight(context.height / 7),
             CommonAppBtn(
               title: AppString.continueText,
-              // onTap: () => offAllNamed(context, Routes.dashboard),
-              onTap: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => MessagesView())),
+              onTap: () => offAllNamed(context, Routes.dashboard),
             ),
           ],
         ),

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/custom_cache_network_image.dart';
 
 class ChatTile extends StatelessWidget {
   final String name;
@@ -35,33 +36,37 @@ class ChatTile extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
-                  SizedBox(
-                      height: 50, width: 50, child: SvgPicture.asset(imageUrl)),
+                  CustomCacheNetworkImage(
+                    img: "",
+                    imageRadius: 100,
+                    size: 50,
+                  ),
                   10.horizontalSpace,
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        AppText(
-                          text: name,
-                          textSize: 16.sp,
-                          fontFamily: AppFonts.satoshiBold,
-                          maxlines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        8.verticalSpace,
-                        AppText(
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      AppText(
+                        text: name,
+                        textSize: 16.sp,
+                        fontFamily: AppFonts.satoshiBold,
+                        maxlines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      8.verticalSpace,
+                      SizedBox(
+                        width: context.width * 0.5,
+                        child: AppText(
                             text: message,
                             textSize: 14.sp,
                             maxlines: 1,
                             overflow: TextOverflow.ellipsis,
                             color: unreadCount > 0
                                 ? AppColor.black000000
-                                : AppColor.grey040F2529),
-                      ],
-                    ),
+                                : AppColor.grey999999),
+                      ),
+                    ],
                   ),
                   const Spacer(),
                   Column(
@@ -79,7 +84,7 @@ class ChatTile extends StatelessWidget {
                           margin: const EdgeInsets.only(top: 4),
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Colors.red,
+                            color: AppColor.primary,
                           ),
                           child: AppText(
                             text: unreadCount.toString(),

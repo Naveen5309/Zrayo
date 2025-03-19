@@ -136,8 +136,7 @@ class PropertyBox extends StatelessWidget {
     return Stack(
       children: [
         CustomCacheNetworkImage(
-          img:
-              "https://cdn.pixabay.com/photo/2016/11/18/17/46/house-1836070_640.jpg",
+          img: "",
           width: width,
           height: height,
           imageRadius: 16,
