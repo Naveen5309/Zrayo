@@ -14,4 +14,6 @@ class Routes {
   static const String otpVerificationView = '/otpVerificationView';
   static const String changePasswordView = '/changePasswordView';
   static const String dashboard = '/dashboard';
+  static const String notificationView = '/notificationView';
+
 }

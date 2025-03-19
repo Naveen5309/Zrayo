@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
+import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 
 class CustomAppBar extends StatelessWidget {
@@ -35,7 +36,7 @@ class CustomAppBar extends StatelessWidget {
         children: [
           yHeight(10),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -66,7 +67,7 @@ class CustomAppBar extends StatelessWidget {
                 ),
                 action ??
                     ((showNotificationIcon ?? false)
-                        ? notificationIcon()
+                        ? notificationIcon(context)
                         : xWidth(30)),
               ],
             ),
@@ -76,31 +77,34 @@ class CustomAppBar extends StatelessWidget {
     );
   }
 
-  Widget notificationIcon() {
-    return Stack(
-      children: [
-        Container(
-          padding: EdgeInsets.all(15),
-          decoration: BoxDecoration(
-              color: AppColor.primaryEC9529, shape: BoxShape.circle),
-          child: SvgPicture.asset(Assets.bellRinging),
-        ),
-        Positioned(
-          top: 0,
-          right: 0,
-          child: Container(
-            padding: EdgeInsets.all(5),
+  Widget notificationIcon(BuildContext context) {
+    return GestureDetector(
+      onTap: () => toNamed(context, Routes.notificationView),
+      child: Stack(
+        children: [
+          Container(
+            padding: EdgeInsets.all(15),
             decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: AppColor.whiteFFFFFF,
-            ),
-            child: AppText(
-              text: "3",
-              textSize: 10.sp,
-            ).align(),
+                color: AppColor.primaryEC9529, shape: BoxShape.circle),
+            child: SvgPicture.asset(Assets.bellRinging),
           ),
-        ),
-      ],
+          Positioned(
+            top: 0,
+            right: 0,
+            child: Container(
+              padding: EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColor.whiteFFFFFF,
+              ),
+              child: AppText(
+                text: "3",
+                textSize: 10.sp,
+              ).align(),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -5,6 +5,9 @@ import 'package:zrayo_flutter/config/enums.dart';
 import 'package:zrayo_flutter/feature/dashboard/presentation/states/dashboard_states.dart';
 import 'package:zrayo_flutter/feature/home/presentation/view/home_view_main.dart';
 
+import '../../../favorite_properties/presentation/view/favorite_properties.dart';
+import '../../../my_properties/presentation/view/my_properties.dart';
+
 class DashboardNotifier extends StateNotifier<DashboardState> {
   DashboardNotifier() : super(DashboardInitial());
   DashboardEnum selectedTab = DashboardEnum.home;
@@ -67,6 +70,10 @@ class DashboardNotifier extends StateNotifier<DashboardState> {
   Widget getScreen() {
     if (selectedTab == DashboardEnum.home) {
       return HomeViewMain();
+    } else if (selectedTab == DashboardEnum.property) {
+      return MyProperties();
+    } else if (selectedTab == DashboardEnum.favorite) {
+      return FavoriteProperties();
     }
     return SizedBox();
   }

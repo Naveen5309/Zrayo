@@ -5,8 +5,8 @@ class CustomerHomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double cardWidth = MediaQuery.of(context).size.width / 3.2;
-    double cardHeight = MediaQuery.of(context).size.height / 4;
+    double cardWidth = screenWidth(context) / 3.2;
+    double cardHeight = screenHeight(context) / 4;
     return Container(
       height: double.infinity,
       width: double.infinity,

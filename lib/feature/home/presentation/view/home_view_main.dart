@@ -24,17 +24,15 @@ class HomeViewMain extends StatelessWidget {
       width: screenWidth(context),
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: CustomAppBar(
-              title: "Hello, Rachel 👋",
-              subTitle: "Let’s find your cozy place ",
-              titleColor: AppColor.whiteFFFFFF,
-              showBackButton: false,
-              showNotificationIcon: true,
-            ),
+          yHeight(15.h),
+          CustomAppBar(
+            title: "Hello, Rachel 👋",
+            subTitle: "Let’s find your cozy place ",
+            titleColor: AppColor.whiteFFFFFF,
+            showBackButton: false,
+            showNotificationIcon: true,
           ),
-          yHeight(20.h),
+          yHeight(30.h),
           if (!Getters.isAgent()) ...{
             Expanded(
               child: CustomerHomeView(),

@@ -9,6 +9,7 @@ import 'package:zrayo_flutter/feature/auth/presentation/views/login_view.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/views/otp_verification_view.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/views/sign_up_view.dart';
 import 'package:zrayo_flutter/feature/dashboard/presentation/view/dashboard.dart';
+import 'package:zrayo_flutter/feature/dashboard/presentation/view/notification_view.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import '../../../feature/auth/presentation/views/change_password_view.dart';
 import '../../../feature/auth/presentation/views/choose_interface_view.dart';
@@ -56,6 +57,8 @@ class RouteGenerator {
 
       case Routes.dashboard:
         return _fadeTransitionRoute(const Dashboard());
+      case Routes.notificationView:
+        return _fadeTransitionRoute(const NotificationView());
 
       default:
         return MaterialPageRoute(builder: (_) => const ErrorRoute());
