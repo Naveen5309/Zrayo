@@ -7,9 +7,9 @@ import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/provider/sign_up_provider.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/provider/state_notifiers/sign_up_notifier.dart';
-import 'package:zrayo_flutter/feature/common_widgets/app_text.dart';
-import 'package:zrayo_flutter/feature/common_widgets/custom_btn.dart';
-import 'package:zrayo_flutter/feature/common_widgets/custom_text_field.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/custom_text_field.dart';
 
 import '../../../../core/utils/routing/routes.dart';
 

@@ -6,7 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 
-import '../../../../common_widgets/app_text.dart';
+import '../../../../z_common_widgets/app_text.dart';
 
 class UploadDocumentTile extends StatelessWidget {
   const UploadDocumentTile(

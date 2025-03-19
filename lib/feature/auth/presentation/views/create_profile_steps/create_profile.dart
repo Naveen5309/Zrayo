@@ -1,17 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/config/app_utils.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
-import 'package:zrayo_flutter/feature/common_widgets/custom_app_bar.dart';
-import 'package:zrayo_flutter/feature/common_widgets/custom_btn.dart';
-import 'package:zrayo_flutter/feature/common_widgets/custom_text_field.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/custom_text_field.dart';
 
 import '../../../../../config/assets.dart';
-import '../../../../common_widgets/camera_bottom_sheet_view.dart';
-import '../../../../common_widgets/custom_cache_network_image.dart';
+import '../../../../z_common_widgets/camera_bottom_sheet_view.dart';
+import '../../../../z_common_widgets/custom_cache_network_image.dart';
 
 class CreateProfile extends StatelessWidget {
   const CreateProfile({super.key});

@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final botToastBuilder = BotToastInit();
-    AppImagesInitialize.assetsImagesInitialize(context);
+    // AppImagesInitialize.assetsImagesInitialize(context);
 
     return ScreenUtilInit(
         designSize: const Size(360, 690),

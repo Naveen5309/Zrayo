@@ -4,9 +4,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
-import 'package:zrayo_flutter/feature/common_widgets/app_text.dart';
-import 'package:zrayo_flutter/feature/common_widgets/custom_btn.dart';
-import 'package:zrayo_flutter/feature/common_widgets/custom_text_field.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/custom_text_field.dart';
 
 class ForgotPasswordSheet extends StatelessWidget {
   const ForgotPasswordSheet({super.key});
@@ -43,7 +43,10 @@ class ForgotPasswordSheet extends StatelessWidget {
             yHeight(10.sp),
             CommonAppBtn(
               title: AppString.submit,
-              onTap: () => toNamed(context, Routes.otpVerificationView),
+              onTap: () {
+                back(context);
+                toNamed(context, Routes.otpVerificationView);
+              },
             )
           ],
         ),

@@ -3,10 +3,10 @@ part of 'helper.dart';
 class AppImagesInitialize {
   AppImagesInitialize._();
 
-  static assetsImagesInitialize(BuildContext context) {
-    precacheImage(const AssetImage(Assets.zrayoSplash), context);
-    precacheImage(const AssetImage(Assets.chooseRole), context);
-  }
+  // static assetsImagesInitialize(BuildContext context) {
+  //   precacheImage(const AssetImage(Assets.zrayoSplash), context);
+  //   precacheImage(const AssetImage(Assets.chooseRole), context);
+  // }
 }
 
 abstract final class AppConstants {

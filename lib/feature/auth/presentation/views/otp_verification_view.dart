@@ -4,9 +4,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:pinput/pinput.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
-import 'package:zrayo_flutter/feature/common_widgets/app_text.dart';
-import 'package:zrayo_flutter/feature/common_widgets/custom_app_bar.dart';
-import 'package:zrayo_flutter/feature/common_widgets/custom_btn.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 
 import '../../../../config/assets.dart';
 
@@ -75,7 +75,7 @@ class OtpVerificationView extends StatelessWidget {
                         color: AppColor.primary,
                       ),
                       showCursor: true,
-                      onCompleted: (pin) => print(pin),
+                      onCompleted: (pin) => printLog(pin),
                     ),
                     yHeight(20.sp),
                     AppText(

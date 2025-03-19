@@ -1,0 +1,69 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:zrayo_flutter/config/assets.dart';
+import 'package:zrayo_flutter/config/enums.dart';
+import 'package:zrayo_flutter/feature/dashboard/presentation/states/dashboard_states.dart';
+
+class DashboardNotifier extends StateNotifier<DashboardState> {
+  DashboardNotifier() : super(DashboardInitial());
+  DashboardEnum selectedTab = DashboardEnum.home;
+  List<DashboardEnum> customerTabList = [
+    DashboardEnum.home,
+    DashboardEnum.message,
+    DashboardEnum.favorite,
+    DashboardEnum.property,
+    DashboardEnum.profile,
+  ];
+  List<DashboardEnum> agentTabList = [
+    DashboardEnum.home,
+    DashboardEnum.message,
+    DashboardEnum.visit,
+    DashboardEnum.history,
+    DashboardEnum.profile,
+  ];
+
+  String tabSvgs(DashboardEnum tab) {
+    switch (tab) {
+      case DashboardEnum.home:
+        return selectedTab == DashboardEnum.home
+            ? Assets.dashHomeSelected
+            : Assets.dashHomeUnselected;
+      case DashboardEnum.profile:
+        return selectedTab == DashboardEnum.profile
+            ? Assets.dashProfileSelected
+            : Assets.dashProfileUnselected;
+      case DashboardEnum.message:
+        return selectedTab == DashboardEnum.message
+            ? Assets.dashMsgSelected
+            : Assets.dashMsgUnselected;
+
+      case DashboardEnum.property:
+        return selectedTab == DashboardEnum.property
+            ? Assets.dashPropertySelected
+            : Assets.dashPropertyUnselected;
+
+      case DashboardEnum.visit:
+        return selectedTab == DashboardEnum.visit
+            ? Assets.dashVisitSelected
+            : Assets.dashVisitUnselected;
+
+      case DashboardEnum.favorite:
+        return selectedTab == DashboardEnum.favorite
+            ? Assets.dashFavorite
+            : Assets.dashFavorite;
+      case DashboardEnum.history:
+        return selectedTab == DashboardEnum.history
+            ? Assets.dashHistorySelected
+            : Assets.dashHistoryUnselected;
+    }
+  }
+
+  void changeTab(DashboardEnum newTab) {
+    selectedTab = newTab;
+    state = DashboardChangeTabSuccess();
+  }
+
+  Widget getScreen() {
+    return SizedBox();
+  }
+}

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
-import 'package:zrayo_flutter/feature/common_widgets/custom_app_bar.dart';
-import 'package:zrayo_flutter/feature/common_widgets/custom_btn.dart';
-import 'package:zrayo_flutter/feature/common_widgets/custom_text_field.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/custom_text_field.dart';
 
 class AddBankDetail extends StatelessWidget {
   const AddBankDetail({super.key});

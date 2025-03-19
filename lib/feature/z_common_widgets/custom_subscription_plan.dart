@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
-import 'package:zrayo_flutter/feature/common_widgets/app_text.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 
 class PlanCard extends StatelessWidget {
   final String title;
@@ -14,7 +14,7 @@ class PlanCard extends StatelessWidget {
   final bool isHighlighted;
   final VoidCallback onTap;
 
-  const PlanCard({
+  const PlanCard({super.key,
     required this.title,
     required this.price,
     required this.description,

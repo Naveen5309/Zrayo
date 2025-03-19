@@ -78,6 +78,7 @@ flutter:
     - assets/fonts/
     - assets/icons/
     - assets/images/
+    - assets/icons/dashboard_icons/
 
 
 

@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
-import 'package:zrayo_flutter/feature/common_widgets/app_text.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String title;

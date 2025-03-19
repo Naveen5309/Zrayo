@@ -6,10 +6,10 @@ import 'package:zrayo_flutter/feature/auth/presentation/provider/change_password
 
 import '../../../../config/assets.dart';
 import '../../../../config/helper.dart';
-import '../../../common_widgets/app_text.dart';
-import '../../../common_widgets/custom_app_bar.dart';
-import '../../../common_widgets/custom_btn.dart';
-import '../../../common_widgets/custom_text_field.dart';
+import '../../../z_common_widgets/app_text.dart';
+import '../../../z_common_widgets/custom_app_bar.dart';
+import '../../../z_common_widgets/custom_btn.dart';
+import '../../../z_common_widgets/custom_text_field.dart';
 
 class ChangePasswordView extends ConsumerWidget {
   const ChangePasswordView({super.key});
@@ -99,6 +99,10 @@ class ChangePasswordView extends ConsumerWidget {
           CommonAppBtn(
             margin: EdgeInsets.all(16.0),
             title: AppString.change,
+            onTap: () {
+              back(context);
+              back(context);
+            },
           )
         ],
       ),

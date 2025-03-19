@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 
-import '../../feature/common_widgets/custom_toast.dart';
+import '../../feature/z_common_widgets/custom_toast.dart';
 
 
 abstract class NetworkInfo {

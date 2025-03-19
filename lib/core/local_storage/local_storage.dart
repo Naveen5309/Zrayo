@@ -1,27 +1,34 @@
 import 'dart:convert';
 import 'package:hive_ce_flutter/hive_flutter.dart';
+import 'package:zrayo_flutter/config/enums.dart';
 
 import '../../config/helper.dart';
 import '../../feature/auth/data/models/user_model.dart';
 
 abstract class HiveConst {
   static const String userData = 'userData';
+  static const String userType = 'userType';
   static const String authToken = 'authToken';
   static const String isProfileComplete = 'isProfileComplete';
-
 }
 
 abstract class LocalStorage {
   Future<bool> saveLoginUser(UserModel userModel);
 
+  Future<void> saveUserType(UserType userType);
+
   UserModel? getLoginUser();
+
+  UserType? getUserType();
 
   Future<void> clearAllBox();
 
   String? getToken();
 
   Future<void> saveToken(String token);
+
   Future<void> saveIsProfileComplete(int isComplete);
+
   int? getIsProfileComplete();
 }
 
@@ -32,13 +39,11 @@ class HiveStorageImp extends LocalStorage {
     required this.userBox,
   });
 
-
   @override
   Future<void> saveToken(String token) async {
     await userBox.put(HiveConst.authToken, token);
     printLog("==============saveToken==========");
   }
-
 
   @override
   String? getToken() {
@@ -72,8 +77,8 @@ class HiveStorageImp extends LocalStorage {
   }
 
   @override
-  Future<void> saveIsProfileComplete(int isComplete)async {
-   await userBox.put(HiveConst.isProfileComplete, isComplete);
+  Future<void> saveIsProfileComplete(int isComplete) async {
+    await userBox.put(HiveConst.isProfileComplete, isComplete);
   }
 
   @override
@@ -82,5 +87,14 @@ class HiveStorageImp extends LocalStorage {
     return isComplete;
   }
 
+  @override
+  UserType? getUserType() {
+    final userTypeInt = userBox.get(HiveConst.userType);
+    return UserType.values.firstWhere((element) => element.index==userTypeInt,);
+  }
 
+  @override
+  Future<void> saveUserType(UserType userType) async {
+    await userBox.put(HiveConst.userType, userType.index);
+  }
 }
