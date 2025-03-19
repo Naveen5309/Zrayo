@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_cache_network_image.dart';
@@ -107,7 +106,7 @@ class ChatTile extends StatelessWidget {
             ),
             Divider(
               thickness: 1.sp,
-              color: AppColor.black000000.withOpacity(.1),
+              color: AppColor.black000000.withValues(alpha: .1),
             )
           ],
         ),
