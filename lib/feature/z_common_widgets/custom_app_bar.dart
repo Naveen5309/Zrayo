@@ -11,6 +11,7 @@ class CustomAppBar extends StatelessWidget {
   final String title;
   final String? subTitle;
   final bool? centerTitle;
+  final bool isFromHome;
   final bool? showNotificationIcon;
   final bool? showBackButton;
   final VoidCallback? onBackIconTap;
@@ -23,6 +24,7 @@ class CustomAppBar extends StatelessWidget {
     this.subTitle,
     this.centerTitle,
     this.showBackButton = true,
+    this.isFromHome = false,
     this.showNotificationIcon = false,
     this.titleColor,
     this.onBackIconTap,
@@ -85,8 +87,10 @@ class CustomAppBar extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(15),
             decoration: BoxDecoration(
-                color: AppColor.primaryEC9529, shape: BoxShape.circle),
-            child: SvgPicture.asset(Assets.bellRinging),
+              color: isFromHome?AppColor.primaryEC9529:AppColor.secondry,
+              shape: BoxShape.circle,
+            ),
+            child: SvgPicture.asset(isFromHome?Assets.bellRinging:Assets.bellRinging1),
           ),
           Positioned(
             top: 0,
@@ -95,11 +99,12 @@ class CustomAppBar extends StatelessWidget {
               padding: EdgeInsets.all(5),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: AppColor.whiteFFFFFF,
+                color: isFromHome?AppColor.whiteFFFFFF:AppColor.primary,
               ),
               child: AppText(
                 text: "3",
                 textSize: 10.sp,
+                color: !isFromHome?AppColor.whiteFFFFFF:AppColor.black000000,
               ).align(),
             ),
           ),

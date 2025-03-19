@@ -10,7 +10,6 @@ class CustomerHomeView extends StatelessWidget {
     return Container(
       height: double.infinity,
       width: double.infinity,
-      // padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
           color: AppColor.whiteFFFFFF,
           borderRadius: BorderRadius.only(
@@ -33,8 +32,9 @@ class CustomerHomeView extends StatelessWidget {
                 xWidth(20),
                 Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: AppColor.black000000),
+                    borderRadius: BorderRadius.circular(10),
+                    color: AppColor.black000000,
+                  ),
                   padding: EdgeInsets.all(14),
                   child: SvgPicture.asset(Assets.filterIcon),
                 ),

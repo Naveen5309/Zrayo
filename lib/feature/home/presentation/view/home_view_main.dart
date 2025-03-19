@@ -10,7 +10,7 @@ import 'package:zrayo_flutter/feature/z_common_widgets/custom_cache_network_imag
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_text_field.dart';
 
 part 'customer_home_view.dart';
-
+part 'agent_home_view.dart';
 part 'property_box.dart';
 
 class HomeViewMain extends StatelessWidget {
@@ -31,11 +31,16 @@ class HomeViewMain extends StatelessWidget {
             titleColor: AppColor.whiteFFFFFF,
             showBackButton: false,
             showNotificationIcon: true,
+            isFromHome: true,
           ),
           yHeight(30.h),
           if (!Getters.isAgent()) ...{
             Expanded(
               child: CustomerHomeView(),
+            )
+          }else...{
+            Expanded(
+              child: AgentHomeView(),
             )
           }
         ],
