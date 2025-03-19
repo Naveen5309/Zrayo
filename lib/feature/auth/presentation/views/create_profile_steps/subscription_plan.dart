@@ -69,14 +69,14 @@ class SubscriptionPlanView extends StatelessWidget {
               children: [
                 PlanCard(
                   title: AppString.free,
-                  price: "\$0.00",
+                  price: AppString.price0,
                   description: AppString.givesDesignatedContact,
                   onTap: () {},
                 ),
                 PlanCard(
                   isSelected: true,
                   title: AppString.basic,
-                  price: "\$4.99",
+                  price: AppString.priceAbove0,
                   description: AppString.accessToBasiscTabs,
                   isHighlighted: true,
                   trialText: AppString.free7DaysTrial,

@@ -50,13 +50,15 @@ class PlanCard extends StatelessWidget {
                     AppText(
                       text: price,
                       textSize: 24.sp,
+                      fontWeight: FontWeight.w900,
                       fontFamily: AppFonts.satoshiBold,
                       color: AppColor.black232323,
                     ),
                     if (isHighlighted)
                       AppText(
                         text: '/month',
-                        fontFamily: AppFonts.satoshiBold,
+                        fontFamily: AppFonts.satoshiMedium,
+                        fontWeight: FontWeight.w600,
                         color: AppColor.black232323,
                       ),
                   ],
@@ -85,6 +87,7 @@ class PlanCard extends StatelessWidget {
                               horizontal: 11, vertical: 5),
                           child: AppText(
                               text: title,
+                              fontFamily: AppFonts.satoshiMedium,
                               color: AppColor.whiteFFFFFF,
                               textSize: 12.sp),
                         ),
@@ -99,6 +102,7 @@ class PlanCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 4.0),
                 child: AppText(
+                  fontFamily: AppFonts.satoshiBold,
                   text: trialText!,
                   textSize: 11.sp,
                   color: AppColor.black232323,
