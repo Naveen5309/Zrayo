@@ -56,7 +56,7 @@ class ChooseInterfaceView extends StatelessWidget {
                 toNamed(context, Routes.loginView);
               },
             ),
-            yHeight(20.sp),
+            yHeight(15.sp),
           ],
         ),
       ),

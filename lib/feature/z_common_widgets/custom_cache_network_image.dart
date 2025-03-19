@@ -20,7 +20,7 @@ class CustomCacheNetworkImage extends StatelessWidget {
     this.size = 120,
     this.width,
     this.height,
-    required this.imageRadius,
+     this.imageRadius=100,
     this.imageBorderRadius,
     this.fit,
   });

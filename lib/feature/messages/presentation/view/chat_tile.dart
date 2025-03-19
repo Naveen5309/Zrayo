@@ -28,8 +28,7 @@ class ChatTile extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        margin: EdgeInsets.symmetric(
-            horizontal: context.width * .02, vertical: context.width * .02),
+        margin: EdgeInsets.symmetric(vertical: context.width * .02),
         child: Column(
           children: [
             Padding(
@@ -38,37 +37,46 @@ class ChatTile extends StatelessWidget {
                 children: [
                   CustomCacheNetworkImage(
                     img: "",
-                    imageRadius: 100,
                     size: 50,
                   ),
                   10.horizontalSpace,
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      AppText(
-                        text: name,
-                        textSize: 16.sp,
-                        fontFamily: AppFonts.satoshiBold,
-                        maxlines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      8.verticalSpace,
-                      SizedBox(
-                        width: context.width * 0.5,
-                        child: AppText(
-                            text: message,
-                            textSize: 14.sp,
-                            maxlines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            color: unreadCount > 0
-                                ? AppColor.black000000
-                                : AppColor.grey999999),
-                      ),
-                    ],
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                              child: AppText(
+                                text: name,
+                                textSize: 16.sp,
+                                fontFamily: AppFonts.satoshiBold,
+                                maxlines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
+                        ),
+                        8.verticalSpace,
+                        Row(
+                          children: [
+                            Expanded(
+                              child: AppText(
+                                  text: message,
+                                  textSize: 14.sp,
+                                  maxlines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  color: unreadCount > 0
+                                      ? AppColor.black000000
+                                      : AppColor.grey999999),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                  const Spacer(),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.end,
@@ -76,6 +84,7 @@ class ChatTile extends StatelessWidget {
                       AppText(
                         text: time,
                         textSize: 12.sp,
+                        fontFamily: AppFonts.satoshiRegular,
                         color: AppColor.greyAAA6B9,
                       ),
                       if (unreadCount > 0)

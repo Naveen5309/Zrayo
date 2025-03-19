@@ -12,38 +12,40 @@ class MessagesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            CustomAppBar(
-              title: AppString.message,
-              showBackButton: false,
-              showNotificationIcon: true,
-            ),
-            CustomTextField(
-              hintText: AppString.searchLocation,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          CustomAppBar(
+            title: AppString.message,
+            showBackButton: false,
+            showNotificationIcon: true,
+          ),
+          yHeight(10),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: CustomTextField(
+              hintText: AppString.search,
               prefixIcon: SvgPicture.asset(Assets.searchIcon),
             ),
-            ListView.builder(
-              padding: EdgeInsets.zero,
+          ),
+          Expanded(
+            child: ListView.builder(
+              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: 2,
+              itemCount: 10,
               itemBuilder: (context, index) {
                 return ChatTile(
-                  name: "Paras",
-                  message: "Paras technology is an App software company",
+                  name: "Jenny Wilson",
+                  message: "Oh yes, please send your CV/Res  software company",
                   time: "8m ago",
                   unreadCount: 0,
                   imageUrl: Assets.placeholder,
                   onTap: () {},
                 );
               },
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }

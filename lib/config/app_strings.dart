@@ -123,17 +123,7 @@ abstract final class AppString {
       " to access the device precise location?";
   static const String message = "Message";
   static const String searchLocation = "Search location...";
-  // static const String deny = "Deny";
-  // static const String deny = "Deny";
-  // static const String deny = "Deny";
-  // static const String deny = "Deny";
-  // static const String deny = "Deny";
-  // static const String deny = "Deny";
-  // static const String deny = "Deny";
-  // static const String deny = "Deny";
-  // static const String deny = "Deny";
-  // static const String deny = "Deny";
-  // static const String deny = "Deny";
-  // static const String deny = "Deny";
+
   static const String enableLocation = "Enable Location";
+  static const String search = "Search";
 }
