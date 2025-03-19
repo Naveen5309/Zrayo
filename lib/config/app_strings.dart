@@ -110,4 +110,11 @@ abstract final class AppString {
   static const String youCanResendOtpIn = "̌You can resend OTP in:";
   static const String verify = "Verify";
   static const String change = "Change";
+  static const String priceAbove0 = "\$4.99";
+  static const String price0 = "\$0.00";
+  // static const String change = "Change";
+  // static const String change = "Change";
+  // static const String change = "Change";
+  // static const String change = "Change";
+  // static const String change = "Change";
 }

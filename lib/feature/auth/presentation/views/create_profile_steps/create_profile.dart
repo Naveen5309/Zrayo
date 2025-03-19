@@ -33,7 +33,7 @@ class CreateProfile extends StatelessWidget {
                   children: [
                     Container(
                       height: 5,
-                      width:(screenWidth(context) / 5),
+                      width: (screenWidth(context) / 5),
                       color: AppColor.primary,
                     ),
                   ],
@@ -140,7 +140,7 @@ class CreateProfile extends StatelessWidget {
                           hintText: "DD/MM/YYYY",
                         ),
                         CustomTextField(
-                          prefixIcon: SvgPicture.asset(Assets.cake),
+                          prefixIcon: SvgPicture.asset(Assets.barcode),
                           labelText: AppString.ninNumberOrBvnNumber,
                           keyboardType: TextInputType.number,
                           hintText: AppString.enterNinNumberOrBvnNumber,
