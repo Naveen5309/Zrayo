@@ -16,7 +16,8 @@ class CustomCacheNetworkImage extends StatelessWidget {
 
   const CustomCacheNetworkImage({
     super.key,
-    required this.img,
+    this.img =
+        "https://cdn.pixabay.com/photo/2016/11/18/17/46/house-1836070_640.jpg",
     this.size = 120,
     this.width,
     this.height,
@@ -47,7 +48,7 @@ class CustomCacheNetworkImage extends StatelessWidget {
             width: width ?? size,
             fit: BoxFit.cover,
             imageBuilder: (context, imageProvider) => Container(
-              height: height??size,
+              height: height ?? size,
               width: width ?? size,
               decoration: BoxDecoration(
                 borderRadius:
@@ -60,7 +61,7 @@ class CustomCacheNetworkImage extends StatelessWidget {
             ),
             progressIndicatorBuilder: (context, url, downloadProgress) {
               return Container(
-                height: height??size,
+                height: height ?? size,
                 width: width ?? size,
                 decoration: BoxDecoration(
                   borderRadius:
@@ -68,8 +69,8 @@ class CustomCacheNetworkImage extends StatelessWidget {
                 ),
                 child: Center(
                   child: SizedBox(
-                    height: (height??size) / 2,
-                    width: (width??size)  / 2,
+                    height: (height ?? size) / 2,
+                    width: (width ?? size) / 2,
                     child: CircularProgressIndicator(
                       value: downloadProgress.progress,
                       color: AppColor.primary,

@@ -64,5 +64,6 @@ class Assets {
   static const String listBulletsIcon = 'assets/icons/list_bullets_icon.svg';
   static const String filterIcon = 'assets/icons/filter_icon.svg';
   static const String searchIcon = 'assets/icons/search_icon.svg';
+  static const String bellRinging1 = 'assets/icons/bellringing.svg';
   static const String heartUnselected = 'assets/icons/heart_unselected.svg';
 }

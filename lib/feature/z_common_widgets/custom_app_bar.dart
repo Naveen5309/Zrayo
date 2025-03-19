@@ -3,12 +3,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:zrayo_flutter/config/assets.dart';
+import 'package:zrayo_flutter/config/enums.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String title;
   final String? subTitle;
+  final String? notificationSvg;
+
   final bool? centerTitle;
   final bool? showNotificationIcon;
   final bool? showBackButton;
@@ -20,6 +23,7 @@ class CustomAppBar extends StatelessWidget {
     super.key,
     required this.title,
     this.subTitle,
+    this.notificationSvg,
     this.centerTitle,
     this.showBackButton = true,
     this.showNotificationIcon = false,
@@ -80,11 +84,10 @@ class CustomAppBar extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          padding: EdgeInsets.all(15),
-          decoration: BoxDecoration(
-              color: AppColor.primaryEC9529, shape: BoxShape.circle),
-          child: SvgPicture.asset(Assets.bellRinging),
-        ),
+            padding: EdgeInsets.all(13),
+            decoration: BoxDecoration(
+                color: AppColor.primaryEC9529, shape: BoxShape.circle),
+            child: SvgPicture.asset(notificationSvg ?? Assets.bellRinging1)),
         Positioned(
           top: 0,
           right: 0,
