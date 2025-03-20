@@ -97,7 +97,9 @@ class PropertyBox extends StatelessWidget {
               textSize: 11.sp,
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+              padding: EdgeInsets.symmetric(
+                horizontal: 10,
+              ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(24),
                 color: AppColor.colorFEF6EC,
