@@ -65,6 +65,9 @@ class RouteGenerator {
         return _fadeTransitionRoute(const Dashboard());
       case Routes.notificationView:
         return _fadeTransitionRoute(const NotificationView());
+
+      // case Routes.chatView:
+      //   return _fadeTransitionRoute(const ChatView());
       case Routes.editProfileView:
         return _fadeTransitionRoute(const EditProfileView());
       case Routes.updateProfileView:
