@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/enums.dart';
-import 'package:zrayo_flutter/feature/messages/presentation/view/messages.dart';
+import 'package:zrayo_flutter/feature/messages/presentation/view/chat_users.dart';
 import 'package:zrayo_flutter/feature/dashboard/presentation/states/dashboard_states.dart';
 import 'package:zrayo_flutter/feature/home/presentation/view/home_view_main.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/view/setting_view.dart';
@@ -79,7 +79,7 @@ class DashboardNotifier extends StateNotifier<DashboardState> {
     } else if (selectedTab == DashboardEnum.favorite) {
       return FavoriteProperties();
     } else if (selectedTab == DashboardEnum.message) {
-      return MessagesView();
+      return ChatUsersListView();
     } else if (selectedTab == DashboardEnum.profile) {
       return SettingView();
     }else if (selectedTab == DashboardEnum.history) {

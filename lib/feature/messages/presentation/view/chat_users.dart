@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
+import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/messages/presentation/view/chat_tile.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_text_field.dart';
 
-class MessagesView extends StatelessWidget {
-  const MessagesView({super.key});
+class ChatUsersListView extends StatelessWidget {
+  const ChatUsersListView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class MessagesView extends StatelessWidget {
                   time: "8m ago",
                   unreadCount: 0,
                   imageUrl: Assets.placeholder,
-                  onTap: () {},
+                  onTap: () => toNamed(context, Routes.chatView),
                 );
               },
             ),

@@ -68,4 +68,8 @@ class Assets {
   static const String heartUnselected = 'assets/icons/heart_unselected.svg';
   static const String assignedIcon = 'assets/icons/assigned_icon.svg';
   static const String earnedIcon = 'assets/icons/earnde_icon.svg';
+  static const String sendBtn = 'assets/icons/send_btn.svg';
+  static const String emojiIcon = 'assets/icons/emoji_icon.svg';
+  static const String clockIcon = 'assets/icons/clock.svg';
+  static const String calendarIcon = 'assets/icons/calendar.svg';
 }

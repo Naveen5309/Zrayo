@@ -6,6 +6,7 @@ class PropertyBox extends StatelessWidget {
   final double? imageHeight;
   final double? imageWidth;
   final bool withFullCardWidth;
+  final Color? textColor;
 
   const PropertyBox({
     super.key,
@@ -13,6 +14,7 @@ class PropertyBox extends StatelessWidget {
     this.showFavorite = true,
     this.imageHeight,
     this.imageWidth,
+    this.textColor,
     this.withFullCardWidth = false,
   });
 
@@ -78,9 +80,10 @@ class PropertyBox extends StatelessWidget {
           children: [
             Expanded(
               child: AppText(
-                text: "The east apartmentapartmentapartment",
+                text: "The east apartment",
                 fontFamily: AppFonts.satoshiBold,
                 maxlines: 2,
+                color: textColor,
                 overflow: TextOverflow.ellipsis,
                 // textSize: 12.sp,
               ),
@@ -96,6 +99,7 @@ class PropertyBox extends StatelessWidget {
                 fontFamily: AppFonts.satoshiRegular,
                 textSize: 11.sp,
                 maxlines: 1,
+                color: textColor,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
@@ -109,6 +113,7 @@ class PropertyBox extends StatelessWidget {
               text: "\$12,589",
               fontFamily: AppFonts.satoshiBold,
               textSize: 11.sp,
+              color: textColor,
             ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
@@ -153,7 +158,7 @@ class PropertyBox extends StatelessWidget {
           img: "",
           width: width,
           height: height,
-          imageRadius: 16,
+          imageRadius: 12,
         ),
         if (showFavorite)
           Positioned(

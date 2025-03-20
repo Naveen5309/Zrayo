@@ -15,5 +15,6 @@ class Routes {
   static const String changePasswordView = '/changePasswordView';
   static const String dashboard = '/dashboard';
   static const String notificationView = '/notificationView';
+  static const String chatView = '/chatView';
 
 }
