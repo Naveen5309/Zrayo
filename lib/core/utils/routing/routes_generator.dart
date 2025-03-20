@@ -10,6 +10,7 @@ import 'package:zrayo_flutter/feature/auth/presentation/views/otp_verification_v
 import 'package:zrayo_flutter/feature/auth/presentation/views/sign_up_view.dart';
 import 'package:zrayo_flutter/feature/dashboard/presentation/view/dashboard.dart';
 import 'package:zrayo_flutter/feature/dashboard/presentation/view/notification_view.dart';
+import 'package:zrayo_flutter/feature/home/presentation/view/search_properties/search_property_view.dart';
 import 'package:zrayo_flutter/feature/messages/presentation/view/chat_view/chat_view_main.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import '../../../feature/auth/presentation/views/change_password_view.dart';
@@ -63,6 +64,9 @@ class RouteGenerator {
 
       case Routes.chatView:
         return _fadeTransitionRoute(const ChatView());
+
+      case Routes.searchPropertyView:
+        return _fadeTransitionRoute(const SearchPropertyView());
 
       default:
         return MaterialPageRoute(builder: (_) => const ErrorRoute());

@@ -15,11 +15,11 @@ abstract class HiveConst {
 abstract class LocalStorage {
   Future<bool> saveLoginUser(UserModel userModel);
 
-  Future<void> saveUserType(UserType userType);
+  Future<void> saveUserType(UserTypeEnum userType);
 
   UserModel? getLoginUser();
 
-  UserType? getUserType();
+  UserTypeEnum? getUserType();
 
   Future<void> clearAllBox();
 
@@ -88,13 +88,13 @@ class HiveStorageImp extends LocalStorage {
   }
 
   @override
-  UserType? getUserType() {
+  UserTypeEnum? getUserType() {
     final userTypeInt = userBox.get(HiveConst.userType);
-    return UserType.values.firstWhere((element) => element.index==userTypeInt,);
+    return UserTypeEnum.values.firstWhere((element) => element.index==userTypeInt,);
   }
 
   @override
-  Future<void> saveUserType(UserType userType) async {
+  Future<void> saveUserType(UserTypeEnum userType) async {
     await userBox.put(HiveConst.userType, userType.index);
   }
 }

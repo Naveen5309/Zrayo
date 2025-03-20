@@ -72,4 +72,9 @@ class Assets {
   static const String emojiIcon = 'assets/icons/emoji_icon.svg';
   static const String clockIcon = 'assets/icons/clock.svg';
   static const String calendarIcon = 'assets/icons/calendar.svg';
+  static const String propertyBuildingIcon = 'assets/icons/property_type_icons/building_icon.svg';
+  static const String propertyCar = 'assets/icons/property_type_icons/car.svg';
+  static const String propertyHouseIcon = 'assets/icons/property_type_icons/house_icon.svg';
+  static const String propertyLandIcon = 'assets/icons/property_type_icons/land_icon.svg';
+  static const String propertyRentalApartment1 = 'assets/icons/property_type_icons/rental_apartment1.svg';
 }

@@ -105,7 +105,7 @@ class PropertyBox extends StatelessWidget {
             ),
           ],
         ),
-        yHeight(withFullCardWidth?16.h:11.h),
+        yHeight(withFullCardWidth ? 16.h : 11.h),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -160,6 +160,21 @@ class PropertyBox extends StatelessWidget {
           height: height,
           imageRadius: 12,
         ),
+        if (!showHorizontal)
+          Positioned(
+              top: 8,
+              left: 5,
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+                decoration: BoxDecoration(
+                    color: AppColor.whiteFFFFFF,
+                    borderRadius: BorderRadius.circular(24)),
+                child: AppText(
+                  text: "For Sale",
+                  textSize: 12.sp,
+                  color: AppColor.color5A5A5A,
+                ),
+              )),
         if (showFavorite)
           Positioned(
               top: 8,

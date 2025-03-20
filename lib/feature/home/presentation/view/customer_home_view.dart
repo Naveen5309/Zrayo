@@ -25,6 +25,8 @@ class CustomerHomeView extends StatelessWidget {
                   child: CustomTextField(
                     hintText: "Search location...",
                     prefixIcon: SvgPicture.asset(Assets.searchIcon),
+                    readOnly: true,
+                    onTap: () =>toNamed(context, Routes.searchPropertyView),
                   ),
                 ),
                 xWidth(20),

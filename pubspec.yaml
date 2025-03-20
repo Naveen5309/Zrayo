@@ -79,6 +79,7 @@ flutter:
     - assets/icons/
     - assets/images/
     - assets/icons/dashboard_icons/
+    - assets/icons/property_type_icons/
 
 
 
