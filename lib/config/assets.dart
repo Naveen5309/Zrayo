@@ -68,6 +68,24 @@ class Assets {
   static const String heartUnselected = 'assets/icons/heart_unselected.svg';
   static const String assignedIcon = 'assets/icons/assigned_icon.svg';
   static const String earnedIcon = 'assets/icons/earnde_icon.svg';
+
+  static const String notification = 'assets/icons/notification-bing.svg';
+  static const String personAdd = 'assets/icons/profile_add.svg';
+  static const String headphone = 'assets/icons/headphone.svg';
+  static const String card = 'assets/icons/card.svg';
+  static const String clock = 'assets/icons/clock.svg';
+  static const String callCalling = 'assets/icons/call-calling.svg';
+  static const String bank = 'assets/icons/bank.svg';
+  static const String document = 'assets/icons/document.svg';
+  static const String logout = 'assets/icons/logout.svg';
+  static const String star = 'assets/icons/star.svg';
+  static const String subscribe = 'assets/icons/subscribe.svg';
+  static const String premium = 'assets/icons/premium.svg';
+  static const String check = 'assets/icons/check.svg';
+  static const String write = 'assets/icons/write.svg';
+  static const String mail = 'assets/icons/mail.svg';
+  static const String contactUs = 'assets/icons/contact_us.svg';
+
   static const String sendBtn = 'assets/icons/send_btn.svg';
   static const String emojiIcon = 'assets/icons/emoji_icon.svg';
   static const String clockIcon = 'assets/icons/clock.svg';
