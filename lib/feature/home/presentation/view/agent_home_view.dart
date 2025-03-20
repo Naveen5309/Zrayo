@@ -5,8 +5,7 @@ class AgentHomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double cardWidth = screenWidth(context) / 3.2;
-    double cardHeight = screenHeight(context) / 4;
+
     return Container(
       height: double.infinity,
       width: double.infinity,
@@ -68,11 +67,13 @@ class AgentHomeView extends StatelessWidget {
                 shrinkWrap: true,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    childAspectRatio: cardWidth / cardHeight,
+                    childAspectRatio:  Utils.cardWidth(context) /  Utils.cardHeight(context),
                     crossAxisSpacing: 20,
                     mainAxisSpacing: 10),
                 itemBuilder: (context, index) {
-                  return PropertyBox();
+                  return PropertyBox(
+                    showFavorite: false,
+                  );
                 },
               )
             ],

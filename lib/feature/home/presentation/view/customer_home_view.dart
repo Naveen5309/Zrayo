@@ -5,8 +5,6 @@ class CustomerHomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double cardWidth = screenWidth(context) / 3.2;
-    double cardHeight = screenHeight(context) / 4;
     return Container(
       height: double.infinity,
       width: double.infinity,
@@ -103,10 +101,12 @@ class CustomerHomeView extends StatelessWidget {
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: cardWidth / cardHeight,
-                      crossAxisSpacing: 20,
-                      mainAxisSpacing: 10),
+                    crossAxisCount: 2,
+                    childAspectRatio:
+                        Utils.cardWidth(context) / Utils.cardHeight(context),
+                    crossAxisSpacing: 20,
+                    mainAxisSpacing: 10,
+                  ),
                   itemBuilder: (context, index) {
                     return PropertyBox();
                   },

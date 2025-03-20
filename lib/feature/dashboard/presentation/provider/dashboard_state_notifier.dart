@@ -8,7 +8,9 @@ import 'package:zrayo_flutter/feature/home/presentation/view/home_view_main.dart
 import 'package:zrayo_flutter/feature/setting/presentation/view/setting_view.dart';
 
 import '../../../favorite_properties/presentation/view/favorite_properties.dart';
+import '../../../history/presentation/view/history_view.dart';
 import '../../../my_properties/presentation/view/my_properties.dart';
+import '../../../visits/prasentation/view/visit_main_view.dart';
 
 class DashboardNotifier extends StateNotifier<DashboardState> {
   DashboardNotifier() : super(DashboardInitial());
@@ -80,6 +82,10 @@ class DashboardNotifier extends StateNotifier<DashboardState> {
       return MessagesView();
     } else if (selectedTab == DashboardEnum.profile) {
       return SettingView();
+    }else if (selectedTab == DashboardEnum.history) {
+      return HistoryView();
+    }else if (selectedTab == DashboardEnum.visit) {
+      return VisitMainView();
     }
     return SizedBox();
   }
