@@ -15,20 +15,13 @@ class Routes {
   static const String changePasswordView = '/changePasswordView';
   static const String dashboard = '/dashboard';
   static const String notificationView = '/notificationView';
-<<<<<<< HEAD
-<<<<<<< HEAD
+
   static const String editProfileView = '/editProfileView';
   static const String updateProfileView = '/updateProfileView';
   static const String bankDetails = '/bankDetails';
   static const String cardDetail = '/cardDetail';
   static const String contactUs = '/contactUs';
   static const String aboutUs = '/aboutUs';
-=======
   static const String chatView = '/chatView';
   static const String searchPropertyView = '/searchPropertyView';
-
->>>>>>> 611e2f1c95cbcfabcacac5dd13cd2e1163e433d8
-=======
-
->>>>>>> parent of 129cf95 (contactUs,aboutUs)
 }

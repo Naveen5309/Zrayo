@@ -10,13 +10,6 @@ import 'package:zrayo_flutter/feature/auth/presentation/views/otp_verification_v
 import 'package:zrayo_flutter/feature/auth/presentation/views/sign_up_view.dart';
 import 'package:zrayo_flutter/feature/dashboard/presentation/view/dashboard.dart';
 import 'package:zrayo_flutter/feature/dashboard/presentation/view/notification_view.dart';
-
-import 'package:zrayo_flutter/feature/setting/presentation/view/about_us_view.dart';
-import 'package:zrayo_flutter/feature/setting/presentation/view/bank_details.dart';
-import 'package:zrayo_flutter/feature/setting/presentation/view/card_details.dart';
-import 'package:zrayo_flutter/feature/setting/presentation/view/contact_us_view.dart';
-import 'package:zrayo_flutter/feature/setting/presentation/view/edit_profile_view.dart';
-import 'package:zrayo_flutter/feature/setting/presentation/view/update_profile.dart';
 import 'package:zrayo_flutter/feature/home/presentation/view/search_properties/search_property_view.dart';
 import 'package:zrayo_flutter/feature/messages/presentation/view/chat_view/chat_view_main.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
