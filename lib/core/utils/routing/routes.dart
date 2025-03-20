@@ -16,6 +16,7 @@ class Routes {
   static const String dashboard = '/dashboard';
   static const String notificationView = '/notificationView';
 <<<<<<< HEAD
+<<<<<<< HEAD
   static const String editProfileView = '/editProfileView';
   static const String updateProfileView = '/updateProfileView';
   static const String bankDetails = '/bankDetails';
@@ -26,4 +27,7 @@ class Routes {
   static const String chatView = '/chatView';
 
 >>>>>>> 611e2f1c95cbcfabcacac5dd13cd2e1163e433d8
+=======
+
+>>>>>>> parent of 129cf95 (contactUs,aboutUs)
 }

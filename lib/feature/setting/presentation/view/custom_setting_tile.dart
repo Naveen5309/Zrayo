@@ -7,7 +7,7 @@ import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 class SettingTile extends StatelessWidget {
   final String icon;
   final String title;
-  final Color? textColor;
+  final String subtitle;
   final bool hasToggle;
   final bool toggleValue;
   final ValueChanged<bool>? onToggleChanged;
@@ -17,8 +17,8 @@ class SettingTile extends StatelessWidget {
     super.key,
     required this.icon,
     required this.title,
+    required this.subtitle,
     this.hasToggle = false,
-    this.textColor,
     this.toggleValue = false,
     this.onToggleChanged,
     this.onTap,
@@ -27,25 +27,18 @@ class SettingTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
       child: Container(
         padding: EdgeInsets.all(2),
         decoration: BoxDecoration(
           color: AppColor.whiteFFFFFF,
           borderRadius: BorderRadius.all(Radius.circular(22)),
-          boxShadow: [
-            BoxShadow(
-              color: AppColor.grey99ABC6.withValues(alpha: 0.18),
-              blurRadius: 62,
-              offset: Offset(0, 4),
-            ),
-          ],
         ),
         child: InkWell(
           onTap: hasToggle ? null : onTap,
           borderRadius: BorderRadius.circular(8.0),
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5.0),
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -57,16 +50,16 @@ class SettingTile extends StatelessWidget {
                 AppText(
                   text: title,
                   textSize: 15.sp,
-                  color: textColor ?? AppColor.black111111,
+                  color: AppColor.black111111,
                   fontWeight: FontWeight.w500,
                 ),
                 Spacer(),
                 if (hasToggle)
                   GestureDetector(
-                    onTap: () => onToggleChanged?.call(!toggleValue),
+                    onTap: () {},
                     child: AnimatedContainer(
                       duration: const Duration(milliseconds: 200),
-                      width: 50,
+                      width: 60,
                       height: 30,
                       decoration: BoxDecoration(
                         color: AppColor.greyEDEDED,
@@ -99,7 +92,6 @@ class SettingTile extends StatelessWidget {
                     size: 16.sp,
                     color: AppColor.black160C08,
                   ),
-                xWidth(15)
               ],
             ),
           ),

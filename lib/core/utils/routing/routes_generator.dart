@@ -11,6 +11,7 @@ import 'package:zrayo_flutter/feature/auth/presentation/views/sign_up_view.dart'
 import 'package:zrayo_flutter/feature/dashboard/presentation/view/dashboard.dart';
 import 'package:zrayo_flutter/feature/dashboard/presentation/view/notification_view.dart';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import 'package:zrayo_flutter/feature/setting/presentation/view/about_us_view.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/view/bank_details.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/view/card_details.dart';
@@ -20,6 +21,8 @@ import 'package:zrayo_flutter/feature/setting/presentation/view/update_profile.d
 =======
 import 'package:zrayo_flutter/feature/messages/presentation/view/chat_view/chat_view_main.dart';
 >>>>>>> 611e2f1c95cbcfabcacac5dd13cd2e1163e433d8
+=======
+>>>>>>> parent of 129cf95 (contactUs,aboutUs)
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import '../../../feature/auth/presentation/views/change_password_view.dart';
 import '../../../feature/auth/presentation/views/choose_interface_view.dart';
@@ -69,18 +72,6 @@ class RouteGenerator {
         return _fadeTransitionRoute(const Dashboard());
       case Routes.notificationView:
         return _fadeTransitionRoute(const NotificationView());
-      case Routes.editProfileView:
-        return _fadeTransitionRoute(const EditProfileView());
-      case Routes.updateProfileView:
-        return _fadeTransitionRoute(const UpdateProfileView());
-      case Routes.bankDetails:
-        return _fadeTransitionRoute(const BankDetailsView());
-      case Routes.cardDetail:
-        return _fadeTransitionRoute(const CardDetailView());
-      case Routes.contactUs:
-        return _fadeTransitionRoute(ContactUsView());
-      case Routes.aboutUs:
-        return _fadeTransitionRoute(const AboutUsView());
 
       case Routes.chatView:
         return _fadeTransitionRoute(const ChatView());

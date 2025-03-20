@@ -69,6 +69,7 @@ class Assets {
   static const String assignedIcon = 'assets/icons/assigned_icon.svg';
   static const String earnedIcon = 'assets/icons/earnde_icon.svg';
 <<<<<<< HEAD
+<<<<<<< HEAD
   static const String notification = 'assets/icons/notification-bing.svg';
   static const String personAdd = 'assets/icons/profile_add.svg';
   static const String headphone = 'assets/icons/headphone.svg';
@@ -91,4 +92,6 @@ class Assets {
   static const String clockIcon = 'assets/icons/clock.svg';
   static const String calendarIcon = 'assets/icons/calendar.svg';
 >>>>>>> 611e2f1c95cbcfabcacac5dd13cd2e1163e433d8
+=======
+>>>>>>> parent of 129cf95 (contactUs,aboutUs)
 }

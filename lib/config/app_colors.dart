@@ -35,6 +35,7 @@ abstract final class AppColor {
   static const Color greyDBDBDB = Color(0xffDBDBDB);
   static const Color greyD9D9D9 = Color(0xffD9D9D9);
 <<<<<<< HEAD
+<<<<<<< HEAD
   static const Color grey646464 = Color(0xff646464);
   static const Color grey99ABC6 = Color(0xff99ABC6);
   static const Color redF75454 = Color(0xffF75454);
@@ -42,4 +43,6 @@ abstract final class AppColor {
 =======
   static const Color green = Color(0xff34C759);
 >>>>>>> 611e2f1c95cbcfabcacac5dd13cd2e1163e433d8
+=======
+>>>>>>> parent of 129cf95 (contactUs,aboutUs)
 }
