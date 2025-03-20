@@ -10,6 +10,12 @@ import 'package:zrayo_flutter/feature/auth/presentation/views/otp_verification_v
 import 'package:zrayo_flutter/feature/auth/presentation/views/sign_up_view.dart';
 import 'package:zrayo_flutter/feature/dashboard/presentation/view/dashboard.dart';
 import 'package:zrayo_flutter/feature/dashboard/presentation/view/notification_view.dart';
+import 'package:zrayo_flutter/feature/setting/presentation/view/about_us_view.dart';
+import 'package:zrayo_flutter/feature/setting/presentation/view/bank_details.dart';
+import 'package:zrayo_flutter/feature/setting/presentation/view/card_details.dart';
+import 'package:zrayo_flutter/feature/setting/presentation/view/contact_us_view.dart';
+import 'package:zrayo_flutter/feature/setting/presentation/view/edit_profile_view.dart';
+import 'package:zrayo_flutter/feature/setting/presentation/view/update_profile.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import '../../../feature/auth/presentation/views/change_password_view.dart';
 import '../../../feature/auth/presentation/views/choose_interface_view.dart';
@@ -59,6 +65,18 @@ class RouteGenerator {
         return _fadeTransitionRoute(const Dashboard());
       case Routes.notificationView:
         return _fadeTransitionRoute(const NotificationView());
+      case Routes.editProfileView:
+        return _fadeTransitionRoute(const EditProfileView());
+      case Routes.updateProfileView:
+        return _fadeTransitionRoute(const UpdateProfileView());
+      case Routes.bankDetails:
+        return _fadeTransitionRoute(const BankDetailsView());
+      case Routes.cardDetail:
+        return _fadeTransitionRoute(const CardDetailView());
+      case Routes.contactUs:
+        return _fadeTransitionRoute(ContactUsView());
+      case Routes.aboutUs:
+        return _fadeTransitionRoute(const AboutUsView());
 
       default:
         return MaterialPageRoute(builder: (_) => const ErrorRoute());
