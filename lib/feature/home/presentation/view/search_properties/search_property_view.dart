@@ -193,4 +193,5 @@ class SearchPropertyView extends ConsumerWidget {
       ),
     );
   }
+
 }
