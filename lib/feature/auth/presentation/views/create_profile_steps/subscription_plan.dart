@@ -3,29 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
-import 'package:zrayo_flutter/feature/dashboard/presentation/view/location_access_content.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
-import 'package:zrayo_flutter/feature/z_common_widgets/custom_dialog.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_subscription_plan.dart';
 
-class SubscriptionPlanView extends StatefulWidget {
+class SubscriptionPlanView extends StatelessWidget {
   const SubscriptionPlanView({super.key});
-
-  @override
-  State<SubscriptionPlanView> createState() => _SubscriptionPlanViewState();
-}
-
-class _SubscriptionPlanViewState extends State<SubscriptionPlanView> {
-  @override
-  void initState() {
-    super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      showCustomDialog(context, content: LocationAccessContent());
-    });
-  }
 
   @override
   Widget build(BuildContext context) {

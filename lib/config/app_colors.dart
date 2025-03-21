@@ -1,11 +1,20 @@
 part of 'helper.dart';
 
 abstract final class AppColor {
+
   static const Color primary = Color(0xffEA8913);
   static const Color primaryEC9529 = Color(0xffEC9529);
   static const Color whiteFFFFFF = Color(0xffFFFFFF);
   static const Color colorF3F3F3 = Color(0xffF3F3F3);
   static const Color colorFEF6EC = Color(0xffFEF6EC);
+  static const Color colorF6F6F6 = Color(0xffF6F6F6);
+  static const Color colorFAFAFA = Color(0xffFAFAFA);
+  static const Color color1E2430 = Color(0xff1E2430);
+  static const Color color8E8E8E = Color(0xff8E8E8E);
+  static const Color colorBBBBBB = Color(0xffBBBBBB);
+  static const Color colorB7B7B7 = Color(0xffB7B7B7);
+  static const Color color5A5A5A = Color(0xff5A5A5A);
+  static const Color color797C7B80 = Color(0xff797c7b80);
   static const Color black000000 = Color(0xff000000);
   static const Color transparent = Colors.transparent;
   static const Color black4A4A4A = Color(0xff4A4A4A);
@@ -28,8 +37,10 @@ abstract final class AppColor {
   static const Color greyEDEDED = Color(0xffEDEDED);
   static const Color greyDBDBDB = Color(0xffDBDBDB);
   static const Color greyD9D9D9 = Color(0xffD9D9D9);
+
   static const Color grey646464 = Color(0xff646464);
   static const Color grey99ABC6 = Color(0xff99ABC6);
   static const Color redF75454 = Color(0xffF75454);
   static const Color greyEAEAEA = Color(0xffEAEAEA);
+  static const Color green = Color(0xff34C759);
 }

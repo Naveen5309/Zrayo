@@ -114,14 +114,10 @@ abstract final class AppString {
   static const String price0 = "\$0.00";
   static const String getOneMonth = "Get one month ";
   static const String freeTrial = "free trial";
-  static const String freeTriall = "Free trial";
-
   static const String freeTrialEnds =
       " and you can cancel a subscription before your free trial ends.";
   static const String allow = "Allow ";
   static const String deny = "Deny";
-  static const String update = "Update";
-  static const String setting = "Setting";
   static const String zrayoText = '"Zrayo"';
   static const String accessDeviceLocation =
       " to access the device precise location?";
@@ -130,27 +126,4 @@ abstract final class AppString {
 
   static const String enableLocation = "Enable Location";
   static const String search = "Search";
-  static const String notifications = "Notifications";
-  static const String history = "History";
-  static const String myProfile = "My Profile";
-  static const String aboutUs = "About Us";
-  static const String contactUs = "Contact Us";
-  static const String rateOurApp = "Rate our app";
-  static const String logout = "Logout";
-  static const String editProfile = "Edit profile";
-  static const String subscription = "Subscription";
-  static const String changeProfilePicture = "Change profile picture ";
-  static const String becomePremiumMember = "Become a premium member";
-  static const String bankDetails = "Bank Details";
-  static const String cardDetails = "Card Details";
-  static const String inviteFriend = "Invite Friend";
-  static const String cardNumber = "Card Number";
-  static const String enteryourCardNumber = "Enter your card number";
-  static const String expirationDate = "Expiration Date";
-  static const String mMYY = "MM/YY";
-  static const String enterCvv = "Enter CVV";
-  static const String email = "Email";
-  static const String subject = "Subject";
-  static const String enterEmail = "Enter your email";
-  // static const String mMYY = "MM/YY";
 }

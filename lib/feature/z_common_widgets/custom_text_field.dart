@@ -49,7 +49,7 @@ class CustomTextField extends StatelessWidget {
     this.onChanged,
     this.onSaved,
     this.maxLength,
-    this.maxLines = 1,
+    this.maxLines,
     this.minLines = 1,
     this.initialValue,
     this.readOnly,
@@ -103,7 +103,7 @@ class CustomTextField extends StatelessWidget {
             controller: controller,
             onChanged: onChanged,
             minLines: minLines,
-            maxLines: maxLines ?? (isObscure == true ? 1 : maxLines),
+            maxLines: isObscure == true ? 1 : maxLines,
             onSaved: onSaved,
             decoration: InputDecoration(
               contentPadding: contentPadding ??
@@ -144,20 +144,11 @@ class CustomTextField extends StatelessWidget {
 
               prefixIcon: prefixIcon == null
                   ? null
-                  : (maxLines ?? 0) > 1
-                      ? Align(
-                          alignment: Alignment.topLeft,
-                          child: Padding(
-                            padding: prefixIconPadding ??
-                                const EdgeInsets.symmetric(horizontal: 12),
-                            child: prefixIcon,
-                          ),
-                        )
-                      : Padding(
-                          padding: prefixIconPadding ??
-                              const EdgeInsets.symmetric(horizontal: 12),
-                          child: prefixIcon,
-                        ),
+                  : Padding(
+                      padding: prefixIconPadding ??
+                          const EdgeInsets.symmetric(horizontal: 12),
+                      child: prefixIcon,
+                    ),
               prefixText: prefixText,
               suffixText: suffixText,
               prefixStyle: textStyle,
