@@ -81,6 +81,7 @@ class RouteGenerator {
       case Routes.aboutUs:
         return _fadeTransitionRoute(const AboutUsView());
 
+
       default:
         return MaterialPageRoute(builder: (_) => const ErrorRoute());
     }
