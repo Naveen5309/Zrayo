@@ -12,6 +12,7 @@ class Assets {
   static const String iconApple = "assets/icons/apple.svg";
 
   static const String backBtn = 'assets/icons/icback.svg';
+  static const String edit = 'assets/icons/edit.svg';
   static const String location = 'assets/icons/location.svg';
   static const String city = 'assets/icons/city.svg';
   static const String state = 'assets/icons/state.svg';
@@ -101,5 +102,4 @@ class Assets {
   static const String propertyRentalApartment1 =
       'assets/icons/property_type_icons/rental_apartment1.svg';
   static const String loginOr = 'assets/icons/login_or.svg';
-
 }
