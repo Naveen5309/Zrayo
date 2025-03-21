@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:zrayo_flutter/config/app_utils.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
+import 'package:zrayo_flutter/feature/setting/presentation/view/confirm_logout.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/view/custom_setting_tile.dart';
-import 'package:zrayo_flutter/feature/setting/presentation/view/edit_profile_view.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/custom_bottom_sheet.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_cache_network_image.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 
 class SettingView extends StatelessWidget {
-  const SettingView({super.key});
+  const SettingView({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +47,8 @@ class SettingView extends StatelessWidget {
                     title: AppString.history,
                   ),
                   SettingTile(
-                    onTap: () => toNamed(context, Routes.bankDetails),
+                    onTap: () => toNamed(context, Routes.addBankDetail,
+                        args: {"fromSettings": true}),
                     icon: Assets.bank,
                     title: AppString.bankDetails,
                   ),
@@ -63,14 +68,28 @@ class SettingView extends StatelessWidget {
                     title: AppString.contactUs,
                   ),
                   SettingTile(
+                    onTap: () => toNamed(context, Routes.addAddressView,
+                        args: {"fromSettings": true}),
                     icon: Assets.star,
                     title: AppString.rateOurApp,
                   ),
                   SettingTile(
                     onTap: () {
-                      offAllNamed(context, Routes.chooseInterfaceView);
-                      toast(
-                          msg: "User successfully logged out", isError: false);
+                      Utils.appBottomSheet(
+                        isScrolled: true,
+                        context: context,
+                        widget: LogoutConfirmationView(
+                          confirm: () {
+                            offAllNamed(context, Routes.chooseInterfaceView);
+                            toast(
+                                msg: "User successfully logged out",
+                                isError: false);
+                          },
+                          onCancel: () {
+                            back(context);
+                          },
+                        ),
+                      );
                     },
                     textColor: AppColor.redF75454,
                     icon: Assets.logout,

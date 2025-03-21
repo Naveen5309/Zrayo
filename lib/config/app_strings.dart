@@ -150,11 +150,12 @@ abstract final class AppString {
   static const String enterEmail = "Enter your email";
   static const String update = "Update";
   static const String setting = "Setting";
+  static const String cancel = "Cancel";
+  static const String areYouSureLogOut = "Are you want to sure logout?";
   static const String freeTriall = "Free trial";
   static const String searchResults = "Search Results";
   static const String reset = "Reset";
   static const String apply = "Apply";
 
 // static const String mMYY = "MM/YY";
-
 }

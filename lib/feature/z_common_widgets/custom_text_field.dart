@@ -144,11 +144,20 @@ class CustomTextField extends StatelessWidget {
 
               prefixIcon: prefixIcon == null
                   ? null
-                  : Padding(
-                      padding: prefixIconPadding ??
-                          const EdgeInsets.symmetric(horizontal: 12),
-                      child: prefixIcon,
-                    ),
+                  : (maxLines ?? 0) > 1
+                      ? Align(
+                          alignment: Alignment.topLeft,
+                          child: Padding(
+                            padding: prefixIconPadding ??
+                                const EdgeInsets.symmetric(horizontal: 12),
+                            child: prefixIcon,
+                          ),
+                        )
+                      : Padding(
+                          padding: prefixIconPadding ??
+                              const EdgeInsets.symmetric(horizontal: 12),
+                          child: prefixIcon,
+                        ),
               prefixText: prefixText,
               suffixText: suffixText,
               prefixStyle: textStyle,

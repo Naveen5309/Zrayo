@@ -87,10 +87,9 @@ class CommonAppBtnState extends State<CommonAppBtn> {
                       (widget.title ?? "Button Text"),
                       style: widget.titleStyle ??
                           TextStyle(
-                            fontSize: widget.textSize ?? 16.sp,
-                            color: widget.textColor ?? AppColor.whiteFFFFFF,
-                           fontFamily: AppFonts.satoshiBold
-                          ),
+                              fontSize: widget.textSize ?? 16.sp,
+                              color: widget.textColor ?? AppColor.whiteFFFFFF,
+                              fontFamily: AppFonts.satoshiBold),
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -107,8 +106,7 @@ class CommonAppBtnState extends State<CommonAppBtn> {
                         TextStyle(
                             fontSize: widget.textSize ?? 16.sp,
                             color: widget.textColor ?? AppColor.whiteFFFFFF,
-                            fontFamily: AppFonts.satoshiBold
-                        ),
+                            fontFamily: AppFonts.satoshiBold),
                     textAlign: TextAlign.center,
                     overflow: TextOverflow.ellipsis,
                   ),

@@ -85,15 +85,21 @@ class Assets {
   static const String write = 'assets/icons/write.svg';
   static const String mail = 'assets/icons/mail.svg';
   static const String contactUs = 'assets/icons/contact_us.svg';
-
   static const String sendBtn = 'assets/icons/send_btn.svg';
   static const String emojiIcon = 'assets/icons/emoji_icon.svg';
   static const String clockIcon = 'assets/icons/clock.svg';
+  static const String icCloseCircle = 'assets/icons/close-circle.svg';
   static const String calendarIcon = 'assets/icons/calendar.svg';
-  static const String propertyBuildingIcon = 'assets/icons/property_type_icons/building_icon.svg';
+  static const String logoutConfirm = 'assets/icons/logout_confirm.svg';
+  static const String propertyBuildingIcon =
+      'assets/icons/property_type_icons/building_icon.svg';
   static const String propertyCar = 'assets/icons/property_type_icons/car.svg';
-  static const String propertyHouseIcon = 'assets/icons/property_type_icons/house_icon.svg';
-  static const String propertyLandIcon = 'assets/icons/property_type_icons/land_icon.svg';
-  static const String propertyRentalApartment1 = 'assets/icons/property_type_icons/rental_apartment1.svg';
+  static const String propertyHouseIcon =
+      'assets/icons/property_type_icons/house_icon.svg';
+  static const String propertyLandIcon =
+      'assets/icons/property_type_icons/land_icon.svg';
+  static const String propertyRentalApartment1 =
+      'assets/icons/property_type_icons/rental_apartment1.svg';
   static const String loginOr = 'assets/icons/login_or.svg';
+
 }
