@@ -12,7 +12,8 @@ import 'package:zrayo_flutter/feature/z_common_widgets/custom_text_field.dart';
 import '../../../../core/utils/routing/routes.dart';
 
 class AddAddressView extends ConsumerWidget {
-  const AddAddressView({super.key});
+  final bool fromSettings;
+  const AddAddressView({super.key, required this.fromSettings});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -20,29 +21,34 @@ class AddAddressView extends ConsumerWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CustomAppBar(title: AppString.addAddress),
+            CustomAppBar(
+                title: fromSettings ? AppString.address : AppString.addAddress),
             yHeight(10.sp),
-            Container(
-              height: 5,
-              color: AppColor.orangeFff9f0,
-              width: screenWidth(context),
-              child: Row(
-                children: [
-                  Container(
+            fromSettings
+                ? SizedBox()
+                : Container(
                     height: 5,
-                    width: (screenWidth(context) / 5) * 2,
-                    color: AppColor.primary,
+                    color: AppColor.orangeFff9f0,
+                    width: screenWidth(context),
+                    child: Row(
+                      children: [
+                        Container(
+                          height: 5,
+                          width: (screenWidth(context) / 5) * 2,
+                          color: AppColor.primary,
+                        ),
+                      ],
+                    ),
                   ),
-                ],
-              ),
-            ),
             yHeight(20.sp),
             Padding(
               padding: const EdgeInsets.all(16),
               child: formsFieldsSection(),
             ),
+            if (fromSettings) yHeight(context.height / 6),
             CommonAppBtn(
-              title: AppString.saveAndContinue,
+              title:
+                  fromSettings ? AppString.update : AppString.saveAndContinue,
               margin: const EdgeInsets.all(16),
               onTap: () => toNamed(context, Routes.uploadDocument),
             )
@@ -64,8 +70,6 @@ Widget formsFieldsSection() {
         controller: TextEditingController(),
         labelText: AppString.address,
       ),
-
-
 
       Consumer(builder: (BuildContext context, WidgetRef ref, Widget? child) {
         return CustomDropdownButton(

@@ -7,7 +7,8 @@ import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_text_field.dart';
 
 class AddBankDetail extends StatelessWidget {
-  const AddBankDetail({super.key});
+  final bool fromSettings;
+  const AddBankDetail({super.key, required this.fromSettings});
 
   @override
   Widget build(BuildContext context) {
@@ -16,21 +17,26 @@ class AddBankDetail extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: [
-              CustomAppBar(title: AppString.addBankDetail),
+              CustomAppBar(
+                  title: fromSettings
+                      ? AppString.bankDetails
+                      : AppString.addBankDetail),
               yHeight(10.sp),
               Container(
                 height: 5,
                 color: AppColor.orangeFff9f0,
                 width: screenWidth(context),
-                child: Row(
-                  children: [
-                    Container(
-                      height: 5,
-                      width: (screenWidth(context) / 5) * 4,
-                      color: AppColor.primary,
-                    ),
-                  ],
-                ),
+                child: fromSettings
+                    ? SizedBox()
+                    : Row(
+                        children: [
+                          Container(
+                            height: 5,
+                            width: (screenWidth(context) / 5) * 4,
+                            color: AppColor.primary,
+                          ),
+                        ],
+                      ),
               ),
               Padding(
                 padding: const EdgeInsets.all(16),
@@ -60,20 +66,29 @@ class AddBankDetail extends StatelessWidget {
                   ],
                 ),
               ),
-              yHeight(context.height / 5),
+              if (fromSettings) yHeight(context.height / 3.5),
               CommonAppBtn(
-                title: AppString.saveAndContinue,
+                title:
+                    fromSettings ? AppString.update : AppString.saveAndContinue,
                 margin: const EdgeInsets.all(16),
-                onTap: () => toNamed(context, Routes.addPaymentCard),
+                onTap: () {
+                  if (!fromSettings) {
+                    toNamed(context, Routes.addPaymentCard);
+                  } else {
+                    back(context);
+                  }
+                },
               ),
-              CommonAppBtn(
-                title: AppString.skip,
-                margin: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
-                borderColor: AppColor.transparent,
-                backGroundColor: AppColor.secondry,
-                textColor: AppColor.primary,
-                onTap: () => toNamed(context, Routes.addPaymentCard),
-              ),
+              if (!fromSettings)
+                CommonAppBtn(
+                  title: AppString.skip,
+                  margin:
+                      const EdgeInsets.only(bottom: 16, left: 16, right: 16),
+                  borderColor: AppColor.transparent,
+                  backGroundColor: AppColor.secondry,
+                  textColor: AppColor.primary,
+                  onTap: () => toNamed(context, Routes.addPaymentCard),
+                ),
             ],
           ),
         ),

@@ -89,7 +89,10 @@ class UploadDocument extends StatelessWidget {
                     Spacer(),
                     CommonAppBtn(
                       title: AppString.saveAndContinue,
-                      onTap: () => toNamed(context, Routes.addBankDetail),
+                      onTap: () => toNamed(
+                        context,
+                        Routes.addBankDetail,
+                      ),
                     ),
                     yHeight(20),
                   ],

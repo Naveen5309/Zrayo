@@ -27,9 +27,11 @@ import 'routes.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
-    final args = settings.arguments;
+    final args = settings.arguments != null
+        ? settings.arguments as Map<String, dynamic>
+        : null;
     printLog('Current Screen: ${settings.name}');
-    if (args != null) {
+    if (args != null && args.isNotEmpty) {
       printLog('Current Screen args: $args');
     }
     switch (settings.name) {
@@ -50,10 +52,12 @@ class RouteGenerator {
       case Routes.createProfile:
         return _fadeTransitionRoute(const CreateProfile());
       case Routes.addBankDetail:
-        return _fadeTransitionRoute(const AddBankDetail());
+        return _fadeTransitionRoute(
+            AddBankDetail(fromSettings: args?['fromSettings'] ?? false));
 
       case Routes.addAddressView:
-        return _fadeTransitionRoute(const AddAddressView());
+        return _fadeTransitionRoute(
+            AddAddressView(fromSettings: args?['fromSettings'] ?? false));
       case Routes.addPaymentCard:
         return _fadeTransitionRoute(const AddPaymentCard());
       case Routes.otpVerificationView:
@@ -88,7 +92,6 @@ class RouteGenerator {
 
       case Routes.searchPropertyView:
         return _fadeTransitionRoute(const SearchPropertyView());
-
 
       default:
         return MaterialPageRoute(builder: (_) => const ErrorRoute());
