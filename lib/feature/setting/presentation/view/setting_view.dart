@@ -79,15 +79,7 @@ class SettingView extends StatelessWidget {
                         isScrolled: true,
                         context: context,
                         widget: LogoutConfirmationView(
-                          confirm: () {
-                            offAllNamed(context, Routes.chooseInterfaceView);
-                            toast(
-                                msg: "User successfully logged out",
-                                isError: false);
-                          },
-                          onCancel: () {
-                            back(context);
-                          },
+
                         ),
                       );
                     },

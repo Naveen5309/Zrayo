@@ -3,15 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
+import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 
 class LogoutConfirmationView extends StatelessWidget {
-  final VoidCallback confirm;
-  final VoidCallback onCancel;
-
-  const LogoutConfirmationView(
-      {super.key, required this.confirm, required this.onCancel});
+  const LogoutConfirmationView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,19 +27,39 @@ class LogoutConfirmationView extends StatelessWidget {
               height: 105,
               width: 114,
             ),
+            yHeight(context.height * 0.03),
+
             AppText(
               text: AppString.logout,
               fontFamily: AppFonts.satoshiBold,
               textSize: 24.sp,
               textAlign: TextAlign.center,
             ),
-            yHeight(context.height * 0.01),
+            yHeight(context.height * 0.02),
             AppText(
               text: AppString.areYouSureLogOut,
               textAlign: TextAlign.center,
               color: AppColor.grey646464,
             ),
             yHeight(context.height * 0.03),
+            yHeight(20),
+            // CommonAppBtn(
+            //   onTap: () => back(context),
+            //   title: AppString.deny,
+            //   textColor: AppColor.primary,
+            //   backGroundColor: AppColor.secondry,
+            //   borderColor: AppColor.transparent,
+            // ),
+            // yHeight(15),
+            //
+            // CommonAppBtn(
+            //   onTap: () {
+            //     back(context);
+            //   },
+            //   title: AppString.enableLocation,
+            //   backGroundColor: AppColor.primary,
+            // ),
+
             Padding(
               padding: EdgeInsets.only(bottom: context.height * .02),
               child: Row(
@@ -55,6 +73,7 @@ class LogoutConfirmationView extends StatelessWidget {
                         Navigator.pop(context);
                       },
                       title: AppString.cancel,
+                      borderColor: AppColor.transparent,
                       width: context.width,
                     ),
                   ),
@@ -63,7 +82,12 @@ class LogoutConfirmationView extends StatelessWidget {
                   //CONFIRM
                   Expanded(
                     child: CommonAppBtn(
-                      onTap: confirm,
+                      onTap: () {
+                        offAllNamed(context, Routes.chooseInterfaceView);
+                        toast(
+                            msg: "User successfully logged out",
+                            isError: false);
+                      },
                       title: AppString.logout,
                       width: context.width,
                     ),
