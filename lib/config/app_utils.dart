@@ -9,8 +9,25 @@ import 'helper.dart';
 
 class Utils {
   Utils._();
- static double cardWidth(BuildContext context) => screenWidth(context) / 3.2;
- static double cardHeight(BuildContext context) => screenHeight(context) / 3.75;
+
+  static BoxDecoration boxDecoWithShadow({double? borderRadius}) {
+    return BoxDecoration(
+      borderRadius: BorderRadius.circular(borderRadius??14),
+      color: AppColor.whiteFFFFFF,
+      boxShadow: [
+        BoxShadow(
+          color: AppColor.black232323.withValues(alpha: 0.1),
+          blurRadius: 1,
+          spreadRadius: 1,
+        ),
+      ],
+    );
+  }
+
+  static double cardWidth(BuildContext context) => screenWidth(context) / 3.2;
+
+  static double cardHeight(BuildContext context) =>
+      screenHeight(context) / 3.75;
 
   static Future<bool> hasNetwork({bool? showToast}) async {
     var connectivityResult = await Connectivity().checkConnectivity();
@@ -80,8 +97,11 @@ class Utils {
       isScrollControlled: isScrolled,
       builder: (context) {
         return Padding(
-          padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom),
+          padding:
+          EdgeInsets.only(bottom: MediaQuery
+              .of(context)
+              .viewInsets
+              .bottom),
           child: CustomBottomSheet(
             content: widget,
             mainAxisSize: mainSize ?? MainAxisSize.min,

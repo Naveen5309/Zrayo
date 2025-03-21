@@ -68,7 +68,7 @@ class SettingView extends StatelessWidget {
                   ),
                   SettingTile(
                     onTap: () {
-                      offAllNamed(context, Routes.loginView);
+                      offAllNamed(context, Routes.chooseInterfaceView);
                       toast(
                           msg: "User successfully logged out", isError: false);
                     },

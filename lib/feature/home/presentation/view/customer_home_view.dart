@@ -30,13 +30,17 @@ class CustomerHomeView extends StatelessWidget {
                   ),
                 ),
                 xWidth(20),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: AppColor.black000000,
+                InkWell(
+                  onTap: () =>toNamed(context, Routes.customFilterScreen),
+
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: AppColor.black000000,
+                    ),
+                    padding: EdgeInsets.all(14),
+                    child: SvgPicture.asset(Assets.filterIcon),
                   ),
-                  padding: EdgeInsets.all(14),
-                  child: SvgPicture.asset(Assets.filterIcon),
                 ),
               ],
             ),

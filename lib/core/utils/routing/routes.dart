@@ -24,4 +24,6 @@ class Routes {
   static const String aboutUs = '/aboutUs';
   static const String chatView = '/chatView';
   static const String searchPropertyView = '/searchPropertyView';
+  static const String searchResultsView = '/searchResultsView';
+  static const String customFilterScreen = '/customFilterScreen';
 }

@@ -9,6 +9,7 @@ class CustomerSideSearchNotifier
   CustomerSideSearchNotifier() : super(CustomerSideSearchInitial());
 
   PropertyTypesEnum selectedPropertyType = PropertyTypesEnum.rentalApartment;
+  int priceRange = 5000;
   List<Map<String, dynamic>> propertyTypeList = [
     {
       "title": "Short Term Rental Apartment",
@@ -39,6 +40,11 @@ class CustomerSideSearchNotifier
 
   void changePropertyType(PropertyTypesEnum type) {
     selectedPropertyType = type;
+    state = CustomerSideSearchPageRefresh();
+  }
+
+  void updatePriceRange(value) {
+    priceRange = value;
     state = CustomerSideSearchPageRefresh();
   }
 }

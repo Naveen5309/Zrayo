@@ -95,4 +95,5 @@ class Assets {
   static const String propertyHouseIcon = 'assets/icons/property_type_icons/house_icon.svg';
   static const String propertyLandIcon = 'assets/icons/property_type_icons/land_icon.svg';
   static const String propertyRentalApartment1 = 'assets/icons/property_type_icons/rental_apartment1.svg';
+  static const String loginOr = 'assets/icons/login_or.svg';
 }

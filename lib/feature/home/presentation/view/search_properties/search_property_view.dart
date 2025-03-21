@@ -2,15 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
+import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/home/presentation/providers/home_provider.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
-
+import '../../../../../config/app_utils.dart';
 import '../../../../../config/assets.dart';
 import '../../../../../config/helper.dart';
 import '../../../../z_common_widgets/custom_drop_down.dart';
 import '../../../../z_common_widgets/custom_text_field.dart';
+import 'package:syncfusion_flutter_core/theme.dart';
+
+part 'price_slider.dart';
 
 class SearchPropertyView extends ConsumerWidget {
   const SearchPropertyView({super.key});
@@ -20,17 +25,7 @@ class SearchPropertyView extends ConsumerWidget {
     ref.watch(customerSideSearchProvider);
     final customerSideSearchNotifier =
         ref.read(customerSideSearchProvider.notifier);
-    final boxDeco = BoxDecoration(
-      borderRadius: BorderRadius.circular(14),
-      color: AppColor.whiteFFFFFF,
-      boxShadow: [
-        BoxShadow(
-          color: AppColor.black232323.withValues(alpha: 0.1),
-          blurRadius: 1,
-          spreadRadius: 1,
-        ),
-      ],
-    );
+    ;
     return Scaffold(
       body: Column(
         children: [
@@ -47,7 +42,7 @@ class SearchPropertyView extends ConsumerWidget {
                   Container(
                     padding:
                         EdgeInsets.symmetric(vertical: 14.sp, horizontal: 10),
-                    decoration: boxDeco,
+                    decoration: Utils.boxDecoWithShadow(),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -107,12 +102,24 @@ class SearchPropertyView extends ConsumerWidget {
                     ),
                   ),
                   yHeight(20),
+                  Container(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 14.sp, horizontal: 10),
+                    decoration: Utils.boxDecoWithShadow(),
+                    child: PriceSlider(
+                      value: customerSideSearchNotifier.priceRange,
+                      onChanged: (value) {
+                        customerSideSearchNotifier.updatePriceRange(value);
+                      },
+                    ),
+                  ),
+                  yHeight(20),
 
                   /// Property Type
                   Container(
                     padding:
                         EdgeInsets.symmetric(vertical: 14.sp, horizontal: 10),
-                    decoration: boxDeco,
+                    decoration: Utils.boxDecoWithShadow(),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -148,6 +155,7 @@ class SearchPropertyView extends ConsumerWidget {
 
                   CommonAppBtn(
                     title: AppString.search,
+                    onTap: () => toNamed(context, Routes.searchResultsView),
                   )
                 ],
               ),
@@ -193,5 +201,4 @@ class SearchPropertyView extends ConsumerWidget {
       ),
     );
   }
-
 }

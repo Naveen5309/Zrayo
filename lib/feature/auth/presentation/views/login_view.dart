@@ -68,10 +68,10 @@ class LoginView extends ConsumerWidget {
                     onTap: () => offAllNamed(context, Routes.dashboard),
                   ),
                   yHeight(context.height * 0.02),
-                  dottedOrDivider(context),
+                  SvgPicture.asset(Assets.loginOr),
                   yHeight(context.height * 0.015),
                   customSocialMediaSection(),
-                  yHeight(context.height * 0.14),
+                  yHeight(context.height * 0.11),
                   Text.rich(
                     TextSpan(
                       text: "${AppString.newUser} ",
@@ -142,52 +142,6 @@ Widget formsFieldsSection(LoginNotifier loginNotifier) {
   );
 }
 
-Widget dottedOrDivider(BuildContext context) {
-  return Padding(
-    padding: EdgeInsets.symmetric(
-      vertical: MediaQuery.of(context).size.height * .01,
-    ),
-    child: Row(
-      children: [
-        Expanded(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: List.generate(9, (index) {
-              return Container(
-                width: 8,
-                height: 2,
-                margin: const EdgeInsets.symmetric(horizontal: 4),
-                color: Color(0xff040F25)
-                    .withValues(alpha: index != 8 ? index / 10 : 0.8),
-              );
-            }),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: AppText(
-            text: AppString.or,
-            color: AppColor.blue303744,
-          ),
-        ),
-        Expanded(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: List.generate(9, (index) {
-              return Container(
-                width: 7,
-                height: 2,
-                margin: const EdgeInsets.symmetric(horizontal: 4),
-                color: Color(0xff040F25).withValues(alpha: 20 / (index * 10)),
-              );
-            }),
-          ),
-        ),
-        // ),
-      ],
-    ),
-  );
-}
 
 Widget customSocialMediaSection() {
   return Row(
