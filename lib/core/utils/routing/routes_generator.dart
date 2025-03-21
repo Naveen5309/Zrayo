@@ -62,6 +62,21 @@ class RouteGenerator {
       case Routes.notificationView:
         return _fadeTransitionRoute(const NotificationView());
 
+      // case Routes.chatView:
+      //   return _fadeTransitionRoute(const ChatView());
+      case Routes.editProfileView:
+        return _fadeTransitionRoute(const EditProfileView());
+      case Routes.updateProfileView:
+        return _fadeTransitionRoute(const UpdateProfileView());
+      case Routes.bankDetails:
+        return _fadeTransitionRoute(const BankDetailsView());
+      case Routes.cardDetail:
+        return _fadeTransitionRoute(const CardDetailView());
+      case Routes.contactUs:
+        return _fadeTransitionRoute(ContactUsView());
+      case Routes.aboutUs:
+        return _fadeTransitionRoute(const AboutUsView());
+
       case Routes.chatView:
         return _fadeTransitionRoute(const ChatView());
 
