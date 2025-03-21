@@ -35,10 +35,6 @@ class ProfileCard extends StatelessWidget {
         children: [
           Container(
               padding: EdgeInsets.all(thickness ?? 6),
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: borderColor ?? AppColor.whiteFFFFFF.withAlpha(33),
-                  border: Border.all(color: AppColor.greyEAEAEA)),
               child: CustomCacheNetworkImage(
                   img: imageUrl, imageRadius: 50, height: 90.sp, width: 90.sp)),
 

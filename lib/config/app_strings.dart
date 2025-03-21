@@ -26,6 +26,8 @@ abstract final class AppString {
   static const String loginToYourAccount = "Please login to your account";
   static const String emailAddress = "Email Address";
   static const String exampleEamil = "example@gmail.com";
+  static const String name = "Name";
+  static const String contactNumber = "Contact Number";
   static const String forgetPassword = "Forgot password?";
   static const String otpVerification = "OTP Verification";
   static const String createNewPassword = "Create new password";
@@ -60,8 +62,10 @@ abstract final class AppString {
   static const String saveAndContinue = "Save and Continue";
   static const String address = "Address";
   static const String city = "City";
-  static const String state = "State";
   static const String country = "Country";
+  static const String completeAddress = "Complete Address";
+  static const String identityDocument = "Identity Document";
+  static const String state = "State";
   static const String enterAddress = "Enter address";
   static const String selectCity = "Select city";
   static const String selectSate = "Select state";
@@ -75,6 +79,7 @@ abstract final class AppString {
   static const String backSide = "Back Side";
   static const String uploadBackSide = "Upload Back Side";
   static const String addAddress = "Add Address";
+  static const String personalDetails = "Personal details";
   static const String linkYourCardWithUs = "Link your card with us";
   static const String addCardDetail = "Add Card Detail";
   static const String accountHolderName = "Account Holder Name";

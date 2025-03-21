@@ -68,8 +68,6 @@ class SettingView extends StatelessWidget {
                     title: AppString.contactUs,
                   ),
                   SettingTile(
-                    onTap: () => toNamed(context, Routes.addAddressView,
-                        args: {"fromSettings": true}),
                     icon: Assets.star,
                     title: AppString.rateOurApp,
                   ),
