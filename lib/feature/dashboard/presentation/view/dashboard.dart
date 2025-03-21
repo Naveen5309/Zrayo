@@ -4,34 +4,19 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:zrayo_flutter/config/enums.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/helpers/all_getter.dart';
-import 'package:zrayo_flutter/feature/dashboard/presentation/view/location_access_content.dart';
-import 'package:zrayo_flutter/feature/z_common_widgets/custom_dialog.dart';
 
-import '../provider/dashboard_provider.dart';
+import '../dashboard_provider.dart';
 
-class Dashboard extends ConsumerStatefulWidget {
+class Dashboard extends ConsumerWidget {
   const Dashboard({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _DashboardState();
-}
-
-class _DashboardState extends ConsumerState<Dashboard> {
-  @override
-  void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      showCustomDialog(context, content: LocationAccessContent());
-    });
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     ref.watch(dashboardProvider);
 
     final dashboardProviderObj = ref.read(dashboardProvider.notifier);
     final bottomTabList =
-        Getters.getLocalStorage.getUserType() == UserTypeEnum.customer
+        Getters.getLocalStorage.getUserType() == UserType.customer
             ? dashboardProviderObj.customerTabList
             : dashboardProviderObj.agentTabList;
     return Scaffold(

@@ -1,18 +1,6 @@
-enum UserTypeEnum {
+enum UserType {
   customer,
   agent,
-}
-
-enum CustomerHomePageTypesEnum {
-  list,
-  map,
-}
-enum PropertyTypesEnum {
-  rentalApartment,
-  house,
-  building,
-  land,
-  parkingSpace,
 }
 
 enum DashboardEnum {

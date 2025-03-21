@@ -32,7 +32,7 @@ class Getters {
   static bool get isLoggedIn =>
       GetIt.I.get<LocalStorage>().getIsProfileComplete() == 1;
 
- static bool isAgent() => GetIt.I.get<LocalStorage>().getUserType() == UserTypeEnum.agent;
+ static bool isAgent() => GetIt.I.get<LocalStorage>().getUserType() == UserType.agent;
 
 //static bool get hasProfileDate => GetIt.I.get<LocalStorage>().getLoginUser()?.firstName != null;
 }

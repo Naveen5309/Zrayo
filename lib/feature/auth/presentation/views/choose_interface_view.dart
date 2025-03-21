@@ -41,7 +41,7 @@ class ChooseInterfaceView extends StatelessWidget {
             CommonAppBtn(
               title: AppString.customer,
               onTap: () {
-                Getters.getLocalStorage.saveUserType(UserTypeEnum.customer);
+                Getters.getLocalStorage.saveUserType(UserType.customer);
                 toNamed(context, Routes.loginView);
               },
             ),
@@ -51,7 +51,7 @@ class ChooseInterfaceView extends StatelessWidget {
               backGroundColor: AppColor.secondry,
               textColor: AppColor.primary,
               onTap: () {
-                Getters.getLocalStorage.saveUserType(UserTypeEnum.agent);
+                Getters.getLocalStorage.saveUserType(UserType.agent);
                 toNamed(context, Routes.loginView);
               },
             ),

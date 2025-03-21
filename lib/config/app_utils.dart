@@ -5,12 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mime/mime.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_bottom_sheet.dart';
 import '../feature/z_common_widgets/custom_toast.dart';
-import 'helper.dart';
 
 class Utils {
   Utils._();
- static double cardWidth(BuildContext context) => screenWidth(context) / 3.2;
- static double cardHeight(BuildContext context) => screenHeight(context) / 3.75;
 
   static Future<bool> hasNetwork({bool? showToast}) async {
     var connectivityResult = await Connectivity().checkConnectivity();

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:zrayo_flutter/config/app_utils.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 
@@ -10,7 +9,8 @@ class FavoriteProperties extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    double cardWidth = screenWidth(context) / 3.2;
+    double cardHeight = screenHeight(context) / 4;
     return Column(
       children: [
         CustomAppBar(
@@ -27,7 +27,7 @@ class FavoriteProperties extends StatelessWidget {
             // shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                childAspectRatio: Utils.cardWidth(context) /  Utils.cardHeight(context),
+                childAspectRatio: cardWidth / cardHeight,
                 crossAxisSpacing: 20,
                 mainAxisSpacing: 10),
             itemBuilder: (context, index) {
