@@ -83,6 +83,7 @@ class RouteGenerator {
       case Routes.searchPropertyView:
         return _fadeTransitionRoute(const SearchPropertyView());
 
+
       default:
         return MaterialPageRoute(builder: (_) => const ErrorRoute());
     }
