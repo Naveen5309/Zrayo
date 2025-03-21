@@ -65,9 +65,10 @@ Widget formsFieldsSection() {
         labelText: AppString.address,
       ),
 
-
+      //PASSWORD
 
       Consumer(builder: (BuildContext context, WidgetRef ref, Widget? child) {
+        // var isVisible = ref.watch(isPswdVisible);
         return CustomDropdownButton(
           customBtn: IgnorePointer(
             child: CustomTextField(
@@ -94,6 +95,7 @@ Widget formsFieldsSection() {
           onChanged: (String? value) {},
         );
       }),
+      // Confirm PASSWORD
       Consumer(
         builder: (BuildContext context, WidgetRef ref, Widget? child) {
           // var isVisible = ref.watch(isConfirmPswdVisible);
@@ -124,6 +126,7 @@ Widget formsFieldsSection() {
         },
       ),
       Consumer(builder: (BuildContext context, WidgetRef ref, Widget? child) {
+        // var isVisible = ref.watch(isConfirmPswdVisible);
         return CustomDropdownButton(
           customBtn: IgnorePointer(
             child: CustomTextField(

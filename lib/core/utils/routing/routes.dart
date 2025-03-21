@@ -15,13 +15,10 @@ class Routes {
   static const String changePasswordView = '/changePasswordView';
   static const String dashboard = '/dashboard';
   static const String notificationView = '/notificationView';
-
   static const String editProfileView = '/editProfileView';
   static const String updateProfileView = '/updateProfileView';
   static const String bankDetails = '/bankDetails';
   static const String cardDetail = '/cardDetail';
   static const String contactUs = '/contactUs';
   static const String aboutUs = '/aboutUs';
-  static const String chatView = '/chatView';
-  static const String searchPropertyView = '/searchPropertyView';
 }

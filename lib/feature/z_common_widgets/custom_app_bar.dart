@@ -87,11 +87,10 @@ class CustomAppBar extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(15),
             decoration: BoxDecoration(
-              color: isFromHome ? AppColor.primaryEC9529 : AppColor.secondry,
+              color: isFromHome?AppColor.primaryEC9529:AppColor.secondry,
               shape: BoxShape.circle,
             ),
-            child: SvgPicture.asset(
-                isFromHome ? Assets.bellRinging : Assets.bellRinging1),
+            child: SvgPicture.asset(isFromHome?Assets.bellRinging:Assets.bellRinging1),
           ),
           Positioned(
             top: 0,
@@ -100,13 +99,12 @@ class CustomAppBar extends StatelessWidget {
               padding: EdgeInsets.all(5),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: isFromHome ? AppColor.whiteFFFFFF : AppColor.primary,
+                color: isFromHome?AppColor.whiteFFFFFF:AppColor.primary,
               ),
               child: AppText(
                 text: "3",
                 textSize: 10.sp,
-                color:
-                    !isFromHome ? AppColor.whiteFFFFFF : AppColor.black000000,
+                color: !isFromHome?AppColor.whiteFFFFFF:AppColor.black000000,
               ).align(),
             ),
           ),
@@ -116,12 +114,9 @@ class CustomAppBar extends StatelessWidget {
   }
 }
 
-Widget backIcon({VoidCallback? onBackIconTap, required BuildContext context,ColorFilter?colorFilter}) {
+Widget backIcon({VoidCallback? onBackIconTap, required BuildContext context}) {
   return GestureDetector(
     onTap: onBackIconTap ?? () => back(context),
-    child: SvgPicture.asset(
-      Assets.backBtn,
-      colorFilter: colorFilter,
-    ),
+    child: SvgPicture.asset(Assets.backBtn),
   );
 }

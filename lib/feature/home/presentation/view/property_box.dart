@@ -2,21 +2,8 @@ part of 'home_view_main.dart';
 
 class PropertyBox extends StatelessWidget {
   final bool showHorizontal;
-  final bool showFavorite;
-  final double? imageHeight;
-  final double? imageWidth;
-  final bool withFullCardWidth;
-  final Color? textColor;
 
-  const PropertyBox({
-    super.key,
-    this.showHorizontal = false,
-    this.showFavorite = true,
-    this.imageHeight,
-    this.imageWidth,
-    this.textColor,
-    this.withFullCardWidth = false,
-  });
+  const PropertyBox({super.key, this.showHorizontal = false});
 
   @override
   Widget build(BuildContext context) {
@@ -36,30 +23,27 @@ class PropertyBox extends StatelessWidget {
       );
     } else {
       return Container(
-        margin: EdgeInsets.only(
-            right: withFullCardWidth ? 0 : 16, top: 2, bottom: 2),
-        width: withFullCardWidth ? double.infinity : screenWidth(context) / 1.4,
-        decoration: withFullCardWidth
-            ? null
-            : BoxDecoration(
-                borderRadius: BorderRadius.circular(14),
-                color: AppColor.whiteFFFFFF,
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColor.black232323.withValues(alpha: 0.1),
-                    blurRadius: 1,
-                    spreadRadius: 1,
-                  ),
-                ],
-              ),
+        margin: const EdgeInsets.only(right: 16, top: 2, bottom: 2),
+        width: screenWidth(context) / 1.4,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(14),
+          color: AppColor.whiteFFFFFF,
+          boxShadow: [
+            BoxShadow(
+              color: AppColor.black232323.withValues(alpha: 0.1),
+              blurRadius: 1,
+              spreadRadius: 1,
+            ),
+          ],
+        ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               propertyImage(
-                width: imageWidth ?? 133.sp,
-                height: imageHeight ?? 100.sp,
+                width: 133.sp,
+                height: 100.sp,
                 context: context,
               ),
               xWidth(10),
@@ -83,7 +67,6 @@ class PropertyBox extends StatelessWidget {
                 text: "The east apartment",
                 fontFamily: AppFonts.satoshiBold,
                 maxlines: 2,
-                color: textColor,
                 overflow: TextOverflow.ellipsis,
                 // textSize: 12.sp,
               ),
@@ -98,14 +81,13 @@ class PropertyBox extends StatelessWidget {
                 text: "St. Park 135, New York",
                 fontFamily: AppFonts.satoshiRegular,
                 textSize: 11.sp,
-                maxlines: 1,
-                color: textColor,
+                maxlines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
           ],
         ),
-        yHeight(withFullCardWidth ? 16.h : 11.h),
+        yHeight(11.h),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -113,10 +95,11 @@ class PropertyBox extends StatelessWidget {
               text: "\$12,589",
               fontFamily: AppFonts.satoshiBold,
               textSize: 11.sp,
-              color: textColor,
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+              padding: EdgeInsets.symmetric(
+                horizontal: 10,
+              ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(24),
                 color: AppColor.colorFEF6EC,
@@ -158,34 +141,18 @@ class PropertyBox extends StatelessWidget {
           img: "",
           width: width,
           height: height,
-          imageRadius: 12,
+          imageRadius: 16,
         ),
-        if (!showHorizontal)
-          Positioned(
-              top: 8,
-              left: 5,
-              child: Container(
-                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
-                decoration: BoxDecoration(
-                    color: AppColor.whiteFFFFFF,
-                    borderRadius: BorderRadius.circular(24)),
-                child: AppText(
-                  text: "For Sale",
-                  textSize: 12.sp,
-                  color: AppColor.color5A5A5A,
-                ),
-              )),
-        if (showFavorite)
-          Positioned(
-              top: 8,
-              right: !isNearby ? null : 8,
-              left: isNearby ? null : 8,
-              child: Container(
-                padding: EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle, color: AppColor.whiteFFFFFF),
-                child: SvgPicture.asset(Assets.heartUnselected),
-              ))
+        Positioned(
+            top: 8,
+            right: !isNearby ? null : 8,
+            left: isNearby ? null : 8,
+            child: Container(
+              padding: EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle, color: AppColor.whiteFFFFFF),
+              child: SvgPicture.asset(Assets.heartUnselected),
+            ))
       ],
     );
   }
