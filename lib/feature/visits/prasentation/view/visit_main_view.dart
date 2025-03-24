@@ -11,7 +11,6 @@ import '../../../z_common_widgets/app_text.dart';
 import '../../../z_common_widgets/common_property_type_filter_content.dart';
 import '../../../z_common_widgets/custom_app_bar.dart';
 import '../../../z_common_widgets/custom_cache_network_image.dart';
-import '../../../z_common_widgets/custom_text_field.dart';
 
 part 'visit_card.dart';
 

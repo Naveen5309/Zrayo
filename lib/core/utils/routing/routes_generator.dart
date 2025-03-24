@@ -21,7 +21,6 @@ import 'package:zrayo_flutter/feature/setting/presentation/view/card_details.dar
 import 'package:zrayo_flutter/feature/setting/presentation/view/contact_us_view.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/view/edit_profile_view.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/view/update_profile.dart';
-import 'package:zrayo_flutter/feature/visits/prasentation/view/visit_main_view.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import '../../../feature/auth/presentation/views/change_password_view.dart';
 import '../../../feature/auth/presentation/views/choose_interface_view.dart';
@@ -99,17 +98,13 @@ class RouteGenerator {
       case Routes.searchPropertyView:
         return _fadeTransitionRoute(const SearchPropertyView());
 
-   case Routes.searchResultsView:
+      case Routes.searchResultsView:
         return _fadeTransitionRoute(const SearchResultsView());
-case Routes.customFilterScreen:
+      case Routes.customFilterScreen:
         return _fadeTransitionRoute(const CustomFilterScreen());
-      case Routes.addAddressView:
-        return _fadeTransitionRoute(
-            VisitMainView(fromSettings: args?['fromSettings'] ?? false));
+
       case Routes.customViewAllScreen:
-        return _fadeTransitionRoute( CustomViewAllScreen(
-          title:args?['title']
-        ));
+        return _fadeTransitionRoute(CustomViewAllScreen(title: args?['title']));
 
       default:
         return MaterialPageRoute(builder: (_) => const ErrorRoute());
