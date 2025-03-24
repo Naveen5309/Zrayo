@@ -9,9 +9,7 @@ import 'package:zrayo_flutter/feature/setting/presentation/view/confirm_logout.d
 import 'package:zrayo_flutter/feature/setting/presentation/view/custom_setting_tile.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
-import 'package:zrayo_flutter/feature/z_common_widgets/custom_bottom_sheet.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_cache_network_image.dart';
-import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 
 class SettingView extends StatelessWidget {
   const SettingView({

@@ -53,7 +53,7 @@ class CustomAppBar extends StatelessWidget {
                     AppText(
                       text: title,
                       fontFamily: AppFonts.satoshiBold,
-                      textSize: 20.sp,
+                      textSize: 22.sp,
                       color: titleColor,
                     ),
                     if (subTitle != null) ...{
@@ -116,7 +116,10 @@ class CustomAppBar extends StatelessWidget {
   }
 }
 
-Widget backIcon({VoidCallback? onBackIconTap, required BuildContext context,ColorFilter?colorFilter}) {
+Widget backIcon(
+    {VoidCallback? onBackIconTap,
+    required BuildContext context,
+    ColorFilter? colorFilter}) {
   return GestureDetector(
     onTap: onBackIconTap ?? () => back(context),
     child: SvgPicture.asset(

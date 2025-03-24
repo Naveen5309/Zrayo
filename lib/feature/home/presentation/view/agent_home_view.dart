@@ -5,7 +5,6 @@ class AgentHomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       height: double.infinity,
       width: double.infinity,
@@ -52,10 +51,14 @@ class AgentHomeView extends StatelessWidget {
                     fontFamily: AppFonts.satoshiBold,
                     textSize: 17.sp,
                   ),
-                  AppText(
-                    text: "See all",
-                    color: AppColor.primary,
-                    fontFamily: AppFonts.satoshiBold,
+                  InkWell(
+                    onTap: () => toNamed(context, Routes.customViewAllScreen,
+                        args: {"title": "Assigned Properties"}),
+                    child: AppText(
+                      text: "See all",
+                      color: AppColor.primary,
+                      fontFamily: AppFonts.satoshiBold,
+                    ),
                   ),
                 ],
               ),
@@ -67,7 +70,8 @@ class AgentHomeView extends StatelessWidget {
                 shrinkWrap: true,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    childAspectRatio:  Utils.cardWidth(context) /  Utils.cardHeight(context),
+                    childAspectRatio:
+                        Utils.cardWidth(context) / Utils.cardHeight(context),
                     crossAxisSpacing: 20,
                     mainAxisSpacing: 10),
                 itemBuilder: (context, index) {
@@ -87,7 +91,7 @@ class AgentHomeView extends StatelessWidget {
       {required String icon, required String title, required String value}) {
     return Expanded(
       child: Container(
-        padding: EdgeInsets.symmetric(vertical:14.sp,horizontal: 10),
+        padding: EdgeInsets.symmetric(vertical: 14.sp, horizontal: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(14),
           color: AppColor.whiteFFFFFF,

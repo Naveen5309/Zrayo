@@ -11,6 +11,7 @@ import 'package:zrayo_flutter/feature/auth/presentation/views/sign_up_view.dart'
 import 'package:zrayo_flutter/feature/dashboard/presentation/view/dashboard.dart';
 import 'package:zrayo_flutter/feature/dashboard/presentation/view/notification_view.dart';
 import 'package:zrayo_flutter/feature/home/presentation/view/custom_filter_screen.dart';
+import 'package:zrayo_flutter/feature/home/presentation/view/custom_view_all_screen.dart';
 import 'package:zrayo_flutter/feature/home/presentation/view/search_properties/search_property_view.dart';
 import 'package:zrayo_flutter/feature/home/presentation/view/search_properties/search_results_view.dart';
 import 'package:zrayo_flutter/feature/messages/presentation/view/chat_view/chat_view_main.dart';
@@ -95,11 +96,14 @@ class RouteGenerator {
       case Routes.searchPropertyView:
         return _fadeTransitionRoute(const SearchPropertyView());
 
-   case Routes.searchResultsView:
+      case Routes.searchResultsView:
         return _fadeTransitionRoute(const SearchResultsView());
-case Routes.customFilterScreen:
+      case Routes.customFilterScreen:
         return _fadeTransitionRoute(const CustomFilterScreen());
-
+      case Routes.customViewAllScreen:
+        return _fadeTransitionRoute( CustomViewAllScreen(
+          title:args?['title']
+        ));
 
       default:
         return MaterialPageRoute(builder: (_) => const ErrorRoute());

@@ -26,13 +26,12 @@ class CustomerHomeView extends StatelessWidget {
                     hintText: "Search location...",
                     prefixIcon: SvgPicture.asset(Assets.searchIcon),
                     readOnly: true,
-                    onTap: () =>toNamed(context, Routes.searchPropertyView),
+                    onTap: () => toNamed(context, Routes.searchPropertyView),
                   ),
                 ),
                 xWidth(20),
                 InkWell(
-                  onTap: () =>toNamed(context, Routes.customFilterScreen),
-
+                  onTap: () => toNamed(context, Routes.customFilterScreen),
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
@@ -61,10 +60,15 @@ class CustomerHomeView extends StatelessWidget {
                         fontFamily: AppFonts.satoshiBold,
                         textSize: 17.sp,
                       ),
-                      AppText(
-                        text: "See all",
-                        color: AppColor.primary,
-                        fontFamily: AppFonts.satoshiBold,
+                      InkWell(
+                        onTap: () => toNamed(
+                            context, Routes.customViewAllScreen,
+                            args: {"title": "Featured Properties"}),
+                        child: AppText(
+                          text: "See all",
+                          color: AppColor.primary,
+                          fontFamily: AppFonts.satoshiBold,
+                        ),
                       ),
                     ],
                   ),
@@ -92,10 +96,15 @@ class CustomerHomeView extends StatelessWidget {
                         fontFamily: AppFonts.satoshiBold,
                         textSize: 17.sp,
                       ),
-                      AppText(
-                        text: "See all",
-                        color: AppColor.primary,
-                        fontFamily: AppFonts.satoshiBold,
+                      InkWell(
+                        onTap: () => toNamed(
+                            context, Routes.customViewAllScreen,
+                            args: {"title": "Nearby Properties"}),
+                        child: AppText(
+                          text: "See all",
+                          color: AppColor.primary,
+                          fontFamily: AppFonts.satoshiBold,
+                        ),
                       ),
                     ],
                   ),
