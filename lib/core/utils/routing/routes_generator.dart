@@ -15,12 +15,15 @@ import 'package:zrayo_flutter/feature/home/presentation/view/custom_view_all_scr
 import 'package:zrayo_flutter/feature/home/presentation/view/search_properties/search_property_view.dart';
 import 'package:zrayo_flutter/feature/home/presentation/view/search_properties/search_results_view.dart';
 import 'package:zrayo_flutter/feature/messages/presentation/view/chat_view/chat_view_main.dart';
+import 'package:zrayo_flutter/feature/my_properties/presentation/view/add_property_screens/add_property_bio.dart';
+import 'package:zrayo_flutter/feature/my_properties/presentation/view/add_property_screens/add_property_info.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/view/about_us_view.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/view/bank_details.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/view/card_details.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/view/contact_us_view.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/view/edit_profile_view.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/view/update_profile.dart';
+import 'package:zrayo_flutter/feature/visits/prasentation/view/visit_main_view.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import '../../../feature/auth/presentation/views/change_password_view.dart';
 import '../../../feature/auth/presentation/views/choose_interface_view.dart';
@@ -102,9 +105,15 @@ class RouteGenerator {
         return _fadeTransitionRoute(const SearchResultsView());
       case Routes.customFilterScreen:
         return _fadeTransitionRoute(const CustomFilterScreen());
-
+      case Routes.visitMainView:
+        return _fadeTransitionRoute(
+            VisitMainView(fromSettings: args?['fromSettings'] ?? false));
       case Routes.customViewAllScreen:
         return _fadeTransitionRoute(CustomViewAllScreen(title: args?['title']));
+      case Routes.myPropertyBio:
+        return _fadeTransitionRoute(const AddPropertyBioView());
+      case Routes.addPropertyInfo:
+        return _fadeTransitionRoute(const AddPropertyInfo());
 
       default:
         return MaterialPageRoute(builder: (_) => const ErrorRoute());

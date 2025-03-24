@@ -28,4 +28,6 @@ class Routes {
   static const String customFilterScreen = '/customFilterScreen';
   static const String visitMainView = '/visitMainView';
   static const String customViewAllScreen = '/customViewAllScreen';
+  static const String myPropertyBio = '/myPropertyBio';
+  static const String addPropertyInfo = '/addPropertyInfo';
 }

@@ -63,6 +63,7 @@ abstract final class AppString {
   static const String address = "Address";
   static const String city = "City";
   static const String country = "Country";
+  static const String stateProvince = "State/Province";
   static const String completeAddress = "Complete Address";
   static const String identityDocument = "Identity Document";
   static const String state = "State";
@@ -132,6 +133,7 @@ abstract final class AppString {
   static const String enableLocation = "Enable Location";
   static const String search = "Search";
   static const String visits = "Visits";
+  static const String next = "Next";
   static const String notifications = "Notifications";
   static const String history = "History";
   static const String myProfile = "My Profile";
@@ -139,8 +141,17 @@ abstract final class AppString {
   static const String contactUs = "Contact Us";
   static const String rateOurApp = "Rate our app";
   static const String logout = "Logout";
+  static const String tittle = "Tittle";
+  static const String enterPropertyTittle = "Enter property tittle";
+  static const String enterPropertyPrice = "Enter property price";
+  static const String enterCompleteAddress = "Enter complete address";
+  static const String price = "Price";
+  static const String zIPCode = "ZIP Code";
+  static const String addressStreet = "Address/Street";
   static const String editProfile = "Edit profile";
   static const String subscription = "Subscription";
+  static const String description = "Description";
+  static const String enterDescription = "Enter description";
   static const String changeProfilePicture = "Change profile picture ";
   static const String becomePremiumMember = "Become a premium member";
   static const String bankDetails = "Bank Details";
@@ -162,6 +173,7 @@ abstract final class AppString {
   static const String searchResults = "Search Results";
   static const String reset = "Reset";
   static const String apply = "Apply";
+  static const String addProperty = "Add Property";
 
 // static const String mMYY = "MM/YY";
 }
