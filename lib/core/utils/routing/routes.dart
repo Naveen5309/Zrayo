@@ -26,5 +26,6 @@ class Routes {
   static const String searchPropertyView = '/searchPropertyView';
   static const String searchResultsView = '/searchResultsView';
   static const String customFilterScreen = '/customFilterScreen';
+  static const String visitMainView = '/visitMainView';
   static const String customViewAllScreen = '/customViewAllScreen';
 }

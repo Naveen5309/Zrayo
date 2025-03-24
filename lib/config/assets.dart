@@ -75,6 +75,7 @@ class Assets {
   static const String headphone = 'assets/icons/headphone.svg';
   static const String card = 'assets/icons/card.svg';
   static const String clock = 'assets/icons/clock.svg';
+  static const String visit = 'assets/icons/visit.svg';
   static const String callCalling = 'assets/icons/call-calling.svg';
   static const String bank = 'assets/icons/bank.svg';
   static const String document = 'assets/icons/document.svg';

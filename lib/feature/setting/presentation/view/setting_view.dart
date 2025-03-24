@@ -41,8 +41,10 @@ class SettingView extends StatelessWidget {
                     title: AppString.inviteFriend,
                   ),
                   SettingTile(
-                    icon: Assets.clock,
-                    title: AppString.history,
+                    onTap: () => toNamed(context, Routes.visitMainView,
+                        args: {"fromSettings": true}),
+                    icon: Assets.visit,
+                    title: AppString.visits,
                   ),
                   SettingTile(
                     onTap: () => toNamed(context, Routes.addBankDetail,
@@ -74,9 +76,7 @@ class SettingView extends StatelessWidget {
                       Utils.appBottomSheet(
                         isScrolled: true,
                         context: context,
-                        widget: LogoutConfirmationView(
-
-                        ),
+                        widget: LogoutConfirmationView(),
                       );
                     },
                     textColor: AppColor.redF75454,

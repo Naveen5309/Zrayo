@@ -37,7 +37,7 @@ class ApiProvider {
     Map<String, dynamic>? body,
     String? imagePath,
     String? paramName,
-    bool useFormData =false,
+    bool useFormData = false,
     required T Function(dynamic json) fromJson,
   }) async {
     try {
@@ -48,11 +48,12 @@ class ApiProvider {
         paramName: paramName,
         requestType: requestType,
         body: map,
-        useFormData:useFormData,
+        useFormData: useFormData,
       );
-      var parsedData = (response.data).containsKey('data') && response.data["data"] != null
-          ? _dataParser<T>(response.data["data"], fromJson)
-          : null;
+      var parsedData =
+          (response.data).containsKey('data') && response.data["data"] != null
+              ? _dataParser<T>(response.data["data"], fromJson)
+              : null;
       var dataResponse = ResponseWrapper<T>(
         statusCode: response.data["statusCode"],
         message: response.data["message"],
@@ -60,30 +61,37 @@ class ApiProvider {
         data: parsedData,
       );
       return dataResponse;
-    } catch (err ,c) {
+    } catch (err, c) {
       functionLog(msg: "t>>>>>>>>$err", fun: "requestData");
       functionLog(msg: "t>>>>>>>>$c", fun: "requestData");
       if (err is DioException) {
         if (err.type == DioExceptionType.receiveTimeout ||
             err.type == DioExceptionType.connectionTimeout) {
-          return ResponseWrapper(statusCode: 0, message: "Unable to reach the servers",status: false);
+          return ResponseWrapper(
+              statusCode: 0,
+              message: "Unable to reach the servers",
+              status: false);
         } else if (err.type == DioExceptionType.connectionError) {
-          return ResponseWrapper(statusCode: 0, message: "Please check your internet connection",status: false);
+          return ResponseWrapper(
+              statusCode: 0,
+              message: "Please check your internet connection",
+              status: false);
         } else if (err.response != null && (err.response?.statusCode == 401)) {
-          throw ResponseWrapper(statusCode: 0, message: "Authentication Failed",status: false);
+          throw ResponseWrapper(
+              statusCode: 0, message: "Authentication Failed", status: false);
         }
       }
       final res = (err as dynamic).response;
       if (res != null && res?.data.runtimeType != String) {
         return ResponseWrapper.fromJson(
           res?.data,
-              (data) => null,
+          (data) => null,
         );
       }
-      return ResponseWrapper(statusCode: 0, message: err.toString(),status: false);
+      return ResponseWrapper(
+          statusCode: 0, message: err.toString(), status: false);
     }
   }
-
 
   ///  ---------------------------------Get request Type ---------------------------------------->
   Future<Response> _checkRequest({
@@ -91,7 +99,7 @@ class ApiProvider {
     required RequestType requestType,
     required String? imagePath,
     required String? paramName,
-    bool useFormData=false,
+    bool useFormData = false,
     required Map<String, dynamic> body,
   }) async {
     final headerToken = Injector.getHeaderToken();
@@ -104,16 +112,19 @@ class ApiProvider {
     } else if (requestType == RequestType.post) {
       return _dio.post(
         fullUrl,
-        data: useFormData? FormData.fromMap(body):body,
+        data: useFormData ? FormData.fromMap(body) : body,
         options: headerToken,
       );
-    }else if (requestType == RequestType.multipart && imagePath != null && paramName != null) {
-      Map<String,dynamic> map = HashMap();
+    } else if (requestType == RequestType.multipart &&
+        imagePath != null &&
+        paramName != null) {
+      Map<String, dynamic> map = HashMap();
       map.addAll(body);
-      if(imagePath.isNotEmpty){
+      if (imagePath.isNotEmpty) {
         File file = File(imagePath);
         String fileType = imagePath.substring(imagePath.lastIndexOf(".") + 1);
-        map[paramName] = await MultipartFile.fromFile(file.path,filename: imagePath.split("/").last,
+        map[paramName] = await MultipartFile.fromFile(file.path,
+            filename: imagePath.split("/").last,
             contentType: MediaType(_getFileType(imagePath)!, fileType));
       }
       return _dio.post(
@@ -121,8 +132,7 @@ class ApiProvider {
         data: FormData.fromMap(map),
         options: headerToken,
       );
-    }
-    else if (requestType == RequestType.delete) {
+    } else if (requestType == RequestType.delete) {
       return _dio.delete(
         fullUrl,
         data: body,
@@ -142,8 +152,6 @@ class ApiProvider {
       );
     }
   }
-
-
 
   String? _getFileType(String path) {
     final mimeType = lookupMimeType(path);

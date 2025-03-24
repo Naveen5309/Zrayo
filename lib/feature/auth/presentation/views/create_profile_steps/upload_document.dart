@@ -11,7 +11,8 @@ import '../../../../z_common_widgets/custom_app_bar.dart';
 import '../../../../z_common_widgets/custom_btn.dart';
 
 class UploadDocument extends StatelessWidget {
-  const UploadDocument({super.key});
+  final bool fromSettings;
+  const UploadDocument({super.key, required this.fromSettings});
 
   @override
   Widget build(BuildContext context) {
@@ -19,22 +20,27 @@ class UploadDocument extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            CustomAppBar(title: AppString.uploadDocument),
+            CustomAppBar(
+                title: fromSettings
+                    ? AppString.identityDocument
+                    : AppString.uploadDocument),
             yHeight(10.sp),
-            Container(
-              height: 5,
-              color: AppColor.orangeFff9f0,
-              width: screenWidth(context),
-              child: Row(
-                children: [
-                  Container(
+            fromSettings
+                ? SizedBox()
+                : Container(
                     height: 5,
-                    width: (screenWidth(context) / 5) * 3,
-                    color: AppColor.primary,
+                    color: AppColor.orangeFff9f0,
+                    width: screenWidth(context),
+                    child: Row(
+                      children: [
+                        Container(
+                          height: 5,
+                          width: (screenWidth(context) / 5) * 3,
+                          color: AppColor.primary,
+                        ),
+                      ],
+                    ),
                   ),
-                ],
-              ),
-            ),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(16),
@@ -88,11 +94,15 @@ class UploadDocument extends StatelessWidget {
                     ),
                     Spacer(),
                     CommonAppBtn(
-                      title: AppString.saveAndContinue,
-                      onTap: () => toNamed(
-                        context,
-                        Routes.addBankDetail,
-                      ),
+                      title: fromSettings
+                          ? AppString.update
+                          : AppString.saveAndContinue,
+                      onTap: () => fromSettings
+                          ? back(context)
+                          : toNamed(
+                              context,
+                              Routes.addBankDetail,
+                            ),
                     ),
                     yHeight(20),
                   ],
