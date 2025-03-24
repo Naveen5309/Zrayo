@@ -13,7 +13,7 @@ class Assets {
 
   static const String backBtn = 'assets/icons/icback.svg';
   static const String edit = 'assets/icons/edit.svg';
-  static const String location = 'assets/icons/location.svg';
+  static const String location = 'assets/icons/location_dark.svg';
   static const String city = 'assets/icons/city.svg';
   static const String state = 'assets/icons/state.svg';
   static const String barcode = 'assets/icons/barcode.svg';
@@ -103,4 +103,11 @@ class Assets {
   static const String propertyRentalApartment1 =
       'assets/icons/property_type_icons/rental_apartment1.svg';
   static const String loginOr = 'assets/icons/login_or.svg';
+  static const String shareIcon = 'assets/icons/share_icon.svg';
+  static const String leftArrow = 'assets/icons/left_arrow.svg';
+  static const String locationDark = 'assets/icons/location_dark.svg';
+  static const String circleCheckIcon = 'assets/icons/circle_check_icon.svg';
+  static const String imageIcon = 'assets/icons/image_icon.svg';
+  static const String mapImage = 'assets/icons/map_image.svg';
+  static const String mapZoomIcon = 'assets/icons/map_zoom_icon.svg';
 }

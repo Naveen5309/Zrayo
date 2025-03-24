@@ -10,10 +10,10 @@ import 'helper.dart';
 class Utils {
   Utils._();
 
-  static BoxDecoration boxDecoWithShadow({double? borderRadius}) {
+  static BoxDecoration boxDecoWithShadow({double? borderRadius,Color? color}) {
     return BoxDecoration(
       borderRadius: BorderRadius.circular(borderRadius??14),
-      color: AppColor.whiteFFFFFF,
+      color: color??AppColor.whiteFFFFFF,
       boxShadow: [
         BoxShadow(
           color: AppColor.black232323.withValues(alpha: 0.1),

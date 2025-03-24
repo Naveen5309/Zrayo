@@ -17,12 +17,10 @@ import 'package:zrayo_flutter/feature/home/presentation/view/search_properties/s
 import 'package:zrayo_flutter/feature/messages/presentation/view/chat_view/chat_view_main.dart';
 import 'package:zrayo_flutter/feature/my_properties/presentation/view/add_property_screens/add_property_bio.dart';
 import 'package:zrayo_flutter/feature/my_properties/presentation/view/add_property_screens/add_property_info.dart';
+import 'package:zrayo_flutter/feature/property_detail/prasentation/view/property_detail_view.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/view/about_us_view.dart';
-import 'package:zrayo_flutter/feature/setting/presentation/view/bank_details.dart';
-import 'package:zrayo_flutter/feature/setting/presentation/view/card_details.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/view/contact_us_view.dart';
-import 'package:zrayo_flutter/feature/setting/presentation/view/edit_profile_view.dart';
-import 'package:zrayo_flutter/feature/setting/presentation/view/update_profile.dart';
+import 'package:zrayo_flutter/feature/setting/presentation/view/profile_detail_view.dart';
 import 'package:zrayo_flutter/feature/visits/prasentation/view/visit_main_view.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import '../../../feature/auth/presentation/views/change_password_view.dart';
@@ -82,14 +80,9 @@ class RouteGenerator {
 
       // case Routes.chatView:
       //   return _fadeTransitionRoute(const ChatView());
-      case Routes.editProfileView:
-        return _fadeTransitionRoute(const EditProfileView());
-      case Routes.updateProfileView:
-        return _fadeTransitionRoute(const UpdateProfileView());
-      case Routes.bankDetails:
-        return _fadeTransitionRoute(const BankDetailsView());
-      case Routes.cardDetail:
-        return _fadeTransitionRoute(const CardDetailView());
+      case Routes.profileDetailView:
+        return _fadeTransitionRoute(const ProfileDetailView());
+
       case Routes.contactUs:
         return _fadeTransitionRoute(ContactUsView());
       case Routes.aboutUs:
@@ -114,6 +107,9 @@ class RouteGenerator {
         return _fadeTransitionRoute(const AddPropertyBioView());
       case Routes.addPropertyInfo:
         return _fadeTransitionRoute(const AddPropertyInfo());
+
+      case Routes.propertyDetailView:
+        return _fadeTransitionRoute(const PropertyDetailView());
 
       default:
         return MaterialPageRoute(builder: (_) => const ErrorRoute());

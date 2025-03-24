@@ -20,55 +20,58 @@ class PropertyBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (!showHorizontal) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          propertyImage(
-            width: screenWidth(context) / 2.3,
-            height: screenWidth(context) / 2,
-            context: context,
-            isNearby: true,
-          ),
-          yHeight(10),
-          propertyInfo(),
-        ],
-      );
-    } else {
-      return Container(
-        margin: EdgeInsets.only(
-            right: withFullCardWidth ? 0 : 16, top: 2, bottom: 2),
-        width: withFullCardWidth ? double.infinity : screenWidth(context) / 1.4,
-        decoration: withFullCardWidth
-            ? null
-            : BoxDecoration(
-                borderRadius: BorderRadius.circular(14),
-                color: AppColor.whiteFFFFFF,
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColor.black232323.withValues(alpha: 0.1),
-                    blurRadius: 1,
-                    spreadRadius: 1,
-                  ),
-                ],
+    return GestureDetector(
+      onTap: () => toNamed(context, Routes.propertyDetailView),
+      child: !showHorizontal
+          ? Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                propertyImage(
+                  width: screenWidth(context) / 2.3,
+                  height: screenWidth(context) / 2,
+                  context: context,
+                  isNearby: true,
+                ),
+                yHeight(10),
+                propertyInfo(),
+              ],
+            )
+          : Container(
+              margin: EdgeInsets.only(
+                  right: withFullCardWidth ? 0 : 16, top: 2, bottom: 2),
+              width: withFullCardWidth
+                  ? double.infinity
+                  : screenWidth(context) / 1.4,
+              decoration: withFullCardWidth
+                  ? null
+                  : BoxDecoration(
+                      borderRadius: BorderRadius.circular(14),
+                      color: AppColor.whiteFFFFFF,
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColor.black232323.withValues(alpha: 0.1),
+                          blurRadius: 1,
+                          spreadRadius: 1,
+                        ),
+                      ],
+                    ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    propertyImage(
+                      width: imageWidth ?? 133.sp,
+                      height: imageHeight ?? 100.sp,
+                      context: context,
+                    ),
+                    xWidth(10),
+                    Expanded(child: propertyInfo()),
+                  ],
+                ),
               ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              propertyImage(
-                width: imageWidth ?? 133.sp,
-                height: imageHeight ?? 100.sp,
-                context: context,
-              ),
-              xWidth(10),
-              Expanded(child: propertyInfo()),
-            ],
-          ),
-        ),
-      );
-    }
+            ),
+    );
   }
 
   Widget propertyInfo() {
@@ -115,31 +118,7 @@ class PropertyBox extends StatelessWidget {
               textSize: 11.sp,
               color: textColor,
             ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(24),
-                color: AppColor.colorFEF6EC,
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 4.0),
-                    child: Icon(
-                      Icons.star,
-                      size: 15,
-                      color: AppColor.primary,
-                    ),
-                  ),
-                  AppText(
-                    text: "3.3",
-                    textSize: 10.sp,
-                  ).align(),
-                ],
-              ),
-            )
+            CustomRatingBox(rating: "3.3")
           ],
         )
       ],
@@ -190,3 +169,5 @@ class PropertyBox extends StatelessWidget {
     );
   }
 }
+
+

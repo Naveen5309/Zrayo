@@ -21,59 +21,62 @@ class VisitMainView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        CustomAppBar(
-          title: "Visits",
-          showBackButton: false,
-          action: Container(
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: AppColor.greyEDEDED.withValues(alpha: 0.5),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: InkWell(
-               onTap: () {
-                 Utils.appBottomSheet(
-                     isScrolled: true,
-                     context: context,
-                     widget: CommonPropertyTypeFilterContent());
-               },
-              child: SvgPicture.asset(
-                Assets.filterIcon,
-                colorFilter:
-                    ColorFilter.mode(AppColor.black000000, BlendMode.srcIn),
+    return Scaffold(
+      body: Column(
+        children: [
+          yHeight(10),
+          CustomAppBar(
+            title: "Visits",
+            showBackButton: fromSettings,
+            action: Container(
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: AppColor.greyEDEDED.withValues(alpha: 0.5),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: InkWell(
+                onTap: () {
+                  Utils.appBottomSheet(
+                      isScrolled: true,
+                      context: context,
+                      widget: CommonPropertyTypeFilterContent());
+                },
+                child: SvgPicture.asset(
+                  Assets.filterIcon,
+                  colorFilter:
+                      ColorFilter.mode(AppColor.black000000, BlendMode.srcIn),
+                ),
               ),
             ),
           ),
-        ),
-        Expanded(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              children: [
-                yHeight(10.h),
-                CustomTabBar(
-                  firstString: "Current",
-                  secondString: "Past",
-                  selectedIndex: 0,
-                  onChange: (value) {},
-                ),
-                yHeight(15.h),
-                Expanded(
-                    child: ListView.builder(
-                  itemCount: 10,
-                  padding: EdgeInsets.zero,
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return VisitCard();
-                  },
-                ))
-              ],
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                children: [
+                  yHeight(10.h),
+                  CustomTabBar(
+                    firstString: "Current",
+                    secondString: "Past",
+                    selectedIndex: 0,
+                    onChange: (value) {},
+                  ),
+                  yHeight(15.h),
+                  Expanded(
+                      child: ListView.builder(
+                    itemCount: 10,
+                    padding: EdgeInsets.zero,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return VisitCard();
+                    },
+                  ))
+                ],
+              ),
             ),
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 }

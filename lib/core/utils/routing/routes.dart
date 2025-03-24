@@ -16,10 +16,7 @@ class Routes {
   static const String dashboard = '/dashboard';
   static const String notificationView = '/notificationView';
 
-  static const String editProfileView = '/editProfileView';
-  static const String updateProfileView = '/updateProfileView';
-  static const String bankDetails = '/bankDetails';
-  static const String cardDetail = '/cardDetail';
+  static const String profileDetailView = '/profileDetailView';
   static const String contactUs = '/contactUs';
   static const String aboutUs = '/aboutUs';
   static const String chatView = '/chatView';
@@ -30,4 +27,5 @@ class Routes {
   static const String customViewAllScreen = '/customViewAllScreen';
   static const String myPropertyBio = '/myPropertyBio';
   static const String addPropertyInfo = '/addPropertyInfo';
+  static const String propertyDetailView = '/propertyDetailView';
 }

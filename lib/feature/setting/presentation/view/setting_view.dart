@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/config/app_utils.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
+import 'package:zrayo_flutter/core/helpers/all_getter.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/view/confirm_logout.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/view/custom_setting_tile.dart';
@@ -40,12 +41,13 @@ class SettingView extends StatelessWidget {
                     icon: Assets.personAdd,
                     title: AppString.inviteFriend,
                   ),
-                  SettingTile(
-                    onTap: () => toNamed(context, Routes.visitMainView,
-                        args: {"fromSettings": true}),
-                    icon: Assets.visit,
-                    title: AppString.visits,
-                  ),
+                  if (!Getters.isAgent())
+                    SettingTile(
+                      onTap: () => toNamed(context, Routes.visitMainView,
+                          args: {"fromSettings": true}),
+                      icon: Assets.visit,
+                      title: AppString.visits,
+                    ),
                   SettingTile(
                     onTap: () => toNamed(context, Routes.addBankDetail,
                         args: {"fromSettings": true}),
@@ -53,7 +55,7 @@ class SettingView extends StatelessWidget {
                     title: AppString.bankDetails,
                   ),
                   SettingTile(
-                    onTap: () => toNamed(context, Routes.cardDetail),
+                    onTap: () => toNamed(context, Routes.addPaymentCard),
                     icon: Assets.card,
                     title: AppString.cardDetails,
                   ),
@@ -147,7 +149,7 @@ Widget profileSection(BuildContext context) {
           ),
         ),
         GestureDetector(
-          onTap: () => toNamed(context, Routes.editProfileView),
+          onTap: () => toNamed(context, Routes.profileDetailView),
           child: Icon(
             Icons.arrow_forward_ios,
             size: 16.sp,

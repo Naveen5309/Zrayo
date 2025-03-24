@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zrayo_flutter/config/helper.dart';
+import 'package:zrayo_flutter/core/helpers/all_getter.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
@@ -8,6 +9,7 @@ import 'package:zrayo_flutter/feature/z_common_widgets/custom_text_field.dart';
 
 class AddBankDetail extends StatelessWidget {
   final bool fromSettings;
+
   const AddBankDetail({super.key, required this.fromSettings});
 
   @override
@@ -66,15 +68,21 @@ class AddBankDetail extends StatelessWidget {
                   ],
                 ),
               ),
-              if (!fromSettings) yHeight(context.height / 5),
-              if (fromSettings) yHeight(context.height / 3.5),
+              if (!fromSettings)
+                yHeight(context.height / 5)
+              else
+                yHeight(context.height / 3.5),
               CommonAppBtn(
                 title:
                     fromSettings ? AppString.update : AppString.saveAndContinue,
                 margin: const EdgeInsets.all(16),
                 onTap: () {
                   if (!fromSettings) {
-                    toNamed(context, Routes.addPaymentCard);
+                    if (Getters.isAgent()) {
+                      offAllNamed(context, Routes.dashboard);
+                    } else {
+                      toNamed(context, Routes.subscriptionPlanView);
+                    }
                   } else {
                     back(context);
                   }
@@ -88,7 +96,13 @@ class AddBankDetail extends StatelessWidget {
                   borderColor: AppColor.transparent,
                   backGroundColor: AppColor.secondry,
                   textColor: AppColor.primary,
-                  onTap: () => toNamed(context, Routes.addPaymentCard),
+                  onTap: () {
+                    if (Getters.isAgent()) {
+                      offAllNamed(context, Routes.dashboard);
+                    } else {
+                      toNamed(context, Routes.subscriptionPlanView);
+                    }
+                  },
                 ),
             ],
           ),
