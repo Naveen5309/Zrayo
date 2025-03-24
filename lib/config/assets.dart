@@ -7,11 +7,13 @@ class Assets {
   static const String lock = 'assets/icons/lock.svg';
   static const String eye = 'assets/icons/eye.svg';
   static const String eyeOff = 'assets/icons/eye_off.svg';
+  static const String lucide = 'assets/icons/lucide.svg';
 
   static const String iconGoogle = "assets/icons/google.svg";
   static const String iconApple = "assets/icons/apple.svg";
 
   static const String backBtn = 'assets/icons/icback.svg';
+  static const String x = 'assets/icons/x.svg';
   static const String edit = 'assets/icons/edit.svg';
   static const String location = 'assets/icons/location.svg';
   static const String city = 'assets/icons/city.svg';

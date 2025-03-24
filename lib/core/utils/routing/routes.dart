@@ -30,4 +30,5 @@ class Routes {
   static const String customViewAllScreen = '/customViewAllScreen';
   static const String myPropertyBio = '/myPropertyBio';
   static const String addPropertyInfo = '/addPropertyInfo';
+  static const String addPropertyAgent = '/addPropertyAgent';
 }

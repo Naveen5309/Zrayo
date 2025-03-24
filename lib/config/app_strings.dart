@@ -27,6 +27,10 @@ abstract final class AppString {
   static const String emailAddress = "Email Address";
   static const String exampleEamil = "example@gmail.com";
   static const String name = "Name";
+  static const String yes = "Yes";
+  static const String no = "No";
+  static const String setCommissionPercentage = "Set commission percentage";
+  static const String enterPercentage = "Enter percentage";
   static const String contactNumber = "Contact Number";
   static const String forgetPassword = "Forgot password?";
   static const String otpVerification = "OTP Verification";
@@ -146,6 +150,9 @@ abstract final class AppString {
   static const String enterPropertyPrice = "Enter property price";
   static const String enterCompleteAddress = "Enter complete address";
   static const String price = "Price";
+  static const String bathroomSize = "Bathroom Size";
+  static const String bedroomSize = "Bedroom Size";
+  static const String enterSq = "Enter Sq. Ft";
   static const String zIPCode = "ZIP Code";
   static const String addressStreet = "Address/Street";
   static const String editProfile = "Edit profile";
@@ -163,16 +170,26 @@ abstract final class AppString {
   static const String mMYY = "MM/YY";
   static const String enterCvv = "Enter CVV";
   static const String email = "Email";
+  static const String propertyFeatures = "Property Features";
+  static const String forSale = "For Sale";
+  static const String forRent = "For Rent";
+  static const String doYouWantToSellProperty =
+      "Do you want to sell property or rent property?";
   static const String subject = "Subject";
   static const String enterEmail = "Enter your email";
   static const String update = "Update";
   static const String setting = "Setting";
   static const String cancel = "Cancel";
+  static const String selectPropertyType = "Select property type";
+  static const String propertyType = "Property Type";
   static const String areYouSureLogOut = "Are you want to sure logout?";
   static const String freeTriall = "Free trial";
   static const String searchResults = "Search Results";
   static const String reset = "Reset";
   static const String apply = "Apply";
+  static const String other = "Other";
+  static const String assignAgent = "Do you want to assign agents?";
+  static const String enterPropertyFeature = "Enter property Feature";
   static const String addProperty = "Add Property";
 
 // static const String mMYY = "MM/YY";
