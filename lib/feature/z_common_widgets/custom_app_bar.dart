@@ -17,12 +17,14 @@ class CustomAppBar extends StatelessWidget {
   final VoidCallback? onBackIconTap;
   final Widget? action;
   final Color? titleColor;
+  final double? titleSize;
 
   const CustomAppBar({
     super.key,
     required this.title,
     this.subTitle,
     this.centerTitle,
+    this.titleSize,
     this.showBackButton = true,
     this.isFromHome = false,
     this.showNotificationIcon = false,
@@ -53,7 +55,7 @@ class CustomAppBar extends StatelessWidget {
                     AppText(
                       text: title,
                       fontFamily: AppFonts.satoshiBold,
-                      textSize: 22.sp,
+                      textSize: titleSize??22.sp,
                       color: titleColor,
                     ),
                     if (subTitle != null) ...{

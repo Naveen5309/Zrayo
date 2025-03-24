@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/common_property_type_filter_content.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 
 import '../../../../config/app_utils.dart';
@@ -30,9 +31,7 @@ class HistoryView extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 children: [
-                  yHeight(20.h),
-                  CustomTabBar(),
-                  yHeight(20.h),
+                  yHeight(10.h),
                   Row(
                     children: [
                       Expanded(
@@ -42,13 +41,21 @@ class HistoryView extends StatelessWidget {
                         ),
                       ),
                       xWidth(20),
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: AppColor.black000000,
+                      InkWell(
+                        onTap: () {
+                          Utils.appBottomSheet(
+                              isScrolled: true,
+                              context: context,
+                              widget: CommonPropertyTypeFilterContent());
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: AppColor.black000000,
+                          ),
+                          padding: EdgeInsets.all(14),
+                          child: SvgPicture.asset(Assets.filterIcon),
                         ),
-                        padding: EdgeInsets.all(14),
-                        child: SvgPicture.asset(Assets.filterIcon),
                       ),
                     ],
                   ),
@@ -65,10 +72,7 @@ class HistoryView extends StatelessWidget {
                         crossAxisSpacing: 20,
                         mainAxisSpacing: 10),
                     itemBuilder: (context, index) {
-                      return PropertyBox(
-                        showFavorite:false
-
-                      );
+                      return PropertyBox(showFavorite: false);
                     },
                   ))
                 ],

@@ -166,39 +166,40 @@ class SearchPropertyView extends ConsumerWidget {
     );
   }
 
-  Widget propertyTypeBox(Map<String, dynamic> propertyTypeList, isSelected) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
-      margin: EdgeInsets.only(bottom: 15),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: AppColor.colorB7B7B7)),
-      child: Row(
-        children: [
-          SvgPicture.asset(propertyTypeList['icon']),
-          xWidth(10),
-          Expanded(
-              child: AppText(
-            text: propertyTypeList['title'],
-            color: AppColor.black4A4A4A,
-          )),
-          Container(
-            padding: EdgeInsets.all(2.sp),
+}
+Widget propertyTypeBox(Map<String, dynamic> propertyTypeList, isSelected) {
+  return Container(
+    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+    margin: EdgeInsets.only(bottom: 15),
+    decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: AppColor.colorB7B7B7)),
+    child: Row(
+      children: [
+        if(propertyTypeList.containsKey("icon"))
+        SvgPicture.asset(propertyTypeList['icon']),
+        xWidth(10),
+        Expanded(
+            child: AppText(
+              text: propertyTypeList['title'],
+              color: AppColor.black4A4A4A,
+            )),
+        Container(
+          padding: EdgeInsets.all(2.sp),
+          decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(
+                  color: isSelected ? AppColor.primary : AppColor.colorB7B7B7,
+                  width: 2)),
+          child: Container(
+            height: 12,
+            width: 12,
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                border: Border.all(
-                    color: isSelected ? AppColor.primary : AppColor.colorB7B7B7,
-                    width: 2)),
-            child: Container(
-              height: 12,
-              width: 12,
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: !isSelected ? AppColor.transparent : AppColor.primary),
-            ),
-          )
-        ],
-      ),
-    );
-  }
+                color: !isSelected ? AppColor.transparent : AppColor.primary),
+          ),
+        )
+      ],
+    ),
+  );
 }
