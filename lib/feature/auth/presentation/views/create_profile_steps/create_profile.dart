@@ -13,7 +13,8 @@ import '../../../../z_common_widgets/camera_bottom_sheet_view.dart';
 import '../../../../z_common_widgets/custom_cache_network_image.dart';
 
 class CreateProfile extends StatelessWidget {
-  const CreateProfile({super.key});
+  final bool fromSettings;
+  const CreateProfile({super.key, required this.fromSettings});
 
   @override
   Widget build(BuildContext context) {
@@ -22,22 +23,27 @@ class CreateProfile extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              CustomAppBar(title: AppString.createProfile),
+              CustomAppBar(
+                  title: fromSettings
+                      ? AppString.personalDetails
+                      : AppString.createProfile),
               yHeight(10.sp),
-              Container(
-                height: 5,
-                color: AppColor.orangeFff9f0,
-                width: screenWidth(context),
-                child: Row(
-                  children: [
-                    Container(
+              fromSettings
+                  ? SizedBox()
+                  : Container(
                       height: 5,
-                      width: (screenWidth(context) / 5),
-                      color: AppColor.primary,
+                      color: AppColor.orangeFff9f0,
+                      width: screenWidth(context),
+                      child: Row(
+                        children: [
+                          Container(
+                            height: 5,
+                            width: (screenWidth(context) / 5),
+                            color: AppColor.primary,
+                          ),
+                        ],
+                      ),
                     ),
-                  ],
-                ),
-              ),
               Padding(
                 padding: const EdgeInsets.all(16),
                 child: Column(
@@ -148,8 +154,12 @@ class CreateProfile extends StatelessWidget {
                     ),
                     yHeight(60.sp),
                     CommonAppBtn(
-                      title: AppString.saveAndContinue,
-                      onTap: () => toNamed(context, Routes.addAddressView),
+                      title: fromSettings
+                          ? AppString.update
+                          : AppString.saveAndContinue,
+                      onTap: () => fromSettings
+                          ? back(context)
+                          : toNamed(context, Routes.addAddressView),
                     ),
                   ],
                 ),

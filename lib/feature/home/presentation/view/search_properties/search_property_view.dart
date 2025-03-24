@@ -25,7 +25,7 @@ class SearchPropertyView extends ConsumerWidget {
     ref.watch(customerSideSearchProvider);
     final customerSideSearchNotifier =
         ref.read(customerSideSearchProvider.notifier);
-    ;
+
     return Scaffold(
       body: Column(
         children: [

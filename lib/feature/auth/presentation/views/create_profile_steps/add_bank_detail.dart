@@ -66,6 +66,7 @@ class AddBankDetail extends StatelessWidget {
                   ],
                 ),
               ),
+              if (!fromSettings) yHeight(context.height / 5),
               if (fromSettings) yHeight(context.height / 3.5),
               CommonAppBtn(
                 title:

@@ -9,9 +9,7 @@ import 'package:zrayo_flutter/feature/setting/presentation/view/confirm_logout.d
 import 'package:zrayo_flutter/feature/setting/presentation/view/custom_setting_tile.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
-import 'package:zrayo_flutter/feature/z_common_widgets/custom_bottom_sheet.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_cache_network_image.dart';
-import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 
 class SettingView extends StatelessWidget {
   const SettingView({
@@ -43,8 +41,10 @@ class SettingView extends StatelessWidget {
                     title: AppString.inviteFriend,
                   ),
                   SettingTile(
-                    icon: Assets.clock,
-                    title: AppString.history,
+                    onTap: () => toNamed(context, Routes.visitMainView,
+                        args: {"fromSettings": true}),
+                    icon: Assets.visit,
+                    title: AppString.visits,
                   ),
                   SettingTile(
                     onTap: () => toNamed(context, Routes.addBankDetail,
@@ -76,9 +76,7 @@ class SettingView extends StatelessWidget {
                       Utils.appBottomSheet(
                         isScrolled: true,
                         context: context,
-                        widget: LogoutConfirmationView(
-
-                        ),
+                        widget: LogoutConfirmationView(),
                       );
                     },
                     textColor: AppColor.redF75454,

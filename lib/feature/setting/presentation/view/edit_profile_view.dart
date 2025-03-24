@@ -39,7 +39,11 @@ class EditProfileView extends StatelessWidget {
                               textSize: 20.sp,
                               fontFamily: AppFonts.satoshiBold,
                             ),
-                            SvgPicture.asset(Assets.edit),
+                            GestureDetector(
+                                onTap: () => toNamed(
+                                    context, Routes.createProfile,
+                                    args: {"fromSettings": true}),
+                                child: SvgPicture.asset(Assets.edit)),
                           ],
                         ),
                         yHeight(context.height * .04),
@@ -248,7 +252,11 @@ class EditProfileView extends StatelessWidget {
                               textSize: 20.sp,
                               fontFamily: AppFonts.satoshiBold,
                             ),
-                            SvgPicture.asset(Assets.edit),
+                            GestureDetector(
+                                onTap: () => toNamed(
+                                    context, Routes.uploadDocument,
+                                    args: {"fromSettings": true}),
+                                child: SvgPicture.asset(Assets.edit)),
                           ],
                         ),
                         yHeight(context.height * 0.01),

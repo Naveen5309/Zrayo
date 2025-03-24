@@ -131,6 +131,7 @@ abstract final class AppString {
 
   static const String enableLocation = "Enable Location";
   static const String search = "Search";
+  static const String visits = "Visits";
   static const String notifications = "Notifications";
   static const String history = "History";
   static const String myProfile = "My Profile";

@@ -10,8 +10,10 @@ import '../../../z_common_widgets/custom_app_bar.dart';
 import '../../../z_common_widgets/custom_cache_network_image.dart';
 import '../../../z_common_widgets/custom_text_field.dart';
 part 'visit_card.dart';
+
 class VisitMainView extends StatelessWidget {
-  const VisitMainView({super.key});
+  final bool fromSettings;
+  const VisitMainView({super.key, required this.fromSettings});
 
   @override
   Widget build(BuildContext context) {

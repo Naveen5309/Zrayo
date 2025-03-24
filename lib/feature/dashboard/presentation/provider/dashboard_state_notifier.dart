@@ -82,10 +82,12 @@ class DashboardNotifier extends StateNotifier<DashboardState> {
       return ChatUsersListView();
     } else if (selectedTab == DashboardEnum.profile) {
       return SettingView();
-    }else if (selectedTab == DashboardEnum.history) {
+    } else if (selectedTab == DashboardEnum.history) {
       return HistoryView();
-    }else if (selectedTab == DashboardEnum.visit) {
-      return VisitMainView();
+    } else if (selectedTab == DashboardEnum.visit) {
+      return VisitMainView(
+        fromSettings: false,
+      );
     }
     return SizedBox();
   }

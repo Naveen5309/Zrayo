@@ -6,7 +6,6 @@ import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/feature/home/presentation/view/search_properties/search_property_view.dart';
 
-import '../../../../core/utils/routing/routes.dart';
 import '../../../z_common_widgets/app_text.dart';
 import '../../../z_common_widgets/custom_app_bar.dart';
 import '../../../z_common_widgets/custom_btn.dart';
