@@ -28,4 +28,5 @@ class Routes {
   static const String myPropertyBio = '/myPropertyBio';
   static const String addPropertyInfo = '/addPropertyInfo';
   static const String propertyDetailView = '/propertyDetailView';
+  static const String addPropertyAgent = '/addPropertyAgent';
 }
