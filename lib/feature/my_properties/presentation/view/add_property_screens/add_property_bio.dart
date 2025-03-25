@@ -118,7 +118,6 @@ class AddPropertyBioView extends StatelessWidget {
                   children: [
                     Expanded(
                       child: CustomTextField(
-                        readOnly: true,
                         labelText: AppString.zIPCode,
                         hintText: AppString.zIPCode,
                         controller: TextEditingController(),

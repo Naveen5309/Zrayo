@@ -37,6 +37,20 @@ class _AddPropertyInfoState extends ConsumerState<AddPropertyInfo> {
         child: Column(
           children: [
             CustomAppBar(title: AppString.addProperty),
+            Container(
+              height: 5,
+              color: AppColor.orangeFff9f0,
+              width: screenWidth(context),
+              child: Row(
+                children: [
+                  Container(
+                    height: 5,
+                    width: (screenWidth(context) / 5) * 3.5,
+                    color: AppColor.primary,
+                  ),
+                ],
+              ),
+            ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.sp),
               child: Column(
@@ -142,7 +156,8 @@ class _AddPropertyInfoState extends ConsumerState<AddPropertyInfo> {
                                   ],
                                 ),
                                 Divider(
-                                  color: AppColor.blackF1F1F1,
+                                  color: AppColor.black111111
+                                      .withValues(alpha: 0.19),
                                 ),
                                 yHeight(8)
                               ],
