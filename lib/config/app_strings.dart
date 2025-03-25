@@ -29,6 +29,9 @@ abstract final class AppString {
   static const String name = "Name";
   static const String yes = "Yes";
   static const String no = "No";
+  static const String chooseAgents = "Choose Agents";
+  static const String slectAgent =
+      "Please select a minimum of 1 agent and a maximum of 3 agents to continue with the process.";
   static const String setCommissionPercentage = "Set commission percentage";
   static const String enterPercentage = "Enter percentage";
   static const String contactNumber = "Contact Number";
