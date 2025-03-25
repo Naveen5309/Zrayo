@@ -9,6 +9,7 @@ import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/provider/login_provider.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/provider/state_notifiers/login_notifiers.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/provider/states/login_states.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/views/forgot_password_sheet.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
@@ -19,7 +20,8 @@ class LoginView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final loginNotifier = ref.watch(loginProvider.notifier);
+    ref.watch(loginProvider);
+    final loginNotifier = ref.read(loginProvider.notifier);
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -65,7 +67,7 @@ class LoginView extends ConsumerWidget {
                   yHeight(context.height * 0.02),
                   CommonAppBtn(
                     title: AppString.login,
-                    onTap: () => offAllNamed(context, Routes.dashboard),
+                    onTap: () => loginNotifier.loginValidator(context),
                   ),
                   yHeight(context.height * 0.02),
                   SvgPicture.asset(Assets.loginOr),
@@ -111,7 +113,7 @@ Widget formsFieldsSection(LoginNotifier loginNotifier) {
       CustomTextField(
         hintText: AppString.exampleEamil,
         prefixIcon: SvgPicture.asset(Assets.email),
-        controller: TextEditingController(),
+        controller: loginNotifier.emailController,
         labelText: AppString.emailAddress,
       ),
       10.verticalSpace,

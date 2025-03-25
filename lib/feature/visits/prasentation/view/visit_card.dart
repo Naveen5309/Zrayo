@@ -20,47 +20,50 @@ class VisitCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                CustomCacheNetworkImage(
-                  img: "",
-                  size: 40.sp,
-                ),
-                xWidth(10),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      AppText(
-                        text: "Savannah Nguyen",
-                        fontFamily: AppFonts.satoshiBold,
-                        textSize: 14.sp,
-                        color: AppColor.black232323,
-                      ),
-                      yHeight(5),
-                      AppText(
-                        text: "October 25, 2019",
-                        textSize: 12.sp,
-                        color: AppColor.black232323,
-                      ),
-                    ],
+          GestureDetector(
+            onTap:() =>toNamed(context, Routes.chatView),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  CustomCacheNetworkImage(
+                    img: "",
+                    size: 40.sp,
                   ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: AppColor.colorF6F6F6,
-                    shape: BoxShape.circle,
+                  xWidth(10),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AppText(
+                          text: "Savannah Nguyen",
+                          fontFamily: AppFonts.satoshiBold,
+                          textSize: 14.sp,
+                          color: AppColor.black232323,
+                        ),
+                        yHeight(5),
+                        AppText(
+                          text: "October 25, 2019",
+                          textSize: 12.sp,
+                          color: AppColor.black232323,
+                        ),
+                      ],
+                    ),
                   ),
-                  padding: EdgeInsets.all(6),
-                  child: Icon(
-                    Icons.arrow_forward_sharp,
-                    color: AppColor.colorBBBBBB,
-                    size: 15.sp,
-                  ),
-                )
-              ],
+                  Container(
+                    decoration: BoxDecoration(
+                      color: AppColor.colorF6F6F6,
+                      shape: BoxShape.circle,
+                    ),
+                    padding: EdgeInsets.all(6),
+                    child: Icon(
+                      Icons.arrow_forward_sharp,
+                      color: AppColor.colorBBBBBB,
+                      size: 15.sp,
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
           Divider(),

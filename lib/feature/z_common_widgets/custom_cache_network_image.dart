@@ -66,25 +66,25 @@ class CustomCacheNetworkImage extends StatelessWidget {
           width: width ?? size,
           borderRadius: imageBorderRadius ?? BorderRadius.circular(imageRadius),
         );
-        return Container(
-          height: height ?? size,
-          width: width ?? size,
-          decoration: BoxDecoration(
-            borderRadius:
-                imageBorderRadius ?? BorderRadius.circular(imageRadius),
-          ),
-          child: Center(
-            child: SizedBox(
-              height: (height ?? size) / 2,
-              width: (width ?? size) / 2,
-              child: CircularProgressIndicator(
-                value: downloadProgress.progress,
-                color: AppColor.primary,
-                strokeWidth: 2,
-              ),
-            ),
-          ),
-        );
+        // return Container(
+        //   height: height ?? size,
+        //   width: width ?? size,
+        //   decoration: BoxDecoration(
+        //     borderRadius:
+        //         imageBorderRadius ?? BorderRadius.circular(imageRadius),
+        //   ),
+        //   child: Center(
+        //     child: SizedBox(
+        //       height: (height ?? size) / 2,
+        //       width: (width ?? size) / 2,
+        //       child: CircularProgressIndicator(
+        //         value: downloadProgress.progress,
+        //         color: AppColor.primary,
+        //         strokeWidth: 2,
+        //       ),
+        //     ),
+        //   ),
+        // );
       },
       errorWidget: (context, url, error) => Container(
         height: size,
@@ -116,10 +116,10 @@ class CustomShimmerBox extends StatefulWidget {
   });
 
   @override
-  _CustomShimmerBoxState createState() => _CustomShimmerBoxState();
+  CustomShimmerBoxState createState() => CustomShimmerBoxState();
 }
 
-class _CustomShimmerBoxState extends State<CustomShimmerBox>
+class CustomShimmerBoxState extends State<CustomShimmerBox>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<Alignment> _shimmerAnimation;
@@ -149,9 +149,9 @@ class _CustomShimmerBoxState extends State<CustomShimmerBox>
               begin: _shimmerAnimation.value,
               end: const Alignment(1.5, 0.0),
               colors: [
-                Colors.white.withOpacity(0.3),
+                Colors.white.withValues(alpha: 0.3),
                 Colors.white,
-                Colors.white.withOpacity(0.3)
+                Colors.white.withValues(alpha: 0.3)
               ],
               stops: const [0.1, 0.5, 0.9],
             ).createShader(bounds);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/config/app_utils.dart';
 import 'package:zrayo_flutter/config/helper.dart';
@@ -21,7 +22,7 @@ class CustomViewAllScreen extends StatelessWidget {
         children: [
           yHeight(10),
           CustomAppBar(title: title ?? ""),
-          yHeight(20),
+          yHeight(15.h),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
@@ -71,3 +72,4 @@ class CustomViewAllScreen extends StatelessWidget {
     );
   }
 }
+

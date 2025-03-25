@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
+import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 
 import '../../../../config/app_utils.dart';
 import '../../../history/presentation/view/history_view.dart';
@@ -54,7 +55,7 @@ class VisitMainView extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 children: [
-                  yHeight(10.h),
+                  // yHeight(10.h),
                   CustomTabBar(
                     firstString: "Current",
                     secondString: "Past",
