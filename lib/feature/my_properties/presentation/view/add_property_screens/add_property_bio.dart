@@ -28,7 +28,7 @@ class AddPropertyBioView extends StatelessWidget {
           children: [
             Container(
               height: 5,
-              width: (screenWidth(context) / 5) * 4,
+              width: (screenWidth(context) / 5) * 1.6,
               color: AppColor.primary,
             ),
           ],

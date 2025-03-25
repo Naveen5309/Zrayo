@@ -34,136 +34,140 @@ class _AddPropertyInfoState extends ConsumerState<AddPropertyInfo> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(16.sp),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CustomAppBar(title: AppString.addProperty),
-              yHeight(20.h),
-              AppText(
-                text: AppString.doYouWantToSellProperty,
-                textSize: 15.sp,
-                fontFamily: AppFonts.satoshiBold,
-              ),
-              yHeight(10.h),
-              Row(
+        child: Column(
+          children: [
+            CustomAppBar(title: AppString.addProperty),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.sp),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildRadioButton(AppString.forSale),
-                  SizedBox(width: 20.w),
-                  _buildRadioButton(AppString.forRent),
-                ],
-              ),
-              CustomDropdownButton(
-                customBtn: IgnorePointer(
-                  child: CustomTextField(
-                    readOnly: true,
-                    labelText: AppString.propertyType,
-                    hintText: AppString.selectPropertyType,
-                    controller: TextEditingController(),
-                    prefixIcon: SvgPicture.asset(Assets.city),
-                    suffixIcon: SvgPicture.asset(Assets.arrowDown),
+                  yHeight(20.h),
+                  AppText(
+                    text: AppString.doYouWantToSellProperty,
+                    textSize: 15.sp,
+                    fontFamily: AppFonts.satoshiBold,
                   ),
-                ),
-                buttonDecoration: BoxDecoration(
-                  color: AppColor.transparent,
-                ),
-                hint: 'City',
-                value: "New York",
-                dropdownItems: [
-                  "New York",
-                  "Los Angeles",
-                  "Chicago",
-                  "Houston",
-                  "Miami"
-                ],
-                onChanged: (String? value) {},
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: CustomTextField(
-                      readOnly: true,
-                      labelText: AppString.bathroomSize,
-                      hintText: AppString.enterSq,
-                      controller: TextEditingController(),
-                    ),
+                  yHeight(5.h),
+                  Row(
+                    children: [
+                      _buildRadioButton(AppString.forSale),
+                      SizedBox(width: 20.w),
+                      _buildRadioButton(AppString.forRent),
+                    ],
                   ),
-                  xWidth(context.width * 0.05),
-                  Expanded(
-                    child: CustomTextField(
-                      readOnly: true,
-                      labelText: AppString.bedroomSize,
-                      hintText: AppString.enterSq,
-                      controller: TextEditingController(),
+                  yHeight(5),
+                  CustomDropdownButton(
+                    customBtn: IgnorePointer(
+                      child: CustomTextField(
+                        labelText: AppString.propertyType,
+                        hintText: AppString.selectPropertyType,
+                        controller: TextEditingController(),
+                        prefixIcon: SvgPicture.asset(Assets.city),
+                        suffixIcon: SvgPicture.asset(Assets.arrowDown),
+                      ),
                     ),
+                    buttonDecoration: BoxDecoration(
+                      color: AppColor.transparent,
+                    ),
+                    hint: 'City',
+                    value: "New York",
+                    dropdownItems: [
+                      "New York",
+                      "Los Angeles",
+                      "Chicago",
+                      "Houston",
+                      "Miami"
+                    ],
+                    onChanged: (String? value) {},
                   ),
-                ],
-              ),
-              yHeight(12),
-              AppText(text: AppString.propertyFeatures),
-              yHeight(8),
-              Container(
-                margin: EdgeInsets.symmetric(vertical: 5),
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
-                    BoxShadow(
-                      offset: Offset(0, 4),
-                      color: AppColor.grey99ABC6.withValues(alpha: 0.18),
-                      blurRadius: 62,
+                  yHeight(10.h),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: CustomTextField(
+                          labelText: AppString.bathroomSize,
+                          hintText: AppString.enterSq,
+                          controller: TextEditingController(),
+                        ),
+                      ),
+                      xWidth(context.width * 0.05),
+                      Expanded(
+                        child: CustomTextField(
+                          labelText: AppString.bedroomSize,
+                          hintText: AppString.enterSq,
+                          controller: TextEditingController(),
+                        ),
+                      ),
+                    ],
+                  ),
+                  yHeight(10.h),
+                  AppText(text: AppString.propertyFeatures),
+                  yHeight(8),
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 5),
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                    decoration: BoxDecoration(
+                      color: AppColor.whiteFFFFFF,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          offset: Offset(0, 4),
+                          color: AppColor.grey99ABC6.withValues(alpha: 0.18),
+                          blurRadius: 62,
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-                child: Column(
-                  children: [
-                    ListView.builder(
-                      padding: EdgeInsets.zero,
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: features.length,
-                      itemBuilder: (context, index) {
-                        return Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    child: Column(
+                      children: [
+                        ListView.builder(
+                          padding: EdgeInsets.zero,
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: features.length,
+                          itemBuilder: (context, index) {
+                            return Column(
                               children: [
-                                AppText(
-                                  text: features[index],
-                                  color: AppColor.black4A4A4A
-                                      .withValues(alpha: 0.6),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    AppText(
+                                      text: features[index],
+                                      color: AppColor.black4A4A4A
+                                          .withValues(alpha: 0.6),
+                                    ),
+                                    SvgPicture.asset(Assets.lucide)
+                                  ],
                                 ),
-                                SvgPicture.asset(Assets.lucide)
+                                Divider(
+                                  color: AppColor.blackF1F1F1,
+                                ),
+                                yHeight(8)
                               ],
-                            ),
-                            Divider(
-                              color: AppColor.blackF1F1F1,
-                            ),
-                          ],
-                        );
-                      },
+                            );
+                          },
+                        ),
+                        yHeight(11),
+                        CustomTextField(
+                          labelText: AppString.other,
+                          hintText: AppString.enterPropertyFeature,
+                          controller: TextEditingController(),
+                        ),
+                      ],
                     ),
-                    yHeight(5),
-                    CustomTextField(
-                      readOnly: true,
-                      labelText: AppString.other,
-                      hintText: AppString.enterPropertyFeature,
-                      controller: TextEditingController(),
-                    ),
-                  ],
-                ),
+                  ),
+                  yHeight(8),
+                  CommonAppBtn(
+                    title: AppString.next,
+                    onTap: () => toNamed(context, Routes.addPropertyAgent),
+                  ),
+                  yHeight(5),
+                ],
               ),
-              yHeight(8),
-              CommonAppBtn(
-                title: AppString.next,
-                onTap: () => toNamed(context, Routes.addPropertyAgent),
-              ),
-              yHeight(5),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

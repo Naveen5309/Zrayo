@@ -16,7 +16,7 @@ class AddPropertyAgentView extends ConsumerStatefulWidget {
       "image": "https://randomuser.me/api/portraits/women/1.jpg"
     },
     {
-      "name": "Dianne Russell",
+      "name": "Diane Rusell",
       "image": "https://randomuser.me/api/portraits/men/1.jpg"
     },
     {
@@ -41,7 +41,7 @@ class _PropertyAssignAgentViewState
         children: [
           CustomAppBar(title: AppString.addProperty),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 5),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -61,7 +61,7 @@ class _PropertyAssignAgentViewState
                 ),
                 yHeight(10.h),
                 Wrap(
-                  spacing: 15.0,
+                  spacing: 14.0,
                   runSpacing: 12.0,
                   children: widget.users.map((user) {
                     return _buildUserChip(user["name"]!, user["image"]!);
@@ -69,7 +69,6 @@ class _PropertyAssignAgentViewState
                 ),
                 yHeight(20.h),
                 CustomTextField(
-                  readOnly: true,
                   labelText: AppString.setCommissionPercentage,
                   hintText: AppString.enterPercentage,
                   controller: TextEditingController(),
@@ -90,7 +89,7 @@ class _PropertyAssignAgentViewState
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: AppColor.color21203F.withValues(alpha: .2),
+        color: AppColor.color21203F.withValues(alpha: .04),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(

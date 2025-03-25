@@ -83,6 +83,7 @@ class CustomTextField extends StatelessWidget {
               AppText(
                 text: labelText ?? "",
                 color: AppColor.black232323,
+                fontFamily: AppFonts.satoshiMedium,
               ),
             ],
           ),
