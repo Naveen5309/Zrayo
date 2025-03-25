@@ -28,6 +28,7 @@ import '../../../feature/auth/presentation/views/change_password_view.dart';
 import '../../../feature/auth/presentation/views/choose_interface_view.dart';
 import '../../../feature/auth/presentation/views/create_profile_steps/upload_document.dart';
 import '../../../feature/auth/presentation/views/splash_view.dart';
+import '../../../feature/property_detail/prasentation/view/request_a_tour_view/book_your_date_view.dart';
 import 'routes.dart';
 
 class RouteGenerator {
@@ -110,6 +111,13 @@ class RouteGenerator {
         return _fadeTransitionRoute(const AddPropertyInfo());
       case Routes.addPropertyAgent:
         return _fadeTransitionRoute(AddPropertyAgentView());
+
+      case Routes.bookYourDateView:
+        return _fadeTransitionRoute(BookYourDateView());
+
+
+      case Routes.allPicturesView:
+        return _fadeTransitionRoute(AllPicturesView());
 
       case Routes.propertyDetailView:
         return _fadeTransitionRoute(const PropertyDetailView());

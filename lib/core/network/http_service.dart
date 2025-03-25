@@ -22,6 +22,7 @@ enum RequestType {
   multipart,
 }
 
+
 class ApiProvider {
   late Dio _dio;
 

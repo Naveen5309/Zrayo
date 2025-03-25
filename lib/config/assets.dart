@@ -112,4 +112,5 @@ class Assets {
   static const String imageIcon = 'assets/icons/image_icon.svg';
   static const String mapImage = 'assets/icons/map_image.svg';
   static const String mapZoomIcon = 'assets/icons/map_zoom_icon.svg';
+  static const String successTick = 'assets/icons/success_tick.svg';
 }

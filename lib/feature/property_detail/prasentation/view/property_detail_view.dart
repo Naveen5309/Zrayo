@@ -4,12 +4,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:zrayo_flutter/config/app_utils.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
+import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_cache_network_image.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_rating_box.dart';
-
-import '../../../z_common_widgets/custom_app_bar.dart';
 
 part 'property_historical_data.dart';
 
@@ -18,6 +18,8 @@ part 'property_map_view.dart';
 part 'property_features_list.dart';
 
 part 'agents_landlord_list.dart';
+
+part 'all_pictures_view.dart';
 
 class PropertyDetailView extends StatelessWidget {
   const PropertyDetailView({super.key});
@@ -104,32 +106,39 @@ class PropertyDetailView extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  return Padding(
-                    padding: EdgeInsets.only(right: index == 3 ? 0 : 15.sp),
-                    child: Stack(
-                      children: [
-                        CustomCacheNetworkImage(
-                          img: "",
-                          size: 74.sp,
-                          imageRadius: 10.sp,
-                        ),
-                        if (index == 3)
-                          Container(
-                            height: 74.sp,
-                            width: 74.sp,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.sp),
-                              color:
-                                  AppColor.black000000.withValues(alpha: 0.30),
-                            ),
-                            child: AppText(
-                              text: "9+",
-                              fontFamily: AppFonts.satoshiBold,
-                              textSize: 22.sp,
-                              color: AppColor.whiteFFFFFF,
-                            ).align(),
-                          )
-                      ],
+                  return GestureDetector(
+                    onTap: () {
+                      if (index == 3) {
+                        toNamed(context, Routes.allPicturesView);
+                      }
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.only(right: index == 3 ? 0 : 15.sp),
+                      child: Stack(
+                        children: [
+                          CustomCacheNetworkImage(
+                            img: "",
+                            size: 74.sp,
+                            imageRadius: 10.sp,
+                          ),
+                          if (index == 3)
+                            Container(
+                              height: 74.sp,
+                              width: 74.sp,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.sp),
+                                color: AppColor.black000000
+                                    .withValues(alpha: 0.30),
+                              ),
+                              child: AppText(
+                                text: "9+",
+                                fontFamily: AppFonts.satoshiBold,
+                                textSize: 22.sp,
+                                color: AppColor.whiteFFFFFF,
+                              ).align(),
+                            )
+                        ],
+                      ),
                     ),
                   );
                 },
@@ -148,6 +157,7 @@ class PropertyDetailView extends StatelessWidget {
             CommonAppBtn(
               title: "Request a tour at \$20",
               margin: EdgeInsets.all(16.sp),
+              onTap: () => toNamed(context, Routes.bookYourDateView),
             ),
 
             CommonAppBtn(
@@ -156,6 +166,7 @@ class PropertyDetailView extends StatelessWidget {
               textColor: AppColor.primary,
               borderColor: AppColor.transparent,
               margin: EdgeInsets.symmetric(horizontal: 16.sp),
+              onTap: () => toNamed(context, Routes.chatView),
             ),
             yHeight(16.sp),
           ],
