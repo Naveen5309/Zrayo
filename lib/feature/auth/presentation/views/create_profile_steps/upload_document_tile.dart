@@ -16,13 +16,13 @@ class UploadDocumentTile extends StatelessWidget {
       this.filePath,
       this.iconWidget,
       this.assetSize,
-      required this.onTap});
+      this.onTap});
 
   final String title;
   final String subTitle;
   final String? filePath;
   final Widget? iconWidget;
-  final Function() onTap;
+  final Function()? onTap;
   final double? assetSize;
 
   @override

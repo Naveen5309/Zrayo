@@ -10,7 +10,7 @@ import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 
-part 'booked_success_sheet.dart';
+part '../../../../z_common_widgets/booked_success_sheet.dart';
 
 class BookYourDateView extends StatelessWidget {
   const BookYourDateView({super.key});
@@ -172,7 +172,15 @@ class BookYourDateView extends StatelessWidget {
               title: "Book Now",
               onTap: () {
                 Utils.appBottomSheet(
-                    context: context, widget: BookedSuccessSheet());
+                    context: context,
+                    widget: SuccessSheet(
+                      title: AppString.bookedSuccessfully,
+                      subTitle: AppString.successfullyBooked,
+                      onTap: () {
+                        back(context);
+                        back(context);
+                      },
+                    ));
               },
             ),
           ),

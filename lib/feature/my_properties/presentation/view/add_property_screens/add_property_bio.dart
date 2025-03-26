@@ -4,6 +4,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
+import 'package:zrayo_flutter/feature/my_properties/presentation/view/add_property_screens/custom_add_widget.dart';
+import 'package:zrayo_flutter/feature/my_properties/presentation/view/add_property_screens/custom_image.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_drop_down.dart';
@@ -151,6 +153,44 @@ class AddPropertyBioView extends StatelessWidget {
                       ),
                     ),
                   ],
+                ),
+                SizedBox(
+                  height: context.width * .29,
+                  width: context.width,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 3,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      // return const CustomAddWidget();
+                      return index == 2
+                          ? const CustomAddWidget()
+                          : Stack(
+                              children: [
+                                const CustomParcelImageWidget(
+                                  imgUrl: Assets.bank,
+                                ),
+                                Positioned(
+                                  right: 11,
+                                  top: 11,
+                                  child: Container(
+                                    margin: const EdgeInsets.all(3.0),
+                                    padding: const EdgeInsets.all(3.0),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(200),
+                                      color: AppColor.redF75454,
+                                    ),
+                                    child: Icon(
+                                      size: 14.sp,
+                                      Icons.close,
+                                      color: AppColor.whiteFFFFFF,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            );
+                    },
+                  ),
                 ),
                 CustomTextField(
                   labelText: AppString.description,

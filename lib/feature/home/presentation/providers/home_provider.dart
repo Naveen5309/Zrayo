@@ -15,3 +15,4 @@ final customerSideSearchProvider = StateNotifierProvider.autoDispose<
   // final authRepo = ref.watch(authRepoProvider);
   return CustomerSideSearchNotifier();
 });
+final ratingProvider = StateProvider<int>((ref) => 3);

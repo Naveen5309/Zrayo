@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
+import 'package:zrayo_flutter/config/app_utils.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
+import 'package:zrayo_flutter/feature/property_detail/prasentation/view/request_a_tour_view/book_your_date_view.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
@@ -92,17 +94,24 @@ class FeaturePrpertyView extends StatelessWidget {
                     ],
                   ),
                   Positioned(
-                    top: -38,
+                    top: -78,
                     child: SizedBox(
-                      width: 88,
-                      height: 88,
+                      width: 138,
+                      height: 138,
                       child: Container(
                         decoration: BoxDecoration(
                             color: AppColor.whiteFFFFFF,
                             border: Border.all(
-                                color: AppColor.blackF7F8FB, width: 8),
+                                color: AppColor.blackF7F8FB, width: 5),
                             shape: BoxShape.circle),
-                        child: Lottie.asset(Assets.homeJson),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: AppColor.whiteFFFFFF,
+                              border: Border.all(
+                                  color: AppColor.blackF7F8FB, width: 10),
+                              shape: BoxShape.circle),
+                          child: Lottie.asset(Assets.homeJson),
+                        ),
                       ),
                     ),
                   ),
@@ -115,11 +124,33 @@ class FeaturePrpertyView extends StatelessWidget {
                   children: [
                     CommonAppBtn(
                       title: AppString.buyNow,
+                      onTap: () {
+                        Utils.appBottomSheet(
+                            context: context,
+                            widget: SuccessSheet(
+                              title: AppString.propertySuccessfullyPosted,
+                              subTitle: AppString.propertyUploaded,
+                              onTap: () {
+                                back(context);
+                              },
+                            ));
+                      },
                     ),
                     yHeight(18),
                     CommonAppBtn(
                       title: AppString.skip,
                       textColor: AppColor.primary,
+                      onTap: () {
+                        Utils.appBottomSheet(
+                            context: context,
+                            widget: SuccessSheet(
+                              title: AppString.propertySuccessfullyPosted,
+                              subTitle: AppString.propertyUploaded,
+                              onTap: () {
+                                back(context);
+                              },
+                            ));
+                      },
                       backGroundColor:
                           AppColor.orangeEA8913.withValues(alpha: .24),
                     ),

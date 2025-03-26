@@ -191,6 +191,14 @@ abstract final class AppString {
   static const String reset = "Reset";
   static const String apply = "Apply";
   static const String other = "Other";
+  static const String propertySuccessfullyPosted =
+      "Property Successfully Posted!";
+  static const String propertyUploaded =
+      "Congratulations! Your property has been successfully uploaded and is now live for potential buyers or renters to explore";
+  static const String bookedSuccessfully = "Booked Successfully!";
+  static const String successfullyBooked =
+      "Your property visit is successfully booked. Please reach at the location on time.";
+  static const String uploadImage = "Upload image";
   static const String buyNow = "Buy Now";
   static const String increaseVisibilityBuyer =
       "Increase visibility and attract more buyers.\nPay now to highlight your listing!";
