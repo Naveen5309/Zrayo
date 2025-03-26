@@ -86,6 +86,9 @@ class Utils {
     showModalBottomSheet(
       context: context,
       enableDrag: true,
+      constraints: BoxConstraints(
+        maxHeight: screenHeight(context)/1.3
+      ),
       shape: OutlineInputBorder(
         borderRadius: BorderRadius.only(
           topRight: Radius.circular(18.sp),

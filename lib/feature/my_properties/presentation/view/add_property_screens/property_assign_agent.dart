@@ -6,88 +6,16 @@ import 'package:zrayo_flutter/config/app_utils.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
-import 'package:zrayo_flutter/feature/my_properties/presentation/view/add_property_screens/feature_prperty.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_text_field.dart';
 
-class AddPropertyAgentView extends ConsumerStatefulWidget {
-  final List<Map<String, String>> users = [
-    {
-      "name": "Jerome Bell",
-      "image": "https://randomuser.me/api/portraits/women/1.jpg"
-    },
-    {
-      "name": "Diane Rusell",
-      "image": "https://randomuser.me/api/portraits/men/1.jpg"
-    },
-    {
-      "name": "Cameron Williamson",
-      "image": "https://randomuser.me/api/portraits/women/2.jpg"
-    },
-  ];
-
-  AddPropertyAgentView({super.key});
+class AddPropertyAgentView extends ConsumerWidget {
+  const AddPropertyAgentView({super.key});
 
   @override
-  ConsumerState<AddPropertyAgentView> createState() =>
-      _PropertyAssignAgentViewState();
-}
-
-class _PropertyAssignAgentViewState
-    extends ConsumerState<AddPropertyAgentView> {
-  List<Map<String, dynamic>> users = [
-    {
-      "name": "Floyd Miles",
-      "phone": "(205) 555-0100",
-      "image": "https://randomuser.me/api/portraits/men/1.jpg",
-      "selected": true
-    },
-    {
-      "name": "Jenny Wilson",
-      "phone": "(702) 555-0122",
-      "image": "https://randomuser.me/api/portraits/women/1.jpg",
-      "selected": false
-    },
-    {
-      "name": "Jane Cooper",
-      "phone": "(406) 555-0120",
-      "image": "https://randomuser.me/api/portraits/women/2.jpg",
-      "selected": false
-    },
-    {
-      "name": "Floyd Miles",
-      "phone": "(205) 555-0100",
-      "image": "https://randomuser.me/api/portraits/men/1.jpg",
-      "selected": true
-    },
-    {
-      "name": "Jenny Wilson",
-      "phone": "(702) 555-0122",
-      "image": "https://randomuser.me/api/portraits/women/1.jpg",
-      "selected": false
-    },
-    {
-      "name": "Jane Cooper",
-      "phone": "(406) 555-0120",
-      "image": "https://randomuser.me/api/portraits/women/2.jpg",
-      "selected": false
-    },
-  ];
-
-  void toggleSelection(int index) {
-    setState(() {
-      for (var user in users) {
-        user["selected"] = false;
-      }
-      users[index]["selected"] = true;
-    });
-  }
-
-  String? _propertyType;
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -122,17 +50,18 @@ class _PropertyAssignAgentViewState
                   yHeight(10),
                   Row(
                     children: [
-                      _buildRadioButton(AppString.yes),
+                      _buildRadioButton(AppString.yes, context),
                       SizedBox(width: 20.w),
-                      _buildRadioButton(AppString.no),
+                      _buildRadioButton(AppString.no, context),
                     ],
                   ),
                   yHeight(10.h),
                   Wrap(
                     spacing: 14.0,
                     runSpacing: 12.0,
-                    children: widget.users.map((user) {
-                      return _buildUserChip(user["name"]!, user["image"]!);
+                    children: [0, 1, 2].map((user) {
+                      return _buildUserChip("User name",
+                          "https://randomuser.me/api/portraits/women/2.jpg");
                     }).toList(),
                   ),
                   yHeight(20.h),
@@ -183,7 +112,7 @@ class _PropertyAssignAgentViewState
     );
   }
 
-  Widget _buildRadioButton(String label) {
+  Widget _buildRadioButton(String label, BuildContext context) {
     return Theme(
       data: Theme.of(context).copyWith(
         unselectedWidgetColor: AppColor.colorB7B7B7,
@@ -192,25 +121,18 @@ class _PropertyAssignAgentViewState
         children: [
           Radio<String>(
             value: label,
-            groupValue: _propertyType,
+            groupValue: "",
             activeColor: AppColor.primary,
             onChanged: (value) {
-              setState(() {
-                _propertyType = value;
-              });
               if (value == AppString.yes) {
-                Utils.appBottomSheet(context: context, widget: bottomSheet());
+                Utils.appBottomSheet(context: context, widget: bottomSheet(context),isScrolled: true);
               }
             },
           ),
           GestureDetector(
             onTap: () {
-              setState(() {
-                _propertyType = label;
-              });
-
               if (label == AppString.yes) {
-                Utils.appBottomSheet(context: context, widget: bottomSheet());
+                Utils.appBottomSheet(context: context, widget: bottomSheet(context),isScrolled: true);
               }
             },
             child: Text(label, style: TextStyle(fontSize: 14.sp)),
@@ -220,85 +142,83 @@ class _PropertyAssignAgentViewState
     );
   }
 
-  Widget bottomSheet() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Column(
-        children: [
-          yHeight(12),
-          AppText(
-            text: AppString.chooseAgents,
-            fontFamily: AppFonts.satoshiBold,
-          ),
-          yHeight(12),
-          AppText(
-            text: AppString.slectAgent,
-            fontFamily: AppFonts.satoshiRegular,
-            textSize: 13.sp,
-            lineHeight: 1.2,
-            color: AppColor.black000000.withValues(alpha: 0.6),
-          ),
-          yHeight(16.h),
-          CustomTextField(
-            hintText: AppString.search,
-            prefixIcon: SvgPicture.asset(Assets.searchIcon),
-          ),
-          yHeight(16.h),
-          ListView.builder(
-            padding: EdgeInsets.zero,
-            physics: NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: users.length,
-            itemBuilder: (context, index) {
-              final user = users[index];
-
-              return Column(
-                children: [
-                  ListTile(
-                    minTileHeight: 8,
-                    contentPadding: EdgeInsets.symmetric(horizontal: 0),
-                    leading: CircleAvatar(
-                      backgroundImage: NetworkImage(user["image"] ?? ""),
-                    ),
-                    title: AppText(
-                      text: user["name"] ?? "Unknown",
-                      textSize: 14.sp,
-                      fontFamily: AppFonts.satoshiBold,
-                    ),
-                    subtitle: Padding(
-                      padding: const EdgeInsets.only(top: 5),
-                      child: AppText(
-                        text: user["phone"] ?? "No number",
-                        textSize: 12.sp,
-                        fontFamily: AppFonts.satoshiRegular,
-                        color: AppColor.color212121.withValues(alpha: 0.5),
+  Widget bottomSheet(BuildContext context) {
+    return Container(
+      constraints: BoxConstraints(
+        maxHeight: screenHeight(context)/1.5
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          children: [
+            yHeight(12),
+            AppText(
+              text: AppString.chooseAgents,
+              fontFamily: AppFonts.satoshiBold,
+            ),
+            yHeight(12),
+            AppText(
+              text: AppString.slectAgent,
+              fontFamily: AppFonts.satoshiRegular,
+              textSize: 13.sp,
+              lineHeight: 1.2,
+              color: AppColor.black000000.withValues(alpha: 0.6),
+            ),
+            yHeight(16.h),
+            CustomTextField(
+              hintText: AppString.search,
+              prefixIcon: SvgPicture.asset(Assets.searchIcon),
+            ),
+            Expanded(
+              child: ListView.builder(
+                padding: EdgeInsets.symmetric(vertical: 16.h),
+                // physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      ListTile(
+                        minTileHeight: 8,
+                        contentPadding: EdgeInsets.symmetric(horizontal: 0),
+                        leading: CircleAvatar(
+                          backgroundImage: NetworkImage(
+                              "https://randomuser.me/api/portraits/women/2.jpg"),
+                        ),
+                        title: AppText(
+                          text: "User name",
+                          textSize: 14.sp,
+                          fontFamily: AppFonts.satoshiBold,
+                        ),
+                        subtitle: Padding(
+                          padding: const EdgeInsets.only(top: 5),
+                          child: AppText(
+                            text: "326289399978",
+                            textSize: 12.sp,
+                            fontFamily: AppFonts.satoshiRegular,
+                            color: AppColor.color212121.withValues(alpha: 0.5),
+                          ),
+                        ),
+                        trailing: SvgPicture.asset(
+                          (true) ? Assets.lucideTrue : Assets.lucide,
+                        ),
+                        onTap: () {},
                       ),
-                    ),
-                    trailing: SvgPicture.asset(
-                      (user["selected"] ?? false)
-                          ? Assets.lucideTrue
-                          : Assets.lucide,
-                    ),
-                    onTap: () {
-                      setState(() {
-                        users[index]["selected"] =
-                            !(users[index]["selected"] ?? false);
-                      });
-                    },
-                  ),
-                  if (index != users.length - 1)
-                    Divider(
-                      color: AppColor.black000000.withValues(alpha: 0.5),
-                    ),
-                ],
-              );
-            },
-          ),
-          yHeight(15),
-          CommonAppBtn(
-            title: AppString.continueText,
-          )
-        ],
+                      if (index != 9)
+                        Divider(
+                          color: AppColor.black000000.withValues(alpha: 0.5),
+                        ),
+                    ],
+                  );
+                },
+              ),
+            ),
+            // yHeight(15),
+            CommonAppBtn(
+              title: AppString.continueText,
+            )
+          ],
+        ),
       ),
     );
   }
