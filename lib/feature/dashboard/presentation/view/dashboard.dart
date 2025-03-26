@@ -5,6 +5,8 @@ import 'package:zrayo_flutter/config/enums.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/helpers/all_getter.dart';
 import 'package:zrayo_flutter/feature/dashboard/presentation/view/location_access_content.dart';
+import 'package:zrayo_flutter/feature/home/presentation/view/home_view_main.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/custom_bottom_sheet.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_dialog.dart';
 
 import '../provider/dashboard_provider.dart';
@@ -21,6 +23,7 @@ class _DashboardState extends ConsumerState<Dashboard> {
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       showCustomDialog(context, content: LocationAccessContent());
+      CustomBottomSheet(content: ratingWidget(context, ref));
     });
     super.initState();
   }
