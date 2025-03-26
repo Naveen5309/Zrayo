@@ -31,4 +31,5 @@ class Routes {
   static const String addPropertyAgent = '/addPropertyAgent';
   static const String bookYourDateView = '/bookYourDateView';
   static const String allPicturesView = '/allPicturesView';
+  static const String featurePrpertyView = '/featurePrpertyView';
 }

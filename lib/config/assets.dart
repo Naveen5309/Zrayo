@@ -114,4 +114,5 @@ class Assets {
   static const String mapImage = 'assets/icons/map_image.svg';
   static const String mapZoomIcon = 'assets/icons/map_zoom_icon.svg';
   static const String successTick = 'assets/icons/success_tick.svg';
+  static const String homeJson = 'assets/json/house.json';
 }

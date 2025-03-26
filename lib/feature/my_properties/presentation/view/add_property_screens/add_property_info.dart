@@ -37,6 +37,7 @@ class _AddPropertyInfoState extends ConsumerState<AddPropertyInfo> {
         child: Column(
           children: [
             CustomAppBar(title: AppString.addProperty),
+            yHeight(10.sp),
             Container(
               height: 5,
               color: AppColor.orangeFff9f0,

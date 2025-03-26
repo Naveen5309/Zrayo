@@ -5,6 +5,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/config/app_utils.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
+import 'package:zrayo_flutter/core/utils/routing/routes.dart';
+import 'package:zrayo_flutter/feature/my_properties/presentation/view/add_property_screens/feature_prperty.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
@@ -91,6 +93,7 @@ class _PropertyAssignAgentViewState
         child: Column(
           children: [
             CustomAppBar(title: AppString.addProperty),
+            yHeight(10.sp),
             Container(
               height: 5,
               color: AppColor.orangeFff9f0,
@@ -141,6 +144,9 @@ class _PropertyAssignAgentViewState
                   yHeight(context.height / 4.5),
                   CommonAppBtn(
                     title: AppString.next,
+                    onTap: () {
+                      toNamed(context, Routes.featurePrpertyView);
+                    },
                   )
                 ],
               ),

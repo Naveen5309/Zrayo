@@ -17,6 +17,7 @@ import 'package:zrayo_flutter/feature/home/presentation/view/search_properties/s
 import 'package:zrayo_flutter/feature/messages/presentation/view/chat_view/chat_view_main.dart';
 import 'package:zrayo_flutter/feature/my_properties/presentation/view/add_property_screens/add_property_bio.dart';
 import 'package:zrayo_flutter/feature/my_properties/presentation/view/add_property_screens/add_property_info.dart';
+import 'package:zrayo_flutter/feature/my_properties/presentation/view/add_property_screens/feature_prperty.dart';
 import 'package:zrayo_flutter/feature/my_properties/presentation/view/add_property_screens/property_assign_agent.dart';
 import 'package:zrayo_flutter/feature/property_detail/prasentation/view/property_detail_view.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/view/about_us_view.dart';
@@ -115,12 +116,13 @@ class RouteGenerator {
       case Routes.bookYourDateView:
         return _fadeTransitionRoute(BookYourDateView());
 
-
       case Routes.allPicturesView:
         return _fadeTransitionRoute(AllPicturesView());
 
       case Routes.propertyDetailView:
         return _fadeTransitionRoute(const PropertyDetailView());
+      case Routes.featurePrpertyView:
+        return _fadeTransitionRoute(const FeaturePrpertyView());
 
       default:
         return MaterialPageRoute(builder: (_) => const ErrorRoute());

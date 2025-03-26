@@ -191,6 +191,10 @@ abstract final class AppString {
   static const String reset = "Reset";
   static const String apply = "Apply";
   static const String other = "Other";
+  static const String buyNow = "Buy Now";
+  static const String increaseVisibilityBuyer =
+      "Increase visibility and attract more buyers.\nPay now to highlight your listing!";
+  static const String featureyourProperty = "Feature your property";
   static const String assignAgent = "Do you want to assign agents?";
   static const String enterPropertyFeature = "Enter property Feature";
   static const String addProperty = "Add Property";
