@@ -3,17 +3,17 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 
-
 class CommonDottedBorder extends StatelessWidget {
   final Widget child;
   final double? borderRadius;
-
-  const CommonDottedBorder({this.borderRadius, required this.child, super.key});
+  final Color? color;
+  const CommonDottedBorder(
+      {this.borderRadius, required this.child, super.key, this.color});
 
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      painter: DottedBorderPainter(radius: borderRadius),
+      painter: DottedBorderPainter(radius: borderRadius, borderColor: color),
       child: child,
     );
   }

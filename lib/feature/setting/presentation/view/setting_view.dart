@@ -54,11 +54,12 @@ class SettingView extends StatelessWidget {
                     icon: Assets.bank,
                     title: AppString.bankDetails,
                   ),
-                  SettingTile(
-                    onTap: () => toNamed(context, Routes.addPaymentCard),
-                    icon: Assets.card,
-                    title: AppString.cardDetails,
-                  ),
+                  if (!Getters.isAgent())
+                    SettingTile(
+                      onTap: () => toNamed(context, Routes.addPaymentCard),
+                      icon: Assets.card,
+                      title: AppString.cardDetails,
+                    ),
                   SettingTile(
                     onTap: () => toNamed(context, Routes.aboutUs),
                     icon: Assets.document,
@@ -85,7 +86,7 @@ class SettingView extends StatelessWidget {
                     icon: Assets.logout,
                     title: AppString.logout,
                   ),
-                  premiumSection(context),
+                  if (!Getters.isAgent()) premiumSection(context),
                   yHeight(11)
                 ],
               ),

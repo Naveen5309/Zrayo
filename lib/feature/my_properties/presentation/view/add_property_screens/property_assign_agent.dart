@@ -125,17 +125,23 @@ class AddPropertyAgentView extends ConsumerWidget {
             activeColor: AppColor.primary,
             onChanged: (value) {
               if (value == AppString.yes) {
-                Utils.appBottomSheet(context: context, widget: bottomSheet(context),isScrolled: true);
+                Utils.appBottomSheet(
+                    context: context,
+                    widget: bottomSheet(context),
+                    isScrolled: true);
               }
             },
           ),
           GestureDetector(
             onTap: () {
               if (label == AppString.yes) {
-                Utils.appBottomSheet(context: context, widget: bottomSheet(context),isScrolled: true);
+                Utils.appBottomSheet(
+                    context: context,
+                    widget: bottomSheet(context),
+                    isScrolled: true);
               }
             },
-            child: Text(label, style: TextStyle(fontSize: 14.sp)),
+            child: AppText(text: label, textSize: 14.sp),
           ),
         ],
       ),
@@ -144,9 +150,7 @@ class AddPropertyAgentView extends ConsumerWidget {
 
   Widget bottomSheet(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(
-        maxHeight: screenHeight(context)/1.5
-      ),
+      constraints: BoxConstraints(maxHeight: screenHeight(context) / 1.5),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
@@ -216,6 +220,7 @@ class AddPropertyAgentView extends ConsumerWidget {
             // yHeight(15),
             CommonAppBtn(
               title: AppString.continueText,
+              onTap: () => back(context),
             )
           ],
         ),

@@ -109,7 +109,7 @@ class RouteGenerator {
       case Routes.myPropertyBio:
         return _fadeTransitionRoute(const AddPropertyBioView());
       case Routes.addPropertyInfo:
-        return _fadeTransitionRoute(const AddPropertyInfo());
+        return _fadeTransitionRoute(AddPropertyInfo());
       case Routes.addPropertyAgent:
         return _fadeTransitionRoute(AddPropertyAgentView());
 

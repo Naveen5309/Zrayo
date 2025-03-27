@@ -11,15 +11,9 @@ import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_drop_down.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_text_field.dart';
 
-class AddPropertyInfo extends ConsumerStatefulWidget {
-  const AddPropertyInfo({super.key});
+class AddPropertyInfo extends ConsumerWidget {
+  AddPropertyInfo({super.key});
 
-  @override
-  ConsumerState<AddPropertyInfo> createState() => _AddPropertyInfoState();
-}
-
-class _AddPropertyInfoState extends ConsumerState<AddPropertyInfo> {
-  String? _propertyType;
   final List<String> features = [
     "Air Condition",
     "Parquet Balcony",
@@ -31,7 +25,7 @@ class _AddPropertyInfoState extends ConsumerState<AddPropertyInfo> {
   ];
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -67,9 +61,9 @@ class _AddPropertyInfoState extends ConsumerState<AddPropertyInfo> {
                   yHeight(5.h),
                   Row(
                     children: [
-                      _buildRadioButton(AppString.forSale),
+                      _buildRadioButton(AppString.forSale, context),
                       SizedBox(width: 20.w),
-                      _buildRadioButton(AppString.forRent),
+                      _buildRadioButton(AppString.forRent, context),
                     ],
                   ),
                   yHeight(5),
@@ -189,7 +183,7 @@ class _AddPropertyInfoState extends ConsumerState<AddPropertyInfo> {
     );
   }
 
-  Widget _buildRadioButton(String label) {
+  Widget _buildRadioButton(String label, BuildContext context) {
     return Theme(
       data: Theme.of(context).copyWith(
         unselectedWidgetColor: AppColor.colorB7B7B7,
@@ -198,13 +192,9 @@ class _AddPropertyInfoState extends ConsumerState<AddPropertyInfo> {
         children: [
           Radio<String>(
             value: label,
-            groupValue: _propertyType,
+            groupValue: '',
             activeColor: AppColor.primary,
-            onChanged: (value) {
-              setState(() {
-                _propertyType = value;
-              });
-            },
+            onChanged: (value) {},
           ),
           Text(label, style: TextStyle(fontSize: 14.sp)),
         ],

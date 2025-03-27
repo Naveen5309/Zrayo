@@ -14,11 +14,16 @@ class SuccessSheet extends StatelessWidget {
         yHeight(20.sp),
         SvgPicture.asset(Assets.successTick),
         yHeight(15.sp),
-        AppText(
-          text: title ?? '',
-          //  "Booked Successfully!",
-          textSize: 23.sp,
-          fontFamily: AppFonts.satoshiBold,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AppText(
+              text: title ?? '',
+              //  "Booked Successfully!",
+              textSize: 23.sp,
+              fontFamily: AppFonts.satoshiBold,
+            ).align(),
+          ],
         ),
         yHeight(10.sp),
         AppText(

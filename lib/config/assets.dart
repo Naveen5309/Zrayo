@@ -92,6 +92,8 @@ class Assets {
   static const String check = 'assets/icons/check.svg';
   static const String write = 'assets/icons/write.svg';
   static const String mail = 'assets/icons/mail.svg';
+  static const String radio = 'assets/icons/radio.svg';
+  static const String radioOff = 'assets/icons/radio_off.svg';
   static const String contactUs = 'assets/icons/contact_us.svg';
   static const String sendBtn = 'assets/icons/send_btn.svg';
   static const String emojiIcon = 'assets/icons/emoji_icon.svg';
@@ -114,6 +116,7 @@ class Assets {
   static const String locationDark = 'assets/icons/location_dark.svg';
   static const String circleCheckIcon = 'assets/icons/circle_check_icon.svg';
   static const String imageIcon = 'assets/icons/image_icon.svg';
+  static const String messageIcon = 'assets/icons/message-text.svg';
   static const String mapImage = 'assets/icons/map_image.svg';
   static const String mapZoomIcon = 'assets/icons/map_zoom_icon.svg';
   static const String successTick = 'assets/icons/success_tick.svg';

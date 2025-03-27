@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/config/app_utils.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/feature/home/presentation/view/home_view_main.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/common_property_type_filter_content.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 
 import '../../../../config/assets.dart';
@@ -35,7 +36,10 @@ class CustomViewAllScreen extends StatelessWidget {
                 ),
                 xWidth(20),
                 InkWell(
-                  onTap: () => toNamed(context, Routes.customFilterScreen),
+                  onTap: () => Utils.appBottomSheet(
+                      isScrolled: true,
+                      context: context,
+                      widget: CommonPropertyTypeFilterContent()),
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
@@ -48,7 +52,6 @@ class CustomViewAllScreen extends StatelessWidget {
               ],
             ),
           ),
-
           yHeight(10),
           Expanded(
               child: GridView.builder(
@@ -72,4 +75,3 @@ class CustomViewAllScreen extends StatelessWidget {
     );
   }
 }
-

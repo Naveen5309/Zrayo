@@ -42,6 +42,30 @@ class AgentHomeView extends StatelessWidget {
                   ),
                 ],
               ),
+              Row(
+                children: [
+                  Expanded(
+                    child: CustomTextField(
+                      hintText: "Search location...",
+                      prefixIcon: SvgPicture.asset(Assets.searchIcon),
+                      readOnly: true,
+                      // onTap: () => toNamed(context, Routes.searchPropertyView),
+                    ),
+                  ),
+                  xWidth(20),
+                  InkWell(
+                    // onTap: () => toNamed(context, Routes.customFilterScreen),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: AppColor.black000000,
+                      ),
+                      padding: EdgeInsets.all(14),
+                      child: SvgPicture.asset(Assets.filterIcon),
+                    ),
+                  ),
+                ],
+              ),
               yHeight(25.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

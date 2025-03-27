@@ -37,7 +37,32 @@ class SearchPropertyView extends ConsumerWidget {
             child: Padding(
               padding: const EdgeInsets.all(16),
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
+                  yHeight(5.h),
+                  Container(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 14.sp, horizontal: 10),
+                    decoration: Utils.boxDecoWithShadow(),
+                    child: Column(
+                      children: [
+                        AppText(
+                          text: AppString.wanttoSellProperty,
+                          textSize: 15.sp,
+                        ),
+                        yHeight(10),
+                        Row(
+                          children: [
+                            _buildRadioButton(AppString.buy, context),
+                            SizedBox(width: 20.w),
+                            _buildRadioButton(AppString.rent, context),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  yHeight(20.h),
+
                   /// Location
                   Container(
                     padding:
@@ -165,8 +190,8 @@ class SearchPropertyView extends ConsumerWidget {
       ),
     );
   }
-
 }
+
 Widget propertyTypeBox(Map<String, dynamic> propertyTypeList, isSelected) {
   return Container(
     padding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
@@ -176,14 +201,14 @@ Widget propertyTypeBox(Map<String, dynamic> propertyTypeList, isSelected) {
         border: Border.all(color: AppColor.colorB7B7B7)),
     child: Row(
       children: [
-        if(propertyTypeList.containsKey("icon"))
-        SvgPicture.asset(propertyTypeList['icon']),
+        if (propertyTypeList.containsKey("icon"))
+          SvgPicture.asset(propertyTypeList['icon']),
         xWidth(10),
         Expanded(
             child: AppText(
-              text: propertyTypeList['title'],
-              color: AppColor.black4A4A4A,
-            )),
+          text: propertyTypeList['title'],
+          color: AppColor.black4A4A4A,
+        )),
         Container(
           padding: EdgeInsets.all(2.sp),
           decoration: BoxDecoration(
@@ -199,6 +224,32 @@ Widget propertyTypeBox(Map<String, dynamic> propertyTypeList, isSelected) {
                 color: !isSelected ? AppColor.transparent : AppColor.primary),
           ),
         )
+      ],
+    ),
+  );
+}
+
+Widget _buildRadioButton(String label, BuildContext context) {
+  return Theme(
+    data: Theme.of(context).copyWith(
+      unselectedWidgetColor: AppColor.colorB7B7B7,
+    ),
+    child: Row(
+      children: [
+        Radio<String>(
+          value: label,
+          groupValue: "",
+          activeColor: AppColor.primary,
+          onChanged: (value) {},
+        ),
+        GestureDetector(
+          onTap: () {},
+          child: AppText(
+            text: label,
+            textSize: 14.sp,
+            color: AppColor.black4A4A4A.withValues(alpha: .6),
+          ),
+        ),
       ],
     ),
   );

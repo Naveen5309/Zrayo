@@ -29,6 +29,10 @@ abstract final class AppString {
   static const String name = "Name";
   static const String yes = "Yes";
   static const String no = "No";
+  static const String rent = "Rent";
+  static const String buy = "Buy";
+  static const String wanttoSellProperty =
+      "Do you want to sell property or sell property?";
   static const String chooseAgents = "Choose Agents";
   static const String slectAgent =
       "Please select a minimum of 1 agent and a maximum of 3 agents to continue with the process.";
@@ -207,13 +211,19 @@ abstract final class AppString {
   static const String uploadImage = "Upload image";
   static const String buyNow = "Buy Now";
   static const String ratingSubmittedSuccessfully =
-      "Rating Submitted Successfully!";
+      "Rating Submitted \n Successfully!";
   static const String increaseVisibilityBuyer =
       "Increase visibility and attract more buyers.\nPay now to highlight your listing!";
   static const String featureyourProperty = "Feature your property";
   static const String assignAgent = "Do you want to assign agents?";
   static const String enterPropertyFeature = "Enter property Feature";
   static const String addProperty = "Add Property";
+  static const String landloard = "Landloard";
+  static const String chooseYourAgent = "Choose Your Agent";
+  static const String minimumAgentAndFeedback =
+      "Please select a single agent from the list below to provide your rating and share your feedback.";
+  static const String giveyourReviews = "Give your reviews";
+  static const String giveRatingtoLandloard = "Give Rating to the landlord ";
 
 // static const String mMYY = "MM/YY";
 }

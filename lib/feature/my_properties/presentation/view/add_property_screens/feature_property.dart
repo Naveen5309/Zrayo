@@ -142,13 +142,15 @@ class FeaturePrpertyView extends ConsumerWidget {
                       title: AppString.skip,
                       textColor: AppColor.primary,
                       onTap: () {
-                        SuccessSheet(
-                          title: AppString.propertySuccessfullyPosted,
-                          subTitle: AppString.propertyUploaded,
-                          onTap: () {
-                            back(context);
-                          },
-                        );
+                        Utils.appBottomSheet(
+                            context: context,
+                            widget: SuccessSheet(
+                              title: AppString.propertySuccessfullyPosted,
+                              subTitle: AppString.propertyUploaded,
+                              onTap: () {
+                                back(context);
+                              },
+                            ));
                       },
                       backGroundColor:
                           AppColor.orangeEA8913.withValues(alpha: .24),

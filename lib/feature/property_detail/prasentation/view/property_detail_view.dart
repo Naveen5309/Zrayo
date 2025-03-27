@@ -4,9 +4,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:zrayo_flutter/config/app_utils.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
+import 'package:zrayo_flutter/core/helpers/all_getter.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/home/presentation/view/review_bottomsheet.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/common_dotted_border.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_cache_network_image.dart';
@@ -23,7 +25,8 @@ part 'agents_landlord_list.dart';
 part 'all_pictures_view.dart';
 
 class PropertyDetailView extends StatelessWidget {
-  const PropertyDetailView({super.key});
+  final bool isAgentProperty;
+  const PropertyDetailView({super.key, this.isAgentProperty = false});
 
   @override
   Widget build(BuildContext context) {
@@ -77,18 +80,19 @@ class PropertyDetailView extends StatelessWidget {
                             ),
                           ),
                           xWidth(10.h),
-                          Container(
-                            decoration: BoxDecoration(
-                                color: AppColor.whiteFFFFFF,
-                                borderRadius: BorderRadius.circular(10)),
-                            padding: EdgeInsets.all(10),
-                            child: SvgPicture.asset(
-                              Assets.heartUnselected,
-                              width: 20.h,
-                              colorFilter: ColorFilter.mode(
-                                  AppColor.black000000, BlendMode.srcIn),
+                          if (!Getters.isAgent())
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: AppColor.whiteFFFFFF,
+                                  borderRadius: BorderRadius.circular(10)),
+                              padding: EdgeInsets.all(10),
+                              child: SvgPicture.asset(
+                                Assets.heartUnselected,
+                                width: 20.h,
+                                colorFilter: ColorFilter.mode(
+                                    AppColor.black000000, BlendMode.srcIn),
+                              ),
                             ),
-                          ),
                         ],
                       )
                     ],
@@ -147,7 +151,7 @@ class PropertyDetailView extends StatelessWidget {
             ),
 
             /// propertyInfo
-            propertyInfo(),
+            propertyInfo(context),
             // yHeight(16.h),
             PropertyFeaturesList(),
             AgentsLandlordList(),
@@ -156,10 +160,15 @@ class PropertyDetailView extends StatelessWidget {
             yHeight(16.sp),
             PropertyHistoricalData(),
             CommonAppBtn(
-              title: "Request a tour at \$20",
-              margin: EdgeInsets.all(16.sp),
-              onTap: () => toNamed(context, Routes.bookYourDateView),
-            ),
+                title: "Request a tour at \$20",
+                margin: EdgeInsets.all(16.sp),
+                onTap: () => Utils.appBottomSheet(
+                    context: context,
+                    widget: bottomSheet(context),
+                    isScrolled: true)
+
+                //  toNamed(context, Routes.bookYourDateView),
+                ),
 
             CommonAppBtn(
               title: "Message",
@@ -189,7 +198,7 @@ class PropertyDetailView extends StatelessWidget {
     );
   }
 
-  Widget propertyInfo() {
+  Widget propertyInfo(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(16.sp),
       child: Column(
@@ -235,6 +244,8 @@ class PropertyDetailView extends StatelessWidget {
               ),
             ],
           ),
+          yHeight(10.h),
+          if (Getters.isAgent()) dottedContainer(context),
           yHeight(15.h),
           AppText(
             text:
@@ -318,4 +329,110 @@ class PropertyDetailView extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget dottedContainer(BuildContext context) {
+  return CommonDottedBorder(
+    color: AppColor.primary.withValues(alpha: .36),
+    child: Container(
+      color: AppColor.primary.withValues(alpha: .06),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          AppText(
+            text: 'Viewing Fees',
+            color: AppColor.primary,
+            textSize: 14.sp,
+          ),
+          AppText(
+            text: '\$1200',
+            color: AppColor.primary,
+            textSize: 14.sp,
+            fontFamily: AppFonts.satoshiBold,
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+Widget bottomSheet(BuildContext context) {
+  return Container(
+    constraints: BoxConstraints(maxHeight: screenHeight(context) / 2),
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Column(
+        children: [
+          yHeight(12),
+          AppText(
+            text: AppString.chooseYourAgent,
+            textSize: 20.sp,
+            fontFamily: AppFonts.satoshiBold,
+          ),
+          yHeight(12),
+          AppText(
+            text: AppString.minimumAgentAndFeedback,
+            fontFamily: AppFonts.satoshiRegular,
+            lineHeight: 1.2,
+            textSize: 14.sp,
+            color: AppColor.black000000.withValues(alpha: 0.6),
+          ),
+          yHeight(16.h),
+
+          Expanded(
+            child: ListView.builder(
+              padding: EdgeInsets.symmetric(vertical: 16.h),
+              // physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: 3,
+              itemBuilder: (context, index) {
+                return Column(
+                  children: [
+                    ListTile(
+                      minTileHeight: 8,
+                      contentPadding: EdgeInsets.symmetric(horizontal: 0),
+                      leading: CircleAvatar(
+                        backgroundImage: NetworkImage(
+                            "https://randomuser.me/api/portraits/women/2.jpg"),
+                      ),
+                      title: AppText(
+                        text: "User name",
+                        textSize: 14.sp,
+                        fontFamily: AppFonts.satoshiBold,
+                      ),
+                      subtitle: Padding(
+                        padding: const EdgeInsets.only(top: 5),
+                        child: AppText(
+                          text: "326289399978",
+                          textSize: 12.sp,
+                          fontFamily: AppFonts.satoshiRegular,
+                          color: AppColor.color212121.withValues(alpha: 0.5),
+                        ),
+                      ),
+                      trailing: SvgPicture.asset(
+                        (true) ? Assets.radio : Assets.radioOff,
+                      ),
+                      onTap: () {},
+                    ),
+                    if (index != 2)
+                      Divider(
+                        color: AppColor.black000000.withValues(alpha: 0.5),
+                      ),
+                  ],
+                );
+              },
+            ),
+          ),
+          // yHeight(15),
+          CommonAppBtn(
+              title: AppString.continueText,
+              onTap: () {
+                back(context);
+                toNamed(context, Routes.bookYourDateView);
+              })
+        ],
+      ),
+    ),
+  );
 }
