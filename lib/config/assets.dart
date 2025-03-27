@@ -8,6 +8,9 @@ class Assets {
   static const String eye = 'assets/icons/eye.svg';
   static const String eyeOff = 'assets/icons/eye_off.svg';
   static const String lucide = 'assets/icons/lucide.svg';
+  static const String stars = 'assets/icons/stars.svg';
+  static const String starOff = 'assets/icons/star1.svg';
+  static const String starsOff = 'assets/icons/star2.svg';
   static const String lucideTrue = 'assets/icons/lucide_true.svg';
 
   static const String iconGoogle = "assets/icons/google.svg";

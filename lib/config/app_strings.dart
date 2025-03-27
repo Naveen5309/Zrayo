@@ -176,6 +176,9 @@ abstract final class AppString {
   static const String propertyFeatures = "Property Features";
   static const String forSale = "For Sale";
   static const String forRent = "For Rent";
+  static const String shareFeedback =
+      "Share Your Feedback & Rate Your Last Visit";
+  static const String rateYourVisite = "Rate Your Visite";
   static const String doYouWantToSellProperty =
       "Do you want to sell property or rent property?";
   static const String subject = "Subject";
@@ -191,6 +194,9 @@ abstract final class AppString {
   static const String reset = "Reset";
   static const String apply = "Apply";
   static const String other = "Other";
+  static const String giveRatings = "Give ratings";
+  static const String propertyDeleted =
+      "Your property is successfully deleted from list.";
   static const String propertySuccessfullyPosted =
       "Property Successfully Posted!";
   static const String propertyUploaded =
@@ -200,6 +206,8 @@ abstract final class AppString {
       "Your property visit is successfully booked. Please reach at the location on time.";
   static const String uploadImage = "Upload image";
   static const String buyNow = "Buy Now";
+  static const String ratingSubmittedSuccessfully =
+      "Rating Submitted Successfully!";
   static const String increaseVisibilityBuyer =
       "Increase visibility and attract more buyers.\nPay now to highlight your listing!";
   static const String featureyourProperty = "Feature your property";

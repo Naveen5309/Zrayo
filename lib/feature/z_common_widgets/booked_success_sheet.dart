@@ -9,19 +9,20 @@ class SuccessSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         yHeight(20.sp),
         SvgPicture.asset(Assets.successTick),
         yHeight(15.sp),
         AppText(
-          text: title.toString(),
+          text: title ?? '',
           //  "Booked Successfully!",
           textSize: 23.sp,
           fontFamily: AppFonts.satoshiBold,
         ),
         yHeight(10.sp),
         AppText(
-          text: subTitle.toString(),
+          text: subTitle ?? '',
           // "Your property visit is successfully booked. Please reach at the location on time.",
           fontFamily: AppFonts.satoshiRegular,
           textAlign: TextAlign.center, textSize: 14.sp,
@@ -31,7 +32,10 @@ class SuccessSheet extends StatelessWidget {
         yHeight(20.sp),
         CommonAppBtn(
           title: "Go Back",
-          onTap: onTap ?? () {},
+          onTap: onTap ??
+              () {
+                back(context);
+              },
         ),
         yHeight(20.sp),
       ],

@@ -5,6 +5,7 @@ import 'package:zrayo_flutter/config/app_utils.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
+import 'package:zrayo_flutter/feature/home/presentation/view/review_bottomsheet.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
@@ -168,7 +169,20 @@ class PropertyDetailView extends StatelessWidget {
               margin: EdgeInsets.symmetric(horizontal: 16.sp),
               onTap: () => toNamed(context, Routes.chatView),
             ),
-            yHeight(16.sp),
+            CommonAppBtn(
+              title: "Give Rating",
+              margin: EdgeInsets.all(16.sp),
+              onTap: () {
+                Utils.appBottomSheet(
+                    context: context,
+                    widget: ReviewBottomsheet(
+                      name: "Paras",
+                      isProperty: true,
+                      title: AppString.giveRatings,
+                      subtitle: AppString.propertyDeleted,
+                    ));
+              },
+            ),
           ],
         ),
       ),

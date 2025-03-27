@@ -98,66 +98,68 @@ class SettingView extends StatelessWidget {
 }
 
 Widget profileSection(BuildContext context) {
-  return Container(
-    padding: EdgeInsets.all(2),
-    decoration: BoxDecoration(
-      color: AppColor.whiteFFFFFF,
-      borderRadius: BorderRadius.all(Radius.circular(22)),
-    ),
-    child: Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(100),
-              color: AppColor.whiteFFFFFF.withValues(alpha: .1),
-              boxShadow: [
-                BoxShadow(
-                  color: AppColor.grey99ABC6.withValues(alpha: 0.18),
-                  blurRadius: 62,
-                  offset: Offset(0, 4),
-                ),
-              ]),
-          child: Padding(
-              padding: const EdgeInsets.all(14.0),
-              child: CustomCacheNetworkImage(
-                img: "",
-                size: 50,
-              )),
-        ),
-        xWidth(8),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              //TITLE
-              AppText(
-                text: 'Paras',
-                textSize: 15.sp,
-                fontWeight: FontWeight.w500,
-              ),
-
-              5.verticalSpace,
-              //SUBTITLE
-              AppText(
-                text: 'paras@gmail.com',
-                textSize: 12.sp,
-                color: AppColor.grey646464,
-                fontWeight: FontWeight.w400,
-              ),
-            ],
+  return GestureDetector(
+    onTap: () {
+      toNamed(context, Routes.profileDetailView);
+    },
+    child: Container(
+      padding: EdgeInsets.all(2),
+      decoration: BoxDecoration(
+        color: AppColor.whiteFFFFFF,
+        borderRadius: BorderRadius.all(Radius.circular(22)),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                color: AppColor.whiteFFFFFF.withValues(alpha: .1),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColor.grey99ABC6.withValues(alpha: 0.18),
+                    blurRadius: 62,
+                    offset: Offset(0, 4),
+                  ),
+                ]),
+            child: Padding(
+                padding: const EdgeInsets.all(14.0),
+                child: CustomCacheNetworkImage(
+                  img: "",
+                  size: 50,
+                )),
           ),
-        ),
-        GestureDetector(
-          onTap: () => toNamed(context, Routes.profileDetailView),
-          child: Icon(
+          xWidth(8),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                //TITLE
+                AppText(
+                  text: 'Paras',
+                  textSize: 15.sp,
+                  fontWeight: FontWeight.w500,
+                ),
+
+                5.verticalSpace,
+                //SUBTITLE
+                AppText(
+                  text: 'paras@gmail.com',
+                  textSize: 12.sp,
+                  color: AppColor.grey646464,
+                  fontWeight: FontWeight.w400,
+                ),
+              ],
+            ),
+          ),
+          Icon(
             Icons.arrow_forward_ios,
             size: 16.sp,
             color: AppColor.black160C08,
           ),
-        ),
-        xWidth(context.height / 12)
-      ],
+          xWidth(context.height / 12)
+        ],
+      ),
     ),
   );
 }

@@ -10,10 +10,10 @@ import 'helper.dart';
 class Utils {
   Utils._();
 
-  static BoxDecoration boxDecoWithShadow({double? borderRadius,Color? color}) {
+  static BoxDecoration boxDecoWithShadow({double? borderRadius, Color? color}) {
     return BoxDecoration(
-      borderRadius: BorderRadius.circular(borderRadius??14),
-      color: color??AppColor.whiteFFFFFF,
+      borderRadius: BorderRadius.circular(borderRadius ?? 14),
+      color: color ?? AppColor.whiteFFFFFF,
       boxShadow: [
         BoxShadow(
           color: AppColor.black232323.withValues(alpha: 0.1),
@@ -86,9 +86,7 @@ class Utils {
     showModalBottomSheet(
       context: context,
       enableDrag: true,
-      constraints: BoxConstraints(
-        maxHeight: screenHeight(context)/1.3
-      ),
+      constraints: BoxConstraints(maxHeight: screenHeight(context) / 1.2),
       shape: OutlineInputBorder(
         borderRadius: BorderRadius.only(
           topRight: Radius.circular(18.sp),
@@ -101,10 +99,7 @@ class Utils {
       builder: (context) {
         return Padding(
           padding:
-          EdgeInsets.only(bottom: MediaQuery
-              .of(context)
-              .viewInsets
-              .bottom),
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           child: CustomBottomSheet(
             content: widget,
             mainAxisSize: mainSize ?? MainAxisSize.min,

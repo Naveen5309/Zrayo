@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:zrayo_flutter/config/app_utils.dart';
@@ -9,11 +10,11 @@ import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 
-class FeaturePrpertyView extends StatelessWidget {
+class FeaturePrpertyView extends ConsumerWidget {
   const FeaturePrpertyView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       backgroundColor: AppColor.blackF7F8FB,
       body: Column(
@@ -141,15 +142,13 @@ class FeaturePrpertyView extends StatelessWidget {
                       title: AppString.skip,
                       textColor: AppColor.primary,
                       onTap: () {
-                        Utils.appBottomSheet(
-                            context: context,
-                            widget: SuccessSheet(
-                              title: AppString.propertySuccessfullyPosted,
-                              subTitle: AppString.propertyUploaded,
-                              onTap: () {
-                                back(context);
-                              },
-                            ));
+                        SuccessSheet(
+                          title: AppString.propertySuccessfullyPosted,
+                          subTitle: AppString.propertyUploaded,
+                          onTap: () {
+                            back(context);
+                          },
+                        );
                       },
                       backGroundColor:
                           AppColor.orangeEA8913.withValues(alpha: .24),
@@ -165,188 +164,3 @@ class FeaturePrpertyView extends StatelessWidget {
     );
   }
 }
-
-// // class BottomCurveClipper extends CustomClipper<Path> {
-// //   @override
-// //   Path getClip(Size size) {
-// //     Path path = Path();
-
-// //     double width = size.width;
-// //     double height = size.height;
-// //     double arcHeight = 40; // 👈 Arc height set kiya (Adjust if needed)
-
-// //     path.lineTo(0, height - arcHeight);
-
-// //     // 👇 Smooth curved arc effect
-// //     path.quadraticBezierTo(width / 2, height, width, height - arcHeight);
-
-// //     path.lineTo(width, 0);
-// //     path.close();
-
-// //     return path;
-// //   }
-
-// //   @override
-// //   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
-// // }
-// import 'package:flutter/material.dart';
-// import 'package:lottie/lottie.dart';
-// import 'package:zrayo_flutter/config/assets.dart';
-// import 'package:zrayo_flutter/config/helper.dart';
-
-// void main() {
-//   runApp(MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       home: Scaffold(
-//         backgroundColor: Colors.grey[200],
-//         body: Center(
-//           child: FeatureCard(),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-// class FeatureCard extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       color: Colors.white,
-//       height: 450,
-//       width: 300,
-//       child: Container(
-//         width: 250,
-//         height: 400,
-//         color: Colors.white,
-//         child: Stack(
-//           alignment: Alignment.center,
-//           clipBehavior: Clip.none,
-//           children: [
-//             Positioned(
-//               top: -20,
-//               child: Container(
-//                 width: 150,
-//                 height: 150,
-//                 decoration: BoxDecoration(
-//                   boxShadow: [
-//                     BoxShadow(
-//                       blurRadius: 5,
-//                     )
-//                   ],
-//                   shape: BoxShape.circle,
-//                   color: Colors.white,
-//                   border: Border.all(color: AppColor.transparent, width: 6),
-//                 ),
-//               ),
-//             )
-//           ],
-//         ),
-//       ),
-//     );
-//     return Stack(
-//       clipBehavior: Clip.none,
-//       children: [
-//         Container(
-//           width: 300,
-//           padding: EdgeInsets.only(top: 80),
-//           decoration: BoxDecoration(
-//             color: Colors.white,
-//             borderRadius: BorderRadius.circular(20),
-//             boxShadow: [
-//               BoxShadow(
-//                 color: Colors.black12,
-//                 blurRadius: 10,
-//                 spreadRadius: 2,
-//                 offset: Offset(0, 5),
-//               ),
-//             ],
-//           ),
-//           child: ClipPath(
-//             clipper: BottomCurveClipper(),
-//             child: Container(
-//               color: Colors.white,
-//               padding: EdgeInsets.only(top: 20, bottom: 50),
-//               child: Column(
-//                 mainAxisSize: MainAxisSize.min,
-//                 children: [
-//                   SizedBox(height: 20),
-//                   Text(
-//                     "Feature your property",
-//                     style: TextStyle(
-//                       fontSize: 20,
-//                       fontWeight: FontWeight.bold,
-//                     ),
-//                   ),
-//                   Padding(
-//                     padding:
-//                         const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-//                     child: Text(
-//                       "Increase visibility and attract more buyers.\nPay now to highlight your listing!",
-//                       textAlign: TextAlign.center,
-//                       style: TextStyle(
-//                         fontSize: 14,
-//                         color: Colors.grey[600],
-//                       ),
-//                     ),
-//                   ),
-//                   SizedBox(height: 10),
-//                   Text(
-//                     "@ \$120",
-//                     style: TextStyle(
-//                       fontSize: 20,
-//                       fontWeight: FontWeight.bold,
-//                     ),
-//                   ),
-//                   SizedBox(height: 20),
-//                 ],
-//               ),
-//             ),
-//           ),
-//         ),
-//         Positioned(
-//           top: -40,
-//           left: 0,
-//           right: 0,
-//           child: CircleAvatar(
-//             radius: 39,
-//             backgroundColor: Colors.white,
-//             child: CircleAvatar(
-//               radius: 62,
-//               backgroundColor: Colors.blueAccent.withOpacity(0.2),
-//               child: Lottie.asset(Assets.homeJson),
-//             ),
-//           ),
-//         ),
-//       ],
-//     );
-//   }
-// }
-
-// class BottomCurveClipper extends CustomClipper<Path> {
-//   @override
-//   Path getClip(Size size) {
-//     Path path = Path();
-
-//     double width = size.width;
-//     double height = size.height;
-//     double arcHeight = 40;
-
-//     path.lineTo(0, height - arcHeight);
-
-//     path.quadraticBezierTo(width / 2, height, width, height - arcHeight);
-
-//     path.lineTo(width, 0);
-//     path.close();
-
-//     return path;
-//   }
-
-//   @override
-//   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
-// }
