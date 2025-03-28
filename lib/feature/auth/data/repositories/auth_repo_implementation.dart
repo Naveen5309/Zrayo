@@ -1,9 +1,7 @@
-import 'package:zrayo_flutter/feature/auth/presentation/views/forgot_password_sheet.dart';
-
-import '../../../../core/error/failure.dart';
-import '../../../../core/utils/dartz/either.dart';
-import '../data_source/auth_data_source.dart';
-import '../models/user_model.dart';
+import 'package:zrayo_flutter/core/error/failure.dart';
+import 'package:zrayo_flutter/core/utils/dartz/either.dart';
+import 'package:zrayo_flutter/feature/auth/data/data_source/auth_data_source.dart';
+import 'package:zrayo_flutter/feature/auth/data/models/user_model.dart';
 
 abstract class AuthRepository {
   Future<Either<Failure, UserModel?>> doLogin(

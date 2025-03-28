@@ -1,7 +1,7 @@
-import '../../../../core/helpers/all_getter.dart';
-import '../../../../core/network/http_service.dart';
-import '../../../../core/response_wrapper/data_response.dart';
-import '../models/user_model.dart';
+import 'package:zrayo_flutter/core/helpers/all_getter.dart';
+import 'package:zrayo_flutter/core/network/http_service.dart';
+import 'package:zrayo_flutter/core/response_wrapper/data_response.dart';
+import 'package:zrayo_flutter/feature/auth/data/models/user_model.dart';
 
 abstract class AuthDataSource {
   Future<ResponseWrapper?> logInUser({required Map<String, dynamic> body});
