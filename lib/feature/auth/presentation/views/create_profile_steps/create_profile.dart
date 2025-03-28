@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/config/app_utils.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/provider/create_profile_provider.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_text_field.dart';
@@ -12,12 +14,15 @@ import '../../../../../config/assets.dart';
 import '../../../../z_common_widgets/camera_bottom_sheet_view.dart';
 import '../../../../z_common_widgets/custom_cache_network_image.dart';
 
-class CreateProfile extends StatelessWidget {
+class CreateProfile extends ConsumerWidget {
   final bool fromSettings;
   const CreateProfile({super.key, required this.fromSettings});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final createProfileNotifier = ref.read(createProfileProvider.notifier);
+
+    ref.watch(createProfileProvider);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -121,6 +126,8 @@ class CreateProfile extends StatelessWidget {
                                 child: CustomTextField(
                               prefixIcon: SvgPicture.asset(Assets.person),
                               labelText: AppString.firstName,
+                              controller:
+                                  createProfileNotifier.firstNameController,
                               hintText: AppString.enterFirstName,
                             )),
                             xWidth(20),
@@ -128,6 +135,8 @@ class CreateProfile extends StatelessWidget {
                                 child: CustomTextField(
                               prefixIcon: SvgPicture.asset(Assets.person),
                               labelText: AppString.lastName,
+                              controller:
+                                  createProfileNotifier.lastNameController,
                               hintText: AppString.enterLastName,
                             )),
                           ],
@@ -136,18 +145,49 @@ class CreateProfile extends StatelessWidget {
                           prefixIcon: SvgPicture.asset(Assets.calling),
                           labelText: AppString.mobileNumber,
                           keyboardType: TextInputType.phone,
+                          controller: createProfileNotifier.phoneController,
                           hintText: AppString.enterPhoneNumber,
                         ),
                         CustomTextField(
+                          onTap: () async {
+                            final DateTime? picked = await showDatePicker(
+                              context: context,
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime(1970, 8),
+                              lastDate: DateTime.now(),
+                              builder: (context, child) {
+                                return Theme(
+                                  data: ThemeData.light().copyWith(
+                                    primaryColor: AppColor.primary,
+                                    hintColor: AppColor.primary,
+                                    colorScheme: const ColorScheme.light(
+                                        primary: AppColor.primary),
+                                    buttonTheme: const ButtonThemeData(
+                                        textTheme: ButtonTextTheme.primary),
+                                  ),
+                                  child: child!,
+                                );
+                              },
+                            );
+
+                            if (picked != null) {
+                              createProfileNotifier.dobController.text =
+                                  formatDOB(picked);
+                            }
+                          },
                           prefixIcon: SvgPicture.asset(Assets.cake),
                           readOnly: true,
                           labelText: AppString.dateOfBirth,
                           hintText: "DD/MM/YYYY",
+                          controller: createProfileNotifier.dobController,
+
+                          // labelText: AppString.confirmPswd,
                         ),
                         CustomTextField(
                           prefixIcon: SvgPicture.asset(Assets.barcode),
                           labelText: AppString.ninNumberOrBvnNumber,
                           keyboardType: TextInputType.number,
+                          controller: createProfileNotifier.ninNumberController,
                           hintText: AppString.enterNinNumberOrBvnNumber,
                         ),
                       ],
@@ -159,7 +199,10 @@ class CreateProfile extends StatelessWidget {
                           : AppString.saveAndContinue,
                       onTap: () => fromSettings
                           ? back(context)
-                          : toNamed(context, Routes.addAddressView),
+                          :
+                          // createProfileNotifier
+                          // .createProfileValidator(context)
+                          toNamed(context, Routes.addAddressView),
                     ),
                   ],
                 ),

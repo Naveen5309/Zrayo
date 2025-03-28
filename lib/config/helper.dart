@@ -46,6 +46,10 @@ void unFocus(BuildContext context) {
   FocusScope.of(context).unfocus();
 }
 
+String formatDOB(DateTime dob) {
+  return '${dob.day.toString().padLeft(2, '0')}/${dob.month.toString().padLeft(2, '0')}/${dob.year}';
+}
+
 SizedBox yHeight(double height) {
   return SizedBox(
     height: height,
@@ -67,7 +71,11 @@ void offAllNamed(BuildContext context, String routesName) {
 }
 
 void toNamed(BuildContext context, String routesName, {Object? args}) {
-  Navigator.pushNamed(context, routesName, arguments: args,);
+  Navigator.pushNamed(
+    context,
+    routesName,
+    arguments: args,
+  );
 }
 
 void back(BuildContext context) {

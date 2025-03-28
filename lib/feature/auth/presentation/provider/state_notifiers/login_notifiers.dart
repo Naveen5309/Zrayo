@@ -16,6 +16,7 @@ class LoginNotifier extends StateNotifier<LoginState> {
   final passwordController = TextEditingController();
   final newPasswordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
+  final otpController = TextEditingController();
 
   final referralController = TextEditingController();
 
@@ -24,13 +25,13 @@ class LoginNotifier extends StateNotifier<LoginState> {
   void loginValidator(BuildContext context) {
     offAllNamed(context, Routes.dashboard);
     return;
-    final isValid = validator.loginValidator(
-        email: emailController.text, pass: passwordController.text);
-    if (isValid) {
-      login();
-    } else {
-      toast(msg: validator.error);
-    }
+    // final isValid = validator.loginValidator(
+    //     email: emailController.text, pass: passwordController.text);
+    // if (isValid) {
+    //   login();
+    // } else {
+    //   toast(msg: validator.error);
+    // }
   }
 
   Future<void> login() async {
@@ -48,6 +49,111 @@ class LoginNotifier extends StateNotifier<LoginState> {
         "device_token": "No Token",
       };
       final result = await authRepo.doLogin(body: body);
+      state = result.fold((error) {
+        return LoginFailed(error: error.message);
+      }, (result) {
+        return LoginSuccess();
+      });
+    } catch (e) {
+      state = LoginFailed(error: e.toString());
+    }
+  }
+
+  void forgetPasswordValidator(BuildContext context) {
+    final isValid =
+        validator.forgetPasswordValidator(email: emailController.text);
+    if (isValid) {
+      forgetPassword();
+    } else {
+      toast(msg: validator.error);
+    }
+  }
+
+  Future<void> forgetPassword() async {
+    state = LoginApiLoading();
+    try {
+      if (!(await Getters.networkInfo.isConnected)) {
+        state = const LoginFailed(error: "No internet connection");
+        return;
+      }
+      if (await Getters.networkInfo.isSlow) {}
+      Map<String, dynamic> body = {
+        "email": "dev@yopmail.com",
+        "password": "Pass@123",
+        "device_type": "android",
+        "device_token": "No Token",
+      };
+      final result = await authRepo.forgotPassword(body: body);
+      state = result.fold((error) {
+        return LoginFailed(error: error.message);
+      }, (result) {
+        return LoginSuccess();
+      });
+    } catch (e) {
+      state = LoginFailed(error: e.toString());
+    }
+  }
+
+  void changePasswordValidator(BuildContext context) {
+    final isValid = validator.changePasswordValidator(
+        password: passwordController.text,
+        confirmPassword: confirmPasswordController.text);
+    if (isValid) {
+      changePassword();
+    } else {
+      toast(msg: validator.error);
+    }
+  }
+
+  Future<void> changePassword() async {
+    state = LoginApiLoading();
+    try {
+      if (!(await Getters.networkInfo.isConnected)) {
+        state = const LoginFailed(error: "No internet connection");
+        return;
+      }
+      if (await Getters.networkInfo.isSlow) {}
+      Map<String, dynamic> body = {
+        "password": "Pass@123",
+        "confirmPassword": "Pass@123",
+        "device_type": "android",
+        "device_token": "No Token",
+      };
+      final result = await authRepo.changePassword(body: body);
+      state = result.fold((error) {
+        return LoginFailed(error: error.message);
+      }, (result) {
+        return LoginSuccess();
+      });
+    } catch (e) {
+      state = LoginFailed(error: e.toString());
+    }
+  }
+
+  void verifyEmailValidator(BuildContext context) {
+    final isValid = validator.verifyEmailValidator(otp: otpController.text);
+    if (isValid) {
+      verifyEmail();
+    } else {
+      toast(msg: validator.error);
+    }
+  }
+
+  Future<void> verifyEmail() async {
+    state = LoginApiLoading();
+    try {
+      if (!(await Getters.networkInfo.isConnected)) {
+        state = const LoginFailed(error: "No internet connection");
+        return;
+      }
+      if (await Getters.networkInfo.isSlow) {}
+      Map<String, dynamic> body = {
+        "email": "dev@yopmail.com",
+        "password": "Pass@123",
+        "device_type": "android",
+        "device_token": "No Token",
+      };
+      final result = await authRepo.verifyEmail(body: body);
       state = result.fold((error) {
         return LoginFailed(error: error.message);
       }, (result) {

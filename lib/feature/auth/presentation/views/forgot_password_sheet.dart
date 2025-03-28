@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/provider/forget_password_provider.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_text_field.dart';
 
-class ForgotPasswordSheet extends StatelessWidget {
+class ForgotPasswordSheet extends ConsumerWidget {
   const ForgotPasswordSheet({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final forgetPasswordNotifier = ref.read(forgetPasswordProvider.notifier);
+    ref.watch(forgetPasswordProvider);
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -37,13 +41,14 @@ class ForgotPasswordSheet extends StatelessWidget {
             CustomTextField(
               hintText: AppString.exampleEamil,
               prefixIcon: SvgPicture.asset(Assets.email),
-              controller: TextEditingController(),
+              controller: forgetPasswordNotifier.emailController,
               labelText: AppString.emailAddress,
             ),
             yHeight(10.sp),
             CommonAppBtn(
               title: AppString.submit,
               onTap: () {
+                // forgetPasswordNotifier.forgetPasswordValidator(context);
                 back(context);
                 toNamed(context, Routes.otpVerificationView);
               },

@@ -4,12 +4,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/provider/add_address_provider.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/provider/create_profile_provider.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/provider/state_notifiers/create_profile_notifiers.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_drop_down.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_text_field.dart';
 
-import '../../../../core/utils/routing/routes.dart';
+import '../../../../../core/utils/routing/routes.dart';
 
 class AddAddressView extends ConsumerWidget {
   final bool fromSettings;
@@ -17,6 +20,8 @@ class AddAddressView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final addAddressNotifier = ref.read(addAddressProvider.notifier);
+    ref.watch(addAddressProvider);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -43,14 +48,16 @@ class AddAddressView extends ConsumerWidget {
             yHeight(20.sp),
             Padding(
               padding: const EdgeInsets.all(16),
-              child: formsFieldsSection(),
+              child: formsFieldsSection(addAddressNotifier),
             ),
             if (fromSettings) yHeight(context.height / 6),
             CommonAppBtn(
               title:
                   fromSettings ? AppString.update : AppString.saveAndContinue,
               margin: const EdgeInsets.all(16),
-              onTap: () => toNamed(context, Routes.uploadDocument),
+              onTap: () =>
+                  //  addAddressNotifier.addAddressValidator(context)
+                  toNamed(context, Routes.uploadDocument),
             )
           ],
         ),
@@ -59,7 +66,7 @@ class AddAddressView extends ConsumerWidget {
   }
 }
 
-Widget formsFieldsSection() {
+Widget formsFieldsSection(CreateProfileNotifiers addAddressNotifier) {
   return Column(
     spacing: 8.sp,
     children: [
@@ -67,7 +74,7 @@ Widget formsFieldsSection() {
       CustomTextField(
         hintText: AppString.enterAddress,
         prefixIcon: SvgPicture.asset(Assets.location),
-        controller: TextEditingController(),
+        controller: addAddressNotifier.addressController,
         labelText: AppString.address,
       ),
 
@@ -78,7 +85,7 @@ Widget formsFieldsSection() {
               readOnly: true,
               labelText: AppString.city,
               hintText: AppString.selectCity,
-              controller: TextEditingController(),
+              controller: addAddressNotifier.cityController,
               prefixIcon: SvgPicture.asset(Assets.city),
               suffixIcon: SvgPicture.asset(Assets.arrowDown),
             ),
@@ -95,7 +102,11 @@ Widget formsFieldsSection() {
             "Houston",
             "Miami"
           ],
-          onChanged: (String? value) {},
+          onChanged: (String? value) {
+            if (value != null) {
+              addAddressNotifier.cityController.text = value;
+            }
+          },
         );
       }),
       Consumer(
@@ -106,7 +117,7 @@ Widget formsFieldsSection() {
               child: CustomTextField(
                 labelText: AppString.state,
                 hintText: AppString.selectSate,
-                controller: TextEditingController(),
+                controller: addAddressNotifier.stateController,
                 prefixIcon: SvgPicture.asset(Assets.state),
                 suffixIcon: SvgPicture.asset(Assets.arrowDown),
               ),
@@ -123,7 +134,11 @@ Widget formsFieldsSection() {
               "Houston",
               "Miami"
             ],
-            onChanged: (String? value) {},
+            onChanged: (String? value) {
+              if (value != null) {
+                addAddressNotifier.stateController.text = value;
+              }
+            },
           );
         },
       ),
@@ -133,7 +148,7 @@ Widget formsFieldsSection() {
             child: CustomTextField(
               labelText: AppString.country,
               hintText: AppString.selectCountry,
-              controller: TextEditingController(),
+              controller: addAddressNotifier.countryController,
               prefixIcon: SvgPicture.asset(Assets.global),
               suffixIcon: SvgPicture.asset(Assets.arrowDown),
             ),
@@ -144,7 +159,11 @@ Widget formsFieldsSection() {
           hint: 'Global',
           value: "India",
           dropdownItems: ["India", "US", "melbran", "Houston", "Miami"],
-          onChanged: (String? value) {},
+          onChanged: (String? value) {
+            if (value != null) {
+              addAddressNotifier.countryController.text = value;
+            }
+          },
         );
       }),
     ],

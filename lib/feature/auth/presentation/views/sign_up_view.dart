@@ -18,8 +18,8 @@ class SignUpView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final signUpNotifier = ref.watch(signUpProvider.notifier);
-
+    final signUpNotifier = ref.read(signUpProvider.notifier);
+    ref.watch(signUpProvider);
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -53,6 +53,7 @@ class SignUpView extends ConsumerWidget {
                   CommonAppBtn(
                     title: AppString.signUp,
                     onTap: () => toNamed(context, Routes.createProfile),
+                    // signUpNotifier.signUpValidator(context),
                   ),
                   yHeight(context.height * 0.12),
                   Text.rich(
@@ -88,7 +89,7 @@ Widget formsFieldsSection(SignUpNotifier signUpNotifier) {
       CustomTextField(
         hintText: AppString.exampleEamil,
         prefixIcon: SvgPicture.asset(Assets.email),
-        controller: TextEditingController(),
+        controller: signUpNotifier.emailController,
         labelText: AppString.emailAddress,
       ),
       10.verticalSpace,

@@ -66,6 +66,7 @@ abstract final class AppString {
   static const String enterLastName = "Enter last name";
   static const String mobileNumber = "Mobile Number";
   static const String enterPhoneNumber = "Enter phone number";
+  static const String phoneNumberShouldBe = "Phone number should be 10 number ";
   static const String dateOfBirth = "Date of birth";
   static const String ninNumberOrBvnNumber = "Nin Number or Bvn Number";
   static const String enterNinNumberOrBvnNumber =
@@ -224,6 +225,30 @@ abstract final class AppString {
       "Please select a single agent from the list below to provide your rating and share your feedback.";
   static const String giveyourReviews = "Give your reviews";
   static const String giveRatingtoLandloard = "Give Rating to the landlord ";
+
+  static const pleaseEnterEmailAddress = 'Enter email address';
+  static const pleaseEnterValidEmailAddress = 'Enter valid email address';
+
+  static const pleaseEnterPassword = 'Enter password';
+  static const pleaseEnterNewPassword = 'Enter new password';
+
+  static const newPasswordShouldBeDifferent =
+      'New password must be different from current password';
+
+  static const pleaseEnterCurrentPassword = 'Enter your current password';
+  static const selectReason = 'Select reason';
+
+  static const passwordShouldBe =
+      'Password must be at least 8 characters long and include letters, numbers, and special characters.';
+  static const newPasswordShouldBe =
+      'Password must be at least 8 characters long and include letters, numbers, and special characters.';
+  static const passwordMismatch = 'Confirm passwords do not match';
+  static const pleaseEnterConfirmPassword = 'Enter confirm password';
+  static const String pleaseEnterName = "Enter full name";
+  static const String pleaseEnterSubject = "Enter subject";
+  static const String pleaseEnterMessage = "Enter message";
+  static const String pleaseEnterOtp = "Enter otp";
+  static const String invalidOtp = "Invalid otp please check your opt";
 
 // static const String mMYY = "MM/YY";
 }

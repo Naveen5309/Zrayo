@@ -6,8 +6,27 @@ import 'package:flutter/cupertino.dart';
 sealed class CreateProfileStates extends Equatable {
   const CreateProfileStates();
 }
-class CreateProfileInitial extends CreateProfileStates{
+
+class CreateProfileInitial extends CreateProfileStates {
   @override
   List<Object?> get props => [];
+}
 
+class CreateProfileApiLoading extends CreateProfileStates {
+  @override
+  List<Object> get props => [];
+}
+
+class CreateProfileSuccess extends CreateProfileStates {
+  @override
+  List<Object> get props => [];
+}
+
+class CreateProfileFailed extends CreateProfileStates {
+  final String error;
+
+  const CreateProfileFailed({required this.error});
+
+  @override
+  List<Object> get props => [error];
 }

@@ -16,8 +16,8 @@ class ChangePasswordView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final changePasswordNotifier = ref.watch(changePasswordProvider.notifier);
-
+    final changePasswordNotifier = ref.read(changePasswordProvider.notifier);
+    ref.watch(changePasswordProvider);
     return Scaffold(
       body: Column(
         children: [
@@ -100,8 +100,9 @@ class ChangePasswordView extends ConsumerWidget {
             margin: EdgeInsets.all(16.0),
             title: AppString.change,
             onTap: () {
-              back(context);
-              back(context);
+              changePasswordNotifier.changePasswordValidator(context);
+              // back(context);
+              // back(context);
             },
           )
         ],

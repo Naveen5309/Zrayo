@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/helpers/all_getter.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/provider/add_bank_details_provider.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_text_field.dart';
 
-class AddBankDetail extends StatelessWidget {
+class AddBankDetail extends ConsumerWidget {
   final bool fromSettings;
 
   const AddBankDetail({super.key, required this.fromSettings});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final addBankDetailsNotifier = ref.read(addBankDetailsProvider.notifier);
+    ref.watch(addBankDetailsProvider);
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -49,16 +53,22 @@ class AddBankDetail extends StatelessWidget {
                       children: [
                         yHeight(0),
                         CustomTextField(
+                          controller:
+                              addBankDetailsNotifier.accountHolderController,
                           labelText: AppString.accountHolderName,
                           keyboardType: TextInputType.name,
                           hintText: AppString.enterAccountHolderName,
                         ),
                         CustomTextField(
+                          controller:
+                              addBankDetailsNotifier.accountNumberController,
                           labelText: AppString.accountNumber,
                           keyboardType: TextInputType.number,
                           hintText: AppString.enterAccountNumber,
                         ),
                         CustomTextField(
+                          controller:
+                              addBankDetailsNotifier.rountingNumberController,
                           labelText: AppString.routingNumber,
                           keyboardType: TextInputType.number,
                           hintText: AppString.enterRoutingNumber,
@@ -81,6 +91,7 @@ class AddBankDetail extends StatelessWidget {
                     if (Getters.isAgent()) {
                       offAllNamed(context, Routes.dashboard);
                     } else {
+                      // addBankDetailsNotifier.addBankDetailsValidator(context);
                       toNamed(context, Routes.subscriptionPlanView);
                     }
                   } else {
@@ -97,9 +108,12 @@ class AddBankDetail extends StatelessWidget {
                   backGroundColor: AppColor.secondry,
                   textColor: AppColor.primary,
                   onTap: () {
+                    // toNamed(context, Routes.subscriptionPlanView);)
                     if (Getters.isAgent()) {
                       offAllNamed(context, Routes.dashboard);
                     } else {
+                      // addBankDetailsNotifier.addBankDetailsValidator(context);
+
                       toNamed(context, Routes.subscriptionPlanView);
                     }
                   },

@@ -48,7 +48,7 @@ class AgentHomeView extends StatelessWidget {
                     child: CustomTextField(
                       hintText: "Search location...",
                       prefixIcon: SvgPicture.asset(Assets.searchIcon),
-                      readOnly: true,
+                      // readOnly: true,
                       // onTap: () => toNamed(context, Routes.searchPropertyView),
                     ),
                   ),

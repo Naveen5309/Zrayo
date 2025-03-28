@@ -1,24 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pinput/pinput.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/provider/verify_email_provider.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 
 import '../../../../config/assets.dart';
 
-class OtpVerificationView extends StatelessWidget {
+class OtpVerificationView extends ConsumerWidget {
   const OtpVerificationView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final verifyEmailNotifier = ref.read(verifyEmailProvider.notifier);
+    ref.watch(verifyEmailProvider);
     final defaultPinTheme = PinTheme(
       width: 60,
       height: 60,
-
       textStyle: TextStyle(
           fontSize: 20,
           color: Color.fromRGBO(30, 60, 87, 1),
@@ -65,9 +69,12 @@ class OtpVerificationView extends StatelessWidget {
                     ),
                     yHeight(20.sp),
                     Pinput(
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      keyboardType: TextInputType.number,
                       defaultPinTheme: defaultPinTheme,
                       focusedPinTheme: focusedPinTheme,
                       submittedPinTheme: submittedPinTheme,
+                      controller: verifyEmailNotifier.otpController,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       cursor: Container(
                         height: 17.h,
@@ -96,16 +103,17 @@ class OtpVerificationView extends StatelessWidget {
                         ),
                       ],
                     ),
-
                   ],
                 ),
               ),
             ),
           ),
           CommonAppBtn(
-            margin:  EdgeInsets.all(16.0),
+            margin: EdgeInsets.all(16.0),
             title: AppString.verify,
-            onTap: () => toNamed(context, Routes.changePasswordView),
+            onTap: () =>
+                // verifyEmailNotifier.verifyEmailValidator(context)
+                toNamed(context, Routes.changePasswordView),
           )
         ],
       ),

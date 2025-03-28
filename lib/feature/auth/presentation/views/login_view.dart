@@ -9,7 +9,6 @@ import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/provider/login_provider.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/provider/state_notifiers/login_notifiers.dart';
-import 'package:zrayo_flutter/feature/auth/presentation/provider/states/login_states.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/views/forgot_password_sheet.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
@@ -143,7 +142,6 @@ Widget formsFieldsSection(LoginNotifier loginNotifier) {
     ],
   );
 }
-
 
 Widget customSocialMediaSection() {
   return Row(
