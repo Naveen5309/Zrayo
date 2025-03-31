@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/config/app_utils.dart';
@@ -6,19 +7,22 @@ import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/helpers/all_getter.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
+import 'package:zrayo_flutter/feature/setting/presentation/provider/setting_provider.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/view/confirm_logout.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/view/custom_setting_tile.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_cache_network_image.dart';
 
-class SettingView extends StatelessWidget {
+class SettingView extends ConsumerWidget {
   const SettingView({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    var settingNotifier = ref.read(settingViewProvider.notifier);
+    ref.watch(settingViewProvider);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -35,11 +39,21 @@ class SettingView extends StatelessWidget {
                       onTap: () => toNamed(context, Routes.subscriptionPlanView,
                           args: {"fromSettings": true}),
                       child: subscriptionSection(context)),
-                  SettingTile(
-                    hasToggle: true,
-                    icon: Assets.notification,
-                    title: AppString.notifications,
-                  ),
+                  Consumer(builder:
+                      (BuildContext context, WidgetRef ref, Widget? child) {
+                    var isToogleTrue = ref.watch(isToogle);
+
+                    return SettingTile(
+                      hasToggle: true,
+                      toggleValue: isToogleTrue,
+                      icon: Assets.notification,
+                      onToggleChanged: (value) {
+                        ref.read(isToogle.notifier).state =
+                            !ref.read(isToogle.notifier).state;
+                      },
+                      title: AppString.notifications,
+                    );
+                  }),
                   SettingTile(
                     icon: Assets.personAdd,
                     title: AppString.inviteFriend,

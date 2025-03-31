@@ -69,7 +69,9 @@ class SettingTile extends StatelessWidget {
                       width: 50,
                       height: 30,
                       decoration: BoxDecoration(
-                        color: AppColor.greyEDEDED,
+                        color: toggleValue
+                            ? AppColor.primary
+                            : AppColor.greyEDEDED,
                         borderRadius: BorderRadius.circular(500),
                         border:
                             Border.all(width: 2, color: AppColor.greyDBDBDB),
