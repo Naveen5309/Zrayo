@@ -31,7 +31,10 @@ class SettingView extends StatelessWidget {
                 children: [
                   yHeight(11),
                   profileSection(context),
-                  subscriptionSection(context),
+                  GestureDetector(
+                      onTap: () => toNamed(context, Routes.subscriptionPlanView,
+                          args: {"fromSettings": true}),
+                      child: subscriptionSection(context)),
                   SettingTile(
                     hasToggle: true,
                     icon: Assets.notification,
@@ -86,7 +89,12 @@ class SettingView extends StatelessWidget {
                     icon: Assets.logout,
                     title: AppString.logout,
                   ),
-                  if (!Getters.isAgent()) premiumSection(context),
+                  if (!Getters.isAgent())
+                    GestureDetector(
+                        onTap: () => toNamed(
+                            context, Routes.subscriptionPlanView,
+                            args: {"fromSettings": true}),
+                        child: premiumSection(context)),
                   yHeight(11)
                 ],
               ),

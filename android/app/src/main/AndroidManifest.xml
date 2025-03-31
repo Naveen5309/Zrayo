@@ -10,7 +10,7 @@
         tools:ignore="ScopedStorage"/>
 
     <application
-        android:label="zrayo_flutter"
+        android:label="Zrayo"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

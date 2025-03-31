@@ -22,83 +22,89 @@ class LoginView extends ConsumerWidget {
     ref.watch(loginProvider);
     final loginNotifier = ref.read(loginProvider.notifier);
 
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            yHeight(context.height * .13),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: context.width * .05),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(Assets.zrayo),
-                  10.verticalSpace,
-                  AppText(
-                    text: AppString.welcomeBack,
-                    fontFamily: AppFonts.satoshiBold,
-                    lineHeight: 1.2,
-                    textSize: 24.sp,
-                    color: AppColor.black232323,
-                  ),
-                  5.verticalSpace,
-                  AppText(
-                    text: AppString.loginToYourAccount,
-                    fontFamily: AppFonts.satoshiRegular,
-                    color: AppColor.black4A4A4A,
-                  ),
-                  yHeight(context.height * 0.05),
-                  formsFieldsSection(loginNotifier),
-                  yHeight(context.height * 0.01),
-                  GestureDetector(
-                    onTap: () {
-                      Utils.appBottomSheet(
-                          isScrolled: true,
-                          context: context,
-                          widget: ForgotPasswordSheet());
-                    },
-                    child: AppText(
-                      text: AppString.forgetPassword,
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        offAllNamed(context, Routes.chooseInterfaceView);
+      },
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              yHeight(context.height * .13),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: context.width * .05),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(Assets.zrayo),
+                    10.verticalSpace,
+                    AppText(
+                      text: AppString.welcomeBack,
                       fontFamily: AppFonts.satoshiBold,
-                      color: AppColor.primary,
-                    ).align(alignment: Alignment.centerRight),
-                  ),
-                  yHeight(context.height * 0.02),
-                  CommonAppBtn(
-                    title: AppString.login,
-                    onTap: () => loginNotifier.loginValidator(context),
-                  ),
-                  yHeight(context.height * 0.02),
-                  SvgPicture.asset(Assets.loginOr),
-                  yHeight(context.height * 0.015),
-                  customSocialMediaSection(),
-                  yHeight(context.height * 0.11),
-                  Text.rich(
-                    TextSpan(
-                      text: "${AppString.newUser} ",
-                      style: TextStyle(
-                          color: AppColor.black4A4A4A,
-                          fontFamily: AppFonts.satoshiRegular),
-                      children: [
-                        TextSpan(
-                          text: AppString.signUp,
-                          style: TextStyle(
-                            color: AppColor.primary,
-                            fontFamily: AppFonts.satoshiBold,
-                          ),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              offAllNamed(context, Routes.signUpView);
-                            },
-                        ),
-                      ],
+                      lineHeight: 1.2,
+                      textSize: 24.sp,
+                      color: AppColor.black232323,
                     ),
-                  ),
-                  yHeight(context.height * 0.01),
-                ],
+                    5.verticalSpace,
+                    AppText(
+                      text: AppString.loginToYourAccount,
+                      fontFamily: AppFonts.satoshiRegular,
+                      color: AppColor.black4A4A4A,
+                    ),
+                    yHeight(context.height * 0.05),
+                    formsFieldsSection(loginNotifier),
+                    yHeight(context.height * 0.01),
+                    GestureDetector(
+                      onTap: () {
+                        Utils.appBottomSheet(
+                            isScrolled: true,
+                            context: context,
+                            widget: ForgotPasswordSheet());
+                      },
+                      child: AppText(
+                        text: AppString.forgetPassword,
+                        fontFamily: AppFonts.satoshiBold,
+                        color: AppColor.primary,
+                      ).align(alignment: Alignment.centerRight),
+                    ),
+                    yHeight(context.height * 0.02),
+                    CommonAppBtn(
+                      title: AppString.login,
+                      onTap: () => loginNotifier.loginValidator(context),
+                    ),
+                    yHeight(context.height * 0.02),
+                    SvgPicture.asset(Assets.loginOr),
+                    yHeight(context.height * 0.015),
+                    customSocialMediaSection(),
+                    yHeight(context.height * 0.11),
+                    Text.rich(
+                      TextSpan(
+                        text: "${AppString.newUser} ",
+                        style: TextStyle(
+                            color: AppColor.black4A4A4A,
+                            fontFamily: AppFonts.satoshiRegular),
+                        children: [
+                          TextSpan(
+                            text: AppString.signUp,
+                            style: TextStyle(
+                              color: AppColor.primary,
+                              fontFamily: AppFonts.satoshiBold,
+                            ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                offAllNamed(context, Routes.signUpView);
+                              },
+                          ),
+                        ],
+                      ),
+                    ),
+                    yHeight(context.height * 0.01),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

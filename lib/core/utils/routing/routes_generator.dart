@@ -45,13 +45,18 @@ class RouteGenerator {
       case Routes.splash:
         return _fadeTransitionRoute(const SplashView());
       case Routes.chooseInterfaceView:
-        return _fadeTransitionRoute(const ChooseInterfaceView());
-
+        return PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              ChooseInterfaceView(),
+        );
       case Routes.loginView:
-        return _fadeTransitionRoute(const LoginView());
-
+        return PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) => LoginView(),
+        );
       case Routes.signUpView:
-        return _fadeTransitionRoute(const SignUpView());
+        return PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) => SignUpView(),
+        );
 
       case Routes.uploadDocument:
         return _fadeTransitionRoute(
@@ -74,7 +79,8 @@ class RouteGenerator {
       case Routes.changePasswordView:
         return _fadeTransitionRoute(const ChangePasswordView());
       case Routes.subscriptionPlanView:
-        return _fadeTransitionRoute(const SubscriptionPlanView());
+        return _fadeTransitionRoute(
+            SubscriptionPlanView(fromSettings: args?['fromSettings'] ?? false));
 
       case Routes.dashboard:
         return _fadeTransitionRoute(const Dashboard());

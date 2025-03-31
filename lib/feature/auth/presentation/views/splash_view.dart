@@ -25,14 +25,14 @@ class _SplashViewState extends ConsumerState<SplashView> {
 
   @override
   Widget build(BuildContext context) {
-    ref.read(animationProvider.notifier);
-    final animation = ref.watch(animationProvider.notifier);
+    ref.watch(animationProvider);
+    final animation = ref.read(animationProvider.notifier);
 
     return Scaffold(
       backgroundColor: AppColor.black000000,
       body: Center(
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 1000),
+          duration: const Duration(milliseconds: 800),
           curve: Curves.linearToEaseOut,
           height: animation.state ? screenHeight(context) / 5 : 0,
           width: animation.state ? screenWidth(context) / 3 : 0,

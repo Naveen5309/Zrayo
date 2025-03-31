@@ -20,63 +20,69 @@ class SignUpView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final signUpNotifier = ref.read(signUpProvider.notifier);
     ref.watch(signUpProvider);
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: context.width * .05),
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  yHeight(
-                    context.height * .13,
-                  ),
-                  SvgPicture.asset(Assets.zrayo),
-                  10.verticalSpace,
-                  AppText(
-                    text: AppString.startYourJourney,
-                    fontFamily: AppFonts.satoshiBold,
-                    lineHeight: 1.2,
-                    textSize: 24.sp,
-                    color: AppColor.black232323,
-                  ),
-                  5.verticalSpace,
-                  AppText(
-                    lineHeight: 1.1,
-                    textAlign: TextAlign.center,
-                    text: AppString.createAccountToAccessAllFeature,
-                    fontFamily: AppFonts.satoshiRegular,
-                    color: AppColor.black4A4A4A,
-                  ),
-                  yHeight(context.height * 0.04),
-                  formsFieldsSection(signUpNotifier),
-                  yHeight(context.height * 0.02),
-                  CommonAppBtn(
-                    title: AppString.signUp,
-                    onTap: () => toNamed(context, Routes.createProfile),
-                    // signUpNotifier.signUpValidator(context),
-                  ),
-                  yHeight(context.height * 0.12),
-                  Text.rich(
-                    TextSpan(
-                      text: "${AppString.alreadyHaveAccount} ",
-                      style: TextStyle(color: AppColor.black4A4A4A),
-                      children: [
-                        TextSpan(
-                          text: AppString.login,
-                          style: TextStyle(
-                            color: AppColor.primary,
-                            fontFamily: AppFonts.satoshiBold,
-                          ),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              offAllNamed(context, Routes.loginView);
-                            },
-                        ),
-                      ],
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        offAllNamed(context, Routes.loginView);
+      },
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: context.width * .05),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    yHeight(
+                      context.height * .13,
                     ),
-                  ),
-                  yHeight(context.height * 0.01),
-                ])),
+                    SvgPicture.asset(Assets.zrayo),
+                    10.verticalSpace,
+                    AppText(
+                      text: AppString.startYourJourney,
+                      fontFamily: AppFonts.satoshiBold,
+                      lineHeight: 1.2,
+                      textSize: 24.sp,
+                      color: AppColor.black232323,
+                    ),
+                    5.verticalSpace,
+                    AppText(
+                      lineHeight: 1.1,
+                      textAlign: TextAlign.center,
+                      text: AppString.createAccountToAccessAllFeature,
+                      fontFamily: AppFonts.satoshiRegular,
+                      color: AppColor.black4A4A4A,
+                    ),
+                    yHeight(context.height * 0.04),
+                    formsFieldsSection(signUpNotifier),
+                    yHeight(context.height * 0.02),
+                    CommonAppBtn(
+                      title: AppString.signUp,
+                      onTap: () => toNamed(context, Routes.createProfile),
+                      // signUpNotifier.signUpValidator(context),
+                    ),
+                    yHeight(context.height * 0.12),
+                    Text.rich(
+                      TextSpan(
+                        text: "${AppString.alreadyHaveAccount} ",
+                        style: TextStyle(color: AppColor.black4A4A4A),
+                        children: [
+                          TextSpan(
+                            text: AppString.login,
+                            style: TextStyle(
+                              color: AppColor.primary,
+                              fontFamily: AppFonts.satoshiBold,
+                            ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                offAllNamed(context, Routes.loginView);
+                              },
+                          ),
+                        ],
+                      ),
+                    ),
+                    yHeight(context.height * 0.01),
+                  ])),
+        ),
       ),
     );
   }

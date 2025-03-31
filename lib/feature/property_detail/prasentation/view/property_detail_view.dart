@@ -178,20 +178,21 @@ class PropertyDetailView extends StatelessWidget {
               margin: EdgeInsets.symmetric(horizontal: 16.sp),
               onTap: () => toNamed(context, Routes.chatView),
             ),
-            CommonAppBtn(
-              title: "Give Rating",
-              margin: EdgeInsets.all(16.sp),
-              onTap: () {
-                Utils.appBottomSheet(
-                    context: context,
-                    widget: ReviewBottomsheet(
-                      name: "Paras",
-                      isProperty: true,
-                      title: AppString.giveRatings,
-                      subtitle: AppString.propertyDeleted,
-                    ));
-              },
-            ),
+            yHeight(5)
+            // CommonAppBtn(
+            //   title: "Give Rating",
+            //   margin: EdgeInsets.all(16.sp),
+            //   onTap: () {
+            //     Utils.appBottomSheet(
+            //         context: context,
+            //         widget: ReviewBottomsheet(
+            //           name: "Paras",
+            //           isProperty: true,
+            //           title: AppString.giveRatings,
+            //           subtitle: AppString.propertyDeleted,
+            //         ));
+            //   },
+            // ),
           ],
         ),
       ),

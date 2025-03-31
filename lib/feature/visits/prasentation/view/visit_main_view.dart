@@ -50,6 +50,7 @@ class VisitMainView extends StatelessWidget {
               ),
             ),
           ),
+          yHeight(10),
           Expanded(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
