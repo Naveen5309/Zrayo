@@ -77,7 +77,7 @@ class AgentHomeView extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () => toNamed(context, Routes.customViewAllScreen,
-                        args: {"title": "Assigned Properties"}),
+                        args: {"title": "Assigned Properties",}),
                     child: AppText(
                       text: "See all",
                       color: AppColor.primary,

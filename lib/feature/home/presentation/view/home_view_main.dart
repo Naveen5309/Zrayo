@@ -17,8 +17,11 @@ import '../../../../config/app_utils.dart';
 import '../../../../config/enums.dart';
 
 part 'agent_home_view.dart';
+
 part 'customer_home_view.dart';
+
 part 'customer_map_view.dart';
+
 part 'property_box.dart';
 
 class HomeViewMain extends ConsumerWidget {
@@ -26,8 +29,8 @@ class HomeViewMain extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.watch(homeProvider);
-    final homeNotifier = ref.read(homeProvider.notifier);
+    ref.watch(customerHomeProvider);
+    final homeNotifier = ref.read(customerHomeProvider.notifier);
     return Scaffold(
       floatingActionButton: Getters.isAgent()
           ? SizedBox.shrink()
@@ -36,10 +39,14 @@ class HomeViewMain extends ConsumerWidget {
                 homeNotifier.updateCustomerHomeView();
               },
               backgroundColor: AppColor.primary,
-              child: SvgPicture.asset(Assets.mapTrifold),
+              child: SvgPicture.asset(
+                  homeNotifier.selectedCustomerHomePageViewType ==
+                          DataViewTypes.map
+                      ? Assets.listBulletsIcon
+                      : Assets.mapTrifold),
             ),
-      body: (homeNotifier.selectedCustomerHomePageType ==
-                  CustomerHomePageTypesEnum.list ||
+      body: (homeNotifier.selectedCustomerHomePageViewType ==
+                  DataViewTypes.list ||
               Getters.isAgent())
           ? Container(
               color: AppColor.primary,
