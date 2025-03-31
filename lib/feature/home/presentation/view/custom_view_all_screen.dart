@@ -37,6 +37,7 @@ class CustomViewAllScreen extends StatelessWidget {
                 InkWell(
                   onTap: () => Utils.appBottomSheet(
                       isScrolled: true,
+                        barOnTop: false,
                       context: context,
                       widget: CommonPropertyTypeFilterContent()),
                   child: Container(

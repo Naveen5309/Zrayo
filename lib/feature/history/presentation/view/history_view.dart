@@ -46,6 +46,7 @@ class HistoryView extends StatelessWidget {
                           Utils.appBottomSheet(
                               isScrolled: true,
                               context: context,
+                              barOnTop: false,
                               widget: CommonPropertyTypeFilterContent());
                         },
                         child: Container(

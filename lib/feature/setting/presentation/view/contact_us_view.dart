@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
@@ -19,13 +20,17 @@ class ContactUsView extends ConsumerWidget {
     return Scaffold(
       body: Column(
         children: [
+          yHeight(10.h),
           CustomAppBar(title: AppString.contactUs),
+          yHeight(25.h),
           Padding(
             padding: EdgeInsets.symmetric(
-                horizontal: 16, vertical: context.width / 12),
+                horizontal: 16,),
             child: Column(
               children: [
                 SvgPicture.asset(Assets.contactUs),
+                yHeight(18.h),
+
                 CustomTextField(
                   controller: contactUsNotifier.emailController,
                   labelText: AppString.email,

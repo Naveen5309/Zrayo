@@ -15,6 +15,7 @@ abstract final class AppConstants {
 }
 
 abstract final class AppFonts {
+  static const String satoshiBlack = "Satoshi-Black"; // 900
   static const String satoshiBold = "Satoshi-Bold"; // 700
   static const String satoshiLight = "Satoshi-Light"; //300
   static const String satoshiMedium = "Satoshi-Medium"; //500

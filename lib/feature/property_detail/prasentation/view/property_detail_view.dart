@@ -15,13 +15,18 @@ import 'package:zrayo_flutter/feature/z_common_widgets/custom_cache_network_imag
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_rating_box.dart';
 
 part 'agents_landlord_list.dart';
+
 part 'all_pictures_view.dart';
+
 part 'property_features_list.dart';
+
 part 'property_historical_data.dart';
+
 part 'property_map_view.dart';
 
 class PropertyDetailView extends StatelessWidget {
   final bool isAgentProperty;
+
   const PropertyDetailView({super.key, this.isAgentProperty = false});
 
   @override
@@ -202,48 +207,61 @@ class PropertyDetailView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              AppText(
-                text: "Hexagon villa",
-                textSize: 20.sp,
-                fontFamily: AppFonts.satoshiBold,
-              ),
-              AppText(
-                text: "\$1200",
-                textSize: 18.sp,
-                fontFamily: AppFonts.satoshiBold,
-              ),
-            ],
-          ),
-          yHeight(5),
-          Row(
-            children: [
-              SvgPicture.asset(Assets.locationDark),
-              xWidth(5),
               Expanded(
-                child: AppText(
-                  text: "Street Gistieng  no 12",
-                  textSize: 14.sp,
-                  fontFamily: AppFonts.satoshiRegular,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    AppText(
+                      text: "Hexagon villa",
+                      textSize: 20.sp,
+                      fontFamily: AppFonts.satoshiBold,
+                    ),
+                    yHeight(15),
+                    Row(
+                      children: [
+                        SvgPicture.asset(Assets.locationDark),
+                        xWidth(5),
+                        Expanded(
+                          child: AppText(
+                            text: "Street Gistieng  no 12",
+                            textSize: 14.sp,
+                            fontFamily: AppFonts.satoshiRegular,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
-                decoration: BoxDecoration(
-                    color: AppColor.blue046EC4.withValues(alpha: .10),
-                    borderRadius: BorderRadius.circular(6)),
-                child: AppText(
-                  text: "For Sale",
-                  textSize: 12.sp,
-                  color: AppColor.blue046EC4,
-                ),
+              yHeight(5),
+              Column(
+                children: [
+                  AppText(
+                    text: "\$1200",
+                    textSize: 18.sp,
+                    fontFamily: AppFonts.satoshiBlack,
+                  ),
+                  yHeight(5),
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+                    decoration: BoxDecoration(
+                        color: AppColor.blue046EC4.withValues(alpha: .10),
+                        borderRadius: BorderRadius.circular(6)),
+                    child: AppText(
+                      text: "For Sale",
+                      textSize: 12.sp,
+                      color: AppColor.blue046EC4,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
           yHeight(10.h),
           if (Getters.isAgent()) dottedContainer(context),
-          yHeight(15.h),
+          yHeight(13.h),
           AppText(
             text:
                 "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text",
@@ -254,7 +272,7 @@ class PropertyDetailView extends StatelessWidget {
           yHeight(30.sp),
           AppText(
             text: "Property Details",
-            textSize: 19.sp,
+            textSize: 16.sp,
             fontFamily: AppFonts.satoshiBold,
           ),
           yHeight(15.h),

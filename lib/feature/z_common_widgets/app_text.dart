@@ -50,7 +50,7 @@ class AppText extends StatelessWidget {
       maxLines: maxlines,
       overflow: maxlines != null ? TextOverflow.ellipsis : null,
       textAlign: textAlign,
-      style: getStyle(color ?? AppColor.black000000, textSize ?? 16),
+      style: getStyle(color ?? AppColor.black232323, textSize ?? 16),
     );
   }
 

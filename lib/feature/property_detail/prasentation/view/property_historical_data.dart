@@ -12,7 +12,7 @@ class PropertyHistoricalData extends StatelessWidget {
         children: [
           AppText(
             text: "Historical Data",
-            textSize: 19.sp,
+            textSize: 16.sp,
             fontFamily: AppFonts.satoshiBold,
           ),
           yHeight(15.h),

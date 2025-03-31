@@ -13,7 +13,7 @@ class AgentsLandlordList extends StatelessWidget {
         children: [
           AppText(
             text: "List of Agents & Landlord ",
-            textSize: 19.sp,
+            textSize: 16.sp,
             fontFamily: AppFonts.satoshiBold,
           ),
           yHeight(15.h),

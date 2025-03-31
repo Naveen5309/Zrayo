@@ -12,7 +12,7 @@ class PropertyFeaturesList extends StatelessWidget {
         children: [
           AppText(
             text: "Features",
-            textSize: 19.sp,
+            textSize: 16.sp,
             fontFamily: AppFonts.satoshiBold,
           ),
           yHeight(15.h),
@@ -33,7 +33,7 @@ class PropertyFeaturesList extends StatelessWidget {
                   children: [
                     SvgPicture.asset(Assets.circleCheckIcon),
                     xWidth(5),
-                    AppText(text: "Air Condition"),
+                    AppText(text: "Air Condition",textSize: 14.sp,),
                   ],
                 );
               },

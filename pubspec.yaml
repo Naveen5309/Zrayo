@@ -88,6 +88,10 @@ flutter:
 
 
   fonts:
+    - family: Satoshi-Black
+      fonts:
+        - asset: assets/fonts/satoshi/Satoshi-Black.otf
+          weight: 700
     - family: Satoshi-Bold
       fonts:
         - asset: assets/fonts/satoshi/Satoshi-Bold.otf

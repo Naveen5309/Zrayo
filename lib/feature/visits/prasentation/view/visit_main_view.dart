@@ -40,6 +40,8 @@ class VisitMainView extends StatelessWidget {
                   Utils.appBottomSheet(
                       isScrolled: true,
                       context: context,
+                      barOnTop: false,
+
                       widget: CommonPropertyTypeFilterContent());
                 },
                 child: SvgPicture.asset(

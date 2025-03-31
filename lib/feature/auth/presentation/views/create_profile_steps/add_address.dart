@@ -49,7 +49,8 @@ class AddAddressView extends ConsumerWidget {
               padding: const EdgeInsets.all(16),
               child: formsFieldsSection(addAddressNotifier),
             ),
-            if (fromSettings) yHeight(context.height / 6),
+            // if (fromSettings)
+              yHeight(context.height / 4.5),
             CommonAppBtn(
               title:
                   fromSettings ? AppString.update : AppString.saveAndContinue,

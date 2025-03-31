@@ -99,7 +99,7 @@ class AddBankDetail extends ConsumerWidget {
                   }
                 },
               ),
-              if (!fromSettings)
+              if (!fromSettings && !Getters.isAgent())
                 CommonAppBtn(
                   title: AppString.skip,
                   margin:

@@ -25,7 +25,7 @@ class CommonPropertyTypeFilterContent extends StatelessWidget {
             InkWell(onTap: () => back(context), child: Icon(Icons.close))
           ],
         ),
-        yHeight(30.h),
+        yHeight(25.h),
         Column(
           children: [
             propertyTypeBox({"title": "All"}, false),
