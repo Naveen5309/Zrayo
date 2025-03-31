@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -60,6 +62,7 @@ class LoginView extends ConsumerWidget {
                         Utils.appBottomSheet(
                             isScrolled: true,
                             context: context,
+                            barOnTop: false,
                             widget: ForgotPasswordSheet());
                       },
                       child: AppText(
@@ -166,20 +169,22 @@ Widget customSocialMediaSection() {
           onTap: () {},
         ),
       ),
-      xWidth(20.sp),
-      Expanded(
-        child: CommonAppBtn(
-          prefixWidget: SvgPicture.asset(Assets.iconApple),
-          title: AppString.apple,
-          backGroundColor: AppColor.orangeFFF9F6,
-          borderColor: Colors.transparent,
-          titleStyle: TextStyle(
-              color: AppColor.black232323,
-              fontFamily: AppFonts.satoshiBold,
-              fontSize: 16.sp),
-          onTap: () {},
-        ),
-      ),
+      if (Platform.isIOS) ...{
+        xWidth(20.sp),
+        Expanded(
+          child: CommonAppBtn(
+            prefixWidget: SvgPicture.asset(Assets.iconApple),
+            title: AppString.apple,
+            backGroundColor: AppColor.orangeFFF9F6,
+            borderColor: Colors.transparent,
+            titleStyle: TextStyle(
+                color: AppColor.black232323,
+                fontFamily: AppFonts.satoshiBold,
+                fontSize: 16.sp),
+            onTap: () {},
+          ),
+        )
+      },
     ],
   );
 }

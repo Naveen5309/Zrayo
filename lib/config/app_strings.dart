@@ -109,7 +109,7 @@ abstract final class AppString {
       "Log in as a customer to find properties or \n as an agent to assist buyers and sellers.";
   static const String chooseInterface = "Choose Interface";
   static const String pleaseEnterEmailAddressAssociated =
-      "Don’t wary, Please enter email address associated\nwith your account.";
+      "Don’t worry, Please enter email address associated with your account.";
   static const String pleaseEnterYourOtpCodeSentToYour =
       "Please enter your OTP code sent to your\nemail address.";
   static const String submit = "Submit";
@@ -226,8 +226,8 @@ abstract final class AppString {
   static const String giveyourReviews = "Give your reviews";
   static const String giveRatingtoLandloard = "Give Rating to the landlord ";
 
-  static const pleaseEnterEmailAddress = 'Enter email address';
-  static const pleaseEnterValidEmailAddress = 'Enter valid email address';
+  static const pleaseEnterEmailAddress = 'Please enter email';
+  static const pleaseEnterValidEmailAddress = 'Please enter valid email';
 
   static const pleaseEnterPassword = 'Enter password';
   static const pleaseEnterNewPassword = 'Enter new password';

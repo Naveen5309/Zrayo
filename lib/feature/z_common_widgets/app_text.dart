@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../config/helper.dart';
 
 enum AppTextStyle { title, medium, regular, small }

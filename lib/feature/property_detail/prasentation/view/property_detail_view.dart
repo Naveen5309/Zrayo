@@ -14,15 +14,11 @@ import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_cache_network_image.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_rating_box.dart';
 
-part 'property_historical_data.dart';
-
-part 'property_map_view.dart';
-
-part 'property_features_list.dart';
-
 part 'agents_landlord_list.dart';
-
 part 'all_pictures_view.dart';
+part 'property_features_list.dart';
+part 'property_historical_data.dart';
+part 'property_map_view.dart';
 
 class PropertyDetailView extends StatelessWidget {
   final bool isAgentProperty;

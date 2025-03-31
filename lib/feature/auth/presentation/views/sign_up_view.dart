@@ -41,7 +41,7 @@ class SignUpView extends ConsumerWidget {
                       text: AppString.startYourJourney,
                       fontFamily: AppFonts.satoshiBold,
                       lineHeight: 1.2,
-                      textSize: 24.sp,
+                      textSize: 22.sp,
                       color: AppColor.black232323,
                     ),
                     5.verticalSpace,

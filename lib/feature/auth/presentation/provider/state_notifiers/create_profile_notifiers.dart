@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:zrayo_flutter/config/validator.dart';
 import 'package:zrayo_flutter/core/helpers/all_getter.dart';
-import 'package:zrayo_flutter/feature/auth/presentation/views/create_profile_steps/add_bank_detail.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 
 import '../../../data/repositories/auth_repo_implementation.dart';

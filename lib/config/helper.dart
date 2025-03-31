@@ -1,13 +1,12 @@
 import 'dart:developer';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-part 'extensions.dart';
-
 part '../config/app_colors.dart';
-
 part '../config/app_strings.dart';
+part 'extensions.dart';
 
 void exit() {
   SystemNavigator.pop();

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:zrayo_flutter/config/enums.dart';
+
+import '../local_storage/local_storage.dart';
 import '../network/http_service.dart';
 import '../network/network_info.dart';
-import '../local_storage/local_storage.dart';
 
 /// general getter
 

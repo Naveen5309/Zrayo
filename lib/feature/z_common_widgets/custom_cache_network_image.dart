@@ -44,8 +44,7 @@ class CustomCacheNetworkImage extends StatelessWidget {
         //     )
         //   :
         CachedNetworkImage(
-      imageUrl:
-          "https://cdn.pixabay.com/photo/2016/11/18/17/46/house-1836070_640.jpg",
+      imageUrl: "https://www.shutterstock.com/image-illustration/3d-rendering-house-under-construction-260nw-2160375337.jpg",
       height: height ?? size,
       width: width ?? size,
       fit: BoxFit.cover,

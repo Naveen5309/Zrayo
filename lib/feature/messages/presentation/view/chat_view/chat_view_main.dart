@@ -10,9 +10,8 @@ import 'package:zrayo_flutter/feature/z_common_widgets/custom_text_field.dart';
 import '../../../../home/presentation/view/home_view_main.dart';
 import '../../../../z_common_widgets/custom_cache_network_image.dart';
 
-part 'message_widget.dart';
-
 part 'chat_app_bar.dart';
+part 'message_widget.dart';
 
 class ChatView extends StatelessWidget {
   const ChatView({super.key});

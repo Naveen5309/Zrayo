@@ -57,7 +57,7 @@ class OtpVerificationView extends ConsumerWidget {
                     yHeight(15.sp),
                     AppText(
                       text: AppString.otpVerification,
-                      textSize: 24.sp,
+                      textSize: 22.sp,
                       fontFamily: AppFonts.satoshiBold,
                     ),
                     yHeight(10.sp),

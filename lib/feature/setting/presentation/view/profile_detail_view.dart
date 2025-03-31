@@ -49,7 +49,7 @@ class ProfileDetailView extends StatelessWidget {
   /// personal detail widget
   Widget personalDetail(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       decoration: Utils.boxDecoWithShadow(),
       child: Column(
         children: [
@@ -155,7 +155,7 @@ class ProfileDetailView extends StatelessWidget {
   /// address detail widget
   Widget addressDetail(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 15),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       decoration: Utils.boxDecoWithShadow(),
       child: Column(
         children: [
@@ -264,7 +264,7 @@ class ProfileDetailView extends StatelessWidget {
   /// Uploaded document detail widget
   Widget uploadedDocDetail(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 15),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       decoration: Utils.boxDecoWithShadow(),
       child: Column(
         children: [

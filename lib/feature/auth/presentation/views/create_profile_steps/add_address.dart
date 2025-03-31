@@ -5,7 +5,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/provider/add_address_provider.dart';
-import 'package:zrayo_flutter/feature/auth/presentation/provider/create_profile_provider.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/provider/state_notifiers/create_profile_notifiers.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';

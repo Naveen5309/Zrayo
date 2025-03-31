@@ -1,7 +1,9 @@
 import 'dart:async';
+
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
+
 import '../../config/helper.dart';
 import '../../feature/auth/data/data_source/auth_data_source.dart';
 import '../../feature/auth/data/repositories/auth_repo_implementation.dart';

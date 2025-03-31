@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/home/presentation/providers/home_provider.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
+
 import '../../../../../config/app_utils.dart';
 import '../../../../../config/assets.dart';
 import '../../../../../config/helper.dart';
 import '../../../../z_common_widgets/custom_drop_down.dart';
 import '../../../../z_common_widgets/custom_text_field.dart';
-import 'package:syncfusion_flutter_core/theme.dart';
 
 part 'price_slider.dart';
-
 class SearchPropertyView extends ConsumerWidget {
   const SearchPropertyView({super.key});
 

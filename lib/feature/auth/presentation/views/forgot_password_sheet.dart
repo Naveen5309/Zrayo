@@ -18,43 +18,44 @@ class ForgotPasswordSheet extends ConsumerWidget {
     final forgetPasswordNotifier = ref.read(forgetPasswordProvider.notifier);
     ref.watch(forgetPasswordProvider);
     return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            SvgPicture.asset(Assets.mailImage),
-            yHeight(15.sp),
-            AppText(
-              text: AppString.forgetPassword,
-              textSize: 24.sp,
-              fontFamily: AppFonts.satoshiBold,
-            ),
-            yHeight(10.sp),
-            AppText(
-              text: AppString.pleaseEnterEmailAddressAssociated,
-              fontFamily: AppFonts.satoshiRegular,
-              textAlign: TextAlign.center,
-              lineHeight: 1.2,
-            ),
-            yHeight(10.sp),
-            CustomTextField(
-              hintText: AppString.exampleEamil,
-              prefixIcon: SvgPicture.asset(Assets.email),
-              controller: forgetPasswordNotifier.emailController,
-              labelText: AppString.emailAddress,
-            ),
-            yHeight(10.sp),
-            CommonAppBtn(
-              title: AppString.submit,
-              onTap: () {
-                // forgetPasswordNotifier.forgetPasswordValidator(context);
-                back(context);
-                toNamed(context, Routes.otpVerificationView);
-              },
-            )
-          ],
-        ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Align(
+            alignment: Alignment.centerRight,
+            child: Icon(Icons.close,size: 28.h,),
+          ),
+          SvgPicture.asset(Assets.mailImage),
+          yHeight(15.sp),
+          AppText(
+            text: AppString.forgetPassword,
+            textSize: 22.sp,
+            fontFamily: AppFonts.satoshiBold,
+          ),
+          yHeight(10.sp),
+          AppText(
+            text: AppString.pleaseEnterEmailAddressAssociated,
+            fontFamily: AppFonts.satoshiRegular,
+            textAlign: TextAlign.center,
+            lineHeight: 1.2,
+          ),
+          yHeight(10.sp),
+          CustomTextField(
+            hintText: AppString.exampleEamil,
+            prefixIcon: SvgPicture.asset(Assets.email),
+            controller: forgetPasswordNotifier.emailController,
+            labelText: AppString.emailAddress,
+          ),
+          yHeight(10.sp),
+          CommonAppBtn(
+            title: AppString.submit,
+            onTap: () {
+              // forgetPasswordNotifier.forgetPasswordValidator(context);
+              back(context);
+              toNamed(context, Routes.otpVerificationView);
+            },
+          )
+        ],
       ),
     );
   }

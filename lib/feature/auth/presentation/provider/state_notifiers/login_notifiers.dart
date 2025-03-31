@@ -1,9 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/config/validator.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
+
 import '../../../../../core/helpers/all_getter.dart';
 import '../../../../../core/utils/routing/routes.dart';
 import '../../../data/repositories/auth_repo_implementation.dart';
@@ -95,6 +95,8 @@ class LoginNotifier extends StateNotifier<LoginState> {
   }
 
   void changePasswordValidator(BuildContext context) {
+    offAllNamed(context, Routes.loginView);
+    return ;
     final isValid = validator.changePasswordValidator(
         password: passwordController.text,
         confirmPassword: confirmPasswordController.text);

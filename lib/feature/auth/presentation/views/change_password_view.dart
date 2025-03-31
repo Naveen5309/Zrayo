@@ -32,7 +32,7 @@ class ChangePasswordView extends ConsumerWidget {
                 yHeight(15.sp),
                 AppText(
                   text: AppString.createNewPassword,
-                  textSize: 24.sp,
+                  textSize: 22.sp,
                   fontFamily: AppFonts.satoshiBold,
                 ),
                 yHeight(10.sp),

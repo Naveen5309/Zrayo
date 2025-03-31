@@ -32,7 +32,7 @@ class LogoutConfirmationView extends StatelessWidget {
             AppText(
               text: AppString.logout,
               fontFamily: AppFonts.satoshiBold,
-              textSize: 24.sp,
+              textSize: 22.sp,
               textAlign: TextAlign.center,
             ),
             yHeight(context.height * 0.02),

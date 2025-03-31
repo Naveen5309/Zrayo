@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
@@ -55,7 +54,7 @@ class CustomAppBar extends StatelessWidget {
                     AppText(
                       text: title,
                       fontFamily: AppFonts.satoshiBold,
-                      textSize: titleSize??22.sp,
+                      textSize: titleSize??20.sp,
                       color: titleColor,
                     ),
                     if (subTitle != null) ...{

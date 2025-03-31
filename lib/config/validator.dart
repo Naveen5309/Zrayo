@@ -16,12 +16,12 @@ class Validator {
 
   String? emailValidator(String? value) {
     if (value == null || value.isEmpty) {
-      return "Please enter email";
+      return AppString.enterEmail;
     }
     if (!(RegExp(
             r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\])|(([a-zA-Z\-\d]+\.)+[a-zA-Z]{2,}))$')
         .hasMatch(value))) {
-      return "Please enter valid email";
+      return AppString.pleaseEnterValidEmailAddress;
     }
     return null;
   }
@@ -156,13 +156,10 @@ class Validator {
     required String password,
     required String confirmPassword,
   }) {
-    if (email.isEmpty) {
-      error = AppString.pleaseEnterEmailAddress;
+    if (emailValidator(email) != null) {
+      error = emailValidator(email) ?? "";
       return false;
-    } else if (!Utils.emailValidation(email)) {
-      error = AppString.pleaseEnterValidEmailAddress;
-      return false;
-    } else if (password.isEmpty) {
+    }  else if (password.isEmpty) {
       error = AppString.pleaseEnterPassword;
       return false;
     } else if (checkPassword(password)) {
@@ -219,13 +216,10 @@ class Validator {
     required String subject,
     required String message,
   }) {
-    if (email.isEmpty) {
-      error = AppString.enterEmail;
+    if (emailValidator(email) != null) {
+      error = emailValidator(email) ?? "";
       return false;
-    } else if (!Utils.emailValidation(email)) {
-      error = AppString.pleaseEnterValidEmailAddress;
-      return false;
-    } else if (subject.isEmpty) {
+    }  else if (subject.isEmpty) {
       error = AppString.pleaseEnterSubject;
       return false;
     } else if (message.isEmpty) {

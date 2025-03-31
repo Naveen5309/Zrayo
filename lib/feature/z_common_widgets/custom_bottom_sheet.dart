@@ -5,8 +5,9 @@ import 'package:zrayo_flutter/config/helper.dart';
 
 class CustomBottomSheet extends StatelessWidget {
   const CustomBottomSheet(
-      {super.key, required this.content, this.mainAxisSize = MainAxisSize.min});
+      {super.key, required this.content,this.barOnTop=true, this.mainAxisSize = MainAxisSize.min});
   final Widget content;
+  final bool barOnTop;
   final MainAxisSize mainAxisSize;
 
   @override
@@ -17,13 +18,13 @@ class CustomBottomSheet extends StatelessWidget {
         mainAxisSize: mainAxisSize,
         spacing: 14.sp,
         children: [
-          yHeight(0),
+          if(barOnTop)
           Container(
             padding: EdgeInsets.all(3.sp),
-            width: 70.sp,
+            width: screenWidth(context)/2.7,
             decoration: BoxDecoration(
               color:
-                  AppColor.primary,
+                  AppColor.colorAEAEAE,
               borderRadius: BorderRadius.circular(22),
             ),
           ),

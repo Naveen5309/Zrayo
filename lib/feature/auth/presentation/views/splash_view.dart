@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+
 import '../../../../config/assets.dart';
 import '../../../../config/helper.dart';
 import '../../../../core/utils/routing/routes.dart';
@@ -34,11 +35,11 @@ class _SplashViewState extends ConsumerState<SplashView> {
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 800),
           curve: Curves.linearToEaseOut,
-          height: animation.state ? screenHeight(context) / 5 : 0,
-          width: animation.state ? screenWidth(context) / 3 : 0,
+          height: animation.state ? screenHeight(context) /5  : 0,
+          width: animation.state ? screenWidth(context) / 2.5 : 0,
           child: SvgPicture.asset(
             Assets.zrayoSplash,
-            fit: BoxFit.cover,
+            fit: BoxFit.fill,
           ),
         ),
       ),

@@ -8,7 +8,6 @@ import 'package:zrayo_flutter/feature/z_common_widgets/common_property_type_filt
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 
 import '../../../../config/assets.dart';
-import '../../../../core/utils/routing/routes.dart';
 import '../../../z_common_widgets/custom_text_field.dart';
 
 class CustomViewAllScreen extends StatelessWidget {
@@ -57,7 +56,7 @@ class CustomViewAllScreen extends StatelessWidget {
               child: GridView.builder(
             itemCount: 10,
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            physics: NeverScrollableScrollPhysics(),
+            // physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,

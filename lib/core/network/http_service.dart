@@ -6,12 +6,12 @@ import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:mime/mime.dart';
+
 import '../../config/helper.dart';
 import '../response_wrapper/data_response.dart';
 import 'interceptor.dart';
 
 part '../../config/api_endpoints.dart';
-
 part '../error/exceptions.dart';
 
 enum RequestType {

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mime/mime.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_bottom_sheet.dart';
+
 import '../feature/z_common_widgets/custom_toast.dart';
 import 'helper.dart';
 
@@ -81,6 +82,7 @@ class Utils {
     required Widget widget,
     MainAxisSize? mainSize,
     bool isScrolled = true,
+    bool barOnTop = true,
     bool isDismissible = true,
   }) async {
     showModalBottomSheet(
@@ -102,6 +104,7 @@ class Utils {
               EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           child: CustomBottomSheet(
             content: widget,
+            barOnTop:barOnTop,
             mainAxisSize: mainSize ?? MainAxisSize.min,
           ),
         );
