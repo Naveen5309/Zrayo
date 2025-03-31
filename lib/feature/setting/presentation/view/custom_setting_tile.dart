@@ -87,7 +87,7 @@ class SettingTile extends StatelessWidget {
                             width: 22,
                             height: 22,
                             decoration: const BoxDecoration(
-                              color: AppColor.greyD9D9D9,
+                              color: AppColor.whiteFFFFFF,
                               shape: BoxShape.circle,
                             ),
                           ),

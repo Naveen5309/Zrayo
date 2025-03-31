@@ -22,13 +22,12 @@ class CustomFilterScreen extends StatelessWidget {
           CustomAppBar(
             title: "Filter",
           ),
-          yHeight(10),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(16),
               child: Column(
                 children: [
-                  yHeight(20),
+                  yHeight(10),
                   Container(
                     padding:
                         EdgeInsets.symmetric(vertical: 14.sp, horizontal: 10),
