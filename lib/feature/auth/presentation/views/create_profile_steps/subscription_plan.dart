@@ -9,7 +9,8 @@ import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_subscription_plan.dart';
 
 class SubscriptionPlanView extends StatelessWidget {
-  const SubscriptionPlanView({super.key});
+  final bool fromSettings;
+  const SubscriptionPlanView({super.key, required this.fromSettings});
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +88,9 @@ class SubscriptionPlanView extends StatelessWidget {
             yHeight(context.height / 7),
             CommonAppBtn(
               title: AppString.continueText,
-              onTap: () => offAllNamed(context, Routes.dashboard),
+              onTap: () => fromSettings
+                  ? back(context)
+                  : offAllNamed(context, Routes.dashboard),
             ),
           ],
         ),

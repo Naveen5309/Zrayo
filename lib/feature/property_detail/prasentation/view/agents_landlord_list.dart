@@ -130,6 +130,14 @@ class AgentsLandlordList extends StatelessWidget {
                 width: screenWidth(context) / 4.5,
                 height: screenHeight(context) * 0.059,
                 title: AppString.giveRatings,
+                onTap: () => Utils.appBottomSheet(
+                    context: context,
+                    widget: ReviewBottomsheet(
+                      name: "Paras",
+                      isProperty: true,
+                      title: AppString.giveRatings,
+                      subtitle: AppString.propertyDeleted,
+                    )),
                 textSize: 13.sp,
               )
             ],

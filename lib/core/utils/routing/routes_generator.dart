@@ -74,7 +74,8 @@ class RouteGenerator {
       case Routes.changePasswordView:
         return _fadeTransitionRoute(const ChangePasswordView());
       case Routes.subscriptionPlanView:
-        return _fadeTransitionRoute(const SubscriptionPlanView());
+        return _fadeTransitionRoute(
+            SubscriptionPlanView(fromSettings: args?['fromSettings'] ?? false));
 
       case Routes.dashboard:
         return _fadeTransitionRoute(const Dashboard());
