@@ -7,30 +7,32 @@ class CustomerMapView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        yHeight(safeAreaHeight(context) + 10.h),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Row(
-            children: [
-              Expanded(
-                child: CustomTextField(
-                  hintText: "Search location...",
-                  prefixIcon: SvgPicture.asset(Assets.searchIcon),
+        if (!Getters.isAgent()) ...{
+          yHeight(safeAreaHeight(context) + 10.h),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              children: [
+                Expanded(
+                  child: CustomTextField(
+                    hintText: "Search location...",
+                    prefixIcon: SvgPicture.asset(Assets.searchIcon),
+                  ),
                 ),
-              ),
-              xWidth(20),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: AppColor.black000000,
+                xWidth(20),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: AppColor.black000000,
+                  ),
+                  padding: EdgeInsets.all(14),
+                  child: SvgPicture.asset(Assets.filterIcon),
                 ),
-                padding: EdgeInsets.all(14),
-                child: SvgPicture.asset(Assets.filterIcon),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-        yHeight(10.h),
+          yHeight(10.h)
+        },
         Expanded(child: AppText(text: "MAP VIEW PENDING").align())
       ],
     );

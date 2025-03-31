@@ -3,7 +3,7 @@ enum UserTypeEnum {
   agent,
 }
 
-enum CustomerHomePageTypesEnum {
+enum DataViewTypes {
   list,
   map,
 }
