@@ -55,7 +55,7 @@ class CustomAppBar extends StatelessWidget {
                       text: title,
                       fontFamily: AppFonts.satoshiBold,
                       textSize: titleSize ?? 20.sp,
-                      color: titleColor,
+                      color: titleColor ?? AppColor.black232323,
                     ),
                     if (subTitle != null) ...{
                       yHeight(3),

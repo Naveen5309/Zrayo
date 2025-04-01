@@ -33,6 +33,7 @@ class ChangePasswordView extends ConsumerWidget {
                 AppText(
                   text: AppString.createNewPassword,
                   textSize: 22.sp,
+                  color: AppColor.color1E2430,
                   fontFamily: AppFonts.satoshiBold,
                 ),
                 yHeight(10.sp),
@@ -40,6 +41,7 @@ class ChangePasswordView extends ConsumerWidget {
                   text: AppString.yourNewPasswordMustBeUnique,
                   fontFamily: AppFonts.satoshiRegular,
                   textAlign: TextAlign.center,
+                  color: AppColor.color465573,
                   lineHeight: 1.2,
                 ),
                 yHeight(20.sp),

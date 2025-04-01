@@ -101,12 +101,12 @@ class AddPaymentCard extends StatelessWidget {
                           fontFamily: AppFonts.satoshiRegular,
                           text: 'Holder Name',
                         ),
-                        yHeight(5),
+                        yHeight(8),
                         AppText(
                           textSize: 12.sp,
                           color: AppColor.color212121,
                           fontFamily: AppFonts.satoshiBold,
-                          text: 'Albert Flores',
+                          text: 'Albert Flores'.toUpperCase(),
                         )
                       ],
                     ),
@@ -120,7 +120,7 @@ class AddPaymentCard extends StatelessWidget {
                           fontFamily: AppFonts.satoshiRegular,
                           text: 'Exp.',
                         ),
-                        yHeight(5),
+                        yHeight(8),
                         AppText(
                           textSize: 12.sp,
                           color: AppColor.color212121,

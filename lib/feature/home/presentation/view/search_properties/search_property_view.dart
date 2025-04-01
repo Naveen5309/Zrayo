@@ -17,6 +17,7 @@ import '../../../../z_common_widgets/custom_drop_down.dart';
 import '../../../../z_common_widgets/custom_text_field.dart';
 
 part 'price_slider.dart';
+
 class SearchPropertyView extends ConsumerWidget {
   const SearchPropertyView({super.key});
 
@@ -207,8 +208,7 @@ Widget propertyTypeBox(Map<String, dynamic> propertyTypeList, isSelected) {
         Expanded(
             child: AppText(
           text: propertyTypeList['title'],
-
-          color: AppColor.black929292,
+          color: AppColor.black4A4A4A.withValues(alpha: .6),
         )),
         Container(
           padding: EdgeInsets.all(2.sp),

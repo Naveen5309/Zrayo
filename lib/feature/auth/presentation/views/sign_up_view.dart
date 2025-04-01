@@ -37,6 +37,7 @@ class SignUpView extends ConsumerWidget {
                     SvgPicture.asset(Assets.zrayo),
                     10.verticalSpace,
                     AppText(
+                      textAlign: TextAlign.center,
                       text: AppString.startYourJourney,
                       fontFamily: AppFonts.satoshiBold,
                       lineHeight: 1.2,

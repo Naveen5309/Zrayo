@@ -67,22 +67,22 @@ class AgentsLandlordList extends StatelessWidget {
                         // textSize: 18.sp,
                       ),
                       xWidth(10),
-                      if (Getters.isAgent())
-                        Container(
-                          decoration: BoxDecoration(
-                              color: AppColor.primary.withValues(alpha: .1),
-                              borderRadius: BorderRadius.circular(33)),
-                          width: 50.w,
-                          height: 19.h,
-                          child: Padding(
-                            padding: const EdgeInsets.all(6.0),
-                            child: AppText(
-                              color: AppColor.primary,
-                              text: AppString.landloard,
-                              textSize: 8.sp,
-                            ),
+                      // if (Getters.isAgent())
+                      Container(
+                        decoration: BoxDecoration(
+                            color: AppColor.primary.withValues(alpha: .1),
+                            borderRadius: BorderRadius.circular(33)),
+                        width: 50.w,
+                        height: 19.h,
+                        child: Padding(
+                          padding: const EdgeInsets.all(6.0),
+                          child: AppText(
+                            color: AppColor.primary,
+                            text: AppString.landloard,
+                            textSize: 8.sp,
                           ),
-                        )
+                        ),
+                      )
                     ],
                   ),
                   yHeight(3),

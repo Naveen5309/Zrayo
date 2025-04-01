@@ -16,23 +16,26 @@ class LocationAccessContent extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text.rich(
-
             TextSpan(
               text: AppString.allow,
               style: TextStyle(
-                  fontSize: 18.sp, fontFamily: AppFonts.satoshiMedium),
+                  fontSize: 18.sp,
+                  fontFamily: AppFonts.satoshiMedium,
+                  color: AppColor.color0B0B0B),
               children: [
                 TextSpan(
                   text: AppString.zrayoText,
                   style: TextStyle(
-                      fontSize: 18.sp, fontFamily: AppFonts.satoshiBold,color: AppColor.color0B0B0B),
+                      fontSize: 18.sp,
+                      fontFamily: AppFonts.satoshiBold,
+                      color: AppColor.color0B0B0B),
                 ),
                 TextSpan(
                   text: AppString.accessDeviceLocation,
                   style: TextStyle(
-                    fontFamily: AppFonts.satoshiMedium,
-                    fontSize: 18.sp,color: AppColor.color0B0B0B
-                  ),
+                      fontFamily: AppFonts.satoshiMedium,
+                      fontSize: 18.sp,
+                      color: AppColor.color0B0B0B),
                 ),
               ],
             ),
