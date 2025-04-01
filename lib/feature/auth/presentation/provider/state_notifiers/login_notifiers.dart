@@ -1,5 +1,9 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:zrayo_flutter/config/enums.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/config/validator.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
@@ -12,8 +16,10 @@ import '../states/login_states.dart';
 class LoginNotifier extends StateNotifier<LoginState> {
   final AuthRepository authRepo;
   final Validator validator = Validator.instance;
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  final emailController = TextEditingController(
+      text: kDebugMode ? "amandeep@parastsssechnologies.com" : "");
+  final passwordController =
+      TextEditingController(text: kDebugMode ? "Amandeep@123" : "");
   final newPasswordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
   final otpController = TextEditingController();
@@ -23,15 +29,15 @@ class LoginNotifier extends StateNotifier<LoginState> {
   LoginNotifier({required this.authRepo}) : super(LoginInitial());
 
   void loginValidator(BuildContext context) {
-    offAllNamed(context, Routes.dashboard);
-    return;
-    // final isValid = validator.loginValidator(
-    //     email: emailController.text, pass: passwordController.text);
-    // if (isValid) {
-    //   login();
-    // } else {
-    //   toast(msg: validator.error);
-    // }
+    // offAllNamed(context, Routes.dashboard);
+    // return;
+    final isValid = validator.loginValidator(
+        email: emailController.text, pass: passwordController.text);
+    if (isValid) {
+      login();
+    } else {
+      toast(msg: validator.error);
+    }
   }
 
   Future<void> login() async {
@@ -43,11 +49,14 @@ class LoginNotifier extends StateNotifier<LoginState> {
       }
       if (await Getters.networkInfo.isSlow) {}
       Map<String, dynamic> body = {
-        "email": "dev@yopmail.com",
-        "password": "Pass@123",
-        "device_type": "android",
-        "device_token": "No Token",
+        "email": emailController.text,
+        "password": passwordController.text,
+        "userType": Getters.getLocalStorage.getUserType()?.index ??
+            UserTypeEnum.customer.index,
+        "deviceType": Platform.isIOS ? "ios" : "android",
+        "deviceToken": "deviceToken"
       };
+
       final result = await authRepo.doLogin(body: body);
       state = result.fold((error) {
         return LoginFailed(error: error.message);
@@ -96,7 +105,7 @@ class LoginNotifier extends StateNotifier<LoginState> {
 
   void changePasswordValidator(BuildContext context) {
     offAllNamed(context, Routes.loginView);
-    return ;
+    return;
     final isValid = validator.changePasswordValidator(
         password: passwordController.text,
         confirmPassword: confirmPasswordController.text);

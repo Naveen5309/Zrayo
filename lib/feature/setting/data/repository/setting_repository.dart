@@ -18,7 +18,7 @@ class SettingRepoImpl implements SettingRepository {
       {required Map<String, dynamic> body}) async {
     try {
       final data = await dataSource.contactUs(body: body);
-      if (data?.status == true) {
+      if (data?.success == true) {
         return Right(data?.data);
       } else {
         return Left(ServerFailure(message: data?.message ?? ""));

@@ -4,13 +4,21 @@ import 'package:zrayo_flutter/core/response_wrapper/data_response.dart';
 import 'package:zrayo_flutter/feature/auth/data/models/user_model.dart';
 
 abstract class AuthDataSource {
-  Future<ResponseWrapper?> logInUser({required Map<String, dynamic> body});
+  Future<ResponseWrapper<UserModel>?> logInUser(
+      {required Map<String, dynamic> body});
+
   Future<ResponseWrapper?> signUpUser({required Map<String, dynamic> body});
+
   Future<ResponseWrapper?> createProfile({required Map<String, dynamic> body});
+
   Future<ResponseWrapper?> addAddress({required Map<String, dynamic> body});
+
   Future<ResponseWrapper?> addBankDetails({required Map<String, dynamic> body});
+
   Future<ResponseWrapper?> verifyEmail({required Map<String, dynamic> body});
+
   Future<ResponseWrapper?> forgetPassword({required Map<String, dynamic> body});
+
   Future<ResponseWrapper?> changePassword({required Map<String, dynamic> body});
 }
 
@@ -24,10 +32,10 @@ class AuthDataSourceImpl extends AuthDataSource {
         url: ApiConstants.login,
         fromJson: (json) => UserModel.fromJson(json),
       );
-      if (dataResponse.status == true) {
-        // UserModel model = dataResponse.data!;
-        // await Getters.getLocalStorage.saveLoginUser(model.user!);
-        // await Getters.getLocalStorage.saveToken(model.token ?? "");
+      if (dataResponse.success == true) {
+        await Getters.getLocalStorage.saveToken(dataResponse.data?.token ?? "");
+        await Getters.getLocalStorage
+            .saveLoginUser(dataResponse.data ?? UserModel());
         return getSuccessResponseWrapper(dataResponse);
       } else {
         return getFailedResponseWrapper(dataResponse.message,
@@ -50,7 +58,7 @@ class AuthDataSourceImpl extends AuthDataSource {
         url: ApiConstants.signUp,
         fromJson: (json) => UserModel.fromJson(json),
       );
-      if (dataResponse.status == true) {
+      if (dataResponse.success == true) {
         // UserModel model = dataResponse.data!;
         // await Getters.getLocalStorage.saveLoginUser(model.user!);
         // await Getters.getLocalStorage.saveToken(model.token ?? "");
@@ -76,7 +84,7 @@ class AuthDataSourceImpl extends AuthDataSource {
         url: ApiConstants.createProfile,
         fromJson: (json) => UserModel.fromJson(json),
       );
-      if (dataResponse.status == true) {
+      if (dataResponse.success == true) {
         // UserModel model = dataResponse.data!;
         // await Getters.getLocalStorage.saveLoginUser(model.user!);
         // await Getters.getLocalStorage.saveToken(model.token ?? "");
@@ -102,7 +110,7 @@ class AuthDataSourceImpl extends AuthDataSource {
         url: ApiConstants.addAddress,
         fromJson: (json) => UserModel.fromJson(json),
       );
-      if (dataResponse.status == true) {
+      if (dataResponse.success == true) {
         // UserModel model = dataResponse.data!;
         // await Getters.getLocalStorage.saveLoginUser(model.user!);
         // await Getters.getLocalStorage.saveToken(model.token ?? "");
@@ -128,7 +136,7 @@ class AuthDataSourceImpl extends AuthDataSource {
         url: ApiConstants.addBankDetails,
         fromJson: (json) => UserModel.fromJson(json),
       );
-      if (dataResponse.status == true) {
+      if (dataResponse.success == true) {
         // UserModel model = dataResponse.data!;
         // await Getters.getLocalStorage.saveLoginUser(model.user!);
         // await Getters.getLocalStorage.saveToken(model.token ?? "");
@@ -154,7 +162,7 @@ class AuthDataSourceImpl extends AuthDataSource {
         url: ApiConstants.forgetPassword,
         fromJson: (json) => UserModel.fromJson(json),
       );
-      if (dataResponse.status == true) {
+      if (dataResponse.success == true) {
         // UserModel model = dataResponse.data!;
         // await Getters.getLocalStorage.saveLoginUser(model.user!);
         // await Getters.getLocalStorage.saveToken(model.token ?? "");
@@ -180,7 +188,7 @@ class AuthDataSourceImpl extends AuthDataSource {
         url: ApiConstants.verifyEmail,
         fromJson: (json) => UserModel.fromJson(json),
       );
-      if (dataResponse.status == true) {
+      if (dataResponse.success == true) {
         // UserModel model = dataResponse.data!;
         // await Getters.getLocalStorage.saveLoginUser(model.user!);
         // await Getters.getLocalStorage.saveToken(model.token ?? "");
@@ -206,7 +214,7 @@ class AuthDataSourceImpl extends AuthDataSource {
         url: ApiConstants.changePassword,
         fromJson: (json) => UserModel.fromJson(json),
       );
-      if (dataResponse.status == true) {
+      if (dataResponse.success == true) {
         // UserModel model = dataResponse.data!;
         // await Getters.getLocalStorage.saveLoginUser(model.user!);
         // await Getters.getLocalStorage.saveToken(model.token ?? "");

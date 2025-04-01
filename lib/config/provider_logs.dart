@@ -1,6 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'helper.dart';
 
 class MyObserver extends ProviderObserver {
   @override
@@ -9,7 +9,9 @@ class MyObserver extends ProviderObserver {
       Object? value,
       ProviderContainer container,
       ) {
-    printLog('$provider was initialized with $value');
+    if (kDebugMode) {
+      print('$provider was initialized with $value');
+    }
   }
 
   @override
@@ -17,12 +19,16 @@ class MyObserver extends ProviderObserver {
       ProviderBase<Object?> provider,
       ProviderContainer container,
       ) {
-    printLog('$provider Disposed');
+    if (kDebugMode) {
+      print('$provider Disposed');
+    }
   }
 
   @override
   void didUpdateProvider(ProviderBase<Object?> provider, Object? previousValue, Object? newValue, ProviderContainer container,) {
-    printLog('$provider updated from $previousValue to $newValue');
+    if (kDebugMode) {
+      print('$provider updated from $previousValue to $newValue');
+    }
   }
 
   @override
@@ -32,6 +38,8 @@ class MyObserver extends ProviderObserver {
       StackTrace stackTrace,
       ProviderContainer container,
       ) {
-    printLog('$provider threw $error at $stackTrace');
+    if (kDebugMode) {
+      print('$provider threw $error at $stackTrace');
+    }
   }
 }

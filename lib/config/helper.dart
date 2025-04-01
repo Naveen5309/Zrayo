@@ -81,20 +81,21 @@ void back(BuildContext context) {
   Navigator.pop(context);
 }
 
-void printLog(dynamic msg, {String fun = ""}) {
-  _printLog(' $fun=> ${msg.toString()}');
+void printLog(dynamic msg) {
+  _printLog('👉👉👉\x1B[32m::=> ${msg.toString()}\x1B[0m');
 }
 
 void functionLog({required dynamic msg, required dynamic fun}) {
-  _printLog("${fun.toString()} ::==> ${msg.toString()}");
+  _printLog("😡😡👉\x1B[31m${fun.toString()} ::==> ${msg.toString()}\x1B[0m");
 }
 
-void _printLog(dynamic msg, {String name = "Riverpod"}) {
+void _printLog(dynamic msg) {
   if (kDebugMode) {
-    log(msg.toString(), name: name);
+    debugPrint(msg.toString());
   }
 }
 
+
 void blocLog({required String msg, required String bloc}) {
-  _printLog("${bloc.toString()} ::==> ${msg.toString()}");
+  _printLog("\x1B[31m${bloc.toString()} ::==> ${msg.toString()}\x1B[0m");
 }

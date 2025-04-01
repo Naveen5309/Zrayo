@@ -56,9 +56,9 @@ dynamic responseChecker(Response<dynamic> response) {
 }
 
 ResponseWrapper<T> getSuccessResponseWrapper<T>(ResponseWrapper response) => ResponseWrapper(
-  status: response.status,
+  success: response.success,
   data: response.data,
-  statusCode: response.statusCode,
+  status: response.status,
   message: response.message,
 
 );
@@ -66,7 +66,7 @@ ResponseWrapper<T> getSuccessResponseWrapper<T>(ResponseWrapper response) => Res
 
 ResponseWrapper<T> getFailedResponseWrapper<T>(dynamic e, {dynamic response}) =>
     ResponseWrapper(
-      status: false,
+      success: false,
       message: e.toString(),
       data: response,
     );

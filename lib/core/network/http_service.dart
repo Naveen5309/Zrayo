@@ -44,7 +44,7 @@ class ApiProvider {
     try {
       Map<String, dynamic> map = body ?? {};
       Response response = await _checkRequest(
-        fullUrl: url,
+        fullUrl: "${ApiConstants.baseUrl}/$url",
         imagePath: imagePath,
         paramName: paramName,
         requestType: requestType,
@@ -56,9 +56,9 @@ class ApiProvider {
               ? _dataParser<T>(response.data["data"], fromJson)
               : null;
       var dataResponse = ResponseWrapper<T>(
-        statusCode: response.data["statusCode"],
-        message: response.data["message"],
         status: response.data["status"],
+        message: response.data["message"],
+        success: response.data["success"],
         data: parsedData,
       );
       return dataResponse;
@@ -69,17 +69,17 @@ class ApiProvider {
         if (err.type == DioExceptionType.receiveTimeout ||
             err.type == DioExceptionType.connectionTimeout) {
           return ResponseWrapper(
-              statusCode: 0,
+              status: 0,
               message: "Unable to reach the servers",
-              status: false);
+              success: false);
         } else if (err.type == DioExceptionType.connectionError) {
           return ResponseWrapper(
-              statusCode: 0,
+              status: 0,
               message: "Please check your internet connection",
-              status: false);
+              success: false);
         } else if (err.response != null && (err.response?.statusCode == 401)) {
           throw ResponseWrapper(
-              statusCode: 0, message: "Authentication Failed", status: false);
+              status: 0, message: "Authentication Failed", success: false);
         }
       }
       final res = (err as dynamic).response;
@@ -90,7 +90,7 @@ class ApiProvider {
         );
       }
       return ResponseWrapper(
-          statusCode: 0, message: err.toString(), status: false);
+          status: 0, message: err.toString(), success: false);
     }
   }
 

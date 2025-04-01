@@ -76,42 +76,51 @@ class CommonAppBtnState extends State<CommonAppBtn> {
             width: widget.borderWidth ?? 0,
           ),
         ),
-        child: widget.prefixWidget != null
-            ? Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  widget.prefixWidget!,
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
-                    child: Text(
-                      (widget.title ?? "Button Text"),
-                      style: widget.titleStyle ??
-                          TextStyle(
-                              fontSize: widget.textSize ?? 16.sp,
-                              color: widget.textColor ?? AppColor.whiteFFFFFF,
-                              fontFamily: AppFonts.satoshiBold),
-                      textAlign: TextAlign.center,
-                      overflow: TextOverflow.ellipsis,
+        child: (widget.loading ?? false)
+            ? SizedBox(
+                height: 30,
+                width: 30,
+                child: CircularProgressIndicator(
+                  color: AppColor.whiteFFFFFF,
+                ),
+              ).align()
+            : widget.prefixWidget != null
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      widget.prefixWidget!,
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0),
+                        child: Text(
+                          (widget.title ?? "Button Text"),
+                          style: widget.titleStyle ??
+                              TextStyle(
+                                  fontSize: widget.textSize ?? 16.sp,
+                                  color:
+                                      widget.textColor ?? AppColor.whiteFFFFFF,
+                                  fontFamily: AppFonts.satoshiBold),
+                          textAlign: TextAlign.center,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  )
+                : Padding(
+                    padding: widget.customPadding ??
+                        EdgeInsets.all(widget.textPadding ?? 0),
+                    child: Center(
+                      child: Text(
+                        (widget.title ?? "Button Text"),
+                        style: widget.titleStyle ??
+                            TextStyle(
+                                fontSize: widget.textSize ?? 16.sp,
+                                color: widget.textColor ?? AppColor.whiteFFFFFF,
+                                fontFamily: AppFonts.satoshiBold),
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ),
-                ],
-              )
-            : Padding(
-                padding: widget.customPadding ??
-                    EdgeInsets.all(widget.textPadding ?? 0),
-                child: Center(
-                  child: Text(
-                    (widget.title ?? "Button Text"),
-                    style: widget.titleStyle ??
-                        TextStyle(
-                            fontSize: widget.textSize ?? 16.sp,
-                            color: widget.textColor ?? AppColor.whiteFFFFFF,
-                            fontFamily: AppFonts.satoshiBold),
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-              ),
       ),
     );
   }

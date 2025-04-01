@@ -1,5 +1,6 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../config/helper.dart';
 import 'app_text.dart';
@@ -50,7 +51,8 @@ void toast({required String msg, bool isError = true}) {
                         child: AppText(
                           text: msg,
                           textAlign: TextAlign.center,
-                          textSize: 15,
+                          textSize: 15.sp,
+                          fontFamily: AppFonts.satoshiBold,
                           color: isError ? Colors.red : Colors.green,
                         ),
                       ),

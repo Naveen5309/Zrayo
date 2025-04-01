@@ -17,7 +17,7 @@ class SettingDataSourceImpl extends SettingDataSource {
         url: ApiConstants.contactUs,
         fromJson: (json) => UserModel.fromJson(json),
       );
-      if (dataResponse.status == true) {
+      if (dataResponse.success == true) {
         // UserModel model = dataResponse.data!;
         // await Getters.getLocalStorage.saveLoginUser(model.user!);
         // await Getters.getLocalStorage.saveToken(model.token ?? "");
