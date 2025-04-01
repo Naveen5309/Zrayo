@@ -22,7 +22,6 @@ class BookYourDateView extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          yHeight(10.h),
           CustomAppBar(title: "Book Your Date"),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.sp),

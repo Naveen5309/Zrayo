@@ -104,7 +104,7 @@ class AgentsLandlordList extends StatelessWidget {
         if (Getters.isAgent()) ...{
           yHeight(15),
           Divider(
-            color: AppColor.black000000,
+            color: AppColor.colorDDDDDD.withValues(alpha: .7),
           ),
           yHeight(15),
           Row(

@@ -4,14 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
+import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/provider/add_address_provider.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/provider/state_notifiers/create_profile_notifiers.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_drop_down.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_text_field.dart';
-
-import '../../../../../core/utils/routing/routes.dart';
 
 class AddAddressView extends ConsumerWidget {
   final bool fromSettings;
@@ -50,12 +49,14 @@ class AddAddressView extends ConsumerWidget {
               child: formsFieldsSection(addAddressNotifier),
             ),
             // if (fromSettings)
-              yHeight(context.height / 4.5),
+            yHeight(context.height / 4.5),
             CommonAppBtn(
               title:
                   fromSettings ? AppString.update : AppString.saveAndContinue,
               margin: const EdgeInsets.all(16),
-              onTap: () =>
+              onTap: () => fromSettings
+                  ? back(context)
+                  :
                   //  addAddressNotifier.addAddressValidator(context)
                   toNamed(context, Routes.uploadDocument),
             )

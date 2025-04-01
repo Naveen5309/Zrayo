@@ -37,7 +37,7 @@ class CustomAppBar extends StatelessWidget {
     return SafeArea(
       child: Column(
         children: [
-          yHeight(10),
+          yHeight((MediaQuery.of(context).padding.top)),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
@@ -54,7 +54,7 @@ class CustomAppBar extends StatelessWidget {
                     AppText(
                       text: title,
                       fontFamily: AppFonts.satoshiBold,
-                      textSize: titleSize??20.sp,
+                      textSize: titleSize ?? 20.sp,
                       color: titleColor,
                     ),
                     if (subTitle != null) ...{

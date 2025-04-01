@@ -36,7 +36,6 @@ class CustomViewAllScreen extends ConsumerWidget {
       ),
       body: Column(
         children: [
-          yHeight(10),
           CustomAppBar(title: title ?? ""),
           yHeight(15.h),
           Padding(

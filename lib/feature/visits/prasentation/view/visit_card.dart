@@ -21,7 +21,7 @@ class VisitCard extends StatelessWidget {
       child: Column(
         children: [
           GestureDetector(
-            onTap:() =>toNamed(context, Routes.chatView),
+            onTap: () => toNamed(context, Routes.chatView),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
@@ -69,10 +69,10 @@ class VisitCard extends StatelessWidget {
           Divider(),
           PropertyBox(
             showHorizontal: true,
-            imageHeight:80.sp,
-            imageWidth:80.sp,
+            imageHeight: 80.sp,
+            imageWidth: 80.sp,
             showFavorite: false,
-            withFullCardWidth:true,
+            withFullCardWidth: true,
           )
         ],
       ),

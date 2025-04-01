@@ -20,17 +20,16 @@ class ContactUsView extends ConsumerWidget {
     return Scaffold(
       body: Column(
         children: [
-          yHeight(10.h),
           CustomAppBar(title: AppString.contactUs),
           yHeight(25.h),
           Padding(
             padding: EdgeInsets.symmetric(
-                horizontal: 16,),
+              horizontal: 16,
+            ),
             child: Column(
               children: [
                 SvgPicture.asset(Assets.contactUs),
                 yHeight(18.h),
-
                 CustomTextField(
                   controller: contactUsNotifier.emailController,
                   labelText: AppString.email,

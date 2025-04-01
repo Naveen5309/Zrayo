@@ -27,7 +27,11 @@ class SettingView extends ConsumerWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CustomAppBar(title: AppString.setting),
+            CustomAppBar(
+              title: AppString.setting,
+              showBackButton: false,
+              centerTitle: true,
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(

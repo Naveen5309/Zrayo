@@ -25,7 +25,6 @@ class VisitMainView extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          yHeight(10),
           CustomAppBar(
             title: "Visits",
             showBackButton: fromSettings,
@@ -41,7 +40,6 @@ class VisitMainView extends StatelessWidget {
                       isScrolled: true,
                       context: context,
                       barOnTop: false,
-
                       widget: CommonPropertyTypeFilterContent());
                 },
                 child: SvgPicture.asset(

@@ -18,8 +18,7 @@ class AddPropertyBioView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SingleChildScrollView(
-            child: SafeArea(
-                child: Column(children: [
+            child: Column(children: [
       CustomAppBar(title: AppString.addProperty),
       yHeight(10.sp),
       Container(
@@ -208,6 +207,6 @@ class AddPropertyBioView extends StatelessWidget {
           ],
         ),
       ),
-    ]))));
+    ])));
   }
 }

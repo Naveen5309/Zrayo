@@ -54,7 +54,6 @@ class HomeViewMain extends ConsumerWidget {
               width: screenWidth(context),
               child: Column(
                 children: [
-                  yHeight(15.h),
                   CustomAppBar(
                     title: "Hello, Rachel 👋",
                     subTitle: "Let’s find your cozy place ",
