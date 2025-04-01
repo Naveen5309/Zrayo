@@ -73,7 +73,8 @@ class SettingView extends ConsumerWidget {
                   ),
                   if (!Getters.isAgent())
                     SettingTile(
-                      onTap: () => toNamed(context, Routes.addPaymentCard),
+                      onTap: () => toNamed(context, Routes.addPaymentCard,
+                          args: {"fromSettings": true}),
                       icon: Assets.card,
                       title: AppString.cardDetails,
                     ),

@@ -60,7 +60,7 @@ class SignUpView extends ConsumerWidget {
                       onTap: () => toNamed(context, Routes.createProfile),
                       // signUpNotifier.signUpValidator(context),
                     ),
-                    yHeight(context.height * 0.12),
+                    yHeight(context.height * 0.18),
                     Text.rich(
                       TextSpan(
                         text: "${AppString.alreadyHaveAccount} ",

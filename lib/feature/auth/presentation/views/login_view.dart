@@ -80,7 +80,7 @@ class LoginView extends ConsumerWidget {
                     SvgPicture.asset(Assets.loginOr),
                     yHeight(context.height * 0.015),
                     customSocialMediaSection(),
-                    yHeight(context.height * 0.11),
+                    yHeight(context.height * 0.15),
                     Text.rich(
                       TextSpan(
                         text: "${AppString.newUser} ",

@@ -10,7 +10,8 @@ import '../../../../z_common_widgets/custom_app_bar.dart';
 import '../../../../z_common_widgets/custom_btn.dart';
 
 class AddPaymentCard extends StatelessWidget {
-  const AddPaymentCard({super.key});
+  final bool fromSettings;
+  const AddPaymentCard({super.key, required this.fromSettings});
 
   @override
   Widget build(BuildContext context) {
@@ -59,8 +60,9 @@ class AddPaymentCard extends StatelessWidget {
                     Spacer(),
                     CommonAppBtn(
                       title: AppString.saveAndContinue,
-                      onTap: () =>
-                          toNamed(context, Routes.subscriptionPlanView),
+                      onTap: () => fromSettings
+                          ? back(context)
+                          : toNamed(context, Routes.subscriptionPlanView),
                     ),
                   ],
                 ),

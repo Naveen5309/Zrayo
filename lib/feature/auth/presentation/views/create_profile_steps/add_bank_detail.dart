@@ -81,7 +81,7 @@ class AddBankDetail extends ConsumerWidget {
               if (!fromSettings)
                 yHeight(context.height / 5)
               else
-                yHeight(context.height / 3.5),
+                yHeight(context.height / 2.5),
               CommonAppBtn(
                 title:
                     fromSettings ? AppString.update : AppString.saveAndContinue,

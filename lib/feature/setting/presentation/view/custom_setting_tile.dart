@@ -66,7 +66,7 @@ class SettingTile extends StatelessWidget {
                     onTap: () => onToggleChanged?.call(!toggleValue),
                     child: AnimatedContainer(
                       duration: const Duration(milliseconds: 200),
-                      width: 50,
+                      width: 45.w,
                       height: 30,
                       decoration: BoxDecoration(
                         color: toggleValue

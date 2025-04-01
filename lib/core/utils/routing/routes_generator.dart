@@ -74,7 +74,8 @@ class RouteGenerator {
         return _fadeTransitionRoute(
             AddAddressView(fromSettings: args?['fromSettings'] ?? false));
       case Routes.addPaymentCard:
-        return _fadeTransitionRoute(const AddPaymentCard());
+        return _fadeTransitionRoute(
+            AddPaymentCard(fromSettings: args?['fromSettings'] ?? false));
       case Routes.otpVerificationView:
         return _fadeTransitionRoute(const OtpVerificationView());
       case Routes.changePasswordView:
