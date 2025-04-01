@@ -1,6 +1,7 @@
 import 'package:zrayo_flutter/config/app_utils.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 
+
 class Validator {
   static final Validator _singleton = Validator._internal();
 
