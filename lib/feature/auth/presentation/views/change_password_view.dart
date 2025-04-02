@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/provider/change_password_provider.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/provider/states/login_states.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 
 import '../../../../config/assets.dart';
 import '../../../../config/helper.dart';
@@ -18,6 +21,15 @@ class ChangePasswordView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final changePasswordNotifier = ref.read(changePasswordProvider.notifier);
     ref.watch(changePasswordProvider);
+
+    ref.listen<LoginState>(changePasswordProvider, (previous, next) {
+      if (next is ChangePasswordSuccess) {
+        offAllNamed(context, Routes.loginView);
+      } else if (next is LoginFailed) {
+        toast(msg: next.error, isError: true);
+      }
+    });
+
     return Scaffold(
       body: Column(
         children: [
@@ -101,6 +113,7 @@ class ChangePasswordView extends ConsumerWidget {
           CommonAppBtn(
             margin: EdgeInsets.all(16.0),
             title: AppString.change,
+            loading: LoginState is LoginApiLoading,
             onTap: () {
               changePasswordNotifier.changePasswordValidator(context);
               // back(context);

@@ -22,6 +22,21 @@ class LoginSuccess extends LoginState {
   List<Object> get props => [];
 }
 
+class ChangePasswordSuccess extends LoginState {
+  @override
+  List<Object> get props => [];
+}
+
+class OtpSentSuccess extends LoginState {
+  @override
+  List<Object> get props => [];
+}
+
+class OtpVerifySuccess extends LoginState {
+  @override
+  List<Object> get props => [];
+}
+
 class LoginFailed extends LoginState {
   final String error;
 

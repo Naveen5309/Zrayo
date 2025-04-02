@@ -30,7 +30,7 @@ class Injector {
       'Accept': 'application/json', // Always include this header
     });
 
-    String? token = Getters.authToken;
+    String? token = Getters.authToken();
     if (token != null) {
       printLog("AuthToken==>> Bearer $token");
       headerOptions.headers?['Authorization'] = 'Bearer $token';

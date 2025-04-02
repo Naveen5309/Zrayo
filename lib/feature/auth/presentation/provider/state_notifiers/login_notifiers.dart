@@ -16,6 +16,7 @@ import '../states/login_states.dart';
 class LoginNotifier extends StateNotifier<LoginState> {
   final AuthRepository authRepo;
   final Validator validator = Validator.instance;
+  final forgetEmailController = TextEditingController();
   final emailController = TextEditingController(
       text: kDebugMode ? "amandeep@parastsssechnologies.com" : "");
   final passwordController =
@@ -70,7 +71,7 @@ class LoginNotifier extends StateNotifier<LoginState> {
 
   void forgetPasswordValidator(BuildContext context) {
     final isValid =
-        validator.forgetPasswordValidator(email: emailController.text);
+        validator.forgetPasswordValidator(email: forgetEmailController.text);
     if (isValid) {
       forgetPassword();
     } else {
@@ -87,16 +88,13 @@ class LoginNotifier extends StateNotifier<LoginState> {
       }
       if (await Getters.networkInfo.isSlow) {}
       Map<String, dynamic> body = {
-        "email": "dev@yopmail.com",
-        "password": "Pass@123",
-        "device_type": "android",
-        "device_token": "No Token",
+        "email": forgetEmailController.text,
       };
       final result = await authRepo.forgotPassword(body: body);
       state = result.fold((error) {
         return LoginFailed(error: error.message);
       }, (result) {
-        return LoginSuccess();
+        return OtpSentSuccess();
       });
     } catch (e) {
       state = LoginFailed(error: e.toString());
@@ -104,10 +102,10 @@ class LoginNotifier extends StateNotifier<LoginState> {
   }
 
   void changePasswordValidator(BuildContext context) {
-    offAllNamed(context, Routes.loginView);
-    return;
+    // offAllNamed(context, Routes.loginView);
+    // return;
     final isValid = validator.changePasswordValidator(
-        password: passwordController.text,
+        password: newPasswordController.text,
         confirmPassword: confirmPasswordController.text);
     if (isValid) {
       changePassword();
@@ -125,16 +123,13 @@ class LoginNotifier extends StateNotifier<LoginState> {
       }
       if (await Getters.networkInfo.isSlow) {}
       Map<String, dynamic> body = {
-        "password": "Pass@123",
-        "confirmPassword": "Pass@123",
-        "device_type": "android",
-        "device_token": "No Token",
+        "password": newPasswordController.text,
       };
       final result = await authRepo.changePassword(body: body);
       state = result.fold((error) {
         return LoginFailed(error: error.message);
       }, (result) {
-        return LoginSuccess();
+        return ChangePasswordSuccess();
       });
     } catch (e) {
       state = LoginFailed(error: e.toString());
@@ -159,16 +154,13 @@ class LoginNotifier extends StateNotifier<LoginState> {
       }
       if (await Getters.networkInfo.isSlow) {}
       Map<String, dynamic> body = {
-        "email": "dev@yopmail.com",
-        "password": "Pass@123",
-        "device_type": "android",
-        "device_token": "No Token",
+        "otp": otpController.text,
       };
       final result = await authRepo.verifyEmail(body: body);
       state = result.fold((error) {
         return LoginFailed(error: error.message);
       }, (result) {
-        return LoginSuccess();
+        return OtpVerifySuccess();
       });
     } catch (e) {
       state = LoginFailed(error: e.toString());

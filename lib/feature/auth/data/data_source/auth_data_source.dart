@@ -1,3 +1,4 @@
+import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/helpers/all_getter.dart';
 import 'package:zrayo_flutter/core/network/http_service.dart';
 import 'package:zrayo_flutter/core/response_wrapper/data_response.dart';
@@ -59,9 +60,7 @@ class AuthDataSourceImpl extends AuthDataSource {
         fromJson: (json) => UserModel.fromJson(json),
       );
       if (dataResponse.success == true) {
-        // UserModel model = dataResponse.data!;
-        // await Getters.getLocalStorage.saveLoginUser(model.user!);
-        // await Getters.getLocalStorage.saveToken(model.token ?? "");
+        await Getters.getLocalStorage.saveToken(dataResponse.data?.token ?? "");
         return getSuccessResponseWrapper(dataResponse);
       } else {
         return getFailedResponseWrapper(dataResponse.message,
@@ -163,9 +162,7 @@ class AuthDataSourceImpl extends AuthDataSource {
         fromJson: (json) => UserModel.fromJson(json),
       );
       if (dataResponse.success == true) {
-        // UserModel model = dataResponse.data!;
-        // await Getters.getLocalStorage.saveLoginUser(model.user!);
-        // await Getters.getLocalStorage.saveToken(model.token ?? "");
+        await Getters.getLocalStorage.saveToken(dataResponse.data?.token ?? "");
         return getSuccessResponseWrapper(dataResponse);
       } else {
         return getFailedResponseWrapper(dataResponse.message,
@@ -174,7 +171,7 @@ class AuthDataSourceImpl extends AuthDataSource {
     } catch (e) {
       return getFailedResponseWrapper(exceptionHandler(
         e: e,
-        functionName: "forgetPassword",
+        functionName: "forgetEmail",
       ));
     }
   }
@@ -189,9 +186,6 @@ class AuthDataSourceImpl extends AuthDataSource {
         fromJson: (json) => UserModel.fromJson(json),
       );
       if (dataResponse.success == true) {
-        // UserModel model = dataResponse.data!;
-        // await Getters.getLocalStorage.saveLoginUser(model.user!);
-        // await Getters.getLocalStorage.saveToken(model.token ?? "");
         return getSuccessResponseWrapper(dataResponse);
       } else {
         return getFailedResponseWrapper(dataResponse.message,
@@ -200,24 +194,25 @@ class AuthDataSourceImpl extends AuthDataSource {
     } catch (e) {
       return getFailedResponseWrapper(exceptionHandler(
         e: e,
-        functionName: "verifyEmail",
+        functionName: "otp",
       ));
     }
   }
 
   @override
-  Future<ResponseWrapper<UserModel>?> changePassword(
+  Future<ResponseWrapper<dynamic>?> changePassword(
       {required Map<String, dynamic> body}) async {
     try {
-      final dataResponse = await Getters.getHttpService.request<UserModel>(
+      final dataResponse = await Getters.getHttpService.request<dynamic>(
         body: body,
         url: ApiConstants.changePassword,
-        fromJson: (json) => UserModel.fromJson(json),
+        fromJson: (json) {
+          printLog("json in data source :-> $json");
+
+          return json;
+        },
       );
       if (dataResponse.success == true) {
-        // UserModel model = dataResponse.data!;
-        // await Getters.getLocalStorage.saveLoginUser(model.user!);
-        // await Getters.getLocalStorage.saveToken(model.token ?? "");
         return getSuccessResponseWrapper(dataResponse);
       } else {
         return getFailedResponseWrapper(dataResponse.message,

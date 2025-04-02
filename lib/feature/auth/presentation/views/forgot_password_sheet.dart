@@ -6,9 +6,11 @@ import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/provider/forget_password_provider.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/provider/states/login_states.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_text_field.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 
 class ForgotPasswordSheet extends ConsumerWidget {
   const ForgotPasswordSheet({super.key});
@@ -17,13 +19,26 @@ class ForgotPasswordSheet extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final forgetPasswordNotifier = ref.read(forgetPasswordProvider.notifier);
     ref.watch(forgetPasswordProvider);
+
+    ref.listen<LoginState>(forgetPasswordProvider, (previous, next) {
+      if (next is OtpSentSuccess) {
+        back(context);
+
+        offAllNamed(context, Routes.otpVerificationView);
+      } else if (next is LoginFailed) {
+        toast(msg: next.error, isError: true);
+      }
+    });
     return SingleChildScrollView(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Align(
             alignment: Alignment.centerRight,
-            child: Icon(Icons.close,size: 28.h,),
+            child: Icon(
+              Icons.close,
+              size: 28.h,
+            ),
           ),
           SvgPicture.asset(Assets.mailImage),
           yHeight(15.sp),
@@ -43,16 +58,16 @@ class ForgotPasswordSheet extends ConsumerWidget {
           CustomTextField(
             hintText: AppString.exampleEamil,
             prefixIcon: SvgPicture.asset(Assets.email),
-            controller: forgetPasswordNotifier.emailController,
+            controller: forgetPasswordNotifier.forgetEmailController,
             labelText: AppString.emailAddress,
           ),
           yHeight(10.sp),
           CommonAppBtn(
             title: AppString.submit,
+            loading: LoginState is LoginApiLoading,
             onTap: () {
-              // forgetPasswordNotifier.forgetPasswordValidator(context);
-              back(context);
-              toNamed(context, Routes.otpVerificationView);
+              forgetPasswordNotifier.forgetPasswordValidator(context);
+              // toNamed(context, Routes.otpVerificationView);
             },
           )
         ],

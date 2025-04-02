@@ -1,6 +1,5 @@
 import 'package:zrayo_flutter/config/helper.dart';
 
-
 class Validator {
   static final Validator _singleton = Validator._internal();
 
@@ -159,7 +158,7 @@ class Validator {
     if (emailValidator(email) != null) {
       error = emailValidator(email) ?? "";
       return false;
-    }  else if (password.isEmpty) {
+    } else if (password.isEmpty) {
       error = AppString.pleaseEnterPassword;
       return false;
     } else if (checkPassword(password)) {
@@ -180,7 +179,7 @@ class Validator {
     required String confirmPassword,
   }) {
     if (password.isEmpty) {
-      error = AppString.pleaseEnterPassword;
+      error = AppString.pleaseEnterNewPassword;
       return false;
     } else if (checkPassword(password)) {
       error = AppString.passwordShouldBe;
@@ -219,7 +218,7 @@ class Validator {
     if (emailValidator(email) != null) {
       error = emailValidator(email) ?? "";
       return false;
-    }  else if (subject.isEmpty) {
+    } else if (subject.isEmpty) {
       error = AppString.pleaseEnterSubject;
       return false;
     } else if (message.isEmpty) {

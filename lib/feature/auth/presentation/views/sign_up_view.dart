@@ -8,9 +8,11 @@ import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/provider/sign_up_provider.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/provider/state_notifiers/sign_up_notifier.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/provider/states/login_states.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_text_field.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 
 class SignUpView extends ConsumerWidget {
   const SignUpView({super.key});
@@ -19,6 +21,14 @@ class SignUpView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final signUpNotifier = ref.read(signUpProvider.notifier);
     ref.watch(signUpProvider);
+
+    ref.listen<SignUpState>(signUpProvider, (previous, next) {
+      if (next is SignUpSuccess) {
+        offAllNamed(context, Routes.createProfile);
+      } else if (next is SignUpFailed) {
+        toast(msg: next.error, isError: true);
+      }
+    });
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
@@ -57,7 +67,9 @@ class SignUpView extends ConsumerWidget {
                     yHeight(context.height * 0.02),
                     CommonAppBtn(
                       title: AppString.signUp,
-                      onTap: () => toNamed(context, Routes.createProfile),
+                      loading: SignUpState is SignUpApiLoading,
+                      onTap: () => signUpNotifier.signUpValidator(context),
+                      // onTap: () => toNamed(context, Routes.createProfile),
                       // signUpNotifier.signUpValidator(context),
                     ),
                     yHeight(context.height * 0.14),

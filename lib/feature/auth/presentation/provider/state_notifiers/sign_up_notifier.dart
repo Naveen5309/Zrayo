@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:zrayo_flutter/config/enums.dart';
 import 'package:zrayo_flutter/config/validator.dart';
 import 'package:zrayo_flutter/core/helpers/all_getter.dart';
 import 'package:zrayo_flutter/feature/auth/data/repositories/auth_repo_implementation.dart';
@@ -43,13 +46,15 @@ class SignUpNotifier extends StateNotifier<SignUpState> {
       }
       if (await Getters.networkInfo.isSlow) {}
       Map<String, dynamic> body = {
-        "email": "dev@yopmail.com",
-        "password": "Pass@123",
-        "confirmPassword": "Pass@123",
-        "device_type": "android",
+        "email": emailController.text,
+        "password": passwordController.text,
+        "userType": Getters.getLocalStorage.getUserType()?.index ??
+            UserTypeEnum.customer.index,
+        "device_type": Platform.isIOS ? "ios" : "android",
         "device_token": "No Token",
       };
-      final result = await authRepo.doLogin(body: body);
+
+      final result = await authRepo.doSignUp(body: body);
       state = result.fold((error) {
         return SignUpFailed(error: error.message);
       }, (result) {

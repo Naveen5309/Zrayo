@@ -6,10 +6,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:pinput/pinput.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/provider/states/login_states.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/provider/verify_email_provider.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 
 import '../../../../config/assets.dart';
 
@@ -20,6 +22,15 @@ class OtpVerificationView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final verifyEmailNotifier = ref.read(verifyEmailProvider.notifier);
     ref.watch(verifyEmailProvider);
+
+    ref.listen<LoginState>(verifyEmailProvider, (previous, next) {
+      if (next is OtpVerifySuccess) {
+        toNamed(context, Routes.changePasswordView);
+      } else if (next is LoginFailed) {
+        toast(msg: next.error, isError: true);
+      }
+    });
+
     final defaultPinTheme = PinTheme(
       width: 60,
       height: 60,
@@ -109,12 +120,12 @@ class OtpVerificationView extends ConsumerWidget {
             ),
           ),
           CommonAppBtn(
-            margin: EdgeInsets.all(16.0),
-            title: AppString.verify,
-            onTap: () =>
-                // verifyEmailNotifier.verifyEmailValidator(context)
-                toNamed(context, Routes.changePasswordView),
-          )
+              margin: EdgeInsets.all(16.0),
+              title: AppString.verify,
+              loading: LoginState is LoginApiLoading,
+              onTap: () =>
+                  // toNamed(context, Routes.changePasswordView))
+                  verifyEmailNotifier.verifyEmailValidator(context))
         ],
       ),
     );
