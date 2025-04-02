@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:zrayo_flutter/core/notification_service.dart';
 
 import '../../../../config/assets.dart';
 import '../../../../config/helper.dart';
@@ -21,6 +22,7 @@ class SplashView extends ConsumerStatefulWidget {
 class _SplashViewState extends ConsumerState<SplashView> {
   @override
   void initState() {
+    // notification();
     splashMethod();
     super.initState();
   }
@@ -46,7 +48,11 @@ class _SplashViewState extends ConsumerState<SplashView> {
       ),
     );
   }
-
+  void notification() async {
+    final NotificationService service = NotificationService();
+    await service.initializeFcm();
+    await service.initPushNotificationListeners();
+  }
   void splashMethod() {
     WidgetsBinding.instance.addPostFrameCallback((v) {
       if (FocusScope.of(context).hasFocus) {

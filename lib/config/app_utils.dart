@@ -1,7 +1,9 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:http_parser/http_parser.dart';
 import 'package:mime/mime.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_bottom_sheet.dart';
 
@@ -10,6 +12,19 @@ import 'helper.dart';
 
 class Utils {
   Utils._();
+
+  static Future<MultipartFile> makeMultipartFile(String imagePath) async {
+    String fileType = imagePath.substring(imagePath.lastIndexOf(".") + 1);
+    return await MultipartFile.fromFile(imagePath,
+        filename: imagePath.split("/").last,
+        contentType: MediaType(getFileType(imagePath)!, fileType));
+  }
+
+  static String? getFileType(String path) {
+    final mimeType = lookupMimeType(path);
+    String? result = mimeType?.substring(0, mimeType.indexOf('/'));
+    return result;
+  }
 
   static BoxDecoration boxDecoWithShadow({double? borderRadius, Color? color}) {
     return BoxDecoration(
@@ -46,12 +61,6 @@ class Utils {
         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
     RegExp regex = RegExp(pattern.toString());
     return regex.hasMatch(email);
-  }
-
-  static String? getFileType(String path) {
-    final mimeType = lookupMimeType(path);
-    String? result = mimeType?.substring(0, mimeType.indexOf('/'));
-    return result;
   }
 
   static Future<void> showLoader() async {
@@ -104,7 +113,7 @@ class Utils {
               EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           child: CustomBottomSheet(
             content: widget,
-            barOnTop:barOnTop,
+            barOnTop: barOnTop,
             mainAxisSize: mainSize ?? MainAxisSize.min,
           ),
         );

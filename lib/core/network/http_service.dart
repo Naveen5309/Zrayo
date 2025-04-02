@@ -6,12 +6,14 @@ import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:mime/mime.dart';
+import 'package:zrayo_flutter/config/app_utils.dart';
 
 import '../../config/helper.dart';
 import '../response_wrapper/data_response.dart';
 import 'interceptor.dart';
 
 part '../../config/api_endpoints.dart';
+
 part '../error/exceptions.dart';
 
 enum RequestType {
@@ -121,11 +123,7 @@ class ApiProvider {
       Map<String, dynamic> map = HashMap();
       map.addAll(body);
       if (imagePath.isNotEmpty) {
-        File file = File(imagePath);
-        String fileType = imagePath.substring(imagePath.lastIndexOf(".") + 1);
-        map[paramName] = await MultipartFile.fromFile(file.path,
-            filename: imagePath.split("/").last,
-            contentType: MediaType(_getFileType(imagePath)!, fileType));
+        map[paramName] = Utils.makeMultipartFile(imagePath);
       }
       return _dio.post(
         fullUrl,
@@ -151,12 +149,6 @@ class ApiProvider {
         options: headerToken,
       );
     }
-  }
-
-  String? _getFileType(String path) {
-    final mimeType = lookupMimeType(path);
-    String? result = mimeType?.substring(0, mimeType.indexOf('/'));
-    return result;
   }
 
   T _dataParser<T>(dynamic json, T Function(dynamic) fromJson) {

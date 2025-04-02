@@ -22,6 +22,11 @@ class CreateProfileSuccess extends CreateProfileStates {
   List<Object> get props => [];
 }
 
+class CreateProfileRefresh extends CreateProfileStates {
+  @override
+  List<Object> get props => [];
+}
+
 class CreateProfileFailed extends CreateProfileStates {
   final String error;
 

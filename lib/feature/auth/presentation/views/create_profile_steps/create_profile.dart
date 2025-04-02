@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,21 +9,31 @@ import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/provider/create_profile_provider.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/provider/states/create_profile_states.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/camera_bottom_sheet_view.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_cache_network_image.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_text_field.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 
 class CreateProfile extends ConsumerWidget {
   final bool fromSettings;
+
   const CreateProfile({super.key, required this.fromSettings});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final createProfileState = ref.watch(createProfileProvider);
     final createProfileNotifier = ref.read(createProfileProvider.notifier);
 
-    ref.watch(createProfileProvider);
+    ref.listen<CreateProfileStates>(createProfileProvider, (previous, next) {
+      if (next is CreateProfileSuccess) {
+        fromSettings ? back(context) : toNamed(context, Routes.addAddressView);
+      } else if (next is CreateProfileFailed) {
+        toast(msg: next.error, isError: true);
+      }
+    });
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -63,28 +75,32 @@ class CreateProfile extends ConsumerWidget {
                           child: Stack(
                             alignment: Alignment.center,
                             children: [
-                              // if (createProfileController.pickedImage?.path != null &&
-                              //     (createProfileController.pickedImage?.path.isNotEmpty ??
-                              //         false)) ...{
-                              //   ClipRRect(
-                              //     borderRadius: BorderRadius.circular(Dimens.hundred),
-                              //     child: Image.file(
-                              //       File(createProfileController.pickedImage?.path ?? ""),
-                              //       height: Dimens.hundred,
-                              //       width: Dimens.hundred,
-                              //       fit: BoxFit.cover,
-                              //     ),
-                              //   )
-                              // } else ...{
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: CustomCacheNetworkImage(
-                                  img: '',
-                                  size: 120.sp,
-                                  imageRadius: 100.sp,
+                              if (createProfileNotifier.pickedImage?.path !=
+                                      null &&
+                                  (createProfileNotifier
+                                          .pickedImage?.path.isNotEmpty ??
+                                      false)) ...{
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(100),
+                                  child: Image.file(
+                                    File(createProfileNotifier
+                                            .pickedImage?.path ??
+                                        ""),
+                                    height: 120.sp,
+                                    width: 120.sp,
+                                    fit: BoxFit.cover,
+                                  ),
+                                )
+                              } else ...{
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: CustomCacheNetworkImage(
+                                    img: '',
+                                    size: 120.sp,
+                                    imageRadius: 100.sp,
+                                  ),
                                 ),
-                              ),
-                              // },
+                              },
                               Positioned(
                                 bottom: 0,
                                 right: 0,
@@ -92,7 +108,10 @@ class CreateProfile extends ConsumerWidget {
                                   onTap: () {
                                     Utils.appBottomSheet(
                                       widget: CameraBottomSheetView(
-                                        onGetImage: (value) {},
+                                        onGetImage: (value) {
+                                          createProfileNotifier
+                                              .changeProfileImage(value);
+                                        },
                                         title: "Upload profile image",
                                       ),
                                       context: context,
@@ -191,16 +210,12 @@ class CreateProfile extends ConsumerWidget {
                     ],
                   ),
                   CommonAppBtn(
-                    title: fromSettings
-                        ? AppString.update
-                        : AppString.saveAndContinue,
-                    onTap: () => fromSettings
-                        ? back(context)
-                        :
-                        // createProfileNotifier
-                        // .createProfileValidator(context)
-                        toNamed(context, Routes.addAddressView),
-                  ),
+                      title: fromSettings
+                          ? AppString.update
+                          : AppString.saveAndContinue,
+                      loading: createProfileState is CreateProfileApiLoading,
+                      onTap: () => createProfileNotifier
+                          .createProfileValidator(context)),
                 ],
               ),
             )
