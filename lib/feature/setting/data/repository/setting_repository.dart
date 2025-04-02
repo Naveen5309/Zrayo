@@ -6,6 +6,8 @@ import 'package:zrayo_flutter/feature/setting/data/data_source/setting_data_sour
 abstract class SettingRepository {
   Future<Either<Failure, UserModel?>> contactUs(
       {required Map<String, dynamic> body});
+  Future<Either<Failure, UserModel?>> logout(
+      {required Map<String, dynamic> body});
 }
 
 class SettingRepoImpl implements SettingRepository {
@@ -18,6 +20,21 @@ class SettingRepoImpl implements SettingRepository {
       {required Map<String, dynamic> body}) async {
     try {
       final data = await dataSource.contactUs(body: body);
+      if (data?.success == true) {
+        return Right(data?.data);
+      } else {
+        return Left(ServerFailure(message: data?.message ?? ""));
+      }
+    } catch (e) {
+      return Left(ServerFailure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserModel?>> logout(
+      {required Map<String, dynamic> body}) async {
+    try {
+      final data = await dataSource.logout(body: body);
       if (data?.success == true) {
         return Right(data?.data);
       } else {
