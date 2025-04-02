@@ -11,6 +11,7 @@ class CustomCacheNetworkImage extends StatelessWidget {
   final double? width;
   final double? height;
   final double imageRadius;
+  final BoxBorder? imageBorder;
   final BorderRadius? imageBorderRadius;
   final BoxFit? fit;
 
@@ -21,6 +22,7 @@ class CustomCacheNetworkImage extends StatelessWidget {
     this.width,
     this.height,
     this.imageRadius = 100,
+    this.imageBorder,
     this.imageBorderRadius,
     this.fit,
   });
@@ -44,7 +46,8 @@ class CustomCacheNetworkImage extends StatelessWidget {
         //     )
         //   :
         CachedNetworkImage(
-      imageUrl: "https://www.shutterstock.com/image-illustration/3d-rendering-house-under-construction-260nw-2160375337.jpg",
+      imageUrl:
+          "https://cdn.pixabay.com/photo/2017/07/08/02/16/house-2483336_640.jpg",
       height: height ?? size,
       width: width ?? size,
       fit: BoxFit.cover,
@@ -53,6 +56,7 @@ class CustomCacheNetworkImage extends StatelessWidget {
         width: width ?? size,
         decoration: BoxDecoration(
           borderRadius: imageBorderRadius ?? BorderRadius.circular(imageRadius),
+          border: imageBorder,
           image: DecorationImage(
             image: imageProvider,
             fit: fit ?? BoxFit.cover,

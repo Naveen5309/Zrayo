@@ -64,7 +64,7 @@ class PropertyDetailView extends StatelessWidget {
                           padding: EdgeInsets.all(10),
                           child: SvgPicture.asset(
                             Assets.leftArrow,
-                            width: 20.h,
+                            width: 18.h,
                           ),
                         ),
                       ),
@@ -77,7 +77,7 @@ class PropertyDetailView extends StatelessWidget {
                             padding: EdgeInsets.all(10),
                             child: SvgPicture.asset(
                               Assets.shareIcon,
-                              width: 20.h,
+                              width: 18.h,
                             ),
                           ),
                           xWidth(10.h),
@@ -89,7 +89,7 @@ class PropertyDetailView extends StatelessWidget {
                               padding: EdgeInsets.all(10),
                               child: SvgPicture.asset(
                                 Assets.heartUnselected,
-                                width: 20.h,
+                                width: 18.h,
                                 colorFilter: ColorFilter.mode(
                                     AppColor.black000000, BlendMode.srcIn),
                               ),
@@ -126,6 +126,11 @@ class PropertyDetailView extends StatelessWidget {
                             img: "",
                             size: 74.sp,
                             imageRadius: 10.sp,
+                            imageBorder: Border.all(
+                                color: index == 0
+                                    ? AppColor.primary
+                                    : AppColor.transparent,
+                                width: 2),
                           ),
                           if (index == 3)
                             Container(
@@ -373,81 +378,73 @@ Widget dottedContainer(BuildContext context) {
 }
 
 Widget bottomSheet(BuildContext context) {
-  return Container(
-    constraints: BoxConstraints(maxHeight: screenHeight(context) / 2),
-    child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Column(
-        children: [
-          yHeight(12),
-          AppText(
-            text: AppString.chooseYourAgent,
-            textSize: 20.sp,
-            fontFamily: AppFonts.satoshiBold,
-          ),
-          yHeight(12),
-          AppText(
-            text: AppString.minimumAgentAndFeedback,
-            fontFamily: AppFonts.satoshiRegular,
-            lineHeight: 1.2,
-            textSize: 14.sp,
-            color: AppColor.black000000.withValues(alpha: 0.6),
-          ),
-          yHeight(16.h),
-
-          Expanded(
-            child: ListView.builder(
-              padding: EdgeInsets.symmetric(vertical: 16.h),
-              // physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: 3,
-              itemBuilder: (context, index) {
-                return Column(
-                  children: [
-                    ListTile(
-                      minTileHeight: 8,
-                      contentPadding: EdgeInsets.symmetric(horizontal: 0),
-                      leading: CircleAvatar(
-                        backgroundImage: NetworkImage(
-                            "https://randomuser.me/api/portraits/women/2.jpg"),
-                      ),
-                      title: AppText(
-                        text: "User name",
-                        textSize: 14.sp,
-                        fontFamily: AppFonts.satoshiBold,
-                      ),
-                      subtitle: Padding(
-                        padding: const EdgeInsets.only(top: 5),
-                        child: AppText(
-                          text: "326289399978",
-                          textSize: 12.sp,
-                          fontFamily: AppFonts.satoshiRegular,
-                          color: AppColor.color212121.withValues(alpha: 0.5),
-                        ),
-                      ),
-                      trailing: SvgPicture.asset(
-                        (true) ? Assets.radio : Assets.radioOff,
-                      ),
-                      onTap: () {},
-                    ),
-                    if (index != 2)
-                      Divider(
-                        color: AppColor.black000000.withValues(alpha: 0.5),
-                      ),
-                  ],
-                );
-              },
-            ),
-          ),
-          // yHeight(15),
-          CommonAppBtn(
-              title: AppString.continueText,
-              onTap: () {
-                back(context);
-                toNamed(context, Routes.bookYourDateView);
-              })
-        ],
+  return Column(
+    children: [
+      yHeight(12),
+      AppText(
+        text: AppString.chooseYourAgent,
+        textSize: 20.sp,
+        fontFamily: AppFonts.satoshiBold,
       ),
-    ),
+      yHeight(12),
+      AppText(
+        text: AppString.minimumAgentAndFeedback,
+        fontFamily: AppFonts.satoshiRegular,
+        lineHeight: 1.2,
+        textSize: 14.sp,
+        color: AppColor.black000000.withValues(alpha: 0.6),
+      ),
+      yHeight(16.h),
+      ListView.builder(
+        padding: EdgeInsets.symmetric(vertical: 16.h),
+        physics: NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: 3,
+        itemBuilder: (context, index) {
+          final isSelected = index == 0;
+          return Column(
+            children: [
+              ListTile(
+                minTileHeight: 8,
+                contentPadding: EdgeInsets.symmetric(horizontal: 0),
+                leading: CircleAvatar(
+                  backgroundImage: NetworkImage(
+                      "https://randomuser.me/api/portraits/women/2.jpg"),
+                ),
+                title: AppText(
+                  text: "User name",
+                  textSize: 14.sp,
+                  fontFamily: AppFonts.satoshiBold,
+                ),
+                subtitle: Padding(
+                  padding: const EdgeInsets.only(top: 5),
+                  child: AppText(
+                    text: "test@yopmail.com",
+                    textSize: 12.sp,
+                    fontFamily: AppFonts.satoshiRegular,
+                    color: AppColor.color212121.withValues(alpha: 0.5),
+                  ),
+                ),
+                trailing: SvgPicture.asset(
+                  (isSelected) ? Assets.radio : Assets.radioOff,
+                ),
+                onTap: () {},
+              ),
+              if (index != 2)
+                Divider(
+                  color: AppColor.colorDDDDDD.withValues(alpha: .9),
+                ),
+            ],
+          );
+        },
+      ),
+      yHeight(15),
+      CommonAppBtn(
+          title: AppString.continueText,
+          onTap: () {
+            back(context);
+            toNamed(context, Routes.bookYourDateView);
+          })
+    ],
   );
 }

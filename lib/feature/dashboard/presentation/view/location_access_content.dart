@@ -19,7 +19,7 @@ class LocationAccessContent extends StatelessWidget {
             TextSpan(
               text: AppString.allow,
               style: TextStyle(
-                  fontSize: 18.sp,
+                  fontSize: 17.sp,
                   fontFamily: AppFonts.satoshiMedium,
                   color: AppColor.color0B0B0B),
               children: [
@@ -34,7 +34,7 @@ class LocationAccessContent extends StatelessWidget {
                   text: AppString.accessDeviceLocation,
                   style: TextStyle(
                       fontFamily: AppFonts.satoshiMedium,
-                      fontSize: 18.sp,
+                      fontSize: 17.sp,
                       color: AppColor.color0B0B0B),
                 ),
               ],
