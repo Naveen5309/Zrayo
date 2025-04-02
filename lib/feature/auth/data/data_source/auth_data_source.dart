@@ -81,6 +81,7 @@ class AuthDataSourceImpl extends AuthDataSource {
       final dataResponse = await Getters.getHttpService.request<UserModel>(
         body: body,
         url: ApiConstants.createProfile,
+        useFormData: true,
         fromJson: (json) => UserModel.fromJson(json),
       );
       if (dataResponse.success == true) {

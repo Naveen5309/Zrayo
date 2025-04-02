@@ -11,7 +11,6 @@ abstract final class ApiConstants {
   static const String verifyEmail = "users/verify/otp";
   static const String changePassword = "users/reset/password";
   static const String contactUs = "contactUs";
-  static const String createProfile = "createProfile";
+  static const String createProfile = "users/profile/create";
   static const String logout = "users/logout";
-  static const String preferences = "get/preferences";
 }

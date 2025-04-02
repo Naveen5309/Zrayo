@@ -1,8 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:zrayo_flutter/config/app_utils.dart';
 import 'package:zrayo_flutter/config/validator.dart';
 import 'package:zrayo_flutter/core/helpers/all_getter.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
+import 'package:dio/dio.dart';
+import 'package:http_parser/http_parser.dart';
 
 import '../../../data/repositories/auth_repo_implementation.dart';
 import '../states/create_profile_states.dart';
@@ -11,6 +17,7 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
   final AuthRepository authRepo;
   final Validator validator = Validator.instance;
 
+  File? pickedImage;
   final phoneController = TextEditingController();
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
@@ -26,6 +33,11 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
 
   CreateProfileNotifiers({required this.authRepo})
       : super(CreateProfileInitial());
+
+  void changeProfileImage(CroppedFile value) {
+    pickedImage = File(value.path);
+    state = CreateProfileRefresh();
+  }
 
   void createProfileValidator(BuildContext context) {
     final isValid = validator.createProfileValidator(
@@ -50,15 +62,18 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
       }
       if (await Getters.networkInfo.isSlow) {}
       Map<String, dynamic> body = {
-        "first_name": "abc",
-        "last_name": "abc",
-        "mobile_number": "Pass@123",
-        "dob": "12/11/2000",
-        "nin_number": "231",
-        "device_type": "android",
-        "device_token": "No Token",
+        "firstName": firstNameController.text.trim(),
+        "lastName": lastNameController.text.trim(),
+        "phoneNumber": phoneController.text.trim(),
+        "dob": dobController.text,
+        "ninOrBvnNumber": ninNumberController.text.trim(),
       };
-      final result = await authRepo.createProfile(body: body);
+      Map<String, dynamic> map = {};
+      map.addAll(body);
+      if (pickedImage != null && (pickedImage?.path.isNotEmpty ?? false)) {
+        map["image"] = await Utils.makeMultipartFile(pickedImage?.path ?? "");
+      }
+      final result = await authRepo.createProfile(body: map);
       state = result.fold((error) {
         return CreateProfileFailed(error: error.message);
       }, (result) {
