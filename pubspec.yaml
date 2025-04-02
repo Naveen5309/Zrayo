@@ -52,6 +52,8 @@ dependencies:
   syncfusion_flutter_sliders: ^28.2.12
   table_calendar: ^3.2.0
   lottie: ^3.3.1
+  syncfusion_flutter_core: ^28.2.12
+  http_parser: ^4.1.2
 
 dev_dependencies:
   flutter_test:

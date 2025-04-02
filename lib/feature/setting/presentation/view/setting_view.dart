@@ -21,7 +21,6 @@ class SettingView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var settingNotifier = ref.read(settingViewProvider.notifier);
     ref.watch(settingViewProvider);
     return Scaffold(
       body: SingleChildScrollView(

@@ -20,7 +20,7 @@ class SignUpView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final signUpNotifier = ref.read(signUpProvider.notifier);
-    ref.watch(signUpProvider);
+    final signUpState = ref.watch(signUpProvider);
 
     ref.listen<SignUpState>(signUpProvider, (previous, next) {
       if (next is SignUpSuccess) {
@@ -67,7 +67,7 @@ class SignUpView extends ConsumerWidget {
                     yHeight(context.height * 0.02),
                     CommonAppBtn(
                       title: AppString.signUp,
-                      loading: SignUpState is SignUpApiLoading,
+                      loading: signUpState is SignUpApiLoading,
                       onTap: () => signUpNotifier.signUpValidator(context),
                       // onTap: () => toNamed(context, Routes.createProfile),
                       // signUpNotifier.signUpValidator(context),

@@ -9,7 +9,7 @@ import 'package:zrayo_flutter/config/app_utils.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
-import 'package:zrayo_flutter/feature/auth/presentation/provider/login_provider.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/provider/auth_provider.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/provider/state_notifiers/login_notifiers.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/provider/states/login_states.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/views/forgot_password_sheet.dart';
@@ -26,10 +26,10 @@ class LoginView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final loginState = ref.watch(loginProvider);
-    final loginNotifier = ref.read(loginProvider.notifier);
+    final loginState = ref.watch(authProvider);
+    final loginNotifier = ref.read(authProvider.notifier);
 
-    ref.listen<LoginState>(loginProvider, (previous, next) {
+    ref.listen<LoginState>(authProvider, (previous, next) {
       if (next is LoginSuccess) {
         offAllNamed(context, Routes.dashboard);
       } else if (next is LoginFailed) {

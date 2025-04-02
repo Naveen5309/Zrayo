@@ -7,23 +7,24 @@ import 'package:pinput/pinput.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/provider/states/login_states.dart';
-import 'package:zrayo_flutter/feature/auth/presentation/provider/verify_email_provider.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 
 import '../../../../config/assets.dart';
+import '../provider/auth_provider.dart';
 
 class OtpVerificationView extends ConsumerWidget {
   const OtpVerificationView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final verifyEmailNotifier = ref.read(verifyEmailProvider.notifier);
-    ref.watch(verifyEmailProvider);
+    final verifyEmailNotifier = ref.read(authProvider.notifier);
+    final verifyEmailState = ref.watch(authProvider);
 
-    ref.listen<LoginState>(verifyEmailProvider, (previous, next) {
+
+    ref.listen<LoginState>(authProvider, (previous, next) {
       if (next is OtpVerifySuccess) {
         toNamed(context, Routes.changePasswordView);
       } else if (next is LoginFailed) {
@@ -122,7 +123,7 @@ class OtpVerificationView extends ConsumerWidget {
           CommonAppBtn(
               margin: EdgeInsets.all(16.0),
               title: AppString.verify,
-              loading: LoginState is LoginApiLoading,
+              loading: verifyEmailState is LoginApiLoading,
               onTap: () =>
                   // toNamed(context, Routes.changePasswordView))
                   verifyEmailNotifier.verifyEmailValidator(context))

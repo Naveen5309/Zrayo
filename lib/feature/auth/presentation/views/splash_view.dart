@@ -8,7 +8,8 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../config/assets.dart';
 import '../../../../config/helper.dart';
 import '../../../../core/utils/routing/routes.dart';
-import '../provider/splash_provider.dart';
+
+final animationProvider = StateProvider.autoDispose<bool>((ref) => false);
 
 class SplashView extends ConsumerStatefulWidget {
   const SplashView({super.key});
@@ -35,7 +36,7 @@ class _SplashViewState extends ConsumerState<SplashView> {
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 800),
           curve: Curves.linearToEaseOut,
-          height: animation.state ? screenHeight(context) /5  : 0,
+          height: animation.state ? screenHeight(context) / 5 : 0,
           width: animation.state ? screenWidth(context) / 2.5 : 0,
           child: SvgPicture.asset(
             Assets.zrayoSplash,

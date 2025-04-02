@@ -171,7 +171,7 @@ class AuthDataSourceImpl extends AuthDataSource {
     } catch (e) {
       return getFailedResponseWrapper(exceptionHandler(
         e: e,
-        functionName: "forgetEmail",
+        functionName: "forgetPassword",
       ));
     }
   }
@@ -194,7 +194,7 @@ class AuthDataSourceImpl extends AuthDataSource {
     } catch (e) {
       return getFailedResponseWrapper(exceptionHandler(
         e: e,
-        functionName: "otp",
+        functionName: "verifyEmail",
       ));
     }
   }

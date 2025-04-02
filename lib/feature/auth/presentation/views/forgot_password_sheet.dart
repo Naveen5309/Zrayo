@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
-import 'package:zrayo_flutter/feature/auth/presentation/provider/forget_password_provider.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/provider/auth_provider.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/provider/states/login_states.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
@@ -17,14 +17,13 @@ class ForgotPasswordSheet extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final forgetPasswordNotifier = ref.read(forgetPasswordProvider.notifier);
-    ref.watch(forgetPasswordProvider);
+    final forgetPasswordNotifier = ref.read(authProvider.notifier);
+    final loginState = ref.watch(authProvider);
 
-    ref.listen<LoginState>(forgetPasswordProvider, (previous, next) {
+    ref.listen<LoginState>(authProvider, (previous, next) {
       if (next is OtpSentSuccess) {
         back(context);
-
-        offAllNamed(context, Routes.otpVerificationView);
+        toNamed(context, Routes.otpVerificationView);
       } else if (next is LoginFailed) {
         toast(msg: next.error, isError: true);
       }
@@ -64,7 +63,7 @@ class ForgotPasswordSheet extends ConsumerWidget {
           yHeight(10.sp),
           CommonAppBtn(
             title: AppString.submit,
-            loading: LoginState is LoginApiLoading,
+            loading: loginState is LoginApiLoading,
             onTap: () {
               forgetPasswordNotifier.forgetPasswordValidator(context);
               // toNamed(context, Routes.otpVerificationView);

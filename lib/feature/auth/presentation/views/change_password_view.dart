@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
-import 'package:zrayo_flutter/feature/auth/presentation/provider/change_password_provider.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/provider/states/login_states.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 
@@ -13,16 +12,17 @@ import '../../../z_common_widgets/app_text.dart';
 import '../../../z_common_widgets/custom_app_bar.dart';
 import '../../../z_common_widgets/custom_btn.dart';
 import '../../../z_common_widgets/custom_text_field.dart';
+import '../provider/auth_provider.dart';
 
 class ChangePasswordView extends ConsumerWidget {
   const ChangePasswordView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final changePasswordNotifier = ref.read(changePasswordProvider.notifier);
-    ref.watch(changePasswordProvider);
+    final changePasswordNotifier = ref.read(authProvider.notifier);
+   final changePassState= ref.watch(authProvider);
 
-    ref.listen<LoginState>(changePasswordProvider, (previous, next) {
+    ref.listen<LoginState>(authProvider, (previous, next) {
       if (next is ChangePasswordSuccess) {
         offAllNamed(context, Routes.loginView);
       } else if (next is LoginFailed) {
@@ -113,7 +113,7 @@ class ChangePasswordView extends ConsumerWidget {
           CommonAppBtn(
             margin: EdgeInsets.all(16.0),
             title: AppString.change,
-            loading: LoginState is LoginApiLoading,
+            loading: changePassState is LoginApiLoading,
             onTap: () {
               changePasswordNotifier.changePasswordValidator(context);
               // back(context);

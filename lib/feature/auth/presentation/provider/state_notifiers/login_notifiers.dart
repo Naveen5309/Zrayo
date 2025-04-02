@@ -4,19 +4,18 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:zrayo_flutter/config/enums.dart';
-import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/config/validator.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 
 import '../../../../../core/helpers/all_getter.dart';
-import '../../../../../core/utils/routing/routes.dart';
 import '../../../data/repositories/auth_repo_implementation.dart';
 import '../states/login_states.dart';
 
 class LoginNotifier extends StateNotifier<LoginState> {
   final AuthRepository authRepo;
   final Validator validator = Validator.instance;
-  final forgetEmailController = TextEditingController();
+  final forgetEmailController = TextEditingController(
+      text: kDebugMode ? "amandeep@parastsssechnologies.com" : "");
   final emailController = TextEditingController(
       text: kDebugMode ? "amandeep@parastsssechnologies.com" : "");
   final passwordController =
@@ -29,9 +28,8 @@ class LoginNotifier extends StateNotifier<LoginState> {
 
   LoginNotifier({required this.authRepo}) : super(LoginInitial());
 
+  /// Login validator and api
   void loginValidator(BuildContext context) {
-    // offAllNamed(context, Routes.dashboard);
-    // return;
     final isValid = validator.loginValidator(
         email: emailController.text, pass: passwordController.text);
     if (isValid) {
@@ -69,6 +67,7 @@ class LoginNotifier extends StateNotifier<LoginState> {
     }
   }
 
+  /// forget Password validator and api
   void forgetPasswordValidator(BuildContext context) {
     final isValid =
         validator.forgetPasswordValidator(email: forgetEmailController.text);
@@ -101,6 +100,7 @@ class LoginNotifier extends StateNotifier<LoginState> {
     }
   }
 
+  /// change Password validator and api
   void changePasswordValidator(BuildContext context) {
     // offAllNamed(context, Routes.loginView);
     // return;
@@ -136,6 +136,7 @@ class LoginNotifier extends StateNotifier<LoginState> {
     }
   }
 
+  /// verify email validator and api
   void verifyEmailValidator(BuildContext context) {
     final isValid = validator.verifyEmailValidator(otp: otpController.text);
     if (isValid) {
