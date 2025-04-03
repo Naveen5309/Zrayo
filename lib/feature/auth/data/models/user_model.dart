@@ -8,6 +8,7 @@ class UserModel {
   int? id;
   String? firstName;
   String? lastName;
+  String? fullName;
   String? email;
   String? phoneNumber;
   int? otp;
@@ -37,6 +38,7 @@ class UserModel {
     this.phoneNumber,
     this.otp,
     this.userProfile,
+    this.fullName,
     this.dob,
     this.ninOrBvnNumber,
     this.deviceToken,
@@ -59,6 +61,7 @@ class UserModel {
         id: json["id"],
         firstName: json["firstName"],
         lastName: json["lastName"],
+        fullName: "${json["firstName"]} ${json["lastName"]}",
         email: json["email"],
         phoneNumber: json["phoneNumber"],
         otp: json["otp"],

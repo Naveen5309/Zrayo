@@ -125,6 +125,8 @@ class SettingView extends ConsumerWidget {
 }
 
 Widget profileSection(BuildContext context) {
+  final userModel = Getters.getLocalStorage.getLoginUser();
+  printLog(userModel?.userProfile);
   return GestureDetector(
     onTap: () {
       toNamed(context, Routes.profileDetailView);
@@ -163,7 +165,7 @@ Widget profileSection(BuildContext context) {
               children: [
                 //TITLE
                 AppText(
-                  text: 'Paras',
+                  text: userModel?.fullName ?? "",
                   textSize: 15.sp,
                   fontWeight: FontWeight.w500,
                 ),
@@ -171,7 +173,7 @@ Widget profileSection(BuildContext context) {
                 5.verticalSpace,
                 //SUBTITLE
                 AppText(
-                  text: 'paras@gmail.com',
+                  text: userModel?.email ?? "",
                   textSize: 12.sp,
                   color: AppColor.grey646464,
                   fontWeight: FontWeight.w400,
@@ -184,7 +186,7 @@ Widget profileSection(BuildContext context) {
             size: 16.sp,
             color: AppColor.black160C08,
           ),
-          xWidth(context.height / 12)
+          xWidth(16)
         ],
       ),
     ),

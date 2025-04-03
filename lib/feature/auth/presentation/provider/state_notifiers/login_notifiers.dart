@@ -16,9 +16,9 @@ class LoginNotifier extends StateNotifier<LoginState> {
   final AuthRepository authRepo;
   final Validator validator = Validator.instance;
   final forgetEmailController = TextEditingController(
-      text: kDebugMode ? "amandeep@parastsssechnologies.com" : "");
+      text: kDebugMode ? "amandeep@parastechnologies.com" : "");
   final emailController = TextEditingController(
-      text: kDebugMode ? "amandeep@parastsssechnologies.com" : "");
+      text: kDebugMode ? "amandeep@parastechnologies.com" : "");
   final passwordController =
       TextEditingController(text: kDebugMode ? "Amandeep@123" : "");
   final newPasswordController = TextEditingController();

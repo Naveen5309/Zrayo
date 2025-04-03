@@ -31,6 +31,7 @@ class HomeViewMain extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.watch(customerHomeProvider);
     final homeNotifier = ref.read(customerHomeProvider.notifier);
+    final userModel=Getters.getLocalStorage.getLoginUser();
     return Scaffold(
       floatingActionButton: Getters.isAgent()
           ? SizedBox.shrink()
@@ -55,7 +56,7 @@ class HomeViewMain extends ConsumerWidget {
               child: Column(
                 children: [
                   CustomAppBar(
-                    title: "Hello, Rachel 👋",
+                    title: "Hello, ${userModel?.firstName?.toTitleCase()} 👋",
                     subTitle: "Let’s find your cozy place ",
                     titleColor: AppColor.whiteFFFFFF,
                     showBackButton: false,

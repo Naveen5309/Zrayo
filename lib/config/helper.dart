@@ -2,6 +2,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 
 part '../config/app_colors.dart';
 part '../config/app_strings.dart';
@@ -45,7 +46,8 @@ void unFocus(BuildContext context) {
 }
 
 String formatDOB(DateTime dob) {
-  return '${dob.day.toString().padLeft(2, '0')}/${dob.month.toString().padLeft(2, '0')}/${dob.year}';
+  final DateFormat formatter = DateFormat('dd/MM/yyyy');
+  return formatter.format(dob);
 }
 
 SizedBox yHeight(double height) {
