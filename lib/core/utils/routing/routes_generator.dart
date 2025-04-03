@@ -128,7 +128,11 @@ class RouteGenerator {
         return _fadeTransitionRoute(AllPicturesView());
 
       case Routes.propertyDetailView:
-        return _fadeTransitionRoute(const PropertyDetailView());
+        return _fadeTransitionRoute(PropertyDetailView(
+          isSold: args?['isSold']??false,
+          isVisit: args?['isVisit']??false,
+          isMyProperty: args?['isMyProperty']??false,
+        ));
       case Routes.featurePrpertyView:
         return _fadeTransitionRoute(const FeaturePrpertyView());
 

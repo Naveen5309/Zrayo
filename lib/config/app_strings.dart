@@ -154,6 +154,8 @@ abstract final class AppString {
   static const String contactUs = "Contact Us";
   static const String rateOurApp = "Rate our app";
   static const String logout = "Logout";
+  static const String areYouSure = "Are you sure?";
+  static const String doYouWantToMarkPropertyAsSold = "Do you want to mark property as sold.";
   static const String tittle = "Tittle";
   static const String enterPropertyTittle = "Enter property tittle";
   static const String enterPropertyPrice = "Enter property price";

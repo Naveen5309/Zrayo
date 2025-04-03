@@ -102,6 +102,7 @@ class Assets {
   static const String icCloseCircle = 'assets/icons/close-circle.svg';
   static const String calendarIcon = 'assets/icons/calendar.svg';
   static const String logoutConfirm = 'assets/icons/logout_confirm.svg';
+  static const String questionIcon = 'assets/icons/question_icon.svg';
   static const String propertyBuildingIcon =
       'assets/icons/property_type_icons/building_icon.svg';
   static const String propertyCar = 'assets/icons/property_type_icons/car.svg';
@@ -123,4 +124,5 @@ class Assets {
   static const String successTick = 'assets/icons/success_tick.svg';
   static const String trash = 'assets/icons/trash.svg';
   static const String homeJson = 'assets/json/house.json';
+  static const String soldImage = 'assets/images/sold_image.svg';
 }

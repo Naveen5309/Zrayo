@@ -141,7 +141,11 @@ class AddPropertyAgentView extends ConsumerWidget {
                     isScrolled: true);
               }
             },
-            child: AppText(text: label, textSize: 14.sp),
+            child: AppText(
+              text: label,
+              textSize: 14.sp,
+              color: AppColor.black4A4A4A,
+            ),
           ),
         ],
       ),
@@ -151,79 +155,78 @@ class AddPropertyAgentView extends ConsumerWidget {
   Widget bottomSheet(BuildContext context) {
     return Container(
       constraints: BoxConstraints(maxHeight: screenHeight(context) / 1.5),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          children: [
-            yHeight(12),
-            AppText(
-              text: AppString.chooseAgents,
-              fontFamily: AppFonts.satoshiBold,
-            ),
-            yHeight(12),
-            AppText(
-              text: AppString.slectAgent,
-              fontFamily: AppFonts.satoshiRegular,
-              textSize: 13.sp,
-              lineHeight: 1.2,
-              color: AppColor.black000000.withValues(alpha: 0.6),
-            ),
-            yHeight(16.h),
-            CustomTextField(
-              hintText: AppString.search,
-              prefixIcon: SvgPicture.asset(Assets.searchIcon),
-            ),
-            Expanded(
-              child: ListView.builder(
-                padding: EdgeInsets.symmetric(vertical: 16.h),
-                // physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      ListTile(
-                        minTileHeight: 8,
-                        contentPadding: EdgeInsets.symmetric(horizontal: 0),
-                        leading: CircleAvatar(
-                          backgroundImage: NetworkImage(
-                              "https://randomuser.me/api/portraits/women/2.jpg"),
-                        ),
-                        title: AppText(
-                          text: "User name",
-                          textSize: 14.sp,
-                          fontFamily: AppFonts.satoshiBold,
-                        ),
-                        subtitle: Padding(
-                          padding: const EdgeInsets.only(top: 5),
-                          child: AppText(
-                            text: "326289399978",
-                            textSize: 12.sp,
-                            fontFamily: AppFonts.satoshiRegular,
-                            color: AppColor.color212121.withValues(alpha: 0.5),
-                          ),
-                        ),
-                        trailing: SvgPicture.asset(
-                          (true) ? Assets.lucideTrue : Assets.lucide,
-                        ),
-                        onTap: () {},
+      child: Column(
+        children: [
+          yHeight(12),
+          AppText(
+            text: AppString.chooseAgents,
+            textSize: 20.sp,
+            fontFamily: AppFonts.satoshiBold,
+          ),
+          yHeight(12),
+          AppText(
+            text: AppString.slectAgent,
+            fontFamily: AppFonts.satoshiRegular,
+            // textSize: 13.sp,
+            lineHeight: 1.2,
+            textAlign: TextAlign.center,
+            color: AppColor.black000000.withValues(alpha: 0.6),
+          ),
+          yHeight(16.h),
+          CustomTextField(
+            hintText: AppString.search,
+            prefixIcon: SvgPicture.asset(Assets.searchIcon),
+          ),
+          Expanded(
+            child: ListView.builder(
+              padding: EdgeInsets.symmetric(vertical: 16.h),
+              shrinkWrap: true,
+              itemCount: 10,
+              itemBuilder: (context, index) {
+                final isSelected = index == 1;
+                return Column(
+                  children: [
+                    ListTile(
+                      minTileHeight: 8,
+                      contentPadding: EdgeInsets.symmetric(horizontal: 0),
+                      leading: CircleAvatar(
+                        backgroundImage: NetworkImage(
+                            "https://randomuser.me/api/portraits/women/2.jpg"),
                       ),
-                      if (index != 9)
-                        Divider(
-                          color: AppColor.black000000.withValues(alpha: 0.5),
+                      title: AppText(
+                        text: "User name",
+                        textSize: 14.sp,
+                        fontFamily: AppFonts.satoshiBold,
+                      ),
+                      subtitle: Padding(
+                        padding: const EdgeInsets.only(top: 5),
+                        child: AppText(
+                          text: "(406) 555-0120",
+                          textSize: 12.sp,
+                          fontFamily: AppFonts.satoshiRegular,
+                          color: AppColor.color212121.withValues(alpha: 0.5),
                         ),
-                    ],
-                  );
-                },
-              ),
+                      ),
+                      trailing: SvgPicture.asset(
+                        (isSelected) ? Assets.lucideTrue : Assets.lucide,
+                      ),
+                      onTap: () {},
+                    ),
+                    if (index != 9)
+                      Divider(
+                        color: AppColor.colorDDDDDD.withValues(alpha: .9),
+                      ),
+                  ],
+                );
+              },
             ),
-            // yHeight(15),
-            CommonAppBtn(
-              title: AppString.continueText,
-              onTap: () => back(context),
-            )
-          ],
-        ),
+          ),
+          // yHeight(15),
+          CommonAppBtn(
+            title: AppString.continueText,
+            onTap: () => back(context),
+          )
+        ],
       ),
     );
   }

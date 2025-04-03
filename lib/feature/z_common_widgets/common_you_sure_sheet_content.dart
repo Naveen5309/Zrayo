@@ -8,8 +8,10 @@ import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 
-class LogoutConfirmationView extends StatelessWidget {
-  const LogoutConfirmationView({super.key});
+class CommonYouSureSheetContent extends StatelessWidget {
+  final VoidCallback onYes;
+
+  const CommonYouSureSheetContent({super.key, required this.onYes});
 
   @override
   Widget build(BuildContext context) {
@@ -21,43 +23,24 @@ class LogoutConfirmationView extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           SvgPicture.asset(
-            Assets.logoutConfirm,
-            height: 105,
-            width: 114,
+            Assets.questionIcon,
+            // height: 105,
+            // width: 114,
           ),
           yHeight(context.height * 0.03),
-
           AppText(
-            text: AppString.logout,
+            text: AppString.areYouSure,
             fontFamily: AppFonts.satoshiBold,
             textSize: 22.sp,
             textAlign: TextAlign.center,
           ),
           yHeight(context.height * 0.02),
           AppText(
-            text: AppString.areYouSureLogOut,
+            text: AppString.doYouWantToMarkPropertyAsSold,
             textAlign: TextAlign.center,
             color: AppColor.grey646464,
           ),
           yHeight(context.height * 0.03),
-          yHeight(20),
-          // CommonAppBtn(
-          //   onTap: () => back(context),
-          //   title: AppString.deny,
-          //   textColor: AppColor.primary,
-          //   backGroundColor: AppColor.secondry,
-          //   borderColor: AppColor.transparent,
-          // ),
-          // yHeight(15),
-          //
-          // CommonAppBtn(
-          //   onTap: () {
-          //     back(context);
-          //   },
-          //   title: AppString.enableLocation,
-          //   backGroundColor: AppColor.primary,
-          // ),
-
           Padding(
             padding: EdgeInsets.only(bottom: context.height * .02),
             child: Row(
@@ -68,9 +51,9 @@ class LogoutConfirmationView extends StatelessWidget {
                     textColor: AppColor.primary,
                     backGroundColor: AppColor.secondry,
                     onTap: () {
-                      Navigator.pop(context);
+                      back(context);
                     },
-                    title: AppString.cancel,
+                    title: AppString.no,
                     borderColor: AppColor.transparent,
                     width: context.width,
                   ),
@@ -80,12 +63,8 @@ class LogoutConfirmationView extends StatelessWidget {
                 //CONFIRM
                 Expanded(
                   child: CommonAppBtn(
-                    onTap: () {
-                      offAllNamed(context, Routes.chooseInterfaceView);
-                      toast(
-                          msg: "User successfully logged out", isError: false);
-                    },
-                    title: AppString.logout,
+                    onTap: onYes,
+                    title: AppString.yes,
                     width: context.width,
                   ),
                 ),

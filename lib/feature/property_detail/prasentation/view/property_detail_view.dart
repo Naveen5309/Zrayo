@@ -7,8 +7,10 @@ import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/helpers/all_getter.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/home/presentation/view/review_bottomsheet.dart';
+import 'package:zrayo_flutter/feature/property_detail/prasentation/view/request_a_tour_view/book_your_date_view.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/common_dotted_border.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/common_you_sure_sheet_content.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_cache_network_image.dart';
@@ -25,9 +27,16 @@ part 'property_historical_data.dart';
 part 'property_map_view.dart';
 
 class PropertyDetailView extends StatelessWidget {
-  final bool isAgentProperty;
+  final bool isSold;
+  final bool isVisit;
+  final bool isMyProperty;
 
-  const PropertyDetailView({super.key, this.isAgentProperty = false});
+  const PropertyDetailView({
+    super.key,
+    this.isSold = false,
+    this.isVisit = false,
+    this.isMyProperty = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +57,13 @@ class PropertyDetailView extends StatelessWidget {
                     bottomRight: Radius.circular(34),
                   ),
                 ),
+                if (isSold)
+                  Positioned(
+                    top: safeAreaHeight(context) + 15.h,
+                    right: 0.h,
+                    left: 0.h,
+                    child: SvgPicture.asset(Assets.soldImage),
+                  ),
                 Positioned(
                   top: safeAreaHeight(context) + 15.h,
                   right: 16.h,
@@ -70,17 +86,19 @@ class PropertyDetailView extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                color: AppColor.whiteFFFFFF,
-                                borderRadius: BorderRadius.circular(10)),
-                            padding: EdgeInsets.all(10),
-                            child: SvgPicture.asset(
-                              Assets.shareIcon,
-                              width: 18.h,
+                          if (!isSold) ...{
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: AppColor.whiteFFFFFF,
+                                  borderRadius: BorderRadius.circular(10)),
+                              padding: EdgeInsets.all(10),
+                              child: SvgPicture.asset(
+                                Assets.shareIcon,
+                                width: 18.h,
+                              ),
                             ),
-                          ),
-                          xWidth(10.h),
+                            xWidth(10.h)
+                          },
                           if (!Getters.isAgent())
                             Container(
                               decoration: BoxDecoration(
@@ -160,45 +178,81 @@ class PropertyDetailView extends StatelessWidget {
             propertyInfo(context),
             // yHeight(16.h),
             PropertyFeaturesList(),
-            AgentsLandlordList(),
+            AgentsLandlordList(
+              isVisit: isVisit,
+            ),
             yHeight(16.sp),
             PropertyMapView(),
             yHeight(16.sp),
             PropertyHistoricalData(),
-            CommonAppBtn(
-                title: "Request a tour at \$20",
+            if (isVisit) ...{
+              CommonAppBtn(
+                title: "Cancel Booking",
+                backGroundColor: AppColor.secondry,
+                textColor: AppColor.primary,
+                borderColor: AppColor.transparent,
                 margin: EdgeInsets.all(16.sp),
-                onTap: () => Utils.appBottomSheet(
-                    context: context,
-                    widget: bottomSheet(context),
-                    isScrolled: true)
+              ),
+              CommonAppBtn(
+                title: "Message",
+                margin: EdgeInsets.symmetric(horizontal: 16.sp),
+                onTap: () => toNamed(context, Routes.chatView),
+              ),
+            },
 
-                //  toNamed(context, Routes.bookYourDateView),
-                ),
-
-            CommonAppBtn(
-              title: "Message",
-              backGroundColor: AppColor.secondry,
-              textColor: AppColor.primary,
-              borderColor: AppColor.transparent,
-              margin: EdgeInsets.symmetric(horizontal: 16.sp),
-              onTap: () => toNamed(context, Routes.chatView),
-            ),
-            yHeight(5)
-            // CommonAppBtn(
-            //   title: "Give Rating",
-            //   margin: EdgeInsets.all(16.sp),
-            //   onTap: () {
-            //     Utils.appBottomSheet(
-            //         context: context,
-            //         widget: ReviewBottomsheet(
-            //           name: "Paras",
-            //           isProperty: true,
-            //           title: AppString.giveRatings,
-            //           subtitle: AppString.propertyDeleted,
-            //         ));
-            //   },
-            // ),
+            if (!Getters.isAgent() && !isVisit && !isMyProperty) ...{
+              CommonAppBtn(
+                  title: "Request a tour at \$20",
+                  margin: EdgeInsets.all(16.sp),
+                  onTap: () => Utils.appBottomSheet(
+                      context: context,
+                      widget: bottomSheet(context),
+                      isScrolled: true)),
+              CommonAppBtn(
+                title: "Message",
+                backGroundColor: AppColor.secondry,
+                textColor: AppColor.primary,
+                borderColor: AppColor.transparent,
+                margin: EdgeInsets.symmetric(horizontal: 16.sp),
+                onTap: () => toNamed(context, Routes.chatView),
+              ),
+            },
+            if (isMyProperty) ...{
+              CommonAppBtn(
+                title: "Edit",
+                backGroundColor: AppColor.secondry,
+                textColor: AppColor.primary,
+                borderColor: AppColor.transparent,
+                margin: EdgeInsets.all(16.sp),
+              ),
+              CommonAppBtn(
+                title: "Property Sold",
+                margin: EdgeInsets.symmetric(horizontal: 16.sp),
+                onTap: () {
+                  Utils.appBottomSheet(
+                      context: context,
+                      widget: CommonYouSureSheetContent(
+                        onYes: () {
+                          back(context);
+                          Utils.appBottomSheet(
+                              context: context,
+                              isDismissible: false,
+                              widget: SuccessSheet(
+                                title: "Sold Successfully!",
+                                subTitle: "Your property is successfully sold.",
+                                onTap: () {
+                                  back(context);
+                                  back(context);
+                                },
+                              ),
+                              isScrolled: true);
+                        },
+                      ),
+                      isScrolled: true);
+                },
+              ),
+            },
+            yHeight(10)
           ],
         ),
       ),
@@ -392,6 +446,7 @@ Widget bottomSheet(BuildContext context) {
         fontFamily: AppFonts.satoshiRegular,
         lineHeight: 1.2,
         textSize: 14.sp,
+        textAlign: TextAlign.center,
         color: AppColor.black000000.withValues(alpha: 0.6),
       ),
       yHeight(16.h),

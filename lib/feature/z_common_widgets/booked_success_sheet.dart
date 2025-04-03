@@ -20,7 +20,8 @@ class SuccessSheet extends StatelessWidget {
             AppText(
               text: title ?? '',
               //  "Booked Successfully!",
-              textSize: 23.sp,
+              textAlign: TextAlign.center,
+              textSize: 20.sp,
               fontFamily: AppFonts.satoshiBold,
             ).align(),
           ],

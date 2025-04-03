@@ -1,8 +1,9 @@
 part of 'property_detail_view.dart';
 
 class AgentsLandlordList extends StatelessWidget {
-  final bool isAgentProperty;
-  const AgentsLandlordList({super.key, this.isAgentProperty = false});
+  final bool isVisit;
+
+  const AgentsLandlordList({super.key, this.isVisit = false});
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +23,7 @@ class AgentsLandlordList extends StatelessWidget {
             padding: EdgeInsets.all(16.sp),
             child: Column(
               children: [
-                agentBox(context),
-                Divider(),
+                agentBox(context, false,true),
                 ListView.builder(
                   shrinkWrap: true,
                   itemCount: Getters.isAgent() ? 0 : 3,
@@ -31,8 +31,8 @@ class AgentsLandlordList extends StatelessWidget {
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     return Padding(
-                      padding: EdgeInsets.only(bottom: index == 2 ? 0 : 16),
-                      child: agentBox(context),
+                      padding: EdgeInsets.only(bottom: index == 2 ? 0 : 5),
+                      child: agentBox(context, index == 2,false),
                     );
                   },
                 ),
@@ -44,7 +44,7 @@ class AgentsLandlordList extends StatelessWidget {
     );
   }
 
-  Widget agentBox(BuildContext context) {
+  Widget agentBox(BuildContext context, bool isLast,bool isFirst,) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -67,7 +67,7 @@ class AgentsLandlordList extends StatelessWidget {
                         // textSize: 18.sp,
                       ),
                       xWidth(10),
-                      // if (Getters.isAgent())
+                      if (isFirst)
                       Container(
                         decoration: BoxDecoration(
                             color: AppColor.primary.withValues(alpha: .1),
@@ -98,10 +98,12 @@ class AgentsLandlordList extends StatelessWidget {
             if (!Getters.isAgent())
               CustomRatingBox(rating: "4.8")
             else
-              SvgPicture.asset(Assets.messageIcon)
+              InkWell(
+                  onTap: () => toNamed(context, Routes.chatView),
+                  child: SvgPicture.asset(Assets.messageIcon))
           ],
         ),
-        if (Getters.isAgent()) ...{
+        if (Getters.isAgent() && !isVisit) ...{
           yHeight(15),
           Divider(
             color: AppColor.colorDDDDDD.withValues(alpha: .7),
@@ -135,13 +137,81 @@ class AgentsLandlordList extends StatelessWidget {
                     widget: ReviewBottomsheet(
                       name: "Paras",
                       isProperty: true,
-                      title: AppString.giveRatings,
-                      subtitle: AppString.propertyDeleted,
+                      title: AppString.giveRatings.toTitleCase(),
+                      // subtitle: AppString.propertyDeleted,
                     )),
                 textSize: 13.sp,
               )
             ],
+          ),
+          Divider(),
+        },
+        if (isVisit && Getters.isAgent()) ...{
+          yHeight(15),
+          Divider(
+            color: AppColor.colorDDDDDD.withValues(alpha: .7),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  AppText(
+                    text: "Date",
+                    textSize: 14.sp,
+                    fontFamily: AppFonts.satoshiRegular,
+                    lineHeight: 1.4,
+                  ),
+                  yHeight(5.h),
+                  AppText(
+                    text: "Oct 25, 2019",
+                    textSize: 14.sp,
+                    fontFamily: AppFonts.satoshiBold,
+                    lineHeight: 1.4,
+                  ),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  AppText(
+                    text: "Time",
+                    textSize: 14.sp,
+                    fontFamily: AppFonts.satoshiRegular,
+                    lineHeight: 1.4,
+                  ),
+                  yHeight(5.h),
+                  AppText(
+                    text: "11:00 AM",
+                    textSize: 14.sp,
+                    fontFamily: AppFonts.satoshiBold,
+                    lineHeight: 1.4,
+                  ),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  AppText(
+                    text: "Viewing Fees",
+                    textSize: 14.sp,
+                    fontFamily: AppFonts.satoshiRegular,
+                    lineHeight: 1.4,
+                  ),
+                  yHeight(5.h),
+                  AppText(
+                    text: "\$120",
+                    textSize: 14.sp,
+                    fontFamily: AppFonts.satoshiBold,
+                    lineHeight: 1.4,
+                  ),
+                ],
+              ),
+            ],
           )
+        } else ...{
+          if (!isLast) ...{yHeight(5), Divider()},
         }
       ],
     );

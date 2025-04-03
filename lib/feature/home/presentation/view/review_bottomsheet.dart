@@ -40,7 +40,8 @@ class ReviewBottomsheet extends ConsumerWidget {
             children: [
               AppText(
                 text: title ?? AppString.rateYourVisite,
-                textSize: 23.sp,
+                textSize: 20.sp,
+                fontFamily: AppFonts.satoshiBold,
               ),
               yHeight(10),
               AppText(

@@ -196,7 +196,11 @@ class AddPropertyInfo extends ConsumerWidget {
             activeColor: AppColor.primary,
             onChanged: (value) {},
           ),
-          Text(label, style: TextStyle(fontSize: 14.sp)),
+          AppText(
+            text: label,
+            textSize: 14.sp,
+            color: AppColor.black4A4A4A,
+          ),
         ],
       ),
     );
