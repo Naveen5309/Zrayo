@@ -24,6 +24,7 @@ class SettingView extends ConsumerWidget {
     ref.watch(settingViewProvider);
     return Scaffold(
       body: SingleChildScrollView(
+        clipBehavior: Clip.none,
         child: Column(
           children: [
             CustomAppBar(

@@ -25,7 +25,7 @@ class LoginNotifier extends StateNotifier<LoginState> {
   final confirmPasswordController = TextEditingController();
   final otpController = TextEditingController();
   Timer? timer;
-  int secondsRemaining = 30;
+  int secondsRemaining = 45;
   bool enableResend = false;
 
   final referralController = TextEditingController();
@@ -196,6 +196,6 @@ class LoginNotifier extends StateNotifier<LoginState> {
   Future<void> cancelTimer() async {
     timer?.cancel();
     enableResend = true;
-    secondsRemaining = 30;
+    secondsRemaining = secondsRemaining;
   }
 }
