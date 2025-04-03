@@ -53,4 +53,25 @@ class SettingNotifier extends StateNotifier<SettingState> {
       state = SettingFailed(error: e.toString());
     }
   }
+
+  //LOGOUT API
+  Future<void> logout() async {
+    state = SettingApiLoading();
+    try {
+      if (!(await Getters.networkInfo.isConnected)) {
+        state = const SettingFailed(error: "No internet connection");
+        return;
+      }
+      if (await Getters.networkInfo.isSlow) {}
+      Map<String, dynamic> body = {};
+      final result = await settingRepo.logout(body: body);
+      state = result.fold((error) {
+        return SettingFailed(error: error.message);
+      }, (result) {
+        return SettingSuccess();
+      });
+    } catch (e) {
+      state = SettingFailed(error: e.toString());
+    }
+  }
 }
