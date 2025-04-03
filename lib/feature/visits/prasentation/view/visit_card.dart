@@ -73,6 +73,7 @@ class VisitCard extends StatelessWidget {
             imageWidth: 80.sp,
             showFavorite: false,
             withFullCardWidth: true,
+            onTap: () => toNamed(context, Routes.propertyDetailView,args: {"isVisit":true}),
           )
         ],
       ),

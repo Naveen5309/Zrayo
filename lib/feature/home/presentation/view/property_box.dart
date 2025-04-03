@@ -8,6 +8,7 @@ class PropertyBox extends StatelessWidget {
   final double? imageWidth;
   final bool withFullCardWidth;
   final Color? textColor;
+  final VoidCallback? onTap;
 
   const PropertyBox({
     super.key,
@@ -17,13 +18,14 @@ class PropertyBox extends StatelessWidget {
     this.imageHeight,
     this.imageWidth,
     this.textColor,
+    this.onTap,
     this.withFullCardWidth = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => toNamed(context, Routes.propertyDetailView),
+      onTap: () => onTap!=null?onTap!():toNamed(context, Routes.propertyDetailView),
       child: !showHorizontal
           ? Column(
               crossAxisAlignment: CrossAxisAlignment.start,

@@ -45,7 +45,10 @@ class MyProperties extends StatelessWidget {
                   crossAxisSpacing: 20,
                   mainAxisSpacing: 10),
               itemBuilder: (context, index) {
-                return PropertyBox();
+                return PropertyBox(
+                  onTap: () => toNamed(context, Routes.propertyDetailView,
+                      args: {"isMyProperty": true}),
+                );
               },
             ),
           )

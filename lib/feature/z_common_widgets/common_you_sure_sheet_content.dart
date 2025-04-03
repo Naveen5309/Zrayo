@@ -1,31 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
-import 'package:zrayo_flutter/feature/setting/presentation/provider/setting_provider.dart';
-import 'package:zrayo_flutter/feature/setting/presentation/provider/state/setting_state.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 
-class LogoutConfirmationView extends ConsumerWidget {
-  const LogoutConfirmationView({super.key});
+class CommonYouSureSheetContent extends StatelessWidget {
+  final VoidCallback onYes;
+
+  const CommonYouSureSheetContent({super.key, required this.onYes});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final settingState = ref.watch(settingViewProvider);
-    final settingNotifier = ref.read(settingViewProvider.notifier);
-
-    ref.listen<SettingState>(settingViewProvider, (previous, next) {
-      if (next is SettingSuccess) {
-        offAllNamed(context, Routes.chooseInterfaceView);
-      } else if (next is SettingFailed) {
-        toast(msg: next.error, isError: true);
-      }
-    });
+  Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
@@ -34,25 +23,24 @@ class LogoutConfirmationView extends ConsumerWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           SvgPicture.asset(
-            Assets.logoutConfirm,
-            height: 105,
-            width: 114,
+            Assets.questionIcon,
+            // height: 105,
+            // width: 114,
           ),
           yHeight(context.height * 0.03),
           AppText(
-            text: AppString.logout,
+            text: AppString.areYouSure,
             fontFamily: AppFonts.satoshiBold,
             textSize: 22.sp,
             textAlign: TextAlign.center,
           ),
           yHeight(context.height * 0.02),
           AppText(
-            text: AppString.areYouSureLogOut,
+            text: AppString.doYouWantToMarkPropertyAsSold,
             textAlign: TextAlign.center,
             color: AppColor.grey646464,
           ),
           yHeight(context.height * 0.03),
-          yHeight(20),
           Padding(
             padding: EdgeInsets.only(bottom: context.height * .02),
             child: Row(
@@ -63,9 +51,9 @@ class LogoutConfirmationView extends ConsumerWidget {
                     textColor: AppColor.primary,
                     backGroundColor: AppColor.secondry,
                     onTap: () {
-                      Navigator.pop(context);
+                      back(context);
                     },
-                    title: AppString.cancel,
+                    title: AppString.no,
                     borderColor: AppColor.transparent,
                     width: context.width,
                   ),
@@ -75,11 +63,8 @@ class LogoutConfirmationView extends ConsumerWidget {
                 //CONFIRM
                 Expanded(
                   child: CommonAppBtn(
-                    loading: settingState is SettingApiLoading,
-                    onTap: () {
-                      settingNotifier.logout();
-                    },
-                    title: AppString.logout,
+                    onTap: onYes,
+                    title: AppString.yes,
                     width: context.width,
                   ),
                 ),
