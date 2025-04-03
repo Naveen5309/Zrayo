@@ -91,13 +91,16 @@ class Utils {
     required Widget widget,
     MainAxisSize? mainSize,
     bool isScrolled = true,
+    bool setMaxHeight = true,
     bool barOnTop = true,
     bool isDismissible = true,
   }) async {
     showModalBottomSheet(
       context: context,
       enableDrag: true,
-      constraints: BoxConstraints(maxHeight: screenHeight(context) / 1.2),
+      constraints: setMaxHeight
+          ? BoxConstraints(maxHeight: screenHeight(context) / 1.2)
+          : null,
       shape: OutlineInputBorder(
         borderRadius: BorderRadius.only(
           topRight: Radius.circular(18.sp),

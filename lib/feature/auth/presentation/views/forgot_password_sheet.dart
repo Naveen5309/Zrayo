@@ -32,11 +32,11 @@ class ForgotPasswordSheet extends ConsumerWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Align(
-            alignment: Alignment.centerRight,
-            child: Icon(
-              Icons.close,
-              size: 28.h,
+          InkWell(
+            onTap: () => back(context),
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Icon(Icons.close,size: 28.h,),
             ),
           ),
           SvgPicture.asset(Assets.mailImage),
