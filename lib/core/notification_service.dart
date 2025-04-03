@@ -12,6 +12,7 @@ Future<void> myBackgroundMessageHandler(RemoteMessage message) async {
   await NotificationService().displayNotification(message.toMap());
 }
 
+
 class NotificationService {
   Future<void> initializeFcm() async {
     AndroidInitializationSettings initializationSettingsAndroid =
