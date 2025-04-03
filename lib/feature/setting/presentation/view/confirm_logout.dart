@@ -1,18 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
+import 'package:zrayo_flutter/feature/setting/presentation/provider/setting_provider.dart';
+import 'package:zrayo_flutter/feature/setting/presentation/provider/state/setting_state.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 
-class LogoutConfirmationView extends StatelessWidget {
+class LogoutConfirmationView extends ConsumerWidget {
   const LogoutConfirmationView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final settingState = ref.watch(settingViewProvider);
+    final settingNotifier = ref.read(settingViewProvider.notifier);
+
+    ref.listen<SettingState>(settingViewProvider, (previous, next) {
+      if (next is SettingSuccess) {
+        offAllNamed(context, Routes.chooseInterfaceView);
+      } else if (next is SettingFailed) {
+        toast(msg: next.error, isError: true);
+      }
+    });
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Container(
@@ -28,7 +41,6 @@ class LogoutConfirmationView extends StatelessWidget {
               width: 114,
             ),
             yHeight(context.height * 0.03),
-
             AppText(
               text: AppString.logout,
               fontFamily: AppFonts.satoshiBold,
@@ -43,23 +55,6 @@ class LogoutConfirmationView extends StatelessWidget {
             ),
             yHeight(context.height * 0.03),
             yHeight(20),
-            // CommonAppBtn(
-            //   onTap: () => back(context),
-            //   title: AppString.deny,
-            //   textColor: AppColor.primary,
-            //   backGroundColor: AppColor.secondry,
-            //   borderColor: AppColor.transparent,
-            // ),
-            // yHeight(15),
-            //
-            // CommonAppBtn(
-            //   onTap: () {
-            //     back(context);
-            //   },
-            //   title: AppString.enableLocation,
-            //   backGroundColor: AppColor.primary,
-            // ),
-
             Padding(
               padding: EdgeInsets.only(bottom: context.height * .02),
               child: Row(
@@ -82,11 +77,9 @@ class LogoutConfirmationView extends StatelessWidget {
                   //CONFIRM
                   Expanded(
                     child: CommonAppBtn(
+                      loading: settingState is SettingApiLoading,
                       onTap: () {
-                        offAllNamed(context, Routes.chooseInterfaceView);
-                        toast(
-                            msg: "User successfully logged out",
-                            isError: false);
+                        settingNotifier.logout();
                       },
                       title: AppString.logout,
                       width: context.width,

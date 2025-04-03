@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
@@ -23,6 +24,9 @@ class LoginNotifier extends StateNotifier<LoginState> {
   final newPasswordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
   final otpController = TextEditingController();
+  Timer? timer;
+  int secondsRemaining = 30;
+  bool enableResend = false;
 
   final referralController = TextEditingController();
 
@@ -166,5 +170,32 @@ class LoginNotifier extends StateNotifier<LoginState> {
     } catch (e) {
       state = LoginFailed(error: e.toString());
     }
+  }
+
+  void startTimer() {
+    timer?.cancel();
+    timer = Timer.periodic(const Duration(seconds: 1), (_) {
+      if (secondsRemaining > 0) {
+        enableResend = false;
+        secondsRemaining--;
+        if (secondsRemaining == 0) {
+          timer?.cancel();
+          enableResend = true;
+          secondsRemaining = 60;
+        }
+        state = UpdateTimer(
+            secondsRemaining: secondsRemaining, enableResend: enableResend);
+      } else {
+        enableResend = true;
+        state = UpdateTimer(
+            secondsRemaining: secondsRemaining, enableResend: enableResend);
+      }
+    });
+  }
+
+  Future<void> cancelTimer() async {
+    timer?.cancel();
+    enableResend = true;
+    secondsRemaining = 30;
   }
 }

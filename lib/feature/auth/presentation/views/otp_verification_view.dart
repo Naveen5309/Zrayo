@@ -15,18 +15,31 @@ import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 import '../../../../config/assets.dart';
 import '../provider/auth_provider.dart';
 
-class OtpVerificationView extends ConsumerWidget {
+class OtpVerificationView extends ConsumerStatefulWidget {
   const OtpVerificationView({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final verifyEmailNotifier = ref.read(authProvider.notifier);
-    final verifyEmailState = ref.watch(authProvider);
+  _OtpVerificationViewState createState() => _OtpVerificationViewState();
+}
 
+class _OtpVerificationViewState extends ConsumerState<OtpVerificationView> {
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(() {
+      ref.read(authProvider.notifier).startTimer();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final verifyEmailNotifier = ref.read(authProvider.notifier);
+    final verifyEmailState = ref.watch(authProvider.notifier);
 
     ref.listen<LoginState>(authProvider, (previous, next) {
       if (next is OtpVerifySuccess) {
         toNamed(context, Routes.changePasswordView);
+        verifyEmailState.cancelTimer();
       } else if (next is LoginFailed) {
         toast(msg: next.error, isError: true);
       }
@@ -109,10 +122,26 @@ class OtpVerificationView extends ConsumerWidget {
                           text: AppString.youCanResendOtpIn,
                           fontFamily: AppFonts.satoshiRegular,
                         ),
-                        AppText(
-                          text: " 9:30",
-                          fontFamily: AppFonts.satoshiBold,
-                        ),
+                        verifyEmailState.enableResend
+                            ? const SizedBox()
+                            : Consumer(builder: (BuildContext context,
+                                WidgetRef ref, Widget? child) {
+                                final loginState = ref.watch(authProvider);
+
+                                if (loginState is UpdateTimer) {
+                                  return loginState.enableResend
+                                      ? const SizedBox()
+                                      : AppText(
+                                          text:
+                                              ' (00:${loginState.secondsRemaining})',
+                                          textSize: 14.sp,
+                                          fontWeight: FontWeight.w500,
+                                          color: AppColor.primary,
+                                        );
+                                }
+
+                                return const SizedBox.shrink();
+                              }),
                       ],
                     ),
                   ],

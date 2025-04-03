@@ -37,6 +37,16 @@ class OtpVerifySuccess extends LoginState {
   List<Object> get props => [];
 }
 
+class UpdateTimer extends LoginState {
+  final int secondsRemaining;
+  final bool enableResend;
+
+  const UpdateTimer(
+      {required this.secondsRemaining, required this.enableResend});
+  @override
+  List<Object?> get props => [];
+}
+
 class LoginFailed extends LoginState {
   final String error;
 

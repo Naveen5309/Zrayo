@@ -58,6 +58,7 @@ class AuthRepoImpl implements AuthRepository {
     try {
       final data = await dataSource.signUpUser(body: body);
       if (data?.success == true) {
+        toast(msg: data?.message ?? "", isError: false);
         return Right(data?.data);
       } else {
         return Left(ServerFailure(message: data?.message ?? ""));
@@ -73,6 +74,7 @@ class AuthRepoImpl implements AuthRepository {
     try {
       final data = await dataSource.createProfile(body: body);
       if (data?.success == true) {
+        toast(msg: data?.message ?? "", isError: false);
         return Right(data?.data);
       } else {
         return Left(ServerFailure(message: data?.message ?? ""));
@@ -88,6 +90,7 @@ class AuthRepoImpl implements AuthRepository {
     try {
       final data = await dataSource.addAddress(body: body);
       if (data?.success == true) {
+        toast(msg: data?.message ?? "", isError: false);
         return Right(data?.data);
       } else {
         return Left(ServerFailure(message: data?.message ?? ""));
@@ -103,6 +106,7 @@ class AuthRepoImpl implements AuthRepository {
     try {
       final data = await dataSource.addBankDetails(body: body);
       if (data?.success == true) {
+        toast(msg: data?.message ?? "", isError: false);
         return Right(data?.data);
       } else {
         return Left(ServerFailure(message: data?.message ?? ""));
@@ -118,6 +122,7 @@ class AuthRepoImpl implements AuthRepository {
     try {
       final data = await dataSource.verifyEmail(body: body);
       if (data?.success == true) {
+        toast(msg: data?.message ?? "", isError: false);
         return Right(data?.data);
       } else {
         return Left(ServerFailure(message: data?.message ?? ""));
@@ -133,6 +138,7 @@ class AuthRepoImpl implements AuthRepository {
     try {
       final data = await dataSource.forgetPassword(body: body);
       if (data?.success == true) {
+        toast(msg: data?.message ?? "", isError: false);
         return Right(data?.data);
       } else {
         return Left(ServerFailure(message: data?.message ?? ""));
@@ -148,6 +154,7 @@ class AuthRepoImpl implements AuthRepository {
     try {
       final data = await dataSource.changePassword(body: body);
       if (data?.success == true) {
+        toast(msg: data?.message ?? "", isError: false);
         return Right(data?.data);
       } else {
         return Left(ServerFailure(message: data?.message ?? ""));
