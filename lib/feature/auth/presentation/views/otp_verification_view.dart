@@ -127,16 +127,29 @@ class _OtpVerificationViewState extends ConsumerState<OtpVerificationView> {
                             : Consumer(builder: (BuildContext context,
                                 WidgetRef ref, Widget? child) {
                                 final loginState = ref.watch(authProvider);
+                                final loginNotifier =
+                                    ref.read(authProvider.notifier);
 
                                 if (loginState is UpdateTimer) {
                                   return loginState.enableResend
-                                      ? const SizedBox()
+                                      ? GestureDetector(
+                                          onTap: () {
+                                            loginNotifier.cancelTimer();
+                                            loginNotifier.startTimer();
+                                          },
+                                          child: AppText(
+                                            text: "Resend OTP",
+                                            textSize: 14.sp,
+                                            fontFamily: AppFonts.satoshiBold,
+                                            color: AppColor.black000000,
+                                          ),
+                                        )
                                       : AppText(
                                           text:
                                               ' (00:${loginState.secondsRemaining})',
                                           textSize: 14.sp,
-                                          fontWeight: FontWeight.w500,
-                                          color: AppColor.primary,
+                                          fontFamily: AppFonts.satoshiBold,
+                                          color: AppColor.black000000,
                                         );
                                 }
 
