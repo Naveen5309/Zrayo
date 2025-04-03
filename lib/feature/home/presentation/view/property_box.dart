@@ -3,6 +3,7 @@ part of 'home_view_main.dart';
 class PropertyBox extends StatelessWidget {
   final bool showHorizontal;
   final bool showFavorite;
+  final bool isFavorite;
   final double? imageHeight;
   final double? imageWidth;
   final bool withFullCardWidth;
@@ -12,6 +13,7 @@ class PropertyBox extends StatelessWidget {
     super.key,
     this.showHorizontal = false,
     this.showFavorite = true,
+    this.isFavorite = false,
     this.imageHeight,
     this.imageWidth,
     this.textColor,
@@ -79,6 +81,7 @@ class PropertyBox extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        yHeight(5),
         Row(
           children: [
             Expanded(
@@ -163,11 +166,11 @@ class PropertyBox extends StatelessWidget {
                 padding: EdgeInsets.all(5),
                 decoration: BoxDecoration(
                     shape: BoxShape.circle, color: AppColor.whiteFFFFFF),
-                child: SvgPicture.asset(Assets.heartUnselected),
+                child: SvgPicture.asset(
+                  isFavorite ? Assets.heartSelected : Assets.heartUnselected,
+                ),
               ))
       ],
     );
   }
 }
-
-

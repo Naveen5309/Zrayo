@@ -10,7 +10,6 @@ class FavoriteProperties extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
       children: [
         CustomAppBar(
@@ -22,16 +21,19 @@ class FavoriteProperties extends StatelessWidget {
         Expanded(
           child: GridView.builder(
             itemCount: 10,
-            padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
             // physics: NeverScrollableScrollPhysics(),
             // shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                childAspectRatio: Utils.cardWidth(context) /  Utils.cardHeight(context),
+                childAspectRatio:
+                    Utils.cardWidth(context) / Utils.cardHeight(context),
                 crossAxisSpacing: 20,
                 mainAxisSpacing: 10),
             itemBuilder: (context, index) {
-              return PropertyBox();
+              return PropertyBox(
+                isFavorite:true
+              );
             },
           ),
         )

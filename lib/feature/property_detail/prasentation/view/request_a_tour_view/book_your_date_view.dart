@@ -34,14 +34,23 @@ class BookYourDateView extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                         borderSide: BorderSide(color: AppColor.transparent)),
                     child: PropertyBox(
+                      imageHeight: 85.sp,
+                      imageWidth: 120.sp,
                       showHorizontal: true,
                       withFullCardWidth: true,
                     )),
+                yHeight(20.h),
+
+                AppText(
+                  text: "Choose Date",
+                  fontFamily: AppFonts.satoshiBold,
+                ),
                 yHeight(15.h),
 
                 /// calender view
                 Container(
                   decoration: Utils.boxDecoWithShadow(),
+                  padding: EdgeInsets.all(10),
                   child: TableCalendar(
                     firstDay: DateTime.utc(2010, 10, 16),
                     lastDay: DateTime.utc(2030, 3, 14),
@@ -106,12 +115,14 @@ class BookYourDateView extends StatelessWidget {
                       mainAxisSpacing: 15.h,
                       crossAxisSpacing: 15.h),
                   itemBuilder: (context, index) {
+                    final isSelected = index == 1 ;
                     return Container(
                       padding:
                           EdgeInsets.symmetric(horizontal: 5, vertical: 12.h),
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(22),
-                          color: AppColor.color8E8E8E.withValues(alpha: .1)),
+                        borderRadius: BorderRadius.circular(22),
+                        color: isSelected?AppColor.primary:AppColor.color8E8E8E.withValues(alpha: .1),
+                      ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -119,7 +130,7 @@ class BookYourDateView extends StatelessWidget {
                             padding: EdgeInsets.all(3),
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
-                              color: AppColor.black000000,
+                              color: isSelected?AppColor.whiteFFFFFF:AppColor.black000000,
                               // Background color of selected day
                               shape: BoxShape.circle,
                             ),
@@ -128,6 +139,7 @@ class BookYourDateView extends StatelessWidget {
                           AppText(
                             text: "10:00 AM",
                             fontFamily: AppFonts.satoshiRegular,
+                            color: isSelected?AppColor.whiteFFFFFF:null,
                           ),
                         ],
                       ),
@@ -165,10 +177,11 @@ class BookYourDateView extends StatelessWidget {
               ),
             ],
           ),
-          xWidth(20),
+          xWidth(30.w),
           Expanded(
             child: CommonAppBtn(
               title: "Book Now",
+              height: 45.h,
               onTap: () {
                 Utils.appBottomSheet(
                     context: context,
@@ -176,6 +189,7 @@ class BookYourDateView extends StatelessWidget {
                       title: AppString.bookedSuccessfully,
                       subTitle: AppString.successfullyBooked,
                       onTap: () {
+                        back(context);
                         back(context);
                         back(context);
                       },

@@ -73,6 +73,7 @@ class Assets {
   static const String searchIcon = 'assets/icons/search_icon.svg';
   static const String bellRinging1 = 'assets/icons/bellringing.svg';
   static const String heartUnselected = 'assets/icons/heart_unselected.svg';
+  static const String heartSelected = 'assets/icons/selectedHeart.svg';
   static const String assignedIcon = 'assets/icons/assigned_icon.svg';
   static const String earnedIcon = 'assets/icons/earnde_icon.svg';
 
