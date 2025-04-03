@@ -7,8 +7,6 @@ import 'package:zrayo_flutter/config/app_utils.dart';
 import 'package:zrayo_flutter/config/validator.dart';
 import 'package:zrayo_flutter/core/helpers/all_getter.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
-import 'package:dio/dio.dart';
-import 'package:http_parser/http_parser.dart';
 
 import '../../../data/repositories/auth_repo_implementation.dart';
 import '../states/create_profile_states.dart';

@@ -4,8 +4,6 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
-import 'package:http_parser/http_parser.dart';
-import 'package:mime/mime.dart';
 import 'package:zrayo_flutter/config/app_utils.dart';
 
 import '../../config/helper.dart';
