@@ -19,10 +19,10 @@ class OtpVerificationView extends ConsumerStatefulWidget {
   const OtpVerificationView({super.key});
 
   @override
-  _OtpVerificationViewState createState() => _OtpVerificationViewState();
+  OtpVerificationViewState createState() => OtpVerificationViewState();
 }
 
-class _OtpVerificationViewState extends ConsumerState<OtpVerificationView> {
+class OtpVerificationViewState extends ConsumerState<OtpVerificationView> {
   @override
   void initState() {
     super.initState();

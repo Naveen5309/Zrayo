@@ -64,7 +64,7 @@ class MessageWidget extends StatelessWidget {
         AppText(
           text: "09:25 AM",
           textSize: 10.sp,
-          color: AppColor.color797C7B80,
+          color: AppColor.colorBCBDBD,
         ),
       ],
     );
