@@ -124,5 +124,9 @@ class Assets {
   static const String successTick = 'assets/icons/success_tick.svg';
   static const String trash = 'assets/icons/trash.svg';
   static const String homeJson = 'assets/json/house.json';
+
+  static const String countryJson = 'assets/json/country.json';
+  static const String stateJson = 'assets/json/state.json';
+  static const String cityJson = 'assets/json/city.json';
   static const String soldImage = 'assets/images/sold_image.svg';
 }

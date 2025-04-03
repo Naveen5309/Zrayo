@@ -1,13 +1,17 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:zrayo_flutter/config/app_utils.dart';
+import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/validator.dart';
 import 'package:zrayo_flutter/core/helpers/all_getter.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 
+import '../../../data/models/country_state_city_model.dart';
 import '../../../data/repositories/auth_repo_implementation.dart';
 import '../states/create_profile_states.dart';
 
@@ -29,8 +33,16 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
   final accountNumberController = TextEditingController();
   final rountingNumberController = TextEditingController();
 
+  List<Country> countries = <Country>[];
+  List<StateModel> allStates = <StateModel>[];
+  List<City> cities = <City>[];
+
   CreateProfileNotifiers({required this.authRepo})
-      : super(CreateProfileInitial());
+      : super(CreateProfileInitial()) {
+    loadCountriesFromAssets();
+    loadStatesFromAssets();
+    loadCitiesFromAssets();
+  }
 
   void changeProfileImage(CroppedFile value) {
     pickedImage = File(value.path);
@@ -156,5 +168,37 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
     } catch (e) {
       state = CreateProfileFailed(error: e.toString());
     }
+  }
+
+  /// Load and parse the JSON data from the assets
+  Future<void> loadCountriesFromAssets() async {
+    String jsonString = await rootBundle.loadString(Assets.countryJson);
+    List<dynamic> jsonList = json.decode(jsonString);
+    countries = parseCountries(jsonList);
+  }
+
+  Future<void> loadStatesFromAssets() async {
+    String jsonString = await rootBundle.loadString(Assets.stateJson);
+    List<dynamic> jsonList = json.decode(jsonString);
+    allStates = parseStates(jsonList);
+  }
+
+  Future<void> loadCitiesFromAssets() async {
+    String jsonString = await rootBundle.loadString(Assets.cityJson);
+    List<dynamic> jsonList = json.decode(jsonString);
+    cities = parseCities(jsonList);
+  }
+
+  /// Parsing methods
+  List<Country> parseCountries(List<dynamic> jsonList) {
+    return jsonList.map((json) => Country.fromJson(json)).toList();
+  }
+
+  List<StateModel> parseStates(List<dynamic> jsonList) {
+    return jsonList.map((json) => StateModel.fromJson(json)).toList();
+  }
+
+  List<City> parseCities(List<dynamic> jsonList) {
+    return jsonList.map((json) => City.fromJson(json)).toList();
   }
 }

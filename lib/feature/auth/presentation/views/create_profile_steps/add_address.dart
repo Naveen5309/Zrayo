@@ -14,6 +14,7 @@ import 'package:zrayo_flutter/feature/z_common_widgets/custom_text_field.dart';
 
 class AddAddressView extends ConsumerWidget {
   final bool fromSettings;
+
   const AddAddressView({super.key, required this.fromSettings});
 
   @override
@@ -144,6 +145,7 @@ Widget formsFieldsSection(CreateProfileNotifiers addAddressNotifier) {
         },
       ),
       Consumer(builder: (BuildContext context, WidgetRef ref, Widget? child) {
+        printLog("addAddressNotifier.countries.length-==>${addAddressNotifier.countries.length}");
         return CustomDropdownButton(
           customBtn: IgnorePointer(
             child: CustomTextField(
@@ -159,7 +161,10 @@ Widget formsFieldsSection(CreateProfileNotifiers addAddressNotifier) {
           ),
           hint: 'Global',
           value: "India",
-          dropdownItems: ["India", "US", "melbran", "Houston", "Miami"],
+          dropdownItems: List.generate(
+            addAddressNotifier.countries.length,
+            (index) => addAddressNotifier.countries[index].name,
+          ),
           onChanged: (String? value) {
             if (value != null) {
               addAddressNotifier.countryController.text = value;
