@@ -63,6 +63,7 @@ class LoginView extends ConsumerWidget {
                             isScrolled: true,
                             context: context,
                             barOnTop: false,
+                            setMaxHeight:false,
                             widget: ForgotPasswordSheet());
                       },
                       child: AppText(

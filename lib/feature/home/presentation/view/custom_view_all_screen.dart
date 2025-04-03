@@ -68,8 +68,7 @@ class CustomViewAllScreen extends ConsumerWidget {
             ),
           ),
           yHeight(10),
-          if (!Getters.isAgent() ||
-              (agentHomeNotifier.selectedViewType == DataViewTypes.list))
+          if ((agentHomeNotifier.selectedViewType == DataViewTypes.list))
             Expanded(
                 child: GridView.builder(
               itemCount: 10,
@@ -88,7 +87,11 @@ class CustomViewAllScreen extends ConsumerWidget {
               },
             ))
           else
-            Expanded(child: CustomerMapView())
+            Expanded(
+              child: CustomerMapView(
+                showSearchBar:false
+              ),
+            )
         ],
       ),
     );

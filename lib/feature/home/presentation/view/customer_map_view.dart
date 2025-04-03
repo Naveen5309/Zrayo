@@ -1,13 +1,14 @@
 part of 'home_view_main.dart';
 
 class CustomerMapView extends StatelessWidget {
-  const CustomerMapView({super.key});
+  final bool showSearchBar;
+  const CustomerMapView({super.key,  this.showSearchBar=true});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        if (!Getters.isAgent()) ...{
+        if (!Getters.isAgent() && showSearchBar) ...{
           yHeight(safeAreaHeight(context) + 10.h),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
