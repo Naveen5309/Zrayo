@@ -25,17 +25,23 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
   /// Variables for holding user profile-related data
   File? pickedImage;
   String? profileImageUrl;
-  File uploadDocFrontFile=File("");
-  File uploadDocBackFile=File("");
+  File uploadDocFrontFile = File("");
+  File uploadDocBackFile = File("");
+
+  ///create update profile view fields
   TextEditingController phoneController = TextEditingController();
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController ninNumberController = TextEditingController();
   TextEditingController dobController = TextEditingController();
+
+  /// address view fields
   TextEditingController addressController = TextEditingController();
   TextEditingController cityController = TextEditingController();
   TextEditingController stateController = TextEditingController();
   TextEditingController countryController = TextEditingController();
+
+  /// bank view fields
   TextEditingController accountHolderController = TextEditingController();
   TextEditingController accountNumberController = TextEditingController();
   TextEditingController routingNumberController = TextEditingController();

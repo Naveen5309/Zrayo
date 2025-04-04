@@ -14,8 +14,8 @@ final authRepoProvider = Provider.autoDispose<AuthRepository>((ref) {
   return AuthRepoImpl(dataSource: dataSource);
 });
 
-final createProfileProvider = StateNotifierProvider.autoDispose<CreateProfileNotifiers,
-    CreateProfileStates>((ref) {
+final createProfileProvider =
+    StateNotifierProvider<CreateProfileNotifiers, CreateProfileStates>((ref) {
   final authRepo = ref.watch(authRepoProvider);
   return CreateProfileNotifiers(authRepo: authRepo);
 });
