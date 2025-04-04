@@ -78,12 +78,15 @@ Widget formsFieldsSection(CreateProfileNotifiers addAddressNotifier) {
     spacing: 8.sp,
     children: [
       //EMAIL ADDRESS
-      CustomTextField(
-        hintText: AppString.enterAddress,
-        prefixIcon: SvgPicture.asset(Assets.location),
-        controller: addAddressNotifier.addressController,
-        labelText: AppString.address,
-      ),
+      Consumer(builder: (BuildContext context, WidgetRef ref, Widget? child) {
+        ref.watch(createProfileProvider);
+        return CustomTextField(
+          hintText: AppString.enterAddress,
+          prefixIcon: SvgPicture.asset(Assets.location),
+          controller: addAddressNotifier.addressController,
+          labelText: AppString.address,
+        );
+      }),
 
       Consumer(builder: (BuildContext context, WidgetRef ref, Widget? child) {
         printLog(

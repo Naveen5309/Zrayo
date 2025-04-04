@@ -122,7 +122,8 @@ class UploadDocument extends ConsumerWidget {
                     title: fromSettings
                         ? AppString.update
                         : AppString.saveAndContinue,
-                    onTap: () => createProfileNotifier.uploadDocument(),
+                    onTap: () =>
+                        createProfileNotifier.uploadDocumentValidator(),
                   ),
                   yHeight(20),
                 ],

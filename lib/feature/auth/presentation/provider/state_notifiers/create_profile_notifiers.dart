@@ -98,7 +98,9 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
         return CreateProfileFailed(error: error.message);
       }, (result) {
         userModel = result;
-        return CreateProfileRefresh();
+        setValueInControllers(userData: userModel);
+
+        return CreateProfileSuccess();
       });
     } catch (e) {
       state = CreateProfileFailed(error: e.toString());
@@ -199,7 +201,8 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
       state = result.fold((error) {
         return CreateProfileFailed(error: error.message);
       }, (result) {
-        return CreateProfileSuccess();
+        getProfile();
+        return CreateProfileApiLoading();
       });
     } catch (e) {
       state = CreateProfileFailed(error: e.toString());
@@ -317,7 +320,7 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
   void uploadDocumentValidator() {
     if (((uploadDocBackFile.path.isNotEmpty)) ||
         ((uploadDocFrontFile.path.isNotEmpty))) {
-      createUpdateProfile();
+      uploadDocument();
     } else {
       toast(msg: "Please upload document");
     }
@@ -347,8 +350,8 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
   }
 
   /// Method to set initial values in text controllers based on local storage data
-  void setValueInControllers() {
-    final userModel = Getters.getLocalStorage.getLoginUser();
+  void setValueInControllers({UserModel? userData}) {
+    final userModel = userData ?? Getters.getLocalStorage.getLoginUser();
     profileImageUrl =
         "${ApiEndpoints.profileImageUrl}${userModel?.userProfile}";
     phoneController.text = userModel?.phoneNumber ?? "";
@@ -356,10 +359,10 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
     lastNameController.text = userModel?.lastName?.toTitleCase() ?? "";
     ninNumberController.text = userModel?.ninOrBvnNumber ?? "";
     dobController.text = formatDOBDDMMYYYY(userModel?.dob ?? DateTime.now());
-    addressController.text = userModel?.detail?.address??"";
-    cityController = TextEditingController();
-    stateController = TextEditingController();
-    countryController = TextEditingController();
+    addressController.text = userModel?.detail?.address ?? "";
+    cityController.text = userModel?.detail?.city ?? "";
+    stateController.text = userModel?.detail?.state ?? "";
+    countryController.text = userModel?.detail?.country ?? "";
     accountHolderController = TextEditingController();
     accountNumberController = TextEditingController();
     routingNumberController = TextEditingController();
