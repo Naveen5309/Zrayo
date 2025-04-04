@@ -178,8 +178,9 @@ class AuthDataSourceImpl extends AuthDataSource {
       if (dataResponse.success == true) {
         UserModel? userModel = Getters.getLocalStorage.getLoginUser();
         await Getters.getLocalStorage.saveLoginUser(userModel?.copyWith(
-                idDocumentFront: dataResponse.data['idDocumentFront'],
-                idDocumentBack: dataResponse.data['idDocumentBack']) ??
+                detail: userModel.detail?.copyWith(
+                    idDocumentFront: dataResponse.data['idDocumentFront'],
+                    idDocumentBack: dataResponse.data['idDocumentBack'])) ??
             UserModel());
         return getSuccessResponseWrapper(dataResponse);
       } else {

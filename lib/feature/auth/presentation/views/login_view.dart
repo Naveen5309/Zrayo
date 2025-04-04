@@ -30,10 +30,16 @@ class LoginView extends ConsumerWidget {
 
     ref.listen<LoginState>(authProvider, (previous, next) {
       if (next is LoginSuccess) {
-        if(next.userModel?.firstName==null||(next.userModel?.firstName?.isEmpty ?? false)){
+        if (next.userModel?.firstName == null ||
+            (next.userModel?.firstName?.isEmpty ?? false)) {
           toNamed(context, Routes.createProfile);
-
-        }else {
+        } else if (next.userModel?.detail?.address?.isEmpty ?? false) {
+          toNamed(context, Routes.addAddressView);
+        } else if ((next.userModel?.detail?.idDocumentFront?.isEmpty ??
+                false) &&
+            (next.userModel?.detail?.idDocumentBack?.isEmpty ?? false)) {
+          toNamed(context, Routes.uploadDocument);
+        } else {
           offAllNamed(context, Routes.dashboard);
         }
       } else if (next is LoginFailed) {
@@ -140,7 +146,7 @@ class LoginView extends ConsumerWidget {
             isScrolled: true,
             context: context,
             barOnTop: false,
-            setMaxHeight:false,
+            setMaxHeight: false,
             widget: ForgotPasswordSheet());
       },
       child: AppText(

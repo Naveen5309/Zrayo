@@ -25,8 +25,8 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
   /// Variables for holding user profile-related data
   File? pickedImage;
   String? profileImageUrl;
-  File? uploadDocFrontFile;
-  File? uploadDocBackFile;
+  File uploadDocFrontFile=File("");
+  File uploadDocBackFile=File("");
   TextEditingController phoneController = TextEditingController();
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
@@ -282,6 +282,15 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
 
     cityController.clear();
     state = CreateProfileRefresh();
+  }
+
+  void uploadDocumentValidator() {
+    if (((uploadDocBackFile.path.isNotEmpty)) ||
+        ((uploadDocFrontFile.path.isNotEmpty))) {
+      createUpdateProfile();
+    } else {
+      toast(msg: "Please upload document");
+    }
   }
 
   /// Method to upload documents by calling the AuthRepository

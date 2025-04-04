@@ -293,30 +293,30 @@ class ProfileDetailView extends ConsumerWidget {
             ],
           ),
           yHeight(context.height * .04),
-          if ((userModel?.idDocumentBack == null ||
-                  (userModel?.idDocumentBack?.isEmpty ?? false)) &&
-              (userModel?.idDocumentFront == null ||
-                  (userModel?.idDocumentFront?.isEmpty ?? false))) ...{
+          if ((userModel?.detail?.idDocumentBack == null ||
+                  (userModel?.detail?.idDocumentBack?.isEmpty ?? false)) &&
+              (userModel?.detail?.idDocumentFront == null ||
+                  (userModel?.detail?.idDocumentFront?.isEmpty ?? false))) ...{
             AppText(text: "No Document Found").align()
           } else ...{
-            if ((userModel?.idDocumentFront != null &&
-                (userModel?.idDocumentFront?.isNotEmpty ?? false))) ...{
+            if ((userModel?.detail?.idDocumentFront != null &&
+                (userModel?.detail?.idDocumentFront?.isNotEmpty ?? false))) ...{
               CustomCacheNetworkImage(
                   height: context.height / 4,
                   width: context.width / 1.31,
                   imageRadius: 12,
                   img:
-                      "${ApiEndpoints.docImageUrl}${userModel?.idDocumentFront}"),
+                      "${ApiEndpoints.docImageUrl}${userModel?.detail?.idDocumentFront}"),
               yHeight(context.height * 0.04)
             },
-            if ((userModel?.idDocumentBack != null &&
-                (userModel?.idDocumentBack?.isNotEmpty ?? false)))
+            if ((userModel?.detail?.idDocumentBack != null &&
+                (userModel?.detail?.idDocumentBack?.isNotEmpty ?? false)))
               CustomCacheNetworkImage(
                   height: context.height / 4,
                   width: context.width / 1.31,
                   imageRadius: 12,
                   img:
-                      "${ApiEndpoints.docImageUrl}${userModel?.idDocumentBack}"),
+                      "${ApiEndpoints.docImageUrl}${userModel?.detail?.idDocumentBack}"),
           }
         ],
       ),

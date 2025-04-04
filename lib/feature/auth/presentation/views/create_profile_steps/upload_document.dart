@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zrayo_flutter/config/app_utils.dart';
 import 'package:zrayo_flutter/config/helper.dart';
+import 'package:zrayo_flutter/core/helpers/all_getter.dart';
+import 'package:zrayo_flutter/core/network/http_service.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/provider/create_profile_provider.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/provider/states/create_profile_states.dart';
@@ -13,6 +15,8 @@ import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 
+import '../../../data/models/user_model.dart';
+
 class UploadDocument extends ConsumerWidget {
   final bool fromSettings;
 
@@ -22,6 +26,7 @@ class UploadDocument extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final createProfileState = ref.watch(createProfileProvider);
     final createProfileNotifier = ref.read(createProfileProvider.notifier);
+    final Detail? userDetail = Getters.getLocalStorage.getLoginUser()?.detail;
 
     ref.listen<CreateProfileStates>(createProfileProvider, (previous, next) {
       if (next is CreateProfileSuccess) {
@@ -62,8 +67,13 @@ class UploadDocument extends ConsumerWidget {
                   yHeight(40.sp),
                   CommonDottedBorder(
                     child: UploadDocumentTile(
-                      filePath:
-                          createProfileNotifier.uploadDocFrontFile?.path ?? "",
+                      filePath: createProfileNotifier
+                              .uploadDocFrontFile.path.isEmpty
+                          ? "${ApiEndpoints.docImageUrl}${userDetail?.idDocumentFront}"
+                          : createProfileNotifier.uploadDocFrontFile.path,
+                      isFromNetwork: (userDetail?.idDocumentFront?.isNotEmpty ??
+                              false) &&
+                          createProfileNotifier.uploadDocFrontFile.path.isEmpty,
                       title: AppString.uploadIdentityDocument,
                       subTitle: AppString.frontSide,
                       onTap: () {
@@ -83,7 +93,13 @@ class UploadDocument extends ConsumerWidget {
                   yHeight(40.sp),
                   CommonDottedBorder(
                     child: UploadDocumentTile(
-                      filePath: createProfileNotifier.uploadDocBackFile?.path,
+                      filePath: createProfileNotifier
+                              .uploadDocBackFile.path.isEmpty
+                          ? "${ApiEndpoints.docImageUrl}${userDetail?.idDocumentBack}"
+                          : createProfileNotifier.uploadDocBackFile.path,
+                      isFromNetwork: (userDetail?.idDocumentBack?.isNotEmpty ??
+                              false) &&
+                          createProfileNotifier.uploadDocBackFile.path.isEmpty,
                       title: AppString.uploadIdentityDocument,
                       subTitle: AppString.backSide,
                       onTap: () {
