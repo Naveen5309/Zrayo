@@ -30,13 +30,19 @@ class LoginView extends ConsumerWidget {
 
     ref.listen<LoginState>(authProvider, (previous, next) {
       if (next is LoginSuccess) {
+        /// Check if firstName is null Or if firstName is empty
         if (next.userModel?.firstName == null ||
             (next.userModel?.firstName?.isEmpty ?? false)) {
           toNamed(context, Routes.createProfile);
-        } else if (next.userModel?.detail?.address?.isEmpty ?? false) {
+        }
+
+        /// Check if address is empty
+        else if (next.userModel?.detail?.address?.isEmpty ?? false) {
           toNamed(context, Routes.addAddressView);
-        } else if ((next.userModel?.detail?.idDocumentFront?.isEmpty ??
-                false) &&
+        }
+
+        /// Check if ID document front and back is empty
+        else if ((next.userModel?.detail?.idDocumentFront?.isEmpty ?? false) &&
             (next.userModel?.detail?.idDocumentBack?.isEmpty ?? false)) {
           toNamed(context, Routes.uploadDocument);
         } else {
