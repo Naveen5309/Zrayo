@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:zrayo_flutter/core/helpers/all_getter.dart';
 import 'package:zrayo_flutter/core/notification_service.dart';
 
 import '../../../../config/assets.dart';
@@ -48,11 +49,13 @@ class _SplashViewState extends ConsumerState<SplashView> {
       ),
     );
   }
+
   void notification() async {
     final NotificationService service = NotificationService();
     await service.initializeFcm();
     await service.initPushNotificationListeners();
   }
+
   void splashMethod() {
     WidgetsBinding.instance.addPostFrameCallback((v) {
       if (FocusScope.of(context).hasFocus) {
@@ -73,7 +76,16 @@ class _SplashViewState extends ConsumerState<SplashView> {
           );
     });
     Timer(const Duration(seconds: 3), () async {
-      offAllNamed(context, Routes.chooseInterfaceView);
+      final userModel = Getters.getLocalStorage.getLoginUser();
+      final token = Getters.getLocalStorage.getToken();
+      if (token == null ||
+          (token.isEmpty) ||
+          userModel?.firstName == null ||
+          (userModel?.firstName?.isEmpty ?? false)) {
+        offAllNamed(context, Routes.chooseInterfaceView);
+      } else {
+        offAllNamed(context, Routes.dashboard);
+      }
     });
   }
 }

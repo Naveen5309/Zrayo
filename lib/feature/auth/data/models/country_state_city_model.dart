@@ -1,6 +1,3 @@
-
-
-// Models (same as before)
 class Country {
   final String id;
   final String sortname;
@@ -63,4 +60,3 @@ class City {
     );
   }
 }
-
