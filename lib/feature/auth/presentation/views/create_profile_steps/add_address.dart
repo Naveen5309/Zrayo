@@ -19,8 +19,9 @@ class AddAddressView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final addAddressNotifier = ref.read(addAddressProvider.notifier);
     ref.watch(addAddressProvider);
+    final addAddressNotifier = ref.read(addAddressProvider.notifier);
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -81,32 +82,30 @@ Widget formsFieldsSection(CreateProfileNotifiers addAddressNotifier) {
       ),
 
       Consumer(builder: (BuildContext context, WidgetRef ref, Widget? child) {
+        printLog(
+            "addAddressNotifier.countries.length-==>${addAddressNotifier.countries.length}");
         return CustomDropdownButton(
           customBtn: IgnorePointer(
             child: CustomTextField(
-              readOnly: true,
-              labelText: AppString.city,
-              hintText: AppString.selectCity,
-              controller: addAddressNotifier.cityController,
-              prefixIcon: SvgPicture.asset(Assets.city),
+              labelText: AppString.country,
+              hintText: AppString.selectCountry,
+              controller: addAddressNotifier.countryController,
+              prefixIcon: SvgPicture.asset(Assets.global),
               suffixIcon: SvgPicture.asset(Assets.arrowDown),
             ),
           ),
           buttonDecoration: BoxDecoration(
             color: AppColor.transparent,
           ),
-          hint: 'City',
-          value: "New York",
-          dropdownItems: [
-            "New York",
-            "Los Angeles",
-            "Chicago",
-            "Houston",
-            "Miami"
-          ],
+          hint: 'Global',
+          value: addAddressNotifier.countryController.text.isNotEmpty
+              ? addAddressNotifier.countryController.text
+              : null,
+          dropdownItems:
+              addAddressNotifier.countries.map((e) => e.name).toList(),
           onChanged: (String? value) {
             if (value != null) {
-              addAddressNotifier.cityController.text = value;
+              addAddressNotifier.selectCountry(value);
             }
           },
         );
@@ -128,46 +127,42 @@ Widget formsFieldsSection(CreateProfileNotifiers addAddressNotifier) {
               color: AppColor.transparent,
             ),
             hint: 'State',
-            value: "Miami",
-            dropdownItems: [
-              "victoria",
-              "Los Angeles",
-              "melbran",
-              "Houston",
-              "Miami"
-            ],
+            value: addAddressNotifier.stateController.text.isNotEmpty
+                ? addAddressNotifier.stateController.text
+                : null,
+            dropdownItems:
+                addAddressNotifier.allStates.map((e) => e.name).toList(),
             onChanged: (String? value) {
               if (value != null) {
-                addAddressNotifier.stateController.text = value;
+                addAddressNotifier.selectState(value);
               }
             },
           );
         },
       ),
       Consumer(builder: (BuildContext context, WidgetRef ref, Widget? child) {
-        printLog("addAddressNotifier.countries.length-==>${addAddressNotifier.countries.length}");
         return CustomDropdownButton(
           customBtn: IgnorePointer(
             child: CustomTextField(
-              labelText: AppString.country,
-              hintText: AppString.selectCountry,
-              controller: addAddressNotifier.countryController,
-              prefixIcon: SvgPicture.asset(Assets.global),
+              readOnly: true,
+              labelText: AppString.city,
+              hintText: AppString.selectCity,
+              controller: addAddressNotifier.cityController,
+              prefixIcon: SvgPicture.asset(Assets.city),
               suffixIcon: SvgPicture.asset(Assets.arrowDown),
             ),
           ),
           buttonDecoration: BoxDecoration(
             color: AppColor.transparent,
           ),
-          hint: 'Global',
-          value: "India",
-          dropdownItems: List.generate(
-            addAddressNotifier.countries.length,
-            (index) => addAddressNotifier.countries[index].name,
-          ),
+          hint: 'City',
+          value: addAddressNotifier.cityController.text.isNotEmpty
+              ? addAddressNotifier.cityController.text
+              : null,
+          dropdownItems: addAddressNotifier.cities.map((e) => e.name).toList(),
           onChanged: (String? value) {
             if (value != null) {
-              addAddressNotifier.countryController.text = value;
+              addAddressNotifier.cityController.text = value;
             }
           },
         );
