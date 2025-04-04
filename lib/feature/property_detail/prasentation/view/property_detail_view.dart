@@ -80,6 +80,7 @@ class PropertyDetailView extends StatelessWidget {
                           ),
                         ),
                       ),
+
                       Row(
                         children: [
                           if (!isSold) ...{
