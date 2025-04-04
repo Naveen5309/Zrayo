@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:zrayo_flutter/config/enums.dart';
+import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/config/validator.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 
@@ -16,11 +17,11 @@ class LoginNotifier extends StateNotifier<LoginState> {
   final AuthRepository authRepo;
   final Validator validator = Validator.instance;
   final forgetEmailController = TextEditingController(
-      text: kDebugMode ? "amandeep@parastechnologies.com" : "");
+      text: kDebugMode ? "test@yopmail.com" : "");
   final emailController = TextEditingController(
-      text: kDebugMode ? "amandeep@parastechnologies.com" : "");
+      text: kDebugMode ? "test@yopmail.com" : "");
   final passwordController =
-      TextEditingController(text: kDebugMode ? "Amandeep@123" : "");
+      TextEditingController(text: kDebugMode ? "Paras@123" : "");
   final newPasswordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
   final otpController = TextEditingController();
@@ -64,9 +65,10 @@ class LoginNotifier extends StateNotifier<LoginState> {
       state = result.fold((error) {
         return LoginFailed(error: error.message);
       }, (result) {
-        return LoginSuccess();
+        return LoginSuccess(userModel: result);
       });
-    } catch (e) {
+    } catch (e,t) {
+      functionLog(msg: t.toString(), fun: "loginNotifier");
       state = LoginFailed(error: e.toString());
     }
   }

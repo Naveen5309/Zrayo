@@ -5,12 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_cropper/image_cropper.dart';
+import 'package:intl/intl.dart';
 import 'package:zrayo_flutter/config/app_utils.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/validator.dart';
 import 'package:zrayo_flutter/core/helpers/all_getter.dart';
+import 'package:zrayo_flutter/core/network/http_service.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 
+import '../../../../../config/helper.dart';
 import '../../../data/models/country_state_city_model.dart';
 import '../../../data/repositories/auth_repo_implementation.dart';
 import '../states/create_profile_states.dart';
@@ -20,18 +23,21 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
   final Validator validator = Validator.instance;
 
   File? pickedImage;
-  final phoneController = TextEditingController();
-  final firstNameController = TextEditingController();
-  final lastNameController = TextEditingController();
-  final ninNumberController = TextEditingController();
-  final dobController = TextEditingController();
-  final addressController = TextEditingController();
-  final cityController = TextEditingController();
-  final stateController = TextEditingController();
-  final countryController = TextEditingController();
-  final accountHolderController = TextEditingController();
-  final accountNumberController = TextEditingController();
-  final rountingNumberController = TextEditingController();
+  String? profileImageUrl;
+  File? uploadDocFrontFile;
+  File? uploadDocBackFile;
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
+  TextEditingController ninNumberController = TextEditingController();
+  TextEditingController dobController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
+  TextEditingController cityController = TextEditingController();
+  TextEditingController stateController = TextEditingController();
+  TextEditingController countryController = TextEditingController();
+  TextEditingController accountHolderController = TextEditingController();
+  TextEditingController accountNumberController = TextEditingController();
+  TextEditingController rountingNumberController = TextEditingController();
 
   List<Country> countries = <Country>[];
   List<StateModel> allStates = <StateModel>[];
@@ -39,6 +45,7 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
 
   CreateProfileNotifiers({required this.authRepo})
       : super(CreateProfileInitial()) {
+    setValueInControllers();
     loadCountriesFromAssets();
     loadStatesFromAssets();
     loadCitiesFromAssets();
@@ -57,13 +64,13 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
         dob: dobController.text,
         ninNumber: ninNumberController.text);
     if (isValid) {
-      createProfile();
+      createUpdateProfile();
     } else {
       toast(msg: validator.error);
     }
   }
 
-  Future<void> createProfile() async {
+  Future<void> createUpdateProfile({bool? isUpdateCall}) async {
     state = CreateProfileApiLoading();
     try {
       if (!(await Getters.networkInfo.isConnected)) {
@@ -71,11 +78,15 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
         return;
       }
       if (await Getters.networkInfo.isSlow) {}
+      DateFormat originalFormat = DateFormat('dd/MM/yyyy');
+      DateTime date = originalFormat.parse(dobController.text);
+      DateFormat targetFormat = DateFormat('yyyy/MM/dd');
+      String formattedDate = targetFormat.format(date);
       Map<String, dynamic> body = {
         "firstName": firstNameController.text.trim(),
         "lastName": lastNameController.text.trim(),
         "phoneNumber": phoneController.text.trim(),
-        "dob": dobController.text,
+        "dob": formattedDate,
         "ninOrBvnNumber": ninNumberController.text.trim(),
       };
       Map<String, dynamic> map = {};
@@ -83,13 +94,16 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
       if (pickedImage != null && (pickedImage?.path.isNotEmpty ?? false)) {
         map["image"] = await Utils.makeMultipartFile(pickedImage?.path ?? "");
       }
-      final result = await authRepo.createProfile(body: map);
+      final result = await authRepo.createUpdateProfile(
+          body: map, isUpdateCall: isUpdateCall ?? false);
       state = result.fold((error) {
         return CreateProfileFailed(error: error.message);
       }, (result) {
         return CreateProfileSuccess();
       });
-    } catch (e) {
+    } catch (e, t) {
+      functionLog(msg: t.toString(), fun: "createUpdateProfile");
+
       state = CreateProfileFailed(error: e.toString());
     }
   }
@@ -201,4 +215,59 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
   List<City> parseCities(List<dynamic> jsonList) {
     return jsonList.map((json) => City.fromJson(json)).toList();
   }
+
+  Future<void> uploadDocument() async {
+    state = CreateProfileApiLoading();
+    try {
+      if (!(await Getters.networkInfo.isConnected)) {
+        state = const CreateProfileFailed(error: "No internet connection");
+        return;
+      }
+      if (await Getters.networkInfo.isSlow) {}
+
+      final result = await authRepo.uploadDocument(
+        backSide: uploadDocBackFile,
+        frontSide: uploadDocFrontFile,
+      );
+      state = result.fold((error) {
+        return CreateProfileFailed(error: error.message);
+      }, (result) {
+        return CreateProfileSuccess();
+      });
+    } catch (e, t) {
+      functionLog(msg: t.toString(), fun: "uploadDocument");
+
+      state = CreateProfileFailed(error: e.toString());
+    }
+  }
+
+  void setValueInControllers() {
+    final userModel = Getters.getLocalStorage.getLoginUser();
+    profileImageUrl =
+        "${ApiEndpoints.profileImageUrl}${userModel?.userProfile}";
+    phoneController.text = userModel?.phoneNumber ?? "";
+    firstNameController.text = userModel?.firstName?.toTitleCase() ?? "";
+    lastNameController.text = userModel?.lastName?.toTitleCase() ?? "";
+    ninNumberController.text = userModel?.ninOrBvnNumber ?? "";
+    dobController.text = formatDOBDDMMYYYY(userModel?.dob ?? DateTime.now());
+    addressController = TextEditingController();
+    cityController = TextEditingController();
+    stateController = TextEditingController();
+    countryController = TextEditingController();
+    accountHolderController = TextEditingController();
+    accountNumberController = TextEditingController();
+    rountingNumberController = TextEditingController();
+    state = CreateProfileRefresh();
+  }
+
+  void changeUploadFrontImage(CroppedFile value) {
+    uploadDocFrontFile = File(value.path);
+    state = CreateProfileRefresh();
+  }
+
+  void changeUploadBackImage(CroppedFile value) {
+    uploadDocBackFile = File(value.path);
+    state = CreateProfileRefresh();
+  }
+
 }

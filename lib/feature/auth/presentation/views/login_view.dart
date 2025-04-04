@@ -31,7 +31,12 @@ class LoginView extends ConsumerWidget {
 
     ref.listen<LoginState>(authProvider, (previous, next) {
       if (next is LoginSuccess) {
-        offAllNamed(context, Routes.dashboard);
+        if(next.userModel?.firstName==null||(next.userModel?.firstName?.isEmpty ?? false)){
+          toNamed(context, Routes.createProfile);
+
+        }else {
+          offAllNamed(context, Routes.dashboard);
+        }
       } else if (next is LoginFailed) {
         toast(msg: next.error, isError: true);
       }

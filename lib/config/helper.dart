@@ -45,7 +45,11 @@ void unFocus(BuildContext context) {
   FocusScope.of(context).unfocus();
 }
 
-String formatDOB(DateTime dob) {
+String formatDOBYYYYMMDD(DateTime dob) {
+  final DateFormat formatter = DateFormat('yyyy/MM/dd');
+  return formatter.format(dob);
+}
+String formatDOBDDMMYYYY(DateTime dob) {
   final DateFormat formatter = DateFormat('dd/MM/yyyy');
   return formatter.format(dob);
 }

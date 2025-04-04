@@ -95,7 +95,7 @@ class CreateProfile extends ConsumerWidget {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: CustomCacheNetworkImage(
-                                    img: '',
+                                    img: createProfileNotifier.profileImageUrl??"",
                                     size: 120.sp,
                                     imageRadius: 100.sp,
                                   ),
@@ -141,17 +141,22 @@ class CreateProfile extends ConsumerWidget {
                         children: [
                           Expanded(
                               child: CustomTextField(
-                            prefixIcon: SvgPicture.asset(Assets.person),
+                            prefixIcon: SvgPicture.asset(
+                              Assets.person,
+                            ),
                             labelText: AppString.firstName,
+                            keyboardType: TextInputType.name,
                             controller:
                                 createProfileNotifier.firstNameController,
                             hintText: AppString.enterFirstName,
+                            contentPadding: EdgeInsets.all(2),
                           )),
                           xWidth(20),
                           Expanded(
                               child: CustomTextField(
                             prefixIcon: SvgPicture.asset(Assets.person),
                             labelText: AppString.lastName,
+                            contentPadding: EdgeInsets.all(2),
                             controller:
                                 createProfileNotifier.lastNameController,
                             hintText: AppString.enterLastName,
@@ -162,6 +167,7 @@ class CreateProfile extends ConsumerWidget {
                         prefixIcon: SvgPicture.asset(Assets.calling),
                         labelText: AppString.mobileNumber,
                         keyboardType: TextInputType.phone,
+                        // maxLength: 10,
                         controller: createProfileNotifier.phoneController,
                         hintText: AppString.enterPhoneNumber,
                       ),
@@ -189,7 +195,7 @@ class CreateProfile extends ConsumerWidget {
 
                           if (picked != null) {
                             createProfileNotifier.dobController.text =
-                                formatDOB(picked);
+                                formatDOBDDMMYYYY(picked);
                           }
                         },
                         prefixIcon: SvgPicture.asset(Assets.cake),
@@ -209,6 +215,7 @@ class CreateProfile extends ConsumerWidget {
                       ),
                     ],
                   ),
+                  yHeight(20),
                   CommonAppBtn(
                       title: fromSettings
                           ? AppString.update

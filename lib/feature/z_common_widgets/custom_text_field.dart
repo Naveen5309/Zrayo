@@ -96,6 +96,7 @@ class CustomTextField extends StatelessWidget {
             onTapOutside: (event) {
               FocusScope.of(context).unfocus();
             },
+            maxLength: maxLength,
             onTap: onTap,
             readOnly: readOnly ?? false,
             autofocus: false,

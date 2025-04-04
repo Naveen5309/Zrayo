@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:zrayo_flutter/feature/auth/data/models/user_model.dart';
 
 ///****** Login States *******************
 @immutable
@@ -18,8 +19,12 @@ class LoginApiLoading extends LoginState {
 }
 
 class LoginSuccess extends LoginState {
+  final UserModel? userModel;
+
+  const LoginSuccess({ this.userModel});
+
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [userModel];
 }
 
 class ChangePasswordSuccess extends LoginState {
@@ -43,6 +48,7 @@ class UpdateTimer extends LoginState {
 
   const UpdateTimer(
       {required this.secondsRemaining, required this.enableResend});
+
   @override
   List<Object?> get props => [];
 }

@@ -1,7 +1,9 @@
 part of '../core/network/http_service.dart';
 
-abstract final class ApiConstants {
+abstract final class ApiEndpoints {
   static const String url = "https://manish.parastechnologies.in/zrayo";
+  static const String profileImageUrl = "https://manish.parastechnologies.in/zrayo/storage/app/public/users/";
+  static const String docImageUrl = "https://manish.parastechnologies.in/zrayo/storage/app/public/documents/";
   static const String baseUrl = "$url/api/v1";
   static const String login = "users/login";
   static const String signUp = "users/register";
@@ -12,5 +14,8 @@ abstract final class ApiConstants {
   static const String changePassword = "users/reset/password";
   static const String contactUs = "contactUs";
   static const String createProfile = "users/profile/create";
+  static const String updateProfile = "users/profile/update";
   static const String logout = "users/logout";
+  static const String uploadFile = "home/upload/file";
+  static const String addDocument = "users/document/add";
 }

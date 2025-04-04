@@ -14,6 +14,8 @@ import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_cache_network_image.dart';
 
+import '../../../../core/network/http_service.dart';
+
 class SettingView extends ConsumerWidget {
   const SettingView({
     super.key,
@@ -127,7 +129,7 @@ class SettingView extends ConsumerWidget {
 
 Widget profileSection(BuildContext context) {
   final userModel = Getters.getLocalStorage.getLoginUser();
-  printLog(userModel?.userProfile);
+  printLog(userModel?.token);
   return GestureDetector(
     onTap: () {
       toNamed(context, Routes.profileDetailView);
@@ -155,7 +157,8 @@ Widget profileSection(BuildContext context) {
             child: Padding(
                 padding: const EdgeInsets.all(14.0),
                 child: CustomCacheNetworkImage(
-                  img: "",
+                  img:
+                      "${ApiEndpoints.profileImageUrl}${userModel?.userProfile}",
                   size: 50,
                 )),
           ),
@@ -166,7 +169,7 @@ Widget profileSection(BuildContext context) {
               children: [
                 //TITLE
                 AppText(
-                  text: userModel?.fullName ?? "",
+                  text: userModel?.fullName?.toTitleCase() ?? "",
                   textSize: 15.sp,
                   fontWeight: FontWeight.w500,
                 ),

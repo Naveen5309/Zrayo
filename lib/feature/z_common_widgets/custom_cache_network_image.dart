@@ -29,80 +29,80 @@ class CustomCacheNetworkImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-        // (img.isEmpty)
-        //   ? Container(
-        //       height: height ?? size,
-        //       width: width ?? size,
-        //       decoration: BoxDecoration(
-        //         borderRadius: imageBorderRadius ?? BorderRadius.circular(100),
-        //       ),
-        //       child: SvgPicture.asset(
-        //         Assets.placeholder,
-        //         height: height ?? size,
-        //         width: width ?? size,
-        //         fit: BoxFit.cover,
-        //       ),
-        //     )
-        //   :
-        CachedNetworkImage(
-      imageUrl:
-          "https://cdn.pixabay.com/photo/2017/07/08/02/16/house-2483336_640.jpg",
-      height: height ?? size,
-      width: width ?? size,
-      fit: BoxFit.cover,
-      imageBuilder: (context, imageProvider) => Container(
-        height: height ?? size,
-        width: width ?? size,
-        decoration: BoxDecoration(
-          borderRadius: imageBorderRadius ?? BorderRadius.circular(imageRadius),
-          border: imageBorder,
-          image: DecorationImage(
-            image: imageProvider,
-            fit: fit ?? BoxFit.cover,
-          ),
-        ),
-      ),
-      progressIndicatorBuilder: (context, url, downloadProgress) {
-        return CustomShimmerBox(
-          height: height ?? size,
-          width: width ?? size,
-          borderRadius: imageBorderRadius ?? BorderRadius.circular(imageRadius),
-        );
-        // return Container(
-        //   height: height ?? size,
-        //   width: width ?? size,
-        //   decoration: BoxDecoration(
-        //     borderRadius:
-        //         imageBorderRadius ?? BorderRadius.circular(imageRadius),
-        //   ),
-        //   child: Center(
-        //     child: SizedBox(
-        //       height: (height ?? size) / 2,
-        //       width: (width ?? size) / 2,
-        //       child: CircularProgressIndicator(
-        //         value: downloadProgress.progress,
-        //         color: AppColor.primary,
-        //         strokeWidth: 2,
-        //       ),
-        //     ),
-        //   ),
-        // );
-      },
-      errorWidget: (context, url, error) => Container(
-        height: size,
-        width: width ?? size,
-        decoration: BoxDecoration(
-          color: AppColor.whiteFFFFFF,
-          borderRadius: imageBorderRadius ?? BorderRadius.circular(imageRadius),
-        ),
-        child: SvgPicture.asset(
-          Assets.placeholder,
-          height: 70.sp,
-          width: 70.sp,
-        ),
-      ),
-    );
+    return (img.isEmpty)
+        ? Container(
+            height: height ?? size,
+            width: width ?? size,
+            decoration: BoxDecoration(
+              borderRadius: imageBorderRadius ?? BorderRadius.circular(100),
+            ),
+            child: SvgPicture.asset(
+              Assets.placeholder,
+              height: height ?? size,
+              width: width ?? size,
+              fit: BoxFit.cover,
+            ),
+          )
+        : CachedNetworkImage(
+            imageUrl: img,
+            height: height ?? size,
+            width: width ?? size,
+            fit: BoxFit.cover,
+            imageBuilder: (context, imageProvider) => Container(
+              height: height ?? size,
+              width: width ?? size,
+              decoration: BoxDecoration(
+                borderRadius:
+                    imageBorderRadius ?? BorderRadius.circular(imageRadius),
+                border: imageBorder,
+                image: DecorationImage(
+                  image: imageProvider,
+                  fit: fit ?? BoxFit.cover,
+                ),
+              ),
+            ),
+            progressIndicatorBuilder: (context, url, downloadProgress) {
+              return CustomShimmerBox(
+                height: height ?? size,
+                width: width ?? size,
+                borderRadius:
+                    imageBorderRadius ?? BorderRadius.circular(imageRadius),
+              );
+              // return Container(
+              //   height: height ?? size,
+              //   width: width ?? size,
+              //   decoration: BoxDecoration(
+              //     borderRadius:
+              //         imageBorderRadius ?? BorderRadius.circular(imageRadius),
+              //   ),
+              //   child: Center(
+              //     child: SizedBox(
+              //       height: (height ?? size) / 2,
+              //       width: (width ?? size) / 2,
+              //       child: CircularProgressIndicator(
+              //         value: downloadProgress.progress,
+              //         color: AppColor.primary,
+              //         strokeWidth: 2,
+              //       ),
+              //     ),
+              //   ),
+              // );
+            },
+            errorWidget: (context, url, error) => Container(
+              height: size,
+              width: width ?? size,
+              decoration: BoxDecoration(
+                color: AppColor.whiteFFFFFF,
+                borderRadius:
+                    imageBorderRadius ?? BorderRadius.circular(imageRadius),
+              ),
+              child: SvgPicture.asset(
+                Assets.placeholder,
+                height: 70.sp,
+                width: 70.sp,
+              ),
+            ),
+          );
   }
 }
 

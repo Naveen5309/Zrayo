@@ -14,6 +14,7 @@ class UploadDocumentTile extends StatelessWidget {
       required this.title,
       required this.subTitle,
       this.filePath,
+      this.isFromNetwork,
       this.iconWidget,
       this.assetSize,
       this.onTap});
@@ -21,6 +22,7 @@ class UploadDocumentTile extends StatelessWidget {
   final String title;
   final String subTitle;
   final String? filePath;
+  final bool? isFromNetwork;
   final Widget? iconWidget;
   final Function()? onTap;
   final double? assetSize;
@@ -38,10 +40,15 @@ class UploadDocumentTile extends StatelessWidget {
             borderRadius: BorderRadius.circular(12.sp),
             border: Border(),
             image: (filePath != null && (filePath?.isNotEmpty ?? false))
-                ? DecorationImage(
-                    image: FileImage(File(filePath!)),
-                    fit: BoxFit.cover,
-                  )
+                ? (isFromNetwork ?? false)
+                    ? DecorationImage(
+                        image: NetworkImage(filePath!),
+                        fit: BoxFit.cover,
+                      )
+                    : DecorationImage(
+                        image: FileImage(File(filePath!)),
+                        fit: BoxFit.cover,
+                      )
                 : null),
         child: (filePath != null && (filePath?.isNotEmpty ?? false))
             ? null

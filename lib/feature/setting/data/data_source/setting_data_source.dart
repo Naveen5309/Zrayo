@@ -15,7 +15,7 @@ class SettingDataSourceImpl extends SettingDataSource {
     try {
       final dataResponse = await Getters.getHttpService.request<dynamic>(
         body: body,
-        url: ApiConstants.contactUs,
+        url: ApiEndpoints.contactUs,
         fromJson: (json) {
           printLog("json in data source :-> $json");
 
@@ -42,7 +42,7 @@ class SettingDataSourceImpl extends SettingDataSource {
     try {
       final dataResponse = await Getters.getHttpService.request<dynamic>(
         body: body,
-        url: ApiConstants.logout,
+        url: ApiEndpoints.logout,
         fromJson: (json) {
           printLog("json in data source :-> $json");
 

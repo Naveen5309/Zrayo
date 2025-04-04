@@ -43,7 +43,7 @@ class ApiProvider {
     try {
       Map<String, dynamic> map = body ?? {};
       Response response = await _checkRequest(
-        fullUrl: "${ApiConstants.baseUrl}/$url",
+        fullUrl: "${ApiEndpoints.baseUrl}/$url",
         imagePath: imagePath,
         paramName: paramName,
         requestType: requestType,

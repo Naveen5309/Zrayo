@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:zrayo_flutter/config/app_utils.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/helpers/all_getter.dart';
 import 'package:zrayo_flutter/core/network/http_service.dart';
@@ -10,7 +13,17 @@ abstract class AuthDataSource {
 
   Future<ResponseWrapper?> signUpUser({required Map<String, dynamic> body});
 
-  Future<ResponseWrapper?> createProfile({required Map<String, dynamic> body});
+  Future<ResponseWrapper?> createUpdateProfile({
+    required Map<String, dynamic> body,
+    required bool isUpdateCall,
+  });
+
+  Future<ResponseWrapper?> uploadDocument({
+    File? frontSide,
+    File? backSide,
+  });
+
+  Future<ResponseWrapper?> uploadFile({required File file});
 
   Future<ResponseWrapper?> addAddress({required Map<String, dynamic> body});
 
@@ -30,7 +43,7 @@ class AuthDataSourceImpl extends AuthDataSource {
     try {
       final dataResponse = await Getters.getHttpService.request<UserModel>(
         body: body,
-        url: ApiConstants.login,
+        url: ApiEndpoints.login,
         fromJson: (json) => UserModel.fromJson(json),
       );
       if (dataResponse.success == true) {
@@ -42,7 +55,8 @@ class AuthDataSourceImpl extends AuthDataSource {
         return getFailedResponseWrapper(dataResponse.message,
             response: dataResponse.data);
       }
-    } catch (e) {
+    } catch (e, t) {
+      functionLog(msg: t.toString(), fun: "userLogin");
       return getFailedResponseWrapper(exceptionHandler(
         e: e,
         functionName: "userLogin",
@@ -56,7 +70,7 @@ class AuthDataSourceImpl extends AuthDataSource {
     try {
       final dataResponse = await Getters.getHttpService.request<UserModel>(
         body: body,
-        url: ApiConstants.signUp,
+        url: ApiEndpoints.signUp,
         fromJson: (json) => UserModel.fromJson(json),
       );
       if (dataResponse.success == true) {
@@ -75,19 +89,22 @@ class AuthDataSourceImpl extends AuthDataSource {
   }
 
   @override
-  Future<ResponseWrapper<UserModel>?> createProfile(
-      {required Map<String, dynamic> body}) async {
+  Future<ResponseWrapper<UserModel>?> createUpdateProfile({
+    required Map<String, dynamic> body,
+    required bool isUpdateCall,
+  }) async {
     try {
       final dataResponse = await Getters.getHttpService.request<UserModel>(
         body: body,
-        url: ApiConstants.createProfile,
+        url: isUpdateCall
+            ? ApiEndpoints.updateProfile
+            : ApiEndpoints.createProfile,
         useFormData: true,
         fromJson: (json) => UserModel.fromJson(json),
       );
       if (dataResponse.success == true) {
-        // UserModel model = dataResponse.data!;
-        // await Getters.getLocalStorage.saveLoginUser(model.user!);
-        // await Getters.getLocalStorage.saveToken(model.token ?? "");
+        UserModel model = dataResponse.data ?? UserModel();
+        await Getters.getLocalStorage.saveLoginUser(model);
         return getSuccessResponseWrapper(dataResponse);
       } else {
         return getFailedResponseWrapper(dataResponse.message,
@@ -102,12 +119,88 @@ class AuthDataSourceImpl extends AuthDataSource {
   }
 
   @override
+  Future<ResponseWrapper<String>?> uploadFile({required File file}) async {
+    try {
+      Map<String, dynamic> map = {};
+      final img = await Utils.makeMultipartFile(file.path);
+      map.addAll({"image": img});
+      final dataResponse = await Getters.getHttpService.request<String>(
+        body: map,
+        url: ApiEndpoints.uploadFile,
+        useFormData: true,
+        fromJson: (json) => json['filename'],
+      );
+      if (dataResponse.success == true) {
+        return getSuccessResponseWrapper(dataResponse);
+      } else {
+        return getFailedResponseWrapper(dataResponse.message,
+            response: dataResponse.data);
+      }
+    } catch (e) {
+      return getFailedResponseWrapper(exceptionHandler(
+        e: e,
+        functionName: "userProfile",
+      ));
+    }
+  }
+
+  @override
+  Future<ResponseWrapper<dynamic>?> uploadDocument({
+    File? frontSide,
+    File? backSide,
+  }) async {
+    try {
+      Map<String, dynamic> map = {};
+
+      if (frontSide != null && (frontSide.path.isNotEmpty)) {
+        final uploadRes = await uploadFile(file: frontSide);
+        if (uploadRes?.success == true) {
+          map["idDocumentFront"] = uploadRes?.data;
+        } else {
+          return getFailedResponseWrapper(uploadRes?.message ?? "",
+              response: uploadRes?.data);
+        }
+      }
+      if (backSide != null && (backSide.path.isNotEmpty)) {
+        final uploadRes = await uploadFile(file: backSide);
+        if (uploadRes?.success == true) {
+          map["idDocumentBack"] = uploadRes?.data;
+        } else {
+          return getFailedResponseWrapper(uploadRes?.message ?? "",
+              response: uploadRes?.data);
+        }
+      }
+      final dataResponse = await Getters.getHttpService.request<dynamic>(
+        body: map,
+        url: ApiEndpoints.addDocument,
+        fromJson: (json) => json,
+      );
+      if (dataResponse.success == true) {
+        UserModel? userModel = Getters.getLocalStorage.getLoginUser();
+       await Getters.getLocalStorage.saveLoginUser(userModel?.copyWith(
+                idDocumentFront: dataResponse.data['idDocumentFront'],
+                idDocumentBack: dataResponse.data['idDocumentBack']) ??
+            UserModel());
+        return getSuccessResponseWrapper(dataResponse);
+      } else {
+        return getFailedResponseWrapper(dataResponse.message,
+            response: dataResponse.data);
+      }
+    } catch (e) {
+      return getFailedResponseWrapper(exceptionHandler(
+        e: e,
+        functionName: "uploadDocument",
+      ));
+    }
+  }
+
+  @override
   Future<ResponseWrapper<UserModel>?> addAddress(
       {required Map<String, dynamic> body}) async {
     try {
       final dataResponse = await Getters.getHttpService.request<UserModel>(
         body: body,
-        url: ApiConstants.addAddress,
+        url: ApiEndpoints.addAddress,
         fromJson: (json) => UserModel.fromJson(json),
       );
       if (dataResponse.success == true) {
@@ -133,7 +226,7 @@ class AuthDataSourceImpl extends AuthDataSource {
     try {
       final dataResponse = await Getters.getHttpService.request<UserModel>(
         body: body,
-        url: ApiConstants.addBankDetails,
+        url: ApiEndpoints.addBankDetails,
         fromJson: (json) => UserModel.fromJson(json),
       );
       if (dataResponse.success == true) {
@@ -159,7 +252,7 @@ class AuthDataSourceImpl extends AuthDataSource {
     try {
       final dataResponse = await Getters.getHttpService.request<UserModel>(
         body: body,
-        url: ApiConstants.forgetPassword,
+        url: ApiEndpoints.forgetPassword,
         fromJson: (json) => UserModel.fromJson(json),
       );
       if (dataResponse.success == true) {
@@ -183,7 +276,7 @@ class AuthDataSourceImpl extends AuthDataSource {
     try {
       final dataResponse = await Getters.getHttpService.request<UserModel>(
         body: body,
-        url: ApiConstants.verifyEmail,
+        url: ApiEndpoints.verifyEmail,
         fromJson: (json) => UserModel.fromJson(json),
       );
       if (dataResponse.success == true) {
@@ -206,7 +299,7 @@ class AuthDataSourceImpl extends AuthDataSource {
     try {
       final dataResponse = await Getters.getHttpService.request<dynamic>(
         body: body,
-        url: ApiConstants.changePassword,
+        url: ApiEndpoints.changePassword,
         fromJson: (json) {
           printLog("json in data source :-> $json");
 
