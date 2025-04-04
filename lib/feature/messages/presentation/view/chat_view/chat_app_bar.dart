@@ -15,7 +15,7 @@ class ChatAppBar extends StatelessWidget {
           )),
       child: Column(
         children: [
-          yHeight(safeAreaHeight(context) + 20.h),
+          yHeight(Platform.isIOS ? 20 : (safeAreaHeight(context) + 20.h)),
           Padding(
             padding: const EdgeInsets.all(16),
             child: Row(

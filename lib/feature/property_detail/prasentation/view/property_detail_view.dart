@@ -41,220 +41,227 @@ class PropertyDetailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            /// image view
-            Stack(
-              children: [
-                CustomCacheNetworkImage(
-                  img: "",
-                  width: double.infinity,
-                  height: screenHeight(context) / 2.5,
-                  imageBorderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(34),
-                    bottomRight: Radius.circular(34),
-                  ),
-                ),
-                if (isSold)
-                  Positioned(
-                    top: safeAreaHeight(context) + 15.h,
-                    right: 0.h,
-                    left: 0.h,
-                    child: SvgPicture.asset(Assets.soldImage),
-                  ),
-                Positioned(
-                  top: safeAreaHeight(context) + 15.h,
-                  right: 16.h,
-                  left: 16.h,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  /// image view
+                  Stack(
                     children: [
-                      GestureDetector(
-                        onTap: () => back(context),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: AppColor.whiteFFFFFF,
-                              borderRadius: BorderRadius.circular(10)),
-                          padding: EdgeInsets.all(10),
-                          child: SvgPicture.asset(
-                            Assets.leftArrow,
-                            width: 18.h,
-                          ),
+                      CustomCacheNetworkImage(
+                        img: "",
+                        width: double.infinity,
+                        height: screenHeight(context) / 2.5,
+                        imageBorderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(34),
+                          bottomRight: Radius.circular(34),
                         ),
                       ),
-                      Row(
-                        children: [
-                          // if (isSold) ...{
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: AppColor.whiteFFFFFF,
-                                  borderRadius: BorderRadius.circular(10)),
-                              padding: EdgeInsets.all(10),
-                              child: SvgPicture.asset(
-                                Assets.shareIcon,
-                                width: 18.h,
+                      if (isSold)
+                        Positioned(
+                          top: safeAreaHeight(context) + 15.h,
+                          right: 0.h,
+                          left: 0.h,
+                          child: SvgPicture.asset(Assets.soldImage),
+                        ),
+                      Positioned(
+                        top: safeAreaHeight(context) + 15.h,
+                        right: 16.h,
+                        left: 16.h,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            GestureDetector(
+                              onTap: () => back(context),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: AppColor.whiteFFFFFF,
+                                    borderRadius: BorderRadius.circular(10)),
+                                padding: EdgeInsets.all(10),
+                                child: SvgPicture.asset(
+                                  Assets.leftArrow,
+                                  width: 18.h,
+                                ),
                               ),
                             ),
-                            xWidth(10.h),
-                          // },
-                          if (!Getters.isAgent())
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: AppColor.whiteFFFFFF,
-                                  borderRadius: BorderRadius.circular(10)),
-                              padding: EdgeInsets.all(10),
-                              child: SvgPicture.asset(
-                                Assets.heartUnselected,
-                                width: 18.h,
-                                colorFilter: ColorFilter.mode(
-                                    AppColor.black000000, BlendMode.srcIn),
-                              ),
-                            ),
-                        ],
+                            Row(
+                              children: [
+                                // if (isSold) ...{
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        color: AppColor.whiteFFFFFF,
+                                        borderRadius: BorderRadius.circular(10)),
+                                    padding: EdgeInsets.all(10),
+                                    child: SvgPicture.asset(
+                                      Assets.shareIcon,
+                                      width: 18.h,
+                                    ),
+                                  ),
+                                  xWidth(10.h),
+                                // },
+                                if (!Getters.isAgent())
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        color: AppColor.whiteFFFFFF,
+                                        borderRadius: BorderRadius.circular(10)),
+                                    padding: EdgeInsets.all(10),
+                                    child: SvgPicture.asset(
+                                      Assets.heartUnselected,
+                                      width: 18.h,
+                                      colorFilter: ColorFilter.mode(
+                                          AppColor.black000000, BlendMode.srcIn),
+                                    ),
+                                  ),
+                              ],
+                            )
+                          ],
+                        ),
                       )
                     ],
                   ),
-                )
-              ],
-            ),
-            yHeight(15.h),
+                  yHeight(15.h),
 
-            /// All images
-            SizedBox(
-              height: 80.sp,
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: 4,
-                padding: EdgeInsets.zero,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      if (index == 3) {
-                        toNamed(context, Routes.allPicturesView);
-                      }
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.only(right: index == 3 ? 0 : 15.sp),
-                      child: Stack(
-                        children: [
-                          CustomCacheNetworkImage(
-                            img: "",
-                            size: 74.sp,
-                            imageRadius: 10.sp,
-                            imageBorder: Border.all(
-                                color: index == 0
-                                    ? AppColor.primary
-                                    : AppColor.transparent,
-                                width: 2),
+                  /// All images
+                  SizedBox(
+                    height: 80.sp,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: 4,
+                      padding: EdgeInsets.zero,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            if (index == 3) {
+                              toNamed(context, Routes.allPicturesView);
+                            }
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.only(right: index == 3 ? 0 : 15.sp),
+                            child: Stack(
+                              children: [
+                                CustomCacheNetworkImage(
+                                  img: "",
+                                  size: 74.sp,
+                                  imageRadius: 10.sp,
+                                  imageBorder: Border.all(
+                                      color: index == 0
+                                          ? AppColor.primary
+                                          : AppColor.transparent,
+                                      width: 2),
+                                ),
+                                if (index == 3)
+                                  Container(
+                                    height: 74.sp,
+                                    width: 74.sp,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10.sp),
+                                      color: AppColor.black000000
+                                          .withValues(alpha: 0.30),
+                                    ),
+                                    child: AppText(
+                                      text: "9+",
+                                      fontFamily: AppFonts.satoshiBold,
+                                      textSize: 22.sp,
+                                      color: AppColor.whiteFFFFFF,
+                                    ).align(),
+                                  )
+                              ],
+                            ),
                           ),
-                          if (index == 3)
-                            Container(
-                              height: 74.sp,
-                              width: 74.sp,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.sp),
-                                color: AppColor.black000000
-                                    .withValues(alpha: 0.30),
-                              ),
-                              child: AppText(
-                                text: "9+",
-                                fontFamily: AppFonts.satoshiBold,
-                                textSize: 22.sp,
-                                color: AppColor.whiteFFFFFF,
-                              ).align(),
-                            )
-                        ],
-                      ),
+                        );
+                      },
+                    ).align(),
+                  ),
+
+                  /// propertyInfo
+                  propertyInfo(context),
+                  // yHeight(16.h),
+                  PropertyFeaturesList(),
+                  AgentsLandlordList(
+                    isVisit: isVisit,
+                  ),
+                  yHeight(16.sp),
+                  PropertyMapView(),
+                  yHeight(16.sp),
+                  PropertyHistoricalData(),
+
+                ],
+              ),
+            ),
+          ),
+          if (isVisit) ...{
+            CommonAppBtn(
+              title: "Cancel Booking",
+              backGroundColor: AppColor.secondry,
+              textColor: AppColor.primary,
+              borderColor: AppColor.transparent,
+              margin: EdgeInsets.all(16.sp),
+            ),
+            CommonAppBtn(
+              title: "Message",
+              margin: EdgeInsets.symmetric(horizontal: 16.sp),
+              onTap: () => toNamed(context, Routes.chatView),
+            ),
+          },
+
+          if (!Getters.isAgent() && !isVisit && !isMyProperty) ...{
+            CommonAppBtn(
+                title: "Request a tour at \$20",
+                margin: EdgeInsets.all(16.sp),
+                onTap: () => Utils.appBottomSheet(
+                    context: context,
+                    widget: bottomSheet(context),
+                    isScrolled: true)),
+            CommonAppBtn(
+              title: "Message",
+              backGroundColor: AppColor.secondry,
+              textColor: AppColor.primary,
+              borderColor: AppColor.transparent,
+              margin: EdgeInsets.symmetric(horizontal: 16.sp),
+              onTap: () => toNamed(context, Routes.chatView),
+            ),
+          },
+          if (isMyProperty) ...{
+            CommonAppBtn(
+              title: "Edit",
+              backGroundColor: AppColor.secondry,
+              textColor: AppColor.primary,
+              borderColor: AppColor.transparent,
+              margin: EdgeInsets.all(16.sp),
+            ),
+            CommonAppBtn(
+              title: "Property Sold",
+              margin: EdgeInsets.symmetric(horizontal: 16.sp),
+              onTap: () {
+                Utils.appBottomSheet(
+                    context: context,
+                    widget: CommonYouSureSheetContent(
+                      onYes: () {
+                        back(context);
+                        Utils.appBottomSheet(
+                            context: context,
+                            isDismissible: false,
+                            widget: SuccessSheet(
+                              title: "Sold Successfully!",
+                              subTitle: "Your property is successfully sold.",
+                              onTap: () {
+                                back(context);
+                                back(context);
+                              },
+                            ),
+                            isScrolled: true);
+                      },
                     ),
-                  );
-                },
-              ).align(),
+                    isScrolled: true);
+              },
             ),
-
-            /// propertyInfo
-            propertyInfo(context),
-            // yHeight(16.h),
-            PropertyFeaturesList(),
-            AgentsLandlordList(
-              isVisit: isVisit,
-            ),
-            yHeight(16.sp),
-            PropertyMapView(),
-            yHeight(16.sp),
-            PropertyHistoricalData(),
-            if (isVisit) ...{
-              CommonAppBtn(
-                title: "Cancel Booking",
-                backGroundColor: AppColor.secondry,
-                textColor: AppColor.primary,
-                borderColor: AppColor.transparent,
-                margin: EdgeInsets.all(16.sp),
-              ),
-              CommonAppBtn(
-                title: "Message",
-                margin: EdgeInsets.symmetric(horizontal: 16.sp),
-                onTap: () => toNamed(context, Routes.chatView),
-              ),
-            },
-
-            if (!Getters.isAgent() && !isVisit && !isMyProperty) ...{
-              CommonAppBtn(
-                  title: "Request a tour at \$20",
-                  margin: EdgeInsets.all(16.sp),
-                  onTap: () => Utils.appBottomSheet(
-                      context: context,
-                      widget: bottomSheet(context),
-                      isScrolled: true)),
-              CommonAppBtn(
-                title: "Message",
-                backGroundColor: AppColor.secondry,
-                textColor: AppColor.primary,
-                borderColor: AppColor.transparent,
-                margin: EdgeInsets.symmetric(horizontal: 16.sp),
-                onTap: () => toNamed(context, Routes.chatView),
-              ),
-            },
-            if (isMyProperty) ...{
-              CommonAppBtn(
-                title: "Edit",
-                backGroundColor: AppColor.secondry,
-                textColor: AppColor.primary,
-                borderColor: AppColor.transparent,
-                margin: EdgeInsets.all(16.sp),
-              ),
-              CommonAppBtn(
-                title: "Property Sold",
-                margin: EdgeInsets.symmetric(horizontal: 16.sp),
-                onTap: () {
-                  Utils.appBottomSheet(
-                      context: context,
-                      widget: CommonYouSureSheetContent(
-                        onYes: () {
-                          back(context);
-                          Utils.appBottomSheet(
-                              context: context,
-                              isDismissible: false,
-                              widget: SuccessSheet(
-                                title: "Sold Successfully!",
-                                subTitle: "Your property is successfully sold.",
-                                onTap: () {
-                                  back(context);
-                                  back(context);
-                                },
-                              ),
-                              isScrolled: true);
-                        },
-                      ),
-                      isScrolled: true);
-                },
-              ),
-            },
-            yHeight(10)
-          ],
-        ),
+          },
+          yHeight(10)
+        ],
       ),
     );
   }

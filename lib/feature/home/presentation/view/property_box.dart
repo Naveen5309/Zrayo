@@ -3,6 +3,7 @@ part of 'home_view_main.dart';
 class PropertyBox extends StatelessWidget {
   final bool showHorizontal;
   final bool showFavorite;
+  final bool showTypeOnHorizontal;
   final bool isFavorite;
   final double? imageHeight;
   final double? imageWidth;
@@ -13,6 +14,7 @@ class PropertyBox extends StatelessWidget {
   const PropertyBox({
     super.key,
     this.showHorizontal = false,
+    this.showTypeOnHorizontal = false,
     this.showFavorite = true,
     this.isFavorite = false,
     this.imageHeight,
@@ -96,6 +98,18 @@ class PropertyBox extends StatelessWidget {
                 // textSize: 12.sp,
               ),
             ),
+            if(showTypeOnHorizontal)
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+              decoration: BoxDecoration(
+                  color: AppColor.colorF6F6F6,
+                  borderRadius: BorderRadius.circular(24)),
+              child: AppText(
+                text: "For Sale",
+                textSize: 12.sp,
+                color: AppColor.color5A5A5A,
+              ),
+            )
           ],
         ),
         yHeight(5),
