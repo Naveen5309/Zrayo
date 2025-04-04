@@ -58,28 +58,29 @@ class AddPaymentCard extends StatelessWidget {
                       size: 38.sp,
                     ),
                     xWidth(10),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            AppText(
-                                text: "xxxxxxxxx 3615".toUpperCase(),
-                                fontFamily: AppFonts.satoshiBold,
-                                textSize: 14.sp,
-                                color: AppColor.color212121),
-                            xWidth(10),
-                          ],
-                        ),
-                        yHeight(3),
-                        AppText(
-                            text: "Visa Card",
-                            fontFamily: AppFonts.satoshiRegular,
-                            textSize: 14.sp,
-                            color: AppColor.color212121.withValues(alpha: .7)),
-                      ],
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              AppText(
+                                  text: "xxxxxxxxx 3615".toUpperCase(),
+                                  fontFamily: AppFonts.satoshiBold,
+                                  textSize: 14.sp,
+                                  color: AppColor.color212121),
+                              xWidth(10),
+                            ],
+                          ),
+                          yHeight(3),
+                          AppText(
+                              text: "Visa Card",
+                              fontFamily: AppFonts.satoshiRegular,
+                              textSize: 14.sp,
+                              color: AppColor.color212121.withValues(alpha: .7)),
+                        ],
+                      ),
                     ),
-                    xWidth(context.width / 3.9),
                     SvgPicture.asset(Assets.trash)
                   ],
                 ),

@@ -167,7 +167,6 @@ Widget profileSection(BuildContext context) {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                //TITLE
                 AppText(
                   text: userModel?.fullName?.toTitleCase() ?? "",
                   textSize: 15.sp,
@@ -190,7 +189,7 @@ Widget profileSection(BuildContext context) {
             size: 16.sp,
             color: AppColor.black160C08,
           ),
-          xWidth(16)
+          xWidth(16.w)
         ],
       ),
     ),

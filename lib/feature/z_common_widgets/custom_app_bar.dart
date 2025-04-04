@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -37,7 +39,7 @@ class CustomAppBar extends StatelessWidget {
     return SafeArea(
       child: Column(
         children: [
-          yHeight((MediaQuery.of(context).padding.top)),
+          yHeight(Platform.isIOS?10:(MediaQuery.of(context).padding.top)),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
