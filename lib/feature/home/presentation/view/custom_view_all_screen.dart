@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/config/app_utils.dart';
 import 'package:zrayo_flutter/config/helper.dart';
-import 'package:zrayo_flutter/core/helpers/all_getter.dart';
 import 'package:zrayo_flutter/feature/home/presentation/view/home_view_main.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/common_property_type_filter_content.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
