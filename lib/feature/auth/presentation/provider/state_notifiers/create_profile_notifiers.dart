@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:zrayo_flutter/config/app_utils.dart';
 import 'package:zrayo_flutter/config/assets.dart';
+import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/config/validator.dart';
 import 'package:zrayo_flutter/core/helpers/all_getter.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
@@ -36,6 +37,8 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
   List<Country> countries = <Country>[];
   List<StateModel> allStates = <StateModel>[];
   List<City> cities = <City>[];
+  int? selectedCountryId;
+  int? selectedStateId;
 
   CreateProfileNotifiers({required this.authRepo})
       : super(CreateProfileInitial()) {
@@ -174,19 +177,27 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
   Future<void> loadCountriesFromAssets() async {
     String jsonString = await rootBundle.loadString(Assets.countryJson);
     List<dynamic> jsonList = json.decode(jsonString);
+
     countries = parseCountries(jsonList);
+    state = CreateProfileRefresh();
   }
 
   Future<void> loadStatesFromAssets() async {
     String jsonString = await rootBundle.loadString(Assets.stateJson);
+    printLog("jsonList=================>${jsonString}");
+
     List<dynamic> jsonList = json.decode(jsonString);
     allStates = parseStates(jsonList);
+    printLog("allStates=================>${allStates}");
+    state = CreateProfileRefresh();
   }
 
   Future<void> loadCitiesFromAssets() async {
     String jsonString = await rootBundle.loadString(Assets.cityJson);
     List<dynamic> jsonList = json.decode(jsonString);
     cities = parseCities(jsonList);
+
+    state = CreateProfileRefresh();
   }
 
   /// Parsing methods
@@ -200,5 +211,19 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
 
   List<City> parseCities(List<dynamic> jsonList) {
     return jsonList.map((json) => City.fromJson(json)).toList();
+  }
+
+  void selectCountry(String countryName) {
+    final selectedCountry = countries.firstWhere((c) => c.name == countryName);
+    selectedCountryId = int.tryParse(selectedCountry.id);
+    countryController.text = selectedCountry.name;
+    state = CreateProfileRefresh();
+  }
+
+  void selectState(String stateName) {
+    final selectedState = allStates.firstWhere((s) => s.name == stateName);
+    selectedStateId = int.tryParse(selectedState.id);
+    stateController.text = selectedState.name;
+    state = CreateProfileRefresh();
   }
 }
