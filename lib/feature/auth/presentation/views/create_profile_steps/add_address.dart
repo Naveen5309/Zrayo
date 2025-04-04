@@ -59,7 +59,7 @@ class AddAddressView extends ConsumerWidget {
               child: formsFieldsSection(addAddressNotifier),
             ),
             // if (fromSettings)
-            yHeight(context.height / 4.5),
+            yHeight(context.height / 5),
             CommonAppBtn(
                 title:
                     fromSettings ? AppString.update : AppString.saveAndContinue,
