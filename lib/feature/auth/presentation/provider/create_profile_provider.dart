@@ -6,16 +6,14 @@ import 'package:zrayo_flutter/feature/auth/presentation/provider/states/create_p
 import '../../data/data_source/auth_data_source.dart';
 import '../../data/repositories/auth_repo_implementation.dart';
 
-final authDataProvider =
-    Provider.autoDispose<AuthDataSource>((ref) => AuthDataSourceImpl());
+final authDataProvider = Provider.autoDispose<AuthDataSource>((ref) => AuthDataSourceImpl());
 
 final authRepoProvider = Provider.autoDispose<AuthRepository>((ref) {
   final dataSource = ref.watch(authDataProvider);
   return AuthRepoImpl(dataSource: dataSource);
 });
 
-final createProfileProvider = StateNotifierProvider.autoDispose<CreateProfileNotifiers,
-    CreateProfileStates>((ref) {
+final createProfileProvider = StateNotifierProvider.autoDispose<CreateProfileNotifiers, CreateProfileStates>((ref) {
   final authRepo = ref.watch(authRepoProvider);
-  return CreateProfileNotifiers(authRepo: authRepo);
+  return CreateProfileNotifiers(authRepo: auth  Repo);
 });
