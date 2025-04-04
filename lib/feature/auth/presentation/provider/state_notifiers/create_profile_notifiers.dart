@@ -44,6 +44,8 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
   List<City> cities = <City>[];
   int? selectedCountryId;
   int? selectedStateId;
+  List<StateModel> filteredStates = <StateModel>[];
+  List<City> filteredCities = <City>[];
 
   CreateProfileNotifiers({required this.authRepo})
       : super(CreateProfileInitial()) {
@@ -186,7 +188,6 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
     }
   }
 
-  /// Load and parse the JSON data from the assets
   Future<void> loadCountriesFromAssets() async {
     String jsonString = await rootBundle.loadString(Assets.countryJson);
     List<dynamic> jsonList = json.decode(jsonString);
@@ -196,11 +197,9 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
 
   Future<void> loadStatesFromAssets() async {
     String jsonString = await rootBundle.loadString(Assets.stateJson);
-    printLog("jsonList=================>$jsonString");
 
     List<dynamic> jsonList = json.decode(jsonString);
     allStates = parseStates(jsonList);
-    printLog("allStates=================>$allStates");
     state = CreateProfileRefresh();
   }
 
@@ -212,7 +211,6 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
     state = CreateProfileRefresh();
   }
 
-  /// Parsing methods
   List<Country> parseCountries(List<dynamic> jsonList) {
     return jsonList.map((json) => Country.fromJson(json)).toList();
   }
@@ -229,13 +227,29 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
     final selectedCountry = countries.firstWhere((c) => c.name == countryName);
     selectedCountryId = int.tryParse(selectedCountry.id);
     countryController.text = selectedCountry.name;
+
+    filteredStates = allStates
+        .where((state) => int.tryParse(state.countryId) == selectedCountryId)
+        .toList();
+
+    stateController.clear();
+    cityController.clear();
+    filteredCities = [];
+
     state = CreateProfileRefresh();
   }
 
   void selectState(String stateName) {
-    final selectedState = allStates.firstWhere((s) => s.name == stateName);
+    final selectedState = filteredStates.firstWhere((s) => s.name == stateName);
     selectedStateId = int.tryParse(selectedState.id);
     stateController.text = selectedState.name;
+
+    filteredCities = cities
+        .where((city) => int.tryParse(city.stateId) == selectedStateId)
+        .toList();
+
+    cityController.clear();
+
     state = CreateProfileRefresh();
   }
 
@@ -292,5 +306,4 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
     uploadDocBackFile = File(value.path);
     state = CreateProfileRefresh();
   }
-
 }

@@ -131,7 +131,7 @@ Widget formsFieldsSection(CreateProfileNotifiers addAddressNotifier) {
                 ? addAddressNotifier.stateController.text
                 : null,
             dropdownItems:
-                addAddressNotifier.allStates.map((e) => e.name).toList(),
+                addAddressNotifier.filteredStates.map((e) => e.name).toList(),
             onChanged: (String? value) {
               if (value != null) {
                 addAddressNotifier.selectState(value);
@@ -159,7 +159,8 @@ Widget formsFieldsSection(CreateProfileNotifiers addAddressNotifier) {
           value: addAddressNotifier.cityController.text.isNotEmpty
               ? addAddressNotifier.cityController.text
               : null,
-          dropdownItems: addAddressNotifier.cities.map((e) => e.name).toList(),
+          dropdownItems:
+              addAddressNotifier.filteredCities.map((e) => e.name).toList(),
           onChanged: (String? value) {
             if (value != null) {
               addAddressNotifier.cityController.text = value;
