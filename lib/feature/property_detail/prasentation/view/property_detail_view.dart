@@ -86,7 +86,7 @@ class PropertyDetailView extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          if (!isSold) ...{
+                          // if (isSold) ...{
                             Container(
                               decoration: BoxDecoration(
                                   color: AppColor.whiteFFFFFF,
@@ -97,8 +97,8 @@ class PropertyDetailView extends StatelessWidget {
                                 width: 18.h,
                               ),
                             ),
-                            xWidth(10.h)
-                          },
+                            xWidth(10.h),
+                          // },
                           if (!Getters.isAgent())
                             Container(
                               decoration: BoxDecoration(

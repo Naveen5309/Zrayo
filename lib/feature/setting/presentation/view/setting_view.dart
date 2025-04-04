@@ -161,7 +161,6 @@ Widget profileSection(BuildContext context) {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                //TITLE
                 AppText(
                   text: 'Paras',
                   textSize: 15.sp,
@@ -184,7 +183,7 @@ Widget profileSection(BuildContext context) {
             size: 16.sp,
             color: AppColor.black160C08,
           ),
-          xWidth(context.height / 12)
+          xWidth(16.w)
         ],
       ),
     ),
