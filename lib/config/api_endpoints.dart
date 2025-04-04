@@ -8,6 +8,7 @@ abstract final class ApiEndpoints {
       "https://manish.parastechnologies.in/zrayo/storage/app/public/documents/";
   static const String baseUrl = "$url/api/v1";
   static const String login = "users/login";
+  static const String userDetail = "users/detail";
   static const String signUp = "users/register";
   static const String addAddress = "users/address/add";
   static const String addBankDetails = "addBankDetails";

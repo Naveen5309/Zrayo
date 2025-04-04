@@ -222,7 +222,7 @@ class CreateProfile extends ConsumerWidget {
                           : AppString.saveAndContinue,
                       loading: createProfileState is CreateProfileApiLoading,
                       onTap: () => createProfileNotifier
-                          .createProfileValidator(context)),
+                          .createProfileValidator(context,isUpdateCall: fromSettings)),
                 ],
               ),
             )

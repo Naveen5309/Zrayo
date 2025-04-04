@@ -12,6 +12,7 @@ import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/config/validator.dart';
 import 'package:zrayo_flutter/core/helpers/all_getter.dart';
 import 'package:zrayo_flutter/core/network/http_service.dart';
+import 'package:zrayo_flutter/feature/auth/data/models/user_model.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 
 import '../../../data/models/country_state_city_model.dart';
@@ -27,6 +28,7 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
   String? profileImageUrl;
   File uploadDocFrontFile = File("");
   File uploadDocBackFile = File("");
+  UserModel? userModel;
 
   ///create update profile view fields
   TextEditingController phoneController = TextEditingController();
@@ -58,6 +60,7 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
   /// Constructor that initializes the class with an AuthRepository instance and loads countries, states, and cities
   CreateProfileNotifiers({required this.authRepo})
       : super(CreateProfileInitial()) {
+    getProfile();
     setValueInControllers();
     loadCountriesFromAssets();
     loadStatesFromAssets();
@@ -82,8 +85,28 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
     state = CreateProfileRefresh();
   }
 
+  Future<void> getProfile() async {
+    state = CreateProfileApiLoading();
+    try {
+      if (!(await Getters.networkInfo.isConnected)) {
+        state = const CreateProfileFailed(error: "No internet connection");
+        return;
+      }
+
+      final result = await authRepo.getProfile();
+      state = result.fold((error) {
+        return CreateProfileFailed(error: error.message);
+      }, (result) {
+        userModel = result;
+        return CreateProfileRefresh();
+      });
+    } catch (e) {
+      state = CreateProfileFailed(error: e.toString());
+    }
+  }
+
   /// Method to validate profile data and either create or update the profile
-  void createProfileValidator(BuildContext context) {
+  void createProfileValidator(BuildContext context, {bool? isUpdateCall}) {
     final isValid = validator.createProfileValidator(
         phoneNumber: phoneController.text,
         firstName: firstNameController.text,
@@ -91,7 +114,7 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
         dob: dobController.text,
         ninNumber: ninNumberController.text);
     if (isValid) {
-      createUpdateProfile();
+      createUpdateProfile(isUpdateCall: isUpdateCall);
     } else {
       toast(msg: validator.error);
     }
@@ -130,7 +153,8 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
       state = result.fold((error) {
         return CreateProfileFailed(error: error.message);
       }, (result) {
-        return CreateProfileSuccess();
+        getProfile();
+        return CreateProfileApiLoading();
       });
     } catch (e, t) {
       functionLog(msg: t.toString(), fun: "createUpdateProfile");
@@ -332,7 +356,7 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
     lastNameController.text = userModel?.lastName?.toTitleCase() ?? "";
     ninNumberController.text = userModel?.ninOrBvnNumber ?? "";
     dobController.text = formatDOBDDMMYYYY(userModel?.dob ?? DateTime.now());
-    addressController = TextEditingController();
+    addressController.text = userModel?.detail?.address??"";
     cityController = TextEditingController();
     stateController = TextEditingController();
     countryController = TextEditingController();

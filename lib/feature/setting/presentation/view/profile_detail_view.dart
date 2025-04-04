@@ -8,18 +8,22 @@ import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/helpers/all_getter.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/auth/data/models/user_model.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/provider/state_notifiers/create_profile_notifiers.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_cache_network_image.dart';
 
 import '../../../../core/network/http_service.dart';
+import '../../../auth/presentation/provider/create_profile_provider.dart';
 
 class ProfileDetailView extends ConsumerWidget {
   const ProfileDetailView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userModel = Getters.getLocalStorage.getLoginUser();
+    ref.watch(createProfileProvider);
+    final createProfileNotifier = ref.read(createProfileProvider.notifier);
+    final userModel = createProfileNotifier.userModel;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -37,7 +41,7 @@ class ProfileDetailView extends ConsumerWidget {
                   yHeight(context.height * 0.002),
 
                   /// address detail
-                  addressDetail(context),
+                  addressDetail(context, userModel,createProfileNotifier),
                   yHeight(context.height * 0.002),
 
                   /// Uploaded document
@@ -162,7 +166,9 @@ class ProfileDetailView extends ConsumerWidget {
   }
 
   /// address detail widget
-  Widget addressDetail(BuildContext context) {
+  Widget addressDetail(BuildContext context, UserModel? userModel, CreateProfileNotifiers createProfileNotifier) {
+    final userDetail = userModel?.detail;
+
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       decoration: Utils.boxDecoWithShadow(),
@@ -177,8 +183,11 @@ class ProfileDetailView extends ConsumerWidget {
                 fontFamily: AppFonts.satoshiBold,
               ),
               GestureDetector(
-                  onTap: () => toNamed(context, Routes.addAddressView,
-                      args: {"fromSettings": true}),
+                  onTap: () {
+                    createProfileNotifier.setValueInControllers();
+                    toNamed(context, Routes.addAddressView,
+                      args: {"fromSettings": true});
+                  },
                   child: SvgPicture.asset(Assets.edit)),
             ],
           ),
@@ -197,7 +206,7 @@ class ProfileDetailView extends ConsumerWidget {
                   ),
                   yHeight(context.height * 0.01),
                   AppText(
-                    text: 'United state',
+                    text: userDetail?.country ?? "",
                     textSize: 14.sp,
                     color: AppColor.black111111,
                   ),
@@ -213,7 +222,7 @@ class ProfileDetailView extends ConsumerWidget {
                       fontFamily: AppFonts.satoshiBlack),
                   yHeight(context.height * 0.01),
                   AppText(
-                    text: 'California',
+                    text: userDetail?.state ?? "",
                     textSize: 14.sp,
                     color: AppColor.black111111,
                   ),
@@ -235,7 +244,7 @@ class ProfileDetailView extends ConsumerWidget {
                   ),
                   yHeight(context.height * 0.01),
                   AppText(
-                    text: 'Los Angeles',
+                    text: userDetail?.city ?? "",
                     textSize: 14.sp,
                     color: AppColor.black111111,
                   ),
@@ -257,7 +266,7 @@ class ProfileDetailView extends ConsumerWidget {
                   yHeight(context.height * 0.01),
                   AppText(
                     text:
-                        '1234 Elm Street,Los Angeles, CA 90001,\nUnited States',
+                        '${userDetail?.address},${userDetail?.city}, ${userDetail?.state},${userDetail?.country}',
                     textSize: 14.sp,
                     lineHeight: 1.2,
                     color: AppColor.black111111,
@@ -273,6 +282,7 @@ class ProfileDetailView extends ConsumerWidget {
 
   /// Uploaded document detail widget
   Widget uploadedDocDetail(BuildContext context, UserModel? userModel) {
+    final userDetail = userModel?.detail;
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       decoration: Utils.boxDecoWithShadow(),
@@ -293,30 +303,30 @@ class ProfileDetailView extends ConsumerWidget {
             ],
           ),
           yHeight(context.height * .04),
-          if ((userModel?.detail?.idDocumentBack == null ||
-                  (userModel?.detail?.idDocumentBack?.isEmpty ?? false)) &&
-              (userModel?.detail?.idDocumentFront == null ||
-                  (userModel?.detail?.idDocumentFront?.isEmpty ?? false))) ...{
+          if ((userDetail?.idDocumentBack == null ||
+                  (userDetail?.idDocumentBack?.isEmpty ?? false)) &&
+              (userDetail?.idDocumentFront == null ||
+                  (userDetail?.idDocumentFront?.isEmpty ?? false))) ...{
             AppText(text: "No Document Found").align()
           } else ...{
-            if ((userModel?.detail?.idDocumentFront != null &&
-                (userModel?.detail?.idDocumentFront?.isNotEmpty ?? false))) ...{
+            if ((userDetail?.idDocumentFront != null &&
+                (userDetail?.idDocumentFront?.isNotEmpty ?? false))) ...{
               CustomCacheNetworkImage(
                   height: context.height / 4,
                   width: context.width / 1.31,
                   imageRadius: 12,
                   img:
-                      "${ApiEndpoints.docImageUrl}${userModel?.detail?.idDocumentFront}"),
+                      "${ApiEndpoints.docImageUrl}${userDetail?.idDocumentFront}"),
               yHeight(context.height * 0.04)
             },
-            if ((userModel?.detail?.idDocumentBack != null &&
-                (userModel?.detail?.idDocumentBack?.isNotEmpty ?? false)))
+            if ((userDetail?.idDocumentBack != null &&
+                (userDetail?.idDocumentBack?.isNotEmpty ?? false)))
               CustomCacheNetworkImage(
                   height: context.height / 4,
                   width: context.width / 1.31,
                   imageRadius: 12,
                   img:
-                      "${ApiEndpoints.docImageUrl}${userModel?.detail?.idDocumentBack}"),
+                      "${ApiEndpoints.docImageUrl}${userDetail?.idDocumentBack}"),
           }
         ],
       ),

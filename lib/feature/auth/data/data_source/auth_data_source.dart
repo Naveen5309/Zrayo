@@ -11,6 +11,8 @@ abstract class AuthDataSource {
   Future<ResponseWrapper<UserModel>?> logInUser(
       {required Map<String, dynamic> body});
 
+  Future<ResponseWrapper<UserModel>?> getProfile();
+
   Future<ResponseWrapper?> signUpUser({required Map<String, dynamic> body});
 
   Future<ResponseWrapper?> createUpdateProfile({
@@ -37,6 +39,32 @@ abstract class AuthDataSource {
 }
 
 class AuthDataSourceImpl extends AuthDataSource {
+  @override
+  Future<ResponseWrapper<UserModel>?> getProfile() async {
+    try {
+      final dataResponse = await Getters.getHttpService.request<UserModel>(
+        url: ApiEndpoints.userDetail,
+        requestType: RequestType.get,
+        fromJson: (json) => UserModel.fromJson(json),
+      );
+      if (dataResponse.success == true) {
+        await Getters.getLocalStorage.saveToken(dataResponse.data?.token ?? "");
+        await Getters.getLocalStorage
+            .saveLoginUser(dataResponse.data ?? UserModel());
+        return getSuccessResponseWrapper(dataResponse);
+      } else {
+        return getFailedResponseWrapper(dataResponse.message,
+            response: dataResponse.data);
+      }
+    } catch (e, t) {
+      functionLog(msg: t.toString(), fun: "userLogin");
+      return getFailedResponseWrapper(exceptionHandler(
+        e: e,
+        functionName: "userLogin",
+      ));
+    }
+  }
+
   @override
   Future<ResponseWrapper<UserModel>?> logInUser(
       {required Map<String, dynamic> body}) async {

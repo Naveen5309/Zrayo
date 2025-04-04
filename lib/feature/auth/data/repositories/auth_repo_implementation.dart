@@ -10,6 +10,8 @@ abstract class AuthRepository {
   Future<Either<Failure, UserModel?>> doLogin(
       {required Map<String, dynamic> body});
 
+  Future<Either<Failure, UserModel?>> getProfile();
+
   Future<Either<Failure, UserModel?>> doSignUp(
       {required Map<String, dynamic> body});
 
@@ -43,6 +45,20 @@ class AuthRepoImpl implements AuthRepository {
   final AuthDataSource dataSource;
 
   AuthRepoImpl({required this.dataSource});
+
+  @override
+  Future<Either<Failure, UserModel?>> getProfile() async {
+    try {
+      final data = await dataSource.getProfile();
+      if (data?.success == true) {
+        return Right(data?.data);
+      } else {
+        return Left(ServerFailure(message: data?.message ?? ""));
+      }
+    } catch (e) {
+      return Left(ServerFailure(message: e.toString()));
+    }
+  }
 
   @override
   Future<Either<Failure, UserModel?>> doLogin(

@@ -6,6 +6,7 @@ import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/helpers/all_getter.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/provider/create_profile_provider.dart';
 import 'package:zrayo_flutter/feature/home/presentation/providers/home_provider.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
@@ -17,8 +18,11 @@ import '../../../../config/app_utils.dart';
 import '../../../../config/enums.dart';
 
 part 'agent_home_view.dart';
+
 part 'customer_home_view.dart';
+
 part 'customer_map_view.dart';
+
 part 'property_box.dart';
 
 class HomeViewMain extends ConsumerWidget {
@@ -28,7 +32,9 @@ class HomeViewMain extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.watch(customerHomeProvider);
     final homeNotifier = ref.read(customerHomeProvider.notifier);
-    final userModel=Getters.getLocalStorage.getLoginUser();
+    ref.watch(createProfileProvider);
+    final createProfileNotifier = ref.read(createProfileProvider.notifier);
+    final userModel = createProfileNotifier.userModel;
     return Scaffold(
       floatingActionButton: Getters.isAgent()
           ? SizedBox.shrink()
