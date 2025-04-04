@@ -5,7 +5,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:zrayo_flutter/config/app_utils.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
-import 'package:zrayo_flutter/core/helpers/all_getter.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/auth/data/models/user_model.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/provider/state_notifiers/create_profile_notifiers.dart';
