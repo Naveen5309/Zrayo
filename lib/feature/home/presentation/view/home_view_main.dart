@@ -17,11 +17,8 @@ import '../../../../config/app_utils.dart';
 import '../../../../config/enums.dart';
 
 part 'agent_home_view.dart';
-
 part 'customer_home_view.dart';
-
 part 'customer_map_view.dart';
-
 part 'property_box.dart';
 
 class HomeViewMain extends ConsumerWidget {

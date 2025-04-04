@@ -13,7 +13,6 @@ import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_cache_network_image.dart';
 
 import '../../../../core/network/http_service.dart';
-import '../../../auth/presentation/provider/create_profile_provider.dart';
 
 class ProfileDetailView extends ConsumerWidget {
   const ProfileDetailView({super.key});

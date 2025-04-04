@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:zrayo_flutter/feature/home/presentation/providers/state_notifiers/agent_home_notifier.dart';
-import 'package:zrayo_flutter/feature/home/presentation/providers/state_notifiers/customer_side_search_notifier.dart';
 import 'package:zrayo_flutter/feature/home/presentation/providers/state_notifiers/customer_home_notifier.dart';
+import 'package:zrayo_flutter/feature/home/presentation/providers/state_notifiers/customer_side_search_notifier.dart';
 import 'package:zrayo_flutter/feature/home/presentation/providers/states/home_states.dart';
 import 'package:zrayo_flutter/feature/home/presentation/providers/states/search_states.dart';
 

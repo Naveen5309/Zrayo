@@ -17,13 +17,9 @@ import 'package:zrayo_flutter/feature/z_common_widgets/custom_cache_network_imag
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_rating_box.dart';
 
 part 'agents_landlord_list.dart';
-
 part 'all_pictures_view.dart';
-
 part 'property_features_list.dart';
-
 part 'property_historical_data.dart';
-
 part 'property_map_view.dart';
 
 class PropertyDetailView extends StatelessWidget {

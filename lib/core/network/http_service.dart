@@ -11,7 +11,6 @@ import '../response_wrapper/data_response.dart';
 import 'interceptor.dart';
 
 part '../../config/api_endpoints.dart';
-
 part '../error/exceptions.dart';
 
 enum RequestType {

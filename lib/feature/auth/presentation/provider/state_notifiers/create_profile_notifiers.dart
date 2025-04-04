@@ -14,7 +14,6 @@ import 'package:zrayo_flutter/core/helpers/all_getter.dart';
 import 'package:zrayo_flutter/core/network/http_service.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 
-import '../../../../../config/helper.dart';
 import '../../../data/models/country_state_city_model.dart';
 import '../../../data/repositories/auth_repo_implementation.dart';
 import '../states/create_profile_states.dart';
@@ -197,11 +196,11 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
 
   Future<void> loadStatesFromAssets() async {
     String jsonString = await rootBundle.loadString(Assets.stateJson);
-    printLog("jsonList=================>${jsonString}");
+    printLog("jsonList=================>$jsonString");
 
     List<dynamic> jsonList = json.decode(jsonString);
     allStates = parseStates(jsonList);
-    printLog("allStates=================>${allStates}");
+    printLog("allStates=================>$allStates");
     state = CreateProfileRefresh();
   }
 
