@@ -87,14 +87,14 @@ class Validator {
     if (customValidator(address, "address")?.isNotEmpty ?? false) {
       error = customValidator(address, "address") ?? "";
       return false;
-    } else if (customValidator(city, "city")?.isNotEmpty ?? false) {
-      error = customValidator(city, "city") ?? "";
+    } else if (customValidator(country, "country")?.isNotEmpty ?? false) {
+      error = customValidator(country, "country") ?? "";
       return false;
     } else if (customValidator(state, "state")?.isNotEmpty ?? false) {
       error = customValidator(state, "state") ?? "";
       return false;
-    } else if (customValidator(country, "country")?.isNotEmpty ?? false) {
-      error = customValidator(country, "country") ?? "";
+    } else if (customValidator(city, "city")?.isNotEmpty ?? false) {
+      error = customValidator(city, "city") ?? "";
       return false;
     } else {
       return true;

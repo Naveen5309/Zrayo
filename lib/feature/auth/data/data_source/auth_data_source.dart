@@ -177,7 +177,7 @@ class AuthDataSourceImpl extends AuthDataSource {
       );
       if (dataResponse.success == true) {
         UserModel? userModel = Getters.getLocalStorage.getLoginUser();
-       await Getters.getLocalStorage.saveLoginUser(userModel?.copyWith(
+        await Getters.getLocalStorage.saveLoginUser(userModel?.copyWith(
                 idDocumentFront: dataResponse.data['idDocumentFront'],
                 idDocumentBack: dataResponse.data['idDocumentBack']) ??
             UserModel());
@@ -195,18 +195,19 @@ class AuthDataSourceImpl extends AuthDataSource {
   }
 
   @override
-  Future<ResponseWrapper<UserModel>?> addAddress(
+  Future<ResponseWrapper<dynamic>?> addAddress(
       {required Map<String, dynamic> body}) async {
     try {
-      final dataResponse = await Getters.getHttpService.request<UserModel>(
+      final dataResponse = await Getters.getHttpService.request<dynamic>(
         body: body,
         url: ApiEndpoints.addAddress,
-        fromJson: (json) => UserModel.fromJson(json),
+        fromJson: (json) {
+          printLog("json in data source :-> $json");
+
+          return json;
+        },
       );
       if (dataResponse.success == true) {
-        // UserModel model = dataResponse.data!;
-        // await Getters.getLocalStorage.saveLoginUser(model.user!);
-        // await Getters.getLocalStorage.saveToken(model.token ?? "");
         return getSuccessResponseWrapper(dataResponse);
       } else {
         return getFailedResponseWrapper(dataResponse.message,

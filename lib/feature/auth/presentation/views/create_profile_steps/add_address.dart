@@ -5,12 +5,14 @@ import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
-import 'package:zrayo_flutter/feature/auth/presentation/provider/add_address_provider.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/provider/create_profile_provider.dart';
 import 'package:zrayo_flutter/feature/auth/presentation/provider/state_notifiers/create_profile_notifiers.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/provider/states/create_profile_states.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_drop_down.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_text_field.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 
 class AddAddressView extends ConsumerWidget {
   final bool fromSettings;
@@ -19,9 +21,15 @@ class AddAddressView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.watch(addAddressProvider);
-    final addAddressNotifier = ref.read(addAddressProvider.notifier);
-
+    final addAddressState = ref.watch(createProfileProvider);
+    final addAddressNotifier = ref.read(createProfileProvider.notifier);
+    ref.listen<CreateProfileStates>(createProfileProvider, (previous, next) {
+      if (next is CreateProfileSuccess) {
+        fromSettings ? back(context) : toNamed(context, Routes.uploadDocument);
+      } else if (next is CreateProfileFailed) {
+        toast(msg: next.error, isError: true);
+      }
+    });
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -53,15 +61,11 @@ class AddAddressView extends ConsumerWidget {
             // if (fromSettings)
             yHeight(context.height / 4.5),
             CommonAppBtn(
-              title:
-                  fromSettings ? AppString.update : AppString.saveAndContinue,
-              margin: const EdgeInsets.all(16),
-              onTap: () => fromSettings
-                  ? back(context)
-                  :
-                  //  addAddressNotifier.addAddressValidator(context)
-                  toNamed(context, Routes.uploadDocument),
-            )
+                title:
+                    fromSettings ? AppString.update : AppString.saveAndContinue,
+                margin: const EdgeInsets.all(16),
+                loading: addAddressState is CreateProfileApiLoading,
+                onTap: () => addAddressNotifier.addAddressValidator(context))
           ],
         ),
       ),

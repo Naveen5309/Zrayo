@@ -23,7 +23,7 @@ abstract class AuthRepository {
     File? backSide,
   });
 
-  Future<Either<Failure, UserModel?>> addAddress(
+  Future<Either<Failure, dynamic>> addAddress(
       {required Map<String, dynamic> body});
 
   Future<Either<Failure, UserModel?>> addBankDetails(
@@ -113,7 +113,7 @@ class AuthRepoImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, UserModel?>> addAddress(
+  Future<Either<Failure, dynamic>> addAddress(
       {required Map<String, dynamic> body}) async {
     try {
       final data = await dataSource.addAddress(body: body);

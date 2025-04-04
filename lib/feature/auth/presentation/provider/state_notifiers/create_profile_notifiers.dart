@@ -135,10 +135,13 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
       }
       if (await Getters.networkInfo.isSlow) {}
       Map<String, dynamic> body = {
-        "address": "abc",
-        "city": "abc",
-        "state": "abc",
-        "country": "abc",
+        "address": addressController.text,
+        "city": cityController.text,
+        "state": stateController.text,
+        "country": countryController.text,
+        "zipcode": "10001",
+        "latitude": 40.712776,
+        "longitude": -74.005974
       };
       final result = await authRepo.addAddress(body: body);
       state = result.fold((error) {
