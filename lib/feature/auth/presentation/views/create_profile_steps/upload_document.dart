@@ -62,8 +62,7 @@ class UploadDocument extends ConsumerWidget {
                   yHeight(40.sp),
                   CommonDottedBorder(
                     child: UploadDocumentTile(
-                      filePath:
-                          createProfileNotifier.uploadDocFrontFile?.path ?? "",
+                      filePath: createProfileNotifier.uploadDocFrontFile?.path ?? "",
                       title: AppString.uploadIdentityDocument,
                       subTitle: AppString.frontSide,
                       onTap: () {

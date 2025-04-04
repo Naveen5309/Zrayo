@@ -67,7 +67,7 @@ class AddBankDetail extends ConsumerWidget {
                       ),
                       CustomTextField(
                         controller:
-                            addBankDetailsNotifier.rountingNumberController,
+                            addBankDetailsNotifier.routingNumberController,
                         labelText: AppString.routingNumber,
                         keyboardType: TextInputType.number,
                         hintText: AppString.enterRoutingNumber,
