@@ -25,7 +25,7 @@ class UploadDocument extends ConsumerWidget {
 
     ref.listen<CreateProfileStates>(createProfileProvider, (previous, next) {
       if (next is CreateProfileSuccess) {
-        fromSettings ? back(context) : toNamed(context, Routes.addAddressView);
+        fromSettings ? back(context) : toNamed(context, Routes.addBankDetail);
       } else if (next is CreateProfileFailed) {
         toast(msg: next.error, isError: true);
       }
@@ -62,7 +62,8 @@ class UploadDocument extends ConsumerWidget {
                   yHeight(40.sp),
                   CommonDottedBorder(
                     child: UploadDocumentTile(
-                      filePath: createProfileNotifier.uploadDocFrontFile?.path ?? "",
+                      filePath:
+                          createProfileNotifier.uploadDocFrontFile?.path ?? "",
                       title: AppString.uploadIdentityDocument,
                       subTitle: AppString.frontSide,
                       onTap: () {
