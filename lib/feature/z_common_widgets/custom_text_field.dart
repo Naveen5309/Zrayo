@@ -76,8 +76,6 @@ class CustomTextField extends StatelessWidget {
     );
 
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (labelText?.isNotEmpty ?? false)
           Row(
@@ -91,9 +89,7 @@ class CustomTextField extends StatelessWidget {
           ),
         Padding(
           padding: padding ?? const EdgeInsets.symmetric(vertical: 10.0),
-          child:
-              //==== Text Form Field==//
-              TextFormField(
+          child: TextFormField(
             textAlign: textAlign ?? TextAlign.start,
             obscureText: isObscure ?? false,
             obscuringCharacter: "*",
@@ -109,7 +105,7 @@ class CustomTextField extends StatelessWidget {
             controller: controller,
             onChanged: onChanged,
             minLines: minLines,
-            maxLines: maxLines,
+            maxLines: isObscure == true ? 1 : maxLines,
             onSaved: onSaved,
             decoration: InputDecoration(
               contentPadding: contentPadding ??
@@ -135,6 +131,7 @@ class CustomTextField extends StatelessWidget {
                     borderSide: BorderSide(color: AppColor.grey040F2529),
                     borderRadius: BorderRadius.all(Radius.circular(12.0)),
                   ),
+              // alignLabelWithHint: maxLines == null,
 
               hintText: hintText,
               hintStyle: hintStyle ??
@@ -143,31 +140,26 @@ class CustomTextField extends StatelessWidget {
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w500),
               prefixIconConstraints: const BoxConstraints(
-                maxHeight: 60,
-                maxWidth: 40,
-              ),
-              prefixIcon: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: prefixIcon,
+                maxHeight: 80,
+                maxWidth: 80,
               ),
 
-              isDense: true,
-              // prefixIcon: prefixIcon == null
-              //     ? null
-              //     : (maxLines ?? 0) > 1
-              //         ? Align(
-              //             alignment: Alignment.topLeft,
-              //             child: Padding(
-              //               padding: prefixIconPadding ??
-              //                   const EdgeInsets.symmetric(horizontal: 12),
-              //               child: prefixIcon,
-              //             ),
-              //           )
-              //         : Padding(
-              //             padding: prefixIconPadding ??
-              //                 const EdgeInsets.symmetric(horizontal: 12),
-              //             child: prefixIcon,
-              //           ),
+              prefixIcon: prefixIcon == null
+                  ? null
+                  : (maxLines ?? 0) > 1
+                      ? Align(
+                          alignment: Alignment.topLeft,
+                          child: Padding(
+                            padding: prefixIconPadding ??
+                                const EdgeInsets.symmetric(horizontal: 12),
+                            child: prefixIcon,
+                          ),
+                        )
+                      : Padding(
+                          padding: prefixIconPadding ??
+                              const EdgeInsets.symmetric(horizontal: 12),
+                          child: prefixIcon,
+                        ),
               prefixText: prefixText,
               suffixText: suffixText,
               prefixStyle: textStyle,
