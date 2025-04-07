@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zrayo_flutter/config/helper.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 
-import 'app_text.dart';
-
-class CustomTextField extends StatelessWidget {
+class TextFieldCustom extends StatelessWidget {
   final String? labelText, hintText;
   final EdgeInsets? padding;
   final EdgeInsets? contentPadding;
@@ -14,7 +13,7 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController? controller;
   final ValueChanged<String?>? onChanged, onSaved;
   final int? maxLength, maxLines;
-  final int minLines;
+  final int? minLines;
   final bool? readOnly;
 
   final bool? isObscure;
@@ -33,7 +32,7 @@ class CustomTextField extends StatelessWidget {
   final TextAlign? textAlign;
   final bool isDisable;
 
-  const CustomTextField({
+  const TextFieldCustom({
     super.key,
     this.labelText,
     this.enableBorder,
@@ -50,7 +49,7 @@ class CustomTextField extends StatelessWidget {
     this.onSaved,
     this.maxLength,
     this.maxLines,
-    this.minLines = 1,
+    this.minLines,
     this.initialValue,
     this.readOnly,
     this.onTap,
@@ -109,7 +108,7 @@ class CustomTextField extends StatelessWidget {
             controller: controller,
             onChanged: onChanged,
             minLines: minLines,
-            maxLines: maxLines,
+            maxLines: isObscure == true ? 1 : maxLines,
             onSaved: onSaved,
             decoration: InputDecoration(
               contentPadding: contentPadding ??
@@ -142,16 +141,15 @@ class CustomTextField extends StatelessWidget {
                       color: AppColor.black4A4A4A.withValues(alpha: .6),
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w500),
-              prefixIconConstraints: const BoxConstraints(
-                maxHeight: 60,
-                maxWidth: 40,
-              ),
+              // prefixIconConstraints: const BoxConstraints(
+              //   maxHeight: 60,
+              //   maxWidth: 40,
+              // ),
               prefixIcon: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding:
+                    EdgeInsets.only(top: 12.0, bottom: context.height * .09),
                 child: prefixIcon,
               ),
-
-              isDense: true,
               // prefixIcon: prefixIcon == null
               //     ? null
               //     : (maxLines ?? 0) > 1
