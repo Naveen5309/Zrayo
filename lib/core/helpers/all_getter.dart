@@ -22,11 +22,7 @@ class Getters {
 
   static NetworkInfo get networkInfo => GetIt.I.get<NetworkInfo>();
 
-  // static SettingsRepo get settingsRepo => GetIt.I.get<SettingsRepo>();
-  // static PaymentRepo get paymentRepo => GetIt.I.get<PaymentRepo>();
   static BuildContext? get getContext => navKey.currentContext;
-
-  // static UserModel? get getLoginUser => GetIt.I.get<LocalStorage>().getLoginUser();
 
   static String? authToken() {
     return GetIt.I.get<LocalStorage>().getToken();

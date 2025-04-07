@@ -1,4 +1,5 @@
 import 'package:zrayo_flutter/core/error/failure.dart';
+import 'package:zrayo_flutter/core/helpers/all_getter.dart';
 import 'package:zrayo_flutter/core/utils/dartz/either.dart';
 import 'package:zrayo_flutter/feature/auth/data/models/user_model.dart';
 import 'package:zrayo_flutter/feature/setting/data/data_source/setting_data_source.dart';
@@ -7,6 +8,7 @@ import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 abstract class SettingRepository {
   Future<Either<Failure, UserModel?>> contactUs(
       {required Map<String, dynamic> body});
+
   Future<Either<Failure, UserModel?>> logout(
       {required Map<String, dynamic> body});
 }
@@ -38,6 +40,7 @@ class SettingRepoImpl implements SettingRepository {
     try {
       final data = await dataSource.logout(body: body);
       if (data?.success == true) {
+        Getters.getLocalStorage.clearAllBox();
         toast(msg: data?.message ?? "", isError: false);
         return Right(data?.data);
       } else {
