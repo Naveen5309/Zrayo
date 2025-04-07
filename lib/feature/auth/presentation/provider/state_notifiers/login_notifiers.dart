@@ -16,10 +16,10 @@ import '../states/login_states.dart';
 class LoginNotifier extends StateNotifier<LoginState> {
   final AuthRepository authRepo;
   final Validator validator = Validator.instance;
-  final forgetEmailController = TextEditingController(
-      text: kDebugMode ? "test@yopmail.com" : "");
-  final emailController = TextEditingController(
-      text: kDebugMode ? "test@yopmail.com" : "");
+  final forgetEmailController =
+      TextEditingController(text: kDebugMode ? "test@yopmail.com" : "");
+  final emailController =
+      TextEditingController(text: kDebugMode ? "test@yopmail.com" : "");
   final passwordController =
       TextEditingController(text: kDebugMode ? "Paras@123" : "");
   final newPasswordController = TextEditingController();
@@ -67,7 +67,7 @@ class LoginNotifier extends StateNotifier<LoginState> {
       }, (result) {
         return LoginSuccess(userModel: result);
       });
-    } catch (e,t) {
+    } catch (e, t) {
       functionLog(msg: t.toString(), fun: "loginNotifier");
       state = LoginFailed(error: e.toString());
     }
@@ -174,6 +174,26 @@ class LoginNotifier extends StateNotifier<LoginState> {
     }
   }
 
+  Future<void> resendOtp() async {
+    state = LoginApiLoading();
+    try {
+      if (!(await Getters.networkInfo.isConnected)) {
+        state = const LoginFailed(error: "No internet connection");
+        return;
+      }
+      if (await Getters.networkInfo.isSlow) {}
+      Map<String, dynamic> body = {};
+      final result = await authRepo.resendOtp(body: body);
+      state = result.fold((error) {
+        return LoginFailed(error: error.message);
+      }, (result) {
+        return OtpSuccessfullySend();
+      });
+    } catch (e) {
+      state = LoginFailed(error: e.toString());
+    }
+  }
+
   void startTimer() {
     timer?.cancel();
     timer = Timer.periodic(const Duration(seconds: 1), (_) {
@@ -196,8 +216,8 @@ class LoginNotifier extends StateNotifier<LoginState> {
   }
 
   Future<void> cancelTimer() async {
-    timer?.cancel();
     enableResend = true;
-    secondsRemaining = secondsRemaining;
+    secondsRemaining = 60;
+    timer?.cancel();
   }
 }

@@ -40,7 +40,7 @@ class ProfileDetailView extends ConsumerWidget {
                   yHeight(context.height * 0.002),
 
                   /// address detail
-                  addressDetail(context, userModel,createProfileNotifier),
+                  addressDetail(context, userModel, createProfileNotifier),
                   yHeight(context.height * 0.002),
 
                   /// Uploaded document
@@ -83,7 +83,6 @@ class ProfileDetailView extends ConsumerWidget {
               img: "${ApiEndpoints.profileImageUrl}${userModel?.userProfile}"),
           yHeight(context.height * .04),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,6 +101,7 @@ class ProfileDetailView extends ConsumerWidget {
                   ),
                 ],
               ),
+              xWidth(context.width / 3.8),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -121,7 +121,6 @@ class ProfileDetailView extends ConsumerWidget {
             ],
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -140,6 +139,7 @@ class ProfileDetailView extends ConsumerWidget {
                   ),
                 ],
               ),
+              xWidth(context.width / 5.5),
               yHeight(context.height * 0.1),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -165,7 +165,8 @@ class ProfileDetailView extends ConsumerWidget {
   }
 
   /// address detail widget
-  Widget addressDetail(BuildContext context, UserModel? userModel, CreateProfileNotifiers createProfileNotifier) {
+  Widget addressDetail(BuildContext context, UserModel? userModel,
+      CreateProfileNotifiers createProfileNotifier) {
     final userDetail = userModel?.detail;
 
     return Container(
@@ -185,7 +186,7 @@ class ProfileDetailView extends ConsumerWidget {
                   onTap: () {
                     createProfileNotifier.setValueInControllers();
                     toNamed(context, Routes.addAddressView,
-                      args: {"fromSettings": true});
+                        args: {"fromSettings": true});
                   },
                   child: SvgPicture.asset(Assets.edit)),
             ],

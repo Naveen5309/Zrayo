@@ -27,7 +27,9 @@ class OtpVerificationViewState extends ConsumerState<OtpVerificationView> {
   void initState() {
     super.initState();
     Future.microtask(() {
-      ref.read(authProvider.notifier).startTimer();
+      var auth = ref.read(authProvider.notifier);
+      auth.secondsRemaining = 60;
+      auth.startTimer();
     });
   }
 
@@ -66,110 +68,125 @@ class OtpVerificationViewState extends ConsumerState<OtpVerificationView> {
     final submittedPinTheme = defaultPinTheme.copyWith(
       decoration: focusedPinTheme.decoration,
     );
-    return Scaffold(
-      body: Column(
-        children: [
-          CustomAppBar(title: ""),
-          yHeight(15.sp),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(Assets.otpView),
-                    yHeight(15.sp),
-                    AppText(
-                      text: AppString.otpVerification,
-                      textSize: 22.sp,
-                      fontFamily: AppFonts.satoshiBold,
-                    ),
-                    yHeight(10.sp),
-                    AppText(
-                      text: AppString.pleaseEnterYourOtpCodeSentToYour,
-                      fontFamily: AppFonts.satoshiRegular,
-                      textAlign: TextAlign.center,
-                      lineHeight: 1.2,
-                    ),
-                    yHeight(20.sp),
-                    Pinput(
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                      keyboardType: TextInputType.number,
-                      defaultPinTheme: defaultPinTheme,
-                      focusedPinTheme: focusedPinTheme,
-                      submittedPinTheme: submittedPinTheme,
-                      controller: verifyEmailNotifier.otpController,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      cursor: Container(
-                        height: 17.h,
-                        width: 1,
-                        color: AppColor.primary,
+    return PopScope(
+      canPop: true,
+      onPopInvokedWithResult: (didPop, result) {
+        print("vhkjf vkjxc vkj");
+        // verifyEmailNotifier.cancelTimer();
+      },
+      child: Scaffold(
+        body: Column(
+          children: [
+            CustomAppBar(
+              title: "",
+              onBackIconTap: () {
+                verifyEmailNotifier.cancelTimer();
+                back(context);
+              },
+            ),
+            yHeight(15.sp),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(Assets.otpView),
+                      yHeight(15.sp),
+                      AppText(
+                        text: AppString.otpVerification,
+                        textSize: 22.sp,
+                        fontFamily: AppFonts.satoshiBold,
                       ),
-                      showCursor: true,
-                      onCompleted: (pin) => printLog(pin),
-                    ),
-                    yHeight(20.sp),
-                    AppText(
-                      text: AppString.didNotReceiveTheOtp,
-                      fontFamily: AppFonts.satoshiRegular,
-                    ),
-                    yHeight(5.sp),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AppText(
-                          text: AppString.youCanResendOtpIn,
-                          fontFamily: AppFonts.satoshiRegular,
+                      yHeight(10.sp),
+                      AppText(
+                        text: AppString.pleaseEnterYourOtpCodeSentToYour,
+                        fontFamily: AppFonts.satoshiRegular,
+                        textAlign: TextAlign.center,
+                        lineHeight: 1.2,
+                      ),
+                      yHeight(20.sp),
+                      Pinput(
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        keyboardType: TextInputType.number,
+                        defaultPinTheme: defaultPinTheme,
+                        focusedPinTheme: focusedPinTheme,
+                        submittedPinTheme: submittedPinTheme,
+                        controller: verifyEmailNotifier.otpController,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        cursor: Container(
+                          height: 17.h,
+                          width: 1,
+                          color: AppColor.primary,
                         ),
-                        verifyEmailState.enableResend
-                            ? const SizedBox()
-                            : Consumer(builder: (BuildContext context,
-                                WidgetRef ref, Widget? child) {
-                                final loginState = ref.watch(authProvider);
-                                final loginNotifier =
-                                    ref.read(authProvider.notifier);
-
-                                if (loginState is UpdateTimer) {
-                                  return loginState.enableResend
-                                      ? GestureDetector(
-                                          onTap: () {
-                                            loginNotifier.cancelTimer();
-                                            loginNotifier.startTimer();
-                                          },
-                                          child: AppText(
-                                            text: "Resend OTP",
+                        showCursor: true,
+                        onCompleted: (pin) => printLog(pin),
+                      ),
+                      yHeight(20.sp),
+                      AppText(
+                        text: AppString.didNotReceiveTheOtp,
+                        fontFamily: AppFonts.satoshiRegular,
+                      ),
+                      yHeight(5.sp),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AppText(
+                            text: AppString.youCanResendOtpIn,
+                            fontFamily: AppFonts.satoshiRegular,
+                          ),
+                          verifyEmailState.enableResend
+                              ? const SizedBox()
+                              : Consumer(builder: (BuildContext context,
+                                  WidgetRef ref, Widget? child) {
+                                  final loginState = ref.watch(authProvider);
+                                  final loginNotifier =
+                                      ref.read(authProvider.notifier);
+                                  if (loginState is UpdateTimer) {
+                                    return loginState.enableResend
+                                        ? GestureDetector(
+                                            onTap: () {
+                                              loginNotifier.cancelTimer();
+                                              loginNotifier.startTimer();
+                                              verifyEmailNotifier.resendOtp();
+                                            },
+                                            child: AppText(
+                                              text: "Resend OTP",
+                                              textSize: 14.sp,
+                                              fontFamily: AppFonts.satoshiBold,
+                                              color: AppColor.black000000,
+                                            ),
+                                          )
+                                        : AppText(
+                                            text:
+                                                ' (00:${loginState.secondsRemaining})',
                                             textSize: 14.sp,
                                             fontFamily: AppFonts.satoshiBold,
                                             color: AppColor.black000000,
-                                          ),
-                                        )
-                                      : AppText(
-                                          text:
-                                              ' (00:${loginState.secondsRemaining})',
-                                          textSize: 14.sp,
-                                          fontFamily: AppFonts.satoshiBold,
-                                          color: AppColor.black000000,
-                                        );
-                                }
+                                          );
+                                  }
 
-                                return const SizedBox.shrink();
-                              }),
-                      ],
-                    ),
-                  ],
+                                  return const SizedBox.shrink();
+                                }),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-          CommonAppBtn(
-              margin: EdgeInsets.all(16.0),
-              title: AppString.verify,
-              loading: verifyEmailState is LoginApiLoading,
-              onTap: () =>
-                  // toNamed(context, Routes.changePasswordView))
-                  verifyEmailNotifier.verifyEmailValidator(context))
-        ],
+            CommonAppBtn(
+                margin: EdgeInsets.all(16.0),
+                title: AppString.verify,
+                loading: verifyEmailState is LoginApiLoading,
+                onTap: () =>
+                    // toNamed(context, Routes.changePasswordView))
+                    verifyEmailNotifier.verifyEmailValidator(context))
+          ],
+        ),
       ),
     );
   }

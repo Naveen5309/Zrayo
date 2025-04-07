@@ -37,7 +37,7 @@ class SettingDataSourceImpl extends SettingDataSource {
   }
 
   @override
-  Future<ResponseWrapper<dynamic>?> logout(
+  Future<ResponseWrapper<dynamic>> logout(
       {required Map<String, dynamic> body}) async {
     try {
       final dataResponse = await Getters.getHttpService.request<dynamic>(

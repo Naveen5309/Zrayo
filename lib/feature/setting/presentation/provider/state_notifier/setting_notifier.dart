@@ -40,8 +40,6 @@ class SettingNotifier extends StateNotifier<SettingState> {
         "email": "dev@yopmail.com",
         "subject": "abc",
         "message": "abc",
-        "device_type": "android",
-        "device_token": "No Token",
       };
       final result = await settingRepo.contactUs(body: body);
       state = result.fold((error) {

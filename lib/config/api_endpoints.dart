@@ -15,10 +15,11 @@ abstract final class ApiEndpoints {
   static const String forgetPassword = "users/forgot/password/mail";
   static const String verifyEmail = "users/verify/otp";
   static const String changePassword = "users/reset/password";
-  static const String contactUs = "contactUs";
+  static const String contactUs = "home/contactus";
   static const String createProfile = "users/profile/create";
   static const String updateProfile = "users/profile/update";
   static const String logout = "users/logout";
   static const String uploadFile = "home/upload/file";
   static const String addDocument = "users/document/add";
+  static const String resendOtp = "users/resend/otp";
 }

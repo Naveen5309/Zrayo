@@ -36,6 +36,7 @@ abstract class AuthDataSource {
   Future<ResponseWrapper?> forgetPassword({required Map<String, dynamic> body});
 
   Future<ResponseWrapper?> changePassword({required Map<String, dynamic> body});
+  Future<ResponseWrapper?> resendOtp({required Map<String, dynamic> body});
 }
 
 class AuthDataSourceImpl extends AuthDataSource {
@@ -346,6 +347,31 @@ class AuthDataSourceImpl extends AuthDataSource {
       return getFailedResponseWrapper(exceptionHandler(
         e: e,
         functionName: "changePassword",
+      ));
+    }
+  }
+
+  @override
+  Future<ResponseWrapper<dynamic>> resendOtp(
+      {required Map<String, dynamic> body}) async {
+    try {
+      final dataResponse = await Getters.getHttpService.request<dynamic>(
+        body: body,
+        url: ApiEndpoints.resendOtp,
+        fromJson: (json) {
+          return json;
+        },
+      );
+      if (dataResponse.success == true) {
+        return getSuccessResponseWrapper(dataResponse);
+      } else {
+        return getFailedResponseWrapper(dataResponse.message,
+            response: dataResponse.data);
+      }
+    } catch (e) {
+      return getFailedResponseWrapper(exceptionHandler(
+        e: e,
+        functionName: "resend otp",
       ));
     }
   }

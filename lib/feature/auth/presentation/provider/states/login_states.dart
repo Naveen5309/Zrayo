@@ -21,7 +21,7 @@ class LoginApiLoading extends LoginState {
 class LoginSuccess extends LoginState {
   final UserModel? userModel;
 
-  const LoginSuccess({ this.userModel});
+  const LoginSuccess({this.userModel});
 
   @override
   List<Object?> get props => [userModel];
@@ -38,6 +38,11 @@ class OtpSentSuccess extends LoginState {
 }
 
 class OtpVerifySuccess extends LoginState {
+  @override
+  List<Object> get props => [];
+}
+
+class OtpSuccessfullySend extends LoginState {
   @override
   List<Object> get props => [];
 }
