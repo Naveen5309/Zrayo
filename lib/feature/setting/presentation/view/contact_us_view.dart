@@ -6,7 +6,6 @@ import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/provider/setting_provider.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/provider/state/setting_state.dart';
-import 'package:zrayo_flutter/feature/setting/presentation/view/textfeild.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_text_field.dart';
@@ -53,12 +52,13 @@ class ContactUsView extends ConsumerWidget {
                       prefixIcon: SvgPicture.asset(Assets.write),
                       hintText: AppString.subject,
                     ),
-                    TextFieldCustom(
+                    CustomTextField(
                       controller: contactUsNotifier.messageController,
                       labelText: AppString.message,
-                      minLines: 4,
-                      maxLines: null,
                       prefixIcon: SvgPicture.asset(Assets.check),
+                      minLines: 4,
+                      prefixIconPadding:
+                          EdgeInsets.only(bottom: 55, left: 12, right: 12),
                       hintText: AppString.message,
                     ),
                     yHeight(context.height * 0.08),
