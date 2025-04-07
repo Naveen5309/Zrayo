@@ -341,7 +341,8 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
       state = result.fold((error) {
         return CreateProfileFailed(error: error.message);
       }, (result) {
-        return CreateProfileSuccess();
+        getProfile();
+        return CreateProfileApiLoading();
       });
     } catch (e, t) {
       functionLog(msg: t.toString(), fun: "uploadDocument");
