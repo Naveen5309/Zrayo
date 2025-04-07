@@ -1,4 +1,3 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -49,6 +48,7 @@ String formatDOBYYYYMMDD(DateTime dob) {
   final DateFormat formatter = DateFormat('yyyy/MM/dd');
   return formatter.format(dob);
 }
+
 String formatDOBDDMMYYYY(DateTime dob) {
   final DateFormat formatter = DateFormat('dd/MM/yyyy');
   return formatter.format(dob);
@@ -99,7 +99,6 @@ void _printLog(dynamic msg) {
     debugPrint(msg.toString());
   }
 }
-
 
 void blocLog({required String msg, required String bloc}) {
   _printLog("\x1B[31m${bloc.toString()} ::==> ${msg.toString()}\x1B[0m");
