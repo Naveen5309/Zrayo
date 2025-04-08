@@ -60,8 +60,7 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
   /// Constructor that initializes the class with an AuthRepository instance and loads countries, states, and cities
   CreateProfileNotifiers({required this.authRepo})
       : super(CreateProfileInitial()) {
-    getProfile();
-    setValueInControllers();
+    getProfile(isRefresh: true);
     loadCountriesFromAssets();
     loadStatesFromAssets();
     loadCitiesFromAssets();
@@ -85,7 +84,7 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
     state = CreateProfileRefresh();
   }
 
-  Future<void> getProfile() async {
+  Future<void> getProfile({bool isRefresh = false}) async {
     state = CreateProfileApiLoading();
     try {
       if (!(await Getters.networkInfo.isConnected)) {
@@ -98,9 +97,13 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
         return CreateProfileFailed(error: error.message);
       }, (result) {
         userModel = result;
-        setValueInControllers(userData: userModel);
 
-        return CreateProfileSuccess();
+        if (isRefresh) {
+          return CreateProfileRefresh();
+        } else {
+          setValueInControllers(userData: userModel);
+          return CreateProfileSuccess();
+        }
       });
     } catch (e) {
       state = CreateProfileFailed(error: e.toString());
@@ -368,5 +371,21 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
     accountNumberController = TextEditingController();
     routingNumberController = TextEditingController();
     state = CreateProfileRefresh();
+  }
+
+  clearValues() {
+    profileImageUrl = null;
+    phoneController = TextEditingController();
+    firstNameController = TextEditingController();
+    lastNameController = TextEditingController();
+    ninNumberController = TextEditingController();
+    dobController = TextEditingController();
+    addressController = TextEditingController();
+    cityController = TextEditingController();
+    stateController = TextEditingController();
+    countryController = TextEditingController();
+    accountHolderController = TextEditingController();
+    accountNumberController = TextEditingController();
+    routingNumberController = TextEditingController();
   }
 }

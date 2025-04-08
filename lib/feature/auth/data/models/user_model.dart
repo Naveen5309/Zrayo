@@ -128,7 +128,7 @@ class UserModel {
         phoneNumber: json["phoneNumber"],
         otp: json["otp"],
         userProfile: json["userProfile"],
-        dob: json["dob"] == null ? null : DateTime.parse(json["dob"]),
+        dob: json["dob"] == null ? null : DateTime.tryParse(json["dob"]),
         ninOrBvnNumber: json["ninOrBvnNumber"],
         deviceToken: json["deviceToken"],
         deviceId: json["deviceID"],

@@ -81,7 +81,8 @@ class _SplashViewState extends ConsumerState<SplashView> {
       if (token == null ||
           (token.isEmpty) ||
           userModel?.firstName == null ||
-          (userModel?.firstName?.isEmpty ?? false)) {
+          (userModel?.firstName?.isEmpty ?? false)||(userModel?.detail?.address?.isEmpty ?? false)||((userModel?.detail?.idDocumentFront?.isEmpty ?? false) &&
+          (userModel?.detail?.idDocumentBack?.isEmpty ?? false))) {
         offAllNamed(context, Routes.chooseInterfaceView);
       } else {
         offAllNamed(context, Routes.dashboard);

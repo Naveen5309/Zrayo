@@ -36,7 +36,7 @@ class ProfileDetailView extends ConsumerWidget {
                   yHeight(context.height * .02),
 
                   /// personal detail
-                  personalDetail(context, userModel),
+                  personalDetail(context, userModel,createProfileNotifier),
                   yHeight(context.height * 0.002),
 
                   /// address detail
@@ -56,7 +56,7 @@ class ProfileDetailView extends ConsumerWidget {
   }
 
   /// personal detail widget
-  Widget personalDetail(BuildContext context, UserModel? userModel) {
+  Widget personalDetail(BuildContext context, UserModel? userModel, CreateProfileNotifiers createProfileNotifier) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       decoration: Utils.boxDecoWithShadow(),
@@ -192,7 +192,7 @@ class ProfileDetailView extends ConsumerWidget {
               ),
               GestureDetector(
                   onTap: () {
-                    createProfileNotifier.setValueInControllers();
+
                     toNamed(context, Routes.addAddressView,
                         args: {"fromSettings": true});
                   },

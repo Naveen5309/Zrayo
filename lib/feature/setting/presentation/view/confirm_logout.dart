@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/provider/create_profile_provider.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/provider/setting_provider.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/provider/state/setting_state.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
@@ -77,6 +78,7 @@ class LogoutConfirmationView extends ConsumerWidget {
                   child: CommonAppBtn(
                     loading: settingState is SettingApiLoading,
                     onTap: () {
+                      ref.read(createProfileProvider.notifier).clearValues();
                       settingNotifier.logout();
                     },
                     title: AppString.logout,
