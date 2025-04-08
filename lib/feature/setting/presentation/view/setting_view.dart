@@ -8,6 +8,8 @@ import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/helpers/all_getter.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/provider/setting_provider.dart';
+import 'package:zrayo_flutter/feature/setting/presentation/provider/state/setting_state.dart';
+import 'package:zrayo_flutter/feature/setting/presentation/provider/state_notifier/setting_notifier.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/view/confirm_logout.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/view/custom_setting_tile.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
@@ -23,7 +25,8 @@ class SettingView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.watch(settingViewProvider);
+    final settingNotifier = ref.read(settingViewProvider.notifier);
+    final settingState = ref.watch(settingViewProvider);
     return Scaffold(
       body: SingleChildScrollView(
         clipBehavior: Clip.none,
@@ -85,12 +88,17 @@ class SettingView extends ConsumerWidget {
                       title: AppString.cardDetails,
                     ),
                   SettingTile(
-                    onTap: () => toNamed(context, Routes.aboutUs),
+                    onTap: () {
+                      toNamed(context, Routes.aboutUs);
+                      settingNotifier.aboutUs();
+                    },
                     icon: Assets.document,
                     title: AppString.aboutUs,
                   ),
                   SettingTile(
-                    onTap: () => toNamed(context, Routes.contactUs),
+                    onTap: () {
+                      toNamed(context, Routes.contactUs);
+                    },
                     icon: Assets.headphone,
                     title: AppString.contactUs,
                   ),
