@@ -37,13 +37,16 @@ class LoginView extends ConsumerWidget {
         }
 
         /// Check if address is empty
-        else if (next.userModel?.detail?.address?.isEmpty ?? false) {
+        else if (next.userModel?.detail?.address == null ||
+            (next.userModel?.detail?.address?.isEmpty ?? false)) {
           toNamed(context, Routes.addAddressView);
         }
 
         /// Check if ID document front and back is empty
-        else if ((next.userModel?.detail?.idDocumentFront?.isEmpty ?? false) &&
-            (next.userModel?.detail?.idDocumentBack?.isEmpty ?? false)) {
+        else if ((next.userModel?.detail?.idDocumentFront == null ||
+                (next.userModel?.detail?.idDocumentFront?.isEmpty ?? false)) &&
+            (next.userModel?.detail?.idDocumentBack == null ||
+                (next.userModel?.detail?.idDocumentBack?.isEmpty ?? false))) {
           toNamed(context, Routes.uploadDocument);
         } else {
           offAllNamed(context, Routes.dashboard);
