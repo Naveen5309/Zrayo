@@ -1,5 +1,9 @@
 part of 'helper.dart';
 
+extension StringNullCheck on String? {
+  bool get notNullAndNotEmpty => this != null && this!.isNotEmpty;
+}
+
 extension StringCasingExtension on String {
   String toCapitalized() =>
       length > 0 ? '${this[0].toUpperCase()}${substring(1).toLowerCase()}' : '';
@@ -19,6 +23,7 @@ extension AlignExtension on Widget {
     );
   }
 }
+
 extension ContextExtension on BuildContext {
   double get height => MediaQuery.of(this).size.height;
 

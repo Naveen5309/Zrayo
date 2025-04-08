@@ -78,14 +78,13 @@ class _SplashViewState extends ConsumerState<SplashView> {
     Timer(const Duration(seconds: 3), () async {
       final userModel = Getters.getLocalStorage.getLoginUser();
       final token = Getters.getLocalStorage.getToken();
-      if (token == null ||
-          (token.isEmpty) ||
-          userModel?.firstName == null ||
-          (userModel?.firstName?.isEmpty ?? false) ||
-          (userModel?.detail?.address==null) ||
-          (userModel?.detail?.address?.isEmpty ?? false) ||
-          ((userModel?.detail?.idDocumentFront==null||(userModel?.detail?.idDocumentFront?.isEmpty ?? false)) &&
-              (userModel?.detail?.idDocumentBack==null||(userModel?.detail?.idDocumentBack?.isEmpty ?? false)))) {
+      if (!token.notNullAndNotEmpty ||
+          (!(userModel?.firstName.notNullAndNotEmpty ?? false)) ||
+          (!(userModel?.detail?.address.notNullAndNotEmpty ?? false)) ||
+          ((!(userModel?.detail?.idDocumentFront.notNullAndNotEmpty ??
+                  false)) &&
+              (!(userModel?.detail?.idDocumentBack.notNullAndNotEmpty ??
+                  false)))) {
         offAllNamed(context, Routes.chooseInterfaceView);
       } else {
         offAllNamed(context, Routes.dashboard);
