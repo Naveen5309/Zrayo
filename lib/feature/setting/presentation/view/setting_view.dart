@@ -9,8 +9,6 @@ import 'package:zrayo_flutter/core/helpers/all_getter.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/auth/data/models/user_model.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/provider/setting_provider.dart';
-import 'package:zrayo_flutter/feature/setting/presentation/provider/state/setting_state.dart';
-import 'package:zrayo_flutter/feature/setting/presentation/provider/state_notifier/setting_notifier.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/view/confirm_logout.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/view/custom_setting_tile.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
