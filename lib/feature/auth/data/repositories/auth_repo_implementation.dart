@@ -28,9 +28,6 @@ abstract class AuthRepository {
   Future<Either<Failure, dynamic>> addAddress(
       {required Map<String, dynamic> body});
 
-  Future<Either<Failure, UserModel?>> addBankDetails(
-      {required Map<String, dynamic> body});
-
   Future<Either<Failure, UserModel?>> forgotPassword(
       {required Map<String, dynamic> body});
 
@@ -40,6 +37,8 @@ abstract class AuthRepository {
   Future<Either<Failure, UserModel?>> verifyEmail(
       {required Map<String, dynamic> body});
   Future<Either<Failure, dynamic>> resendOtp(
+      {required Map<String, dynamic> body});
+  Future<Either<Failure, dynamic>> bankDetails(
       {required Map<String, dynamic> body});
 }
 
@@ -147,22 +146,6 @@ class AuthRepoImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, UserModel?>> addBankDetails(
-      {required Map<String, dynamic> body}) async {
-    try {
-      final data = await dataSource.addBankDetails(body: body);
-      if (data?.success == true) {
-        toast(msg: data?.message ?? "", isError: false);
-        return Right(data?.data);
-      } else {
-        return Left(ServerFailure(message: data?.message ?? ""));
-      }
-    } catch (e) {
-      return Left(ServerFailure(message: e.toString()));
-    }
-  }
-
-  @override
   Future<Either<Failure, UserModel?>> verifyEmail(
       {required Map<String, dynamic> body}) async {
     try {
@@ -215,6 +198,22 @@ class AuthRepoImpl implements AuthRepository {
       {required Map<String, dynamic> body}) async {
     try {
       final data = await dataSource.resendOtp(body: body);
+      if (data?.success == true) {
+        toast(msg: data?.message ?? "", isError: false);
+        return Right(data?.data);
+      } else {
+        return Left(ServerFailure(message: data?.message ?? ""));
+      }
+    } catch (e) {
+      return Left(ServerFailure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, dynamic>> bankDetails(
+      {required Map<String, dynamic> body}) async {
+    try {
+      final data = await dataSource.bankDetails(body: body);
       if (data?.success == true) {
         toast(msg: data?.message ?? "", isError: false);
         return Right(data?.data);

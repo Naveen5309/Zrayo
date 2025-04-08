@@ -11,7 +11,7 @@ abstract final class ApiEndpoints {
   static const String userDetail = "users/detail";
   static const String signUp = "users/register";
   static const String addAddress = "users/address/add";
-  static const String addBankDetails = "addBankDetails";
+  static const String addBankDetails = "users/bank/add";
   static const String forgetPassword = "users/forgot/password/mail";
   static const String verifyEmail = "users/verify/otp";
   static const String changePassword = "users/reset/password";

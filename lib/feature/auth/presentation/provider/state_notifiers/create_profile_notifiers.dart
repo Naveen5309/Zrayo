@@ -232,12 +232,12 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
         return;
       }
       Map<String, dynamic> body = {
-        "account_holder": "abc",
-        "account_number": "abc",
-        "rounting_number": "abc",
+        "bankHolderName": accountHolderController.text,
+        "bankAccountNumber": accountNumberController.text,
+        "bankRoutingNumber": routingNumberController.text,
       };
 
-      final result = await authRepo.addBankDetails(body: body);
+      final result = await authRepo.bankDetails(body: body);
       state = result.fold((error) {
         return CreateProfileFailed(error: error.message);
       }, (result) {

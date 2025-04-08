@@ -29,14 +29,13 @@ abstract class AuthDataSource {
 
   Future<ResponseWrapper?> addAddress({required Map<String, dynamic> body});
 
-  Future<ResponseWrapper?> addBankDetails({required Map<String, dynamic> body});
-
   Future<ResponseWrapper?> verifyEmail({required Map<String, dynamic> body});
 
   Future<ResponseWrapper?> forgetPassword({required Map<String, dynamic> body});
 
   Future<ResponseWrapper?> changePassword({required Map<String, dynamic> body});
   Future<ResponseWrapper?> resendOtp({required Map<String, dynamic> body});
+  Future<ResponseWrapper?> bankDetails({required Map<String, dynamic> body});
 }
 
 class AuthDataSourceImpl extends AuthDataSource {
@@ -252,32 +251,6 @@ class AuthDataSourceImpl extends AuthDataSource {
   }
 
   @override
-  Future<ResponseWrapper<UserModel>?> addBankDetails(
-      {required Map<String, dynamic> body}) async {
-    try {
-      final dataResponse = await Getters.getHttpService.request<UserModel>(
-        body: body,
-        url: ApiEndpoints.addBankDetails,
-        fromJson: (json) => UserModel.fromJson(json),
-      );
-      if (dataResponse.success == true) {
-        // UserModel model = dataResponse.data!;
-        // await Getters.getLocalStorage.saveLoginUser(model.user!);
-        // await Getters.getLocalStorage.saveToken(model.token ?? "");
-        return getSuccessResponseWrapper(dataResponse);
-      } else {
-        return getFailedResponseWrapper(dataResponse.message,
-            response: dataResponse.data);
-      }
-    } catch (e) {
-      return getFailedResponseWrapper(exceptionHandler(
-        e: e,
-        functionName: "addBankDetails",
-      ));
-    }
-  }
-
-  @override
   Future<ResponseWrapper<UserModel>?> forgetPassword(
       {required Map<String, dynamic> body}) async {
     try {
@@ -372,6 +345,31 @@ class AuthDataSourceImpl extends AuthDataSource {
       return getFailedResponseWrapper(exceptionHandler(
         e: e,
         functionName: "resend otp",
+      ));
+    }
+  }
+
+  @override
+  Future<ResponseWrapper<dynamic>> bankDetails(
+      {required Map<String, dynamic> body}) async {
+    try {
+      final dataResponse = await Getters.getHttpService.request<dynamic>(
+        body: body,
+        url: ApiEndpoints.addBankDetails,
+        fromJson: (json) {
+          return json;
+        },
+      );
+      if (dataResponse.success == true) {
+        return getSuccessResponseWrapper(dataResponse);
+      } else {
+        return getFailedResponseWrapper(dataResponse.message,
+            response: dataResponse.data);
+      }
+    } catch (e) {
+      return getFailedResponseWrapper(exceptionHandler(
+        e: e,
+        functionName: "bankDetails",
       ));
     }
   }

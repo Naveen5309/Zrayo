@@ -4,10 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/helpers/all_getter.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
-import 'package:zrayo_flutter/feature/auth/presentation/provider/add_bank_details_provider.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/provider/create_profile_provider.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/provider/states/create_profile_states.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_text_field.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 
 class AddBankDetail extends ConsumerWidget {
   final bool fromSettings;
@@ -16,8 +18,23 @@ class AddBankDetail extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final addBankDetailsNotifier = ref.read(addBankDetailsProvider.notifier);
-    ref.watch(addBankDetailsProvider);
+    final addBankDetailsNotifier = ref.read(createProfileProvider.notifier);
+    final createProfileState = ref.watch(createProfileProvider);
+    ref.listen<CreateProfileStates>(createProfileProvider, (previous, next) {
+      if (next is CreateProfileSuccess) {
+        if (!fromSettings) {
+          if (Getters.isAgent()) {
+            offAllNamed(context, Routes.dashboard);
+          } else {
+            toNamed(context, Routes.subscriptionPlanView);
+          }
+        } else if (fromSettings) {
+          back(context);
+        }
+      } else if (next is CreateProfileFailed) {
+        toast(msg: next.error, isError: true);
+      }
+    });
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -85,37 +102,24 @@ class AddBankDetail extends ConsumerWidget {
               title:
                   fromSettings ? AppString.update : AppString.saveAndContinue,
               margin: const EdgeInsets.all(16),
+              loading: createProfileState is CreateProfileApiLoading,
               onTap: () {
-                if (!fromSettings) {
-                  if (Getters.isAgent()) {
-                    offAllNamed(context, Routes.dashboard);
-                  } else {
-                    // addBankDetailsNotifier.addBankDetailsValidator(context);
-                    toNamed(context, Routes.subscriptionPlanView);
-                  }
-                } else {
-                  back(context);
-                }
+                addBankDetailsNotifier.addBankDetailsValidator(context);
               },
             ),
             if (!fromSettings && !Getters.isAgent())
               CommonAppBtn(
-                title: AppString.skip,
-                margin: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
-                borderColor: AppColor.transparent,
-                backGroundColor: AppColor.secondry,
-                textColor: AppColor.primary,
-                onTap: () {
-                  // toNamed(context, Routes.subscriptionPlanView);)
-                  if (Getters.isAgent()) {
-                    offAllNamed(context, Routes.dashboard);
-                  } else {
-                    // addBankDetailsNotifier.addBankDetailsValidator(context);
-
-                    toNamed(context, Routes.subscriptionPlanView);
-                  }
-                },
-              ),
+                  title: AppString.skip,
+                  margin:
+                      const EdgeInsets.only(bottom: 16, left: 16, right: 16),
+                  borderColor: AppColor.transparent,
+                  backGroundColor: AppColor.secondry,
+                  textColor: AppColor.primary,
+                  loading: createProfileState is CreateProfileApiLoading,
+                  onTap: () {
+                    // toNamed(context, Routes.subscriptionPlanView);)
+                    addBankDetailsNotifier.addBankDetailsValidator(context);
+                  }),
           ],
         ),
       ),
