@@ -5,6 +5,7 @@ class PropertyBox extends StatelessWidget {
   final bool showFavorite;
   final bool showTypeOnHorizontal;
   final bool isFavorite;
+  final bool showSoldOut;
   final double? imageHeight;
   final double? imageWidth;
   final bool withFullCardWidth;
@@ -16,6 +17,7 @@ class PropertyBox extends StatelessWidget {
     this.showHorizontal = false,
     this.showTypeOnHorizontal = false,
     this.showFavorite = true,
+    this.showSoldOut = false,
     this.isFavorite = false,
     this.imageHeight,
     this.imageWidth,
@@ -27,7 +29,9 @@ class PropertyBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => onTap!=null?onTap!():toNamed(context, Routes.propertyDetailView),
+      onTap: () => onTap != null
+          ? onTap!()
+          : toNamed(context, Routes.propertyDetailView),
       child: !showHorizontal
           ? Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,18 +102,18 @@ class PropertyBox extends StatelessWidget {
                 // textSize: 12.sp,
               ),
             ),
-            if(showTypeOnHorizontal)
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
-              decoration: BoxDecoration(
-                  color: AppColor.colorF6F6F6,
-                  borderRadius: BorderRadius.circular(24)),
-              child: AppText(
-                text: "For Sale",
-                textSize: 12.sp,
-                color: AppColor.color5A5A5A,
-              ),
-            )
+            if (showTypeOnHorizontal)
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+                decoration: BoxDecoration(
+                    color: AppColor.colorF6F6F6,
+                    borderRadius: BorderRadius.circular(24)),
+                child: AppText(
+                  text: "For Sale",
+                  textSize: 12.sp,
+                  color: AppColor.color5A5A5A,
+                ),
+              )
           ],
         ),
         yHeight(5),
@@ -184,6 +188,26 @@ class PropertyBox extends StatelessWidget {
                     shape: BoxShape.circle, color: AppColor.whiteFFFFFF),
                 child: SvgPicture.asset(
                   isFavorite ? Assets.heartSelected : Assets.heartUnselected,
+                ),
+              )),
+        if (showSoldOut)
+          Positioned(
+              right: 0,
+              bottom: 0,
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 8,horizontal: 12),
+                decoration: BoxDecoration(
+                  color: AppColor.pinkFF2147,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(12.sp),
+                    bottomRight: Radius.circular(12),
+                  )
+                ),
+                child: AppText(
+                  text: "Sold out",
+                  color: AppColor.whiteFFFFFF,
+                  textSize: 11.sp,
+                  fontFamily: AppFonts.satoshiBlack,
                 ),
               ))
       ],

@@ -26,6 +26,8 @@ part 'property_historical_data.dart';
 
 part 'property_map_view.dart';
 
+part 'booking_detail.dart';
+
 class PropertyDetailView extends StatelessWidget {
   final bool isSold;
   final bool isVisit;
@@ -90,29 +92,31 @@ class PropertyDetailView extends StatelessWidget {
                             Row(
                               children: [
                                 // if (isSold) ...{
-                                  Container(
-                                    decoration: BoxDecoration(
-                                        color: AppColor.whiteFFFFFF,
-                                        borderRadius: BorderRadius.circular(10)),
-                                    padding: EdgeInsets.all(10),
-                                    child: SvgPicture.asset(
-                                      Assets.shareIcon,
-                                      width: 18.h,
-                                    ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                      color: AppColor.whiteFFFFFF,
+                                      borderRadius: BorderRadius.circular(10)),
+                                  padding: EdgeInsets.all(10),
+                                  child: SvgPicture.asset(
+                                    Assets.shareIcon,
+                                    width: 18.h,
                                   ),
-                                  xWidth(10.h),
+                                ),
+                                xWidth(10.h),
                                 // },
                                 if (!Getters.isAgent())
                                   Container(
                                     decoration: BoxDecoration(
                                         color: AppColor.whiteFFFFFF,
-                                        borderRadius: BorderRadius.circular(10)),
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
                                     padding: EdgeInsets.all(10),
                                     child: SvgPicture.asset(
                                       Assets.heartUnselected,
                                       width: 18.h,
                                       colorFilter: ColorFilter.mode(
-                                          AppColor.black000000, BlendMode.srcIn),
+                                          AppColor.black000000,
+                                          BlendMode.srcIn),
                                     ),
                                   ),
                               ],
@@ -140,7 +144,8 @@ class PropertyDetailView extends StatelessWidget {
                             }
                           },
                           child: Padding(
-                            padding: EdgeInsets.only(right: index == 3 ? 0 : 15.sp),
+                            padding:
+                                EdgeInsets.only(right: index == 3 ? 0 : 15.sp),
                             child: Stack(
                               children: [
                                 CustomCacheNetworkImage(
@@ -158,7 +163,8 @@ class PropertyDetailView extends StatelessWidget {
                                     height: 74.sp,
                                     width: 74.sp,
                                     decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10.sp),
+                                      borderRadius:
+                                          BorderRadius.circular(10.sp),
                                       color: AppColor.black000000
                                           .withValues(alpha: 0.30),
                                     ),
@@ -179,16 +185,14 @@ class PropertyDetailView extends StatelessWidget {
 
                   /// propertyInfo
                   propertyInfo(context),
+
                   // yHeight(16.h),
                   PropertyFeaturesList(),
-                  AgentsLandlordList(
-                    isVisit: isVisit,
-                  ),
+                  if (!isVisit) AgentsLandlordList(),
                   yHeight(16.sp),
                   PropertyMapView(),
                   yHeight(16.sp),
                   PropertyHistoricalData(),
-
                 ],
               ),
             ),
@@ -207,7 +211,6 @@ class PropertyDetailView extends StatelessWidget {
               onTap: () => toNamed(context, Routes.chatView),
             ),
           },
-
           if (!Getters.isAgent() && !isVisit && !isMyProperty) ...{
             CommonAppBtn(
                 title: "Request a tour at \$20",
@@ -336,6 +339,8 @@ class PropertyDetailView extends StatelessWidget {
             lineHeight: 1.4,
           ),
           yHeight(30.sp),
+          if (isVisit) ...{BookingDetail()},
+          yHeight(15.h),
           AppText(
             text: "Property Details",
             textSize: 16.sp,
@@ -402,7 +407,66 @@ class PropertyDetailView extends StatelessWidget {
                       ],
                     ),
                   ],
-                )
+                ),
+                if (isVisit && !Getters.isAgent()) ...{
+                  yHeight(16.h),
+                  Row(
+                    children: [
+                      CustomCacheNetworkImage(
+                        img: "",
+                        size: 38.sp,
+                      ),
+                      xWidth(10),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                AppText(
+                                  text: "Dianne Russell",
+                                  fontFamily: AppFonts.satoshiBold,
+                                  // textSize: 18.sp,
+                                ),
+                                xWidth(10),
+                                // if (isFirst)
+                                Container(
+                                  decoration: BoxDecoration(
+                                      color: AppColor.primary
+                                          .withValues(alpha: .1),
+                                      borderRadius: BorderRadius.circular(33)),
+                                  width: 50.w,
+                                  height: 19.h,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(6.0),
+                                    child: AppText(
+                                      color: AppColor.primary,
+                                      text: AppString.landloard,
+                                      textSize: 8.sp,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                            yHeight(3),
+                            AppText(
+                              text: "nevaeh.simmons@example.com",
+                              fontFamily: AppFonts.satoshiMedium,
+                              textSize: 12.sp,
+                              color: AppColor.color7D8B98,
+                            ),
+                          ],
+                        ),
+                      ),
+                      if (!Getters.isAgent())
+                        CustomRatingBox(rating: "4.8")
+                      else
+                        InkWell(
+                            onTap: () => toNamed(context, Routes.chatView),
+                            child: SvgPicture.asset(Assets.messageIcon))
+                    ],
+                  )
+                },
               ],
             ),
           )

@@ -76,6 +76,7 @@ class HistoryView extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return PropertyBox(
                         showFavorite: false,
+                        showSoldOut:true,
                         onTap: () => toNamed(context, Routes.propertyDetailView,
                             args: {"isSold": true}),
                       );
