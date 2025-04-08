@@ -47,15 +47,18 @@ class SettingView extends ConsumerWidget {
                       child: subscriptionSection(context)),
                   Consumer(builder:
                       (BuildContext context, WidgetRef ref, Widget? child) {
-                    var isToogleTrue = ref.watch(isToogle);
+                    var isToggleTrue = ref.watch(isToggle);
 
                     return SettingTile(
                       hasToggle: true,
-                      toggleValue: isToogleTrue,
+                      toggleValue: isToggleTrue,
                       icon: Assets.notification,
                       onToggleChanged: (value) {
-                        ref.read(isToogle.notifier).state =
-                            !ref.read(isToogle.notifier).state;
+                        ref.read(isToggle.notifier).state =
+                            !ref.read(isToggle.notifier).state;
+                        ref
+                            .read(settingViewProvider.notifier)
+                            .notificationStatusChange(notificationValue: value);
                       },
                       title: AppString.notifications,
                     );

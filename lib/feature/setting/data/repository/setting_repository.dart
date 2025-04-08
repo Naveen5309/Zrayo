@@ -6,7 +6,11 @@ import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 abstract class SettingRepository {
   Future<Either<Failure, dynamic>> contactUs(
       {required Map<String, dynamic> body});
+
   Future<Either<Failure, dynamic>> logout({required Map<String, dynamic> body});
+
+  Future<Either<Failure, dynamic>> notificationStatusChange(
+      {required Map<String, dynamic> body});
 }
 
 class SettingRepoImpl implements SettingRepository {
@@ -21,6 +25,21 @@ class SettingRepoImpl implements SettingRepository {
       final data = await dataSource.contactUs(body: body);
       if (data?.success == true) {
         toast(msg: data?.message ?? "", isError: false);
+        return Right(data?.data);
+      } else {
+        return Left(ServerFailure(message: data?.message ?? ""));
+      }
+    } catch (e) {
+      return Left(ServerFailure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, dynamic>> notificationStatusChange(
+      {required Map<String, dynamic> body}) async {
+    try {
+      final data = await dataSource.notificationStatusChange(body: body);
+      if (data?.success == true) {
         return Right(data?.data);
       } else {
         return Left(ServerFailure(message: data?.message ?? ""));

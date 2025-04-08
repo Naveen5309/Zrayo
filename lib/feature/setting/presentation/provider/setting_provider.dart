@@ -18,5 +18,5 @@ final settingViewProvider =
   return SettingNotifier(settingRepo: settingRepo);
 });
 
-final isToogle =
-    StateProvider.autoDispose<bool>((ref) => false, name: "isToogle");
+final isToggle =
+    StateProvider.autoDispose<bool>((ref) => false, name: "isToggle");
