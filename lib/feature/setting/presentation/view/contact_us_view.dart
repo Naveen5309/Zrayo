@@ -18,7 +18,7 @@ class ContactUsView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final contactUsNotifier = ref.read(settingViewProvider.notifier);
-    final ContactUsViewState = ref.watch(settingViewProvider);
+    final contactUsViewState = ref.watch(settingViewProvider);
     ref.listen<SettingState>(settingViewProvider, (previous, next) {
       if (next is SettingSuccess) {
         back(context);
@@ -64,7 +64,7 @@ class ContactUsView extends ConsumerWidget {
                     yHeight(context.height * 0.08),
                     CommonAppBtn(
                       title: AppString.submit,
-                      loading: ContactUsViewState is SettingApiLoading,
+                      loading: contactUsViewState is SettingApiLoading,
                       onTap: () =>
                           contactUsNotifier.contactUsValidator(context),
                     )
