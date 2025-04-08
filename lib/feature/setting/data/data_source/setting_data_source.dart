@@ -81,6 +81,7 @@ class SettingDataSourceImpl extends SettingDataSource {
           return json;
         },
       );
+
       if (dataResponse.success == true) {
         Getters.getLocalStorage.clearAllBox();
         return getSuccessResponseWrapper(dataResponse);
