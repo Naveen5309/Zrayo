@@ -37,16 +37,17 @@ class LoginView extends ConsumerWidget {
           toNamed(context, Routes.createProfile);
         }
 
-        /// Check if address is empty
-        else if (!(userDetail?.address.notNullAndNotEmpty ?? false)) {
-          toNamed(context, Routes.addAddressView);
-        }
-
-        /// Check if ID document front and back is empty
-        else if ((!(userDetail?.idDocumentFront.notNullAndNotEmpty ?? false)) &&
-            (!(userDetail?.idDocumentBack.notNullAndNotEmpty ?? false))) {
-          toNamed(context, Routes.uploadDocument);
-        } else {
+        // /// Check if address is empty
+        // else if (!(userDetail?.address.notNullAndNotEmpty ?? false)) {
+        //   toNamed(context, Routes.addAddressView);
+        // }
+        //
+        // /// Check if ID document front and back is empty
+        // else if ((!(userDetail?.idDocumentFront.notNullAndNotEmpty ?? false)) &&
+        //     (!(userDetail?.idDocumentBack.notNullAndNotEmpty ?? false))) {
+        //   toNamed(context, Routes.uploadDocument);
+        // }
+        else {
           offAllNamed(context, Routes.dashboard);
         }
       } else if (next is LoginFailed) {
