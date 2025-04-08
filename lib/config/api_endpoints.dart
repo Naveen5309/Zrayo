@@ -22,6 +22,7 @@ abstract final class ApiEndpoints {
   static const String uploadFile = "home/upload/file";
   static const String addDocument = "users/document/add";
   static const String resendOtp = "users/resend/otp";
+  static const String aboutUs = "home/page";
   static const String changeNotificationSettings =
       "users/notification/settings";
 }

@@ -7,7 +7,10 @@ import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/helpers/all_getter.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
+import 'package:zrayo_flutter/feature/auth/data/models/user_model.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/provider/setting_provider.dart';
+import 'package:zrayo_flutter/feature/setting/presentation/provider/state/setting_state.dart';
+import 'package:zrayo_flutter/feature/setting/presentation/provider/state_notifier/setting_notifier.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/view/confirm_logout.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/view/custom_setting_tile.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
@@ -23,7 +26,9 @@ class SettingView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final settingNotifier = ref.read(settingViewProvider.notifier);
     ref.watch(settingViewProvider);
+    final userModel = Getters.getLocalStorage.getLoginUser();
     return Scaffold(
       body: SingleChildScrollView(
         clipBehavior: Clip.none,
@@ -40,7 +45,7 @@ class SettingView extends ConsumerWidget {
                 spacing: 11,
                 children: [
                   yHeight(11),
-                  profileSection(context),
+                  profileSection(context,userModel),
                   GestureDetector(
                       onTap: () => toNamed(context, Routes.subscriptionPlanView,
                           args: {"fromSettings": true}),
@@ -88,12 +93,17 @@ class SettingView extends ConsumerWidget {
                       title: AppString.cardDetails,
                     ),
                   SettingTile(
-                    onTap: () => toNamed(context, Routes.aboutUs),
+                    onTap: () {
+                      toNamed(context, Routes.aboutUs);
+                      settingNotifier.aboutUs();
+                    },
                     icon: Assets.document,
                     title: AppString.aboutUs,
                   ),
                   SettingTile(
-                    onTap: () => toNamed(context, Routes.contactUs),
+                    onTap: () {
+                      toNamed(context, Routes.contactUs);
+                    },
                     icon: Assets.headphone,
                     title: AppString.contactUs,
                   ),
@@ -130,9 +140,8 @@ class SettingView extends ConsumerWidget {
   }
 }
 
-Widget profileSection(BuildContext context) {
-  final userModel = Getters.getLocalStorage.getLoginUser();
-  printLog(userModel?.token);
+Widget profileSection(BuildContext context, UserModel? userModel) {
+
   return GestureDetector(
     onTap: () {
       toNamed(context, Routes.profileDetailView);

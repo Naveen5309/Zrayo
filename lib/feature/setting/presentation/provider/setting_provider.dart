@@ -4,11 +4,13 @@ import 'package:zrayo_flutter/feature/setting/data/repository/setting_repository
 import 'package:zrayo_flutter/feature/setting/presentation/provider/state/setting_state.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/provider/state_notifier/setting_notifier.dart';
 
-final settingProvider =
+import '../../../../core/helpers/all_getter.dart';
+
+final settingDataSource =
     Provider.autoDispose<SettingDataSource>((ref) => SettingDataSourceImpl());
 
 final settingRepoProvider = Provider.autoDispose<SettingRepository>((ref) {
-  final dataSource = ref.watch(settingProvider);
+  final dataSource = ref.watch(settingDataSource);
   return SettingRepoImpl(dataSource: dataSource);
 });
 
@@ -18,5 +20,8 @@ final settingViewProvider =
   return SettingNotifier(settingRepo: settingRepo);
 });
 
-final isToggle =
-    StateProvider.autoDispose<bool>((ref) => false, name: "isToggle");
+final isToggle = StateProvider.autoDispose<bool>((ref) {
+  final userModel = Getters.getLocalStorage.getLoginUser();
+
+  return userModel?.isNotification == 1 ? true : false;
+}, name: "isToggle");

@@ -11,6 +11,7 @@ class SettingNotifier extends StateNotifier<SettingState> {
   final emailController = TextEditingController();
   final subjectController = TextEditingController();
   final messageController = TextEditingController();
+  String aboutContant = "";
 
   final referralController = TextEditingController();
 
@@ -37,9 +38,9 @@ class SettingNotifier extends StateNotifier<SettingState> {
       }
       if (await Getters.networkInfo.isSlow) {}
       Map<String, dynamic> body = {
-        "email": "dev@yopmail.com",
-        "subject": "abc",
-        "message": "abc",
+        "email": emailController.text,
+        "subject": subjectController.text,
+        "message": messageController.text,
       };
       final result = await settingRepo.contactUs(body: body);
       state = result.fold((error) {
@@ -88,6 +89,28 @@ class SettingNotifier extends StateNotifier<SettingState> {
       state = result.fold((error) {
         return SettingFailed(error: error.message);
       }, (result) {
+        return SettingSuccess();
+      });
+    } catch (e) {
+      state = SettingFailed(error: e.toString());
+    }
+  }
+
+  /// About us API
+  Future<void> aboutUs() async {
+    state = SettingApiLoading();
+    try {
+      if (!(await Getters.networkInfo.isConnected)) {
+        state = const SettingFailed(error: "No internet connection");
+        return;
+      }
+      if (await Getters.networkInfo.isSlow) {}
+      Map<String, dynamic> body = {"type": "about"};
+      final result = await settingRepo.aboutUs(body: body);
+      state = result.fold((error) {
+        return SettingFailed(error: error.message);
+      }, (result) {
+        aboutContant = result['content'];
         return SettingSuccess();
       });
     } catch (e) {
