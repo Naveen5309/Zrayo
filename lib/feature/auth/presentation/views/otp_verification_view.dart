@@ -36,12 +36,12 @@ class OtpVerificationViewState extends ConsumerState<OtpVerificationView> {
   @override
   Widget build(BuildContext context) {
     final verifyEmailNotifier = ref.read(authProvider.notifier);
-    final verifyEmailState = ref.watch(authProvider.notifier);
+    final verifyEmailState = ref.watch(authProvider);
 
     ref.listen<LoginState>(authProvider, (previous, next) {
       if (next is OtpVerifySuccess) {
         toNamed(context, Routes.changePasswordView);
-        verifyEmailState.cancelTimer();
+        verifyEmailNotifier.cancelTimer();
       } else if (next is LoginFailed) {
         toast(msg: next.error, isError: true);
       }
@@ -138,7 +138,7 @@ class OtpVerificationViewState extends ConsumerState<OtpVerificationView> {
                             text: AppString.youCanResendOtpIn,
                             fontFamily: AppFonts.satoshiRegular,
                           ),
-                          verifyEmailState.enableResend
+                          verifyEmailNotifier.enableResend
                               ? const SizedBox()
                               : Consumer(builder: (BuildContext context,
                                   WidgetRef ref, Widget? child) {
