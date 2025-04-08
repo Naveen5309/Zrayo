@@ -335,8 +335,10 @@ class PropertyDetailView extends StatelessWidget {
             lineHeight: 1.4,
           ),
           yHeight(30.sp),
-          if (isVisit) ...{BookingDetail()},
-          yHeight(15.h),
+          if (isVisit) ...{
+            BookingDetail(),
+            yHeight(30.sp),
+          },
           AppText(
             text: "Property Details",
             textSize: 16.sp,

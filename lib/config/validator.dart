@@ -128,7 +128,6 @@ class Validator {
         (!RegExp(r'(?=.*?[!@#\$&*~])').hasMatch(password.trim())));
   }
 
-
   bool loginValidator({required String email, required String pass}) {
     if (emailValidator(email) != null) {
       error = emailValidator(email) ?? "";
