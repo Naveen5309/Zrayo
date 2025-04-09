@@ -168,6 +168,7 @@ class CreateProfile extends ConsumerWidget {
                       CustomTextField(
                         prefixIcon: SvgPicture.asset(Assets.calling),
                         labelText: AppString.mobileNumber,
+
                         keyboardType: TextInputType.phone,
                         // maxLength: 10,
                         controller: createProfileNotifier.phoneController,

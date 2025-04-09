@@ -22,7 +22,11 @@ class AboutUsView extends ConsumerWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
               child: abousUsState is SettingApiLoading
-                  ? const Center(child: CircularProgressIndicator())
+                  ? const Center(
+                      child: CircularProgressIndicator(
+                      color: AppColor.primary,
+                      strokeWidth: 3,
+                    ))
                   : AppText(
                       text: aboutUsNotifier.aboutContant,
                       color: AppColor.black4A4A4A,

@@ -184,7 +184,7 @@ class LoginView extends ConsumerWidget {
           child: CommonAppBtn(
             prefixWidget: SvgPicture.asset(Assets.iconGoogle),
             title: AppString.google,
-            backGroundColor: AppColor.orangeFFF9F6,
+            backGroundColor: AppColor.orangeFFF9F5,
             borderColor: Colors.transparent,
             titleStyle: TextStyle(
                 color: AppColor.black232323,
@@ -199,7 +199,7 @@ class LoginView extends ConsumerWidget {
             child: CommonAppBtn(
               prefixWidget: SvgPicture.asset(Assets.iconApple),
               title: AppString.apple,
-              backGroundColor: AppColor.orangeFFF9F6,
+              backGroundColor: AppColor.orangeFFF9F5,
               borderColor: Colors.transparent,
               titleStyle: TextStyle(
                   color: AppColor.black232323,

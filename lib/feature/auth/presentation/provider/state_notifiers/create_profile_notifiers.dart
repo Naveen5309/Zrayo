@@ -161,8 +161,10 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
       }, (result) {
         return CreateProfileApiLoading(route: Routes.createProfile);
       });
-      await getProfile();
-      state = CreateProfileSuccess();
+      if (state is! CreateProfileFailed) {
+        await getProfile();
+        state = CreateProfileSuccess();
+      }
     } catch (e, t) {
       functionLog(msg: t.toString(), fun: "createUpdateProfile");
       state = CreateProfileFailed(error: e.toString());
@@ -172,10 +174,10 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
   /// Method to validate and add the address
   void addAddressValidator(bool fromSettings) {
     final isValid = validator.addAddressValidator(
-      address: addressController.text,
-      city: cityController.text,
-      state: stateController.text,
-      country: countryController.text,
+      address: addressController.text.trim(),
+      city: cityController.text.trim(),
+      state: stateController.text.trim(),
+      country: countryController.text.trim(),
     );
     if (isValid) {
       addAddress(fromSettings);
@@ -210,8 +212,10 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
       }, (result) {
         return CreateProfileApiLoading(route: Routes.addAddressView);
       });
-      await getProfile();
-      state = AddressSuccess();
+      if (state is! CreateProfileFailed) {
+        await getProfile();
+        state = AddressSuccess();
+      }
     } catch (e) {
       state = CreateProfileFailed(error: e.toString());
     }
@@ -220,9 +224,9 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
   /// Method to validate and add bank details
   void addBankDetailsValidator(BuildContext context) {
     final isValid = validator.addBankDetailsValidator(
-      accountHolder: accountHolderController.text,
-      accountNumber: accountNumberController.text,
-      routingNumber: routingNumberController.text,
+      accountHolder: accountHolderController.text.trim(),
+      accountNumber: accountNumberController.text.trim(),
+      routingNumber: routingNumberController.text.trim(),
     );
     if (isValid) {
       addBankDetails();
@@ -251,8 +255,10 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
       }, (result) {
         return CreateProfileApiLoading(route: Routes.addBankDetail);
       });
-      await getProfile();
-      state = BankSuccess();
+      if (state is! CreateProfileFailed) {
+        await getProfile();
+        state = BankSuccess();
+      }
     } catch (e) {
       state = CreateProfileFailed(error: e.toString());
     }
@@ -353,8 +359,10 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
       }, (result) {
         return CreateProfileApiLoading(route: Routes.uploadDocument);
       });
-      await getProfile();
-      state = UploadDocSuccess();
+      if (state is! CreateProfileFailed) {
+        await getProfile();
+        state = UploadDocSuccess();
+      }
     } catch (e, t) {
       functionLog(msg: t.toString(), fun: "uploadDocument");
       state = CreateProfileFailed(error: e.toString());
@@ -370,7 +378,9 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
     firstNameController.text = userModel?.firstName?.toTitleCase() ?? "";
     lastNameController.text = userModel?.lastName?.toTitleCase() ?? "";
     ninNumberController.text = userModel?.ninOrBvnNumber ?? "";
-    dobController.text = formatDOBDDMMYYYY(userModel?.dob ?? DateTime.now());
+    dobController.text = userModel?.dob != null
+        ? formatDOBDDMMYYYY(userModel?.dob ?? DateTime.now())
+        : "";
     addressController.text = userModel?.detail?.address ?? "";
     cityController.text = userModel?.detail?.city ?? "";
     stateController.text = userModel?.detail?.state ?? "";
