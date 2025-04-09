@@ -1,4 +1,5 @@
 enum UserTypeEnum {
+  none,
   customer,
   agent,
 }
