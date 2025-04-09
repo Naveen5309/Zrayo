@@ -194,7 +194,8 @@ class OtpVerificationViewState extends ConsumerState<OtpVerificationView> {
           CommonAppBtn(
               margin: EdgeInsets.all(16.0),
               title: AppString.verify,
-              loading: verifyEmailState is LoginApiLoading,
+              loading: verifyEmailState is LoginApiLoading &&
+                  verifyEmailState.route == Routes.otpVerificationView,
               onTap: () =>
                   // toNamed(context, Routes.changePasswordView))
                   verifyEmailNotifier.verifyEmailValidator(context))

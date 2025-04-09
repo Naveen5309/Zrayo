@@ -12,6 +12,7 @@ import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/config/validator.dart';
 import 'package:zrayo_flutter/core/helpers/all_getter.dart';
 import 'package:zrayo_flutter/core/network/http_service.dart';
+import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/auth/data/models/user_model.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 
@@ -85,7 +86,6 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
   }
 
   Future<bool?> getProfile({bool isRefresh = false}) async {
-    state = CreateProfileApiLoading();
     try {
       if (!(await Getters.networkInfo.isConnected)) {
         state = const CreateProfileFailed(error: "No internet connection");
@@ -128,7 +128,7 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
 
   /// Method to create or update the profile by calling the AuthRepository
   Future<void> createUpdateProfile({bool? isUpdateCall}) async {
-    state = CreateProfileApiLoading();
+    state = CreateProfileApiLoading(route: Routes.createProfile);
     try {
       if (!(await Getters.networkInfo.isConnected)) {
         state = const CreateProfileFailed(error: "No internet connection");
@@ -159,7 +159,7 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
       state = result.fold((error) {
         return CreateProfileFailed(error: error.message);
       }, (result) {
-        return CreateProfileApiLoading();
+        return CreateProfileApiLoading(route: Routes.createProfile);
       });
       await getProfile();
       state = CreateProfileSuccess();
@@ -186,7 +186,7 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
 
   /// Method to add the address by calling the AuthRepository
   Future<void> addAddress(bool fromSettings) async {
-    state = CreateProfileApiLoading();
+    state = CreateProfileApiLoading(route: Routes.addAddressView);
     try {
       if (!(await Getters.networkInfo.isConnected)) {
         state = const CreateProfileFailed(error: "No internet connection");
@@ -208,7 +208,7 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
       state = result.fold((error) {
         return CreateProfileFailed(error: error.message);
       }, (result) {
-        return CreateProfileApiLoading();
+        return CreateProfileApiLoading(route: Routes.addAddressView);
       });
       await getProfile();
       state = AddressSuccess();
@@ -233,7 +233,7 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
 
   /// Method to add bank details by calling the AuthRepository
   Future<void> addBankDetails() async {
-    state = CreateProfileApiLoading();
+    state = CreateProfileApiLoading(route: Routes.addBankDetail);
     try {
       if (!(await Getters.networkInfo.isConnected)) {
         state = const CreateProfileFailed(error: "No internet connection");
@@ -249,7 +249,7 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
       state = result.fold((error) {
         return CreateProfileFailed(error: error.message);
       }, (result) {
-        return CreateProfileApiLoading();
+        return CreateProfileApiLoading(route: Routes.addBankDetail);
       });
       await getProfile();
       state = BankSuccess();
@@ -338,7 +338,7 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
 
   /// Method to upload documents by calling the AuthRepository
   Future<void> uploadDocument() async {
-    state = CreateProfileApiLoading();
+    state = CreateProfileApiLoading(route: Routes.uploadDocument);
     try {
       if (!(await Getters.networkInfo.isConnected)) {
         state = const CreateProfileFailed(error: "No internet connection");
@@ -351,7 +351,7 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
       state = result.fold((error) {
         return CreateProfileFailed(error: error.message);
       }, (result) {
-        return CreateProfileApiLoading();
+        return CreateProfileApiLoading(route: Routes.uploadDocument);
       });
       await getProfile();
       state = UploadDocSuccess();

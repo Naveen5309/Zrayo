@@ -14,8 +14,12 @@ class LoginInitial extends LoginState {
 }
 
 class LoginApiLoading extends LoginState {
+  final String? route;
+
+  const LoginApiLoading({this.route});
+
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [route];
 }
 
 class OtpResendApiLoading extends LoginState {

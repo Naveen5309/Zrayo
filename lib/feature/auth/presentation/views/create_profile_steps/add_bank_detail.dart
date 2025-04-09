@@ -102,7 +102,8 @@ class AddBankDetail extends ConsumerWidget {
               title:
                   fromSettings ? AppString.update : AppString.saveAndContinue,
               margin: const EdgeInsets.all(16),
-              loading: createProfileState is CreateProfileApiLoading,
+              loading: createProfileState is CreateProfileApiLoading &&
+                  createProfileState.route == Routes.addBankDetail,
               onTap: () {
                 addBankDetailsNotifier.addBankDetailsValidator(context);
               },
@@ -115,10 +116,8 @@ class AddBankDetail extends ConsumerWidget {
                   borderColor: AppColor.transparent,
                   backGroundColor: AppColor.secondry,
                   textColor: AppColor.primary,
-                  loading: createProfileState is CreateProfileApiLoading,
                   onTap: () {
-                    offAllNamed(context, Routes.dashboard);
-
+                    toNamed(context, Routes.subscriptionPlanView);
                   }),
           ],
         ),

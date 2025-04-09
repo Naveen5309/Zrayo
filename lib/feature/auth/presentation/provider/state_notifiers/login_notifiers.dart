@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:zrayo_flutter/config/enums.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/config/validator.dart';
+import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 
 import '../../../../../core/helpers/all_getter.dart';
@@ -45,7 +46,7 @@ class LoginNotifier extends StateNotifier<LoginState> {
   }
 
   Future<void> login() async {
-    state = LoginApiLoading();
+    state = LoginApiLoading(route: Routes.loginView);
     try {
       if (!(await Getters.networkInfo.isConnected)) {
         state = const LoginFailed(error: "No internet connection");
@@ -85,7 +86,7 @@ class LoginNotifier extends StateNotifier<LoginState> {
   }
 
   Future<void> forgetPassword() async {
-    state = LoginApiLoading();
+    state = LoginApiLoading(route: Routes.forgetView);
     try {
       if (!(await Getters.networkInfo.isConnected)) {
         state = const LoginFailed(error: "No internet connection");
@@ -121,7 +122,8 @@ class LoginNotifier extends StateNotifier<LoginState> {
   }
 
   Future<void> changePassword() async {
-    state = LoginApiLoading();
+    state = LoginApiLoading(route: Routes.changePasswordView);
+
     try {
       if (!(await Getters.networkInfo.isConnected)) {
         state = const LoginFailed(error: "No internet connection");
@@ -153,7 +155,8 @@ class LoginNotifier extends StateNotifier<LoginState> {
   }
 
   Future<void> verifyEmail() async {
-    state = LoginApiLoading();
+    state = LoginApiLoading(route: Routes.otpVerificationView);
+
     try {
       if (!(await Getters.networkInfo.isConnected)) {
         state = const LoginFailed(error: "No internet connection");

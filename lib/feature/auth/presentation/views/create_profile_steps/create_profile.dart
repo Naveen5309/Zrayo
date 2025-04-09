@@ -95,7 +95,9 @@ class CreateProfile extends ConsumerWidget {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: CustomCacheNetworkImage(
-                                    img: createProfileNotifier.profileImageUrl??"",
+                                    img:
+                                        createProfileNotifier.profileImageUrl ??
+                                            "",
                                     size: 120.sp,
                                     imageRadius: 100.sp,
                                   ),
@@ -175,9 +177,11 @@ class CreateProfile extends ConsumerWidget {
                         onTap: () async {
                           final DateTime? picked = await showDatePicker(
                             context: context,
-                            initialDate: DateTime.now(),
+                            initialDate:
+                                DateTime.now().subtract(Duration(days: 1)),
                             firstDate: DateTime(1970, 8),
-                            lastDate: DateTime.now(),
+                            lastDate:
+                                DateTime.now().subtract(Duration(days: 1)),
                             builder: (context, child) {
                               return Theme(
                                 data: ThemeData.light().copyWith(
@@ -220,9 +224,11 @@ class CreateProfile extends ConsumerWidget {
                       title: fromSettings
                           ? AppString.update
                           : AppString.saveAndContinue,
-                      loading: createProfileState is CreateProfileApiLoading,
-                      onTap: () => createProfileNotifier
-                          .createProfileValidator(context,isUpdateCall: fromSettings)),
+                      loading: createProfileState is CreateProfileApiLoading &&
+                          createProfileState.route == Routes.createProfile,
+                      onTap: () => createProfileNotifier.createProfileValidator(
+                          context,
+                          isUpdateCall: fromSettings)),
                 ],
               ),
             )

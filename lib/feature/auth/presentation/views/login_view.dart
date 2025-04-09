@@ -168,7 +168,8 @@ class LoginView extends ConsumerWidget {
       BuildContext context) {
     return CommonAppBtn(
       title: AppString.login,
-      loading: loginState is LoginApiLoading,
+      loading: loginState is LoginApiLoading &&
+          loginState.route == Routes.loginView,
       onTap: () => loginNotifier.loginValidator(context),
     );
   }

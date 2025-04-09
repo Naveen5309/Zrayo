@@ -22,7 +22,7 @@ class ForgotPasswordSheet extends ConsumerWidget {
 
     ref.listen<LoginState>(authProvider, (previous, next) {
       if (next is OtpSentSuccess) {
-        back(context);
+        // back(context);
         toNamed(context, Routes.otpVerificationView);
       } else if (next is LoginFailed) {
         toast(msg: next.error, isError: true);
@@ -36,7 +36,10 @@ class ForgotPasswordSheet extends ConsumerWidget {
             onTap: () => back(context),
             child: Align(
               alignment: Alignment.centerRight,
-              child: Icon(Icons.close,size: 28.h,),
+              child: Icon(
+                Icons.close,
+                size: 28.h,
+              ),
             ),
           ),
           SvgPicture.asset(Assets.mailImage),
@@ -63,7 +66,8 @@ class ForgotPasswordSheet extends ConsumerWidget {
           yHeight(10.sp),
           CommonAppBtn(
             title: AppString.submit,
-            loading: loginState is LoginApiLoading,
+            loading: loginState is LoginApiLoading &&
+                loginState.route == Routes.forgetView,
             onTap: () {
               forgetPasswordNotifier.forgetPasswordValidator(context);
               // toNamed(context, Routes.otpVerificationView);

@@ -20,7 +20,7 @@ class ChangePasswordView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final changePasswordNotifier = ref.read(authProvider.notifier);
-   final changePassState= ref.watch(authProvider);
+    final changePassState = ref.watch(authProvider);
 
     ref.listen<LoginState>(authProvider, (previous, next) {
       if (next is ChangePasswordSuccess) {
@@ -113,7 +113,8 @@ class ChangePasswordView extends ConsumerWidget {
           CommonAppBtn(
             margin: EdgeInsets.all(16.0),
             title: AppString.change,
-            loading: changePassState is LoginApiLoading,
+            loading: changePassState is LoginApiLoading &&
+                changePassState.route == Routes.changePasswordView,
             onTap: () {
               changePasswordNotifier.changePasswordValidator(context);
               // back(context);

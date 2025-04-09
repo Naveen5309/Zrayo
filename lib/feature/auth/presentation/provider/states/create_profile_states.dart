@@ -13,8 +13,12 @@ class CreateProfileInitial extends CreateProfileStates {
 }
 
 class CreateProfileApiLoading extends CreateProfileStates {
+  final String? route;
+
+  const CreateProfileApiLoading({this.route});
+
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [route];
 }
 
 class CreateProfileSuccess extends CreateProfileStates {

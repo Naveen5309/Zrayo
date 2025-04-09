@@ -124,7 +124,8 @@ class UploadDocument extends ConsumerWidget {
                   ),
                   Spacer(),
                   CommonAppBtn(
-                    loading: createProfileState is CreateProfileApiLoading,
+                    loading: createProfileState is CreateProfileApiLoading &&
+                        createProfileState.route == Routes.uploadDocument,
                     title: fromSettings
                         ? AppString.update
                         : AppString.saveAndContinue,
