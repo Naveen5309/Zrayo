@@ -139,36 +139,31 @@ class OtpVerificationViewState extends ConsumerState<OtpVerificationView> {
                             fontFamily: AppFonts.satoshiRegular,
                           ),
                           verifyEmailNotifier.enableResend
-                              ? const SizedBox()
+                              ? GestureDetector(
+                                  onTap: () {
+                                    verifyEmailNotifier.cancelTimer();
+                                    verifyEmailNotifier.startTimer();
+                                    verifyEmailNotifier.resendOtp();
+                                  },
+                                  child: AppText(
+                                    text: "Resend OTP",
+                                    textSize: 14.sp,
+                                    fontFamily: AppFonts.satoshiBold,
+                                    color: AppColor.black000000,
+                                  ),
+                                )
                               : Consumer(builder: (BuildContext context,
                                   WidgetRef ref, Widget? child) {
                                   final loginState = ref.watch(authProvider);
-                                  final loginNotifier =
-                                      ref.read(authProvider.notifier);
                                   if (loginState is UpdateTimer) {
-                                    return loginState.enableResend
-                                        ? GestureDetector(
-                                            onTap: () {
-                                              loginNotifier.cancelTimer();
-                                              loginNotifier.startTimer();
-                                              verifyEmailNotifier.resendOtp();
-                                            },
-                                            child: AppText(
-                                              text: "Resend OTP",
-                                              textSize: 14.sp,
-                                              fontFamily: AppFonts.satoshiBold,
-                                              color: AppColor.black000000,
-                                            ),
-                                          )
-                                        : AppText(
-                                            text:
-                                                ' (00:${loginState.secondsRemaining})',
-                                            textSize: 14.sp,
-                                            fontFamily: AppFonts.satoshiBold,
-                                            color: AppColor.black000000,
-                                          );
+                                    return AppText(
+                                      text:
+                                          ' (00:${loginState.secondsRemaining})',
+                                      textSize: 14.sp,
+                                      fontFamily: AppFonts.satoshiBold,
+                                      color: AppColor.black000000,
+                                    );
                                   }
-
                                   return const SizedBox.shrink();
                                 }),
                         ],

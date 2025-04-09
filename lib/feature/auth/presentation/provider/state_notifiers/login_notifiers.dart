@@ -196,21 +196,25 @@ class LoginNotifier extends StateNotifier<LoginState> {
 
   void startTimer() {
     timer?.cancel();
+    enableResend = false;
+    secondsRemaining = 60;
+
     timer = Timer.periodic(const Duration(seconds: 1), (_) {
       if (secondsRemaining > 0) {
-        enableResend = false;
         secondsRemaining--;
-        if (secondsRemaining == 0) {
-          timer?.cancel();
-          enableResend = true;
-          secondsRemaining = 60;
-        }
+
         state = UpdateTimer(
-            secondsRemaining: secondsRemaining, enableResend: enableResend);
+          secondsRemaining: secondsRemaining,
+          enableResend: false,
+        );
       } else {
+        timer?.cancel();
         enableResend = true;
+
         state = UpdateTimer(
-            secondsRemaining: secondsRemaining, enableResend: enableResend);
+          secondsRemaining: 0,
+          enableResend: true,
+        );
       }
     });
   }
