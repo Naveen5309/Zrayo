@@ -23,130 +23,139 @@ class BookYourDateView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CustomAppBar(title: "Book Your Date"),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.sp),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                yHeight(20.h),
-                Card(
-                    shape: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(color: AppColor.transparent)),
-                    child: PropertyBox(
-                      imageHeight: 85.sp,
-                      imageWidth: 120.sp,
-                      showHorizontal: true,
-                      withFullCardWidth: true,
-                    )),
-                yHeight(20.h),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.sp),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    yHeight(20.h),
+                    Card(
+                        shape: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide:
+                                BorderSide(color: AppColor.transparent)),
+                        child: PropertyBox(
+                          imageHeight: 85.sp,
+                          imageWidth: 120.sp,
+                          showHorizontal: true,
+                          withFullCardWidth: true,
+                        )),
+                    yHeight(20.h),
 
-                AppText(
-                  text: "Choose Date",
-                  fontFamily: AppFonts.satoshiBold,
-                ),
-                yHeight(15.h),
+                    AppText(
+                      text: "Choose Date",
+                      fontFamily: AppFonts.satoshiBold,
+                    ),
+                    yHeight(15.h),
 
-                /// calender view
-                Container(
-                  decoration: Utils.boxDecoWithShadow(),
-                  padding: EdgeInsets.all(10),
-                  child: TableCalendar(
-                    firstDay: DateTime.utc(2010, 10, 16),
-                    lastDay: DateTime.utc(2030, 3, 14),
-                    calendarFormat: CalendarFormat.week,
-                    focusedDay: DateTime.now(),
-                    selectedDayPredicate: (day) {
-                      return isSameDay(
-                          DateTime.now(), day); // Marks the selected day
-                    },
-                    calendarBuilders: CalendarBuilders(
-                      selectedBuilder: (context, date, _) {
-                        return Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              padding: EdgeInsets.all(9),
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                color: AppColor.primary,
-                                shape: BoxShape.circle,
+                    /// calender view
+                    Container(
+                      decoration: Utils.boxDecoWithShadow(),
+                      padding: EdgeInsets.all(10),
+                      child: TableCalendar(
+                        firstDay: DateTime.utc(2010, 10, 16),
+                        lastDay: DateTime.utc(2030, 3, 14),
+                        calendarFormat: CalendarFormat.week,
+                        focusedDay: DateTime.now(),
+                        selectedDayPredicate: (day) {
+                          return isSameDay(
+                              DateTime.now(), day); // Marks the selected day
+                        },
+                        calendarBuilders: CalendarBuilders(
+                          selectedBuilder: (context, date, _) {
+                            return Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.all(9),
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    color: AppColor.primary,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: AppText(
+                                    text: '${date.day}',
+                                    color: Colors.white,
+                                    fontFamily: AppFonts.satoshiBold,
+                                  ),
+                                ),
+                                yHeight(5),
+                                Container(
+                                  padding: EdgeInsets.all(3),
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    color: AppColor.primary,
+                                    // Background color of selected day
+                                    shape: BoxShape.circle,
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
+                        ),
+                        headerStyle: HeaderStyle(
+                            titleCentered: true, formatButtonVisible: false),
+                      ),
+                    ),
+                    yHeight(20.h),
+
+                    /// Available slots
+                    AppText(
+                      text: "Available slots",
+                      fontFamily: AppFonts.satoshiBold,
+                    ),
+                    yHeight(15.h),
+                    GridView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: 7,
+                      padding: EdgeInsets.zero,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          childAspectRatio: 2.5,
+                          mainAxisSpacing: 15.h,
+                          crossAxisSpacing: 15.h),
+                      itemBuilder: (context, index) {
+                        final isSelected = index == 1;
+                        return Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 5, vertical: 12.h),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(22),
+                            color: isSelected
+                                ? AppColor.primary
+                                : AppColor.color8E8E8E.withValues(alpha: .1),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                padding: EdgeInsets.all(3),
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  color: isSelected
+                                      ? AppColor.whiteFFFFFF
+                                      : AppColor.black000000,
+                                  // Background color of selected day
+                                  shape: BoxShape.circle,
+                                ),
                               ),
-                              child: AppText(
-                                text: '${date.day}',
-                                color: Colors.white,
-                                fontFamily: AppFonts.satoshiBold,
+                              xWidth(5),
+                              AppText(
+                                text: "10:00 AM",
+                                fontFamily: AppFonts.satoshiRegular,
+                                color: isSelected ? AppColor.whiteFFFFFF : null,
                               ),
-                            ),
-                            yHeight(5),
-                            Container(
-                              padding: EdgeInsets.all(3),
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                color: AppColor.primary,
-                                // Background color of selected day
-                                shape: BoxShape.circle,
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         );
                       },
                     ),
-                    headerStyle: HeaderStyle(
-                        titleCentered: true, formatButtonVisible: false),
-                  ),
+                  ],
                 ),
-                yHeight(20.h),
-
-                /// Available slots
-                AppText(
-                  text: "Available slots",
-                  fontFamily: AppFonts.satoshiBold,
-                ),
-                yHeight(15.h),
-                GridView.builder(
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: 7,
-                  padding: EdgeInsets.zero,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      childAspectRatio: 2.5,
-                      mainAxisSpacing: 15.h,
-                      crossAxisSpacing: 15.h),
-                  itemBuilder: (context, index) {
-                    final isSelected = index == 1 ;
-                    return Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 5, vertical: 12.h),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(22),
-                        color: isSelected?AppColor.primary:AppColor.color8E8E8E.withValues(alpha: .1),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            padding: EdgeInsets.all(3),
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: isSelected?AppColor.whiteFFFFFF:AppColor.black000000,
-                              // Background color of selected day
-                              shape: BoxShape.circle,
-                            ),
-                          ),
-                          xWidth(5),
-                          AppText(
-                            text: "10:00 AM",
-                            fontFamily: AppFonts.satoshiRegular,
-                            color: isSelected?AppColor.whiteFFFFFF:null,
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-              ],
+              ),
             ),
           ),
         ],

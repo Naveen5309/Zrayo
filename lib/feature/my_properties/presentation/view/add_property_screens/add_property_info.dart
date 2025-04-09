@@ -73,7 +73,6 @@ class AddPropertyInfo extends ConsumerWidget {
                         labelText: AppString.propertyType,
                         hintText: AppString.selectPropertyType,
                         controller: TextEditingController(),
-                        prefixIcon: SvgPicture.asset(Assets.city),
                         suffixIcon: SvgPicture.asset(Assets.arrowDown),
                       ),
                     ),
