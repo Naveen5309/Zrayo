@@ -219,7 +219,7 @@ class CreateProfile extends ConsumerWidget {
                       ),
                     ],
                   ),
-                  yHeight(20),
+                  yHeight(30.h),
                   CommonAppBtn(
                       title: fromSettings
                           ? AppString.update

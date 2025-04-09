@@ -87,7 +87,7 @@ class LoginView extends ConsumerWidget {
                     yHeight(context.height * 0.05),
                     _buildFormFieldsSection(loginNotifier),
                     yHeight(context.height * 0.01),
-                    _buildForgotPasswordLink(context),
+                    _buildForgotPasswordLink(context, loginNotifier),
                     yHeight(context.height * 0.02),
                     _buildLoginButton(loginState, loginNotifier, context),
                     yHeight(context.height * 0.02),
@@ -146,9 +146,11 @@ class LoginView extends ConsumerWidget {
     );
   }
 
-  Widget _buildForgotPasswordLink(BuildContext context) {
+  Widget _buildForgotPasswordLink(
+      BuildContext context, LoginNotifier loginNotifier) {
     return GestureDetector(
       onTap: () {
+        loginNotifier.forgetEmailController.clear();
         Utils.appBottomSheet(
             isScrolled: true,
             context: context,
@@ -168,8 +170,8 @@ class LoginView extends ConsumerWidget {
       BuildContext context) {
     return CommonAppBtn(
       title: AppString.login,
-      loading: loginState is LoginApiLoading &&
-          loginState.route == Routes.loginView,
+      loading:
+          loginState is LoginApiLoading && loginState.route == Routes.loginView,
       onTap: () => loginNotifier.loginValidator(context),
     );
   }
