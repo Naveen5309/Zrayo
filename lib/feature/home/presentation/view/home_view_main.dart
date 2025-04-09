@@ -33,6 +33,7 @@ class HomeViewMain extends ConsumerWidget {
     ref.watch(customerHomeProvider);
     final homeNotifier = ref.read(customerHomeProvider.notifier);
     ref.watch(createProfileProvider);
+    ref.watch(createProfileProvider);
     final createProfileNotifier = ref.read(createProfileProvider.notifier);
     final userModel = createProfileNotifier.userModel;
     return Scaffold(

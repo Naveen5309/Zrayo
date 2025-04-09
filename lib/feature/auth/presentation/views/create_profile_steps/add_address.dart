@@ -24,7 +24,7 @@ class AddAddressView extends ConsumerWidget {
     final addAddressState = ref.watch(createProfileProvider);
     final addAddressNotifier = ref.read(createProfileProvider.notifier);
     ref.listen<CreateProfileStates>(createProfileProvider, (previous, next) {
-      if (next is CreateProfileSuccess) {
+      if (next is AddressSuccess) {
         fromSettings ? back(context) : toNamed(context, Routes.uploadDocument);
       } else if (next is CreateProfileFailed) {
         toast(msg: next.error, isError: true);
@@ -65,7 +65,8 @@ class AddAddressView extends ConsumerWidget {
                     fromSettings ? AppString.update : AppString.saveAndContinue,
                 margin: const EdgeInsets.all(16),
                 loading: addAddressState is CreateProfileApiLoading,
-                onTap: () => addAddressNotifier.addAddressValidator(fromSettings))
+                onTap: () =>
+                    addAddressNotifier.addAddressValidator(fromSettings))
           ],
         ),
       ),

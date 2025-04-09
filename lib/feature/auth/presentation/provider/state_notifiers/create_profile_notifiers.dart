@@ -84,30 +84,31 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
     state = CreateProfileRefresh();
   }
 
-  Future<void> getProfile({bool isRefresh = false}) async {
+  Future<bool?> getProfile({bool isRefresh = false}) async {
     state = CreateProfileApiLoading();
     try {
       if (!(await Getters.networkInfo.isConnected)) {
         state = const CreateProfileFailed(error: "No internet connection");
-        return;
+        return false;
       }
 
       final result = await authRepo.getProfile();
-      state = result.fold((error) {
+      result.fold((error) {
         return CreateProfileFailed(error: error.message);
       }, (result) {
         userModel = result;
 
         if (isRefresh) {
-          return CreateProfileRefresh();
+          state = CreateProfileRefresh();
         } else {
           setValueInControllers(userData: userModel);
-          return CreateProfileSuccess();
+          return true;
         }
       });
     } catch (e) {
       state = CreateProfileFailed(error: e.toString());
     }
+    return false;
   }
 
   /// Method to validate profile data and either create or update the profile
@@ -158,9 +159,10 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
       state = result.fold((error) {
         return CreateProfileFailed(error: error.message);
       }, (result) {
-        getProfile();
         return CreateProfileApiLoading();
       });
+      await getProfile();
+      state = CreateProfileSuccess();
     } catch (e, t) {
       functionLog(msg: t.toString(), fun: "createUpdateProfile");
       state = CreateProfileFailed(error: e.toString());
@@ -200,16 +202,16 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
         "longitude": -74.005974
       };
 
-      final result = await authRepo.addAddress(
-        body: body,
-      isUpdate:fromSettings
-      );
+      final result =
+          await authRepo.addAddress(body: body, isUpdate: fromSettings);
+
       state = result.fold((error) {
         return CreateProfileFailed(error: error.message);
       }, (result) {
-        getProfile();
         return CreateProfileApiLoading();
       });
+      await getProfile();
+      state = AddressSuccess();
     } catch (e) {
       state = CreateProfileFailed(error: e.toString());
     }
@@ -247,8 +249,10 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
       state = result.fold((error) {
         return CreateProfileFailed(error: error.message);
       }, (result) {
-        return CreateProfileSuccess();
+        return CreateProfileApiLoading();
       });
+      await getProfile();
+      state = BankSuccess();
     } catch (e) {
       state = CreateProfileFailed(error: e.toString());
     }
@@ -347,9 +351,10 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
       state = result.fold((error) {
         return CreateProfileFailed(error: error.message);
       }, (result) {
-        getProfile();
         return CreateProfileApiLoading();
       });
+      await getProfile();
+      state = UploadDocSuccess();
     } catch (e, t) {
       functionLog(msg: t.toString(), fun: "uploadDocument");
       state = CreateProfileFailed(error: e.toString());
@@ -370,6 +375,9 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
     cityController.text = userModel?.detail?.city ?? "";
     stateController.text = userModel?.detail?.state ?? "";
     countryController.text = userModel?.detail?.country ?? "";
+    countryController.text = userModel?.detail?.country ?? "";
+    uploadDocFrontFile = File("");
+    uploadDocBackFile = File("");
     accountHolderController = TextEditingController();
     accountNumberController = TextEditingController();
     routingNumberController = TextEditingController();
@@ -390,5 +398,8 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
     accountHolderController = TextEditingController();
     accountNumberController = TextEditingController();
     routingNumberController = TextEditingController();
+    uploadDocFrontFile = File("");
+    pickedImage = null;
+    uploadDocBackFile = File("");
   }
 }

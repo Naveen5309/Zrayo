@@ -9,6 +9,7 @@ import 'package:zrayo_flutter/feature/z_common_widgets/custom_subscription_plan.
 
 class SubscriptionPlanView extends StatelessWidget {
   final bool fromSettings;
+
   const SubscriptionPlanView({super.key, required this.fromSettings});
 
   @override

@@ -102,7 +102,7 @@ abstract final class AppString {
   static const String enterAccountNumber = "Enter account number";
   static const String routingNumber = "Routing Number";
   static const String enterRoutingNumber = "Enter routing number";
-  static const String addBankDetail = "Add Bank Detail";
+  static const String addBankDetail = "Add Bank Details";
   static const String skip = "Skip";
   static const String customer = "Customer";
   static const String agent = "Agent";

@@ -22,6 +22,21 @@ class CreateProfileSuccess extends CreateProfileStates {
   List<Object> get props => [];
 }
 
+class UploadDocSuccess extends CreateProfileStates {
+  @override
+  List<Object> get props => [];
+}
+
+class AddressSuccess extends CreateProfileStates {
+  @override
+  List<Object> get props => [];
+}
+
+class BankSuccess extends CreateProfileStates {
+  @override
+  List<Object> get props => [];
+}
+
 class CreateProfileRefresh extends CreateProfileStates {
   @override
   List<Object> get props => [];

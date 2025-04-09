@@ -29,7 +29,7 @@ class UploadDocument extends ConsumerWidget {
     final Detail? userDetail = Getters.getLocalStorage.getLoginUser()?.detail;
 
     ref.listen<CreateProfileStates>(createProfileProvider, (previous, next) {
-      if (next is CreateProfileSuccess) {
+      if (next is UploadDocSuccess) {
         fromSettings ? back(context) : toNamed(context, Routes.addBankDetail);
       } else if (next is CreateProfileFailed) {
         toast(msg: next.error, isError: true);
@@ -69,7 +69,10 @@ class UploadDocument extends ConsumerWidget {
                     child: UploadDocumentTile(
                       filePath: createProfileNotifier
                               .uploadDocFrontFile.path.isEmpty
-                          ? "${ApiEndpoints.docImageUrl}${userDetail?.idDocumentFront}"
+                          ? (userDetail?.idDocumentFront.notNullAndNotEmpty ??
+                                  false)
+                              ? "${ApiEndpoints.docImageUrl}${userDetail?.idDocumentFront}"
+                              : ""
                           : createProfileNotifier.uploadDocFrontFile.path,
                       isFromNetwork: (userDetail?.idDocumentFront?.isNotEmpty ??
                               false) &&
@@ -95,7 +98,10 @@ class UploadDocument extends ConsumerWidget {
                     child: UploadDocumentTile(
                       filePath: createProfileNotifier
                               .uploadDocBackFile.path.isEmpty
-                          ? "${ApiEndpoints.docImageUrl}${userDetail?.idDocumentBack}"
+                          ? (userDetail?.idDocumentBack.notNullAndNotEmpty ??
+                                  false)
+                              ? "${ApiEndpoints.docImageUrl}${userDetail?.idDocumentBack}"
+                              : ""
                           : createProfileNotifier.uploadDocBackFile.path,
                       isFromNetwork: (userDetail?.idDocumentBack?.isNotEmpty ??
                               false) &&

@@ -14,6 +14,8 @@ import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_text_field.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 
+import '../provider/create_profile_provider.dart';
+
 class SignUpView extends ConsumerWidget {
   const SignUpView({super.key});
 
@@ -24,7 +26,8 @@ class SignUpView extends ConsumerWidget {
 
     ref.listen<SignUpState>(signUpProvider, (previous, next) {
       if (next is SignUpSuccess) {
-        offAllNamed(context, Routes.createProfile);
+        ref.read(createProfileProvider.notifier).clearValues();
+        toNamed(context, Routes.createProfile);
       } else if (next is SignUpFailed) {
         toast(msg: next.error, isError: true);
       }

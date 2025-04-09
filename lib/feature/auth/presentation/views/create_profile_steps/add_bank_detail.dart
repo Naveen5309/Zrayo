@@ -21,14 +21,14 @@ class AddBankDetail extends ConsumerWidget {
     final addBankDetailsNotifier = ref.read(createProfileProvider.notifier);
     final createProfileState = ref.watch(createProfileProvider);
     ref.listen<CreateProfileStates>(createProfileProvider, (previous, next) {
-      if (next is CreateProfileSuccess) {
+      if (next is BankSuccess) {
         if (!fromSettings) {
           if (Getters.isAgent()) {
             offAllNamed(context, Routes.dashboard);
           } else {
             toNamed(context, Routes.subscriptionPlanView);
           }
-        } else if (fromSettings) {
+        } else {
           back(context);
         }
       } else if (next is CreateProfileFailed) {
