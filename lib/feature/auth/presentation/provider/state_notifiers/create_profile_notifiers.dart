@@ -168,7 +168,7 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
   }
 
   /// Method to validate and add the address
-  void addAddressValidator(BuildContext context) {
+  void addAddressValidator(bool fromSettings) {
     final isValid = validator.addAddressValidator(
       address: addressController.text,
       city: cityController.text,
@@ -176,14 +176,14 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
       country: countryController.text,
     );
     if (isValid) {
-      addAddress();
+      addAddress(fromSettings);
     } else {
       toast(msg: validator.error);
     }
   }
 
   /// Method to add the address by calling the AuthRepository
-  Future<void> addAddress() async {
+  Future<void> addAddress(bool fromSettings) async {
     state = CreateProfileApiLoading();
     try {
       if (!(await Getters.networkInfo.isConnected)) {
@@ -200,7 +200,10 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
         "longitude": -74.005974
       };
 
-      final result = await authRepo.addAddress(body: body);
+      final result = await authRepo.addAddress(
+        body: body,
+      isUpdate:fromSettings
+      );
       state = result.fold((error) {
         return CreateProfileFailed(error: error.message);
       }, (result) {

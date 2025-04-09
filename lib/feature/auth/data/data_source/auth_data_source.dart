@@ -27,14 +27,17 @@ abstract class AuthDataSource {
 
   Future<ResponseWrapper?> uploadFile({required File file});
 
-  Future<ResponseWrapper?> addAddress({required Map<String, dynamic> body});
+  Future<ResponseWrapper?> addAddress(
+      {required Map<String, dynamic> body, required bool isUpdate});
 
   Future<ResponseWrapper?> verifyEmail({required Map<String, dynamic> body});
 
   Future<ResponseWrapper?> forgetPassword({required Map<String, dynamic> body});
 
   Future<ResponseWrapper?> changePassword({required Map<String, dynamic> body});
+
   Future<ResponseWrapper?> resendOtp({required Map<String, dynamic> body});
+
   Future<ResponseWrapper?> bankDetails({required Map<String, dynamic> body});
 }
 
@@ -225,14 +228,12 @@ class AuthDataSourceImpl extends AuthDataSource {
 
   @override
   Future<ResponseWrapper<dynamic>?> addAddress(
-      {required Map<String, dynamic> body}) async {
+      {required Map<String, dynamic> body, required bool isUpdate}) async {
     try {
       final dataResponse = await Getters.getHttpService.request<dynamic>(
         body: body,
-        url: ApiEndpoints.addAddress,
+        url: isUpdate ? ApiEndpoints.updateAddress : ApiEndpoints.addAddress,
         fromJson: (json) {
-          printLog("json in data source :-> $json");
-
           return json;
         },
       );
@@ -305,8 +306,6 @@ class AuthDataSourceImpl extends AuthDataSource {
         body: body,
         url: ApiEndpoints.changePassword,
         fromJson: (json) {
-          printLog("json in data source :-> $json");
-
           return json;
         },
       );

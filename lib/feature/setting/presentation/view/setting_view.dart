@@ -16,6 +16,7 @@ import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_cache_network_image.dart';
 
 import '../../../../core/network/http_service.dart';
+import '../../../auth/presentation/provider/create_profile_provider.dart';
 
 class SettingView extends ConsumerWidget {
   const SettingView({
@@ -43,7 +44,7 @@ class SettingView extends ConsumerWidget {
                 spacing: 11,
                 children: [
                   yHeight(11),
-                  profileSection(context,userModel),
+                  profileSection(context, userModel, ref),
                   GestureDetector(
                       onTap: () => toNamed(context, Routes.subscriptionPlanView,
                           args: {"fromSettings": true}),
@@ -138,10 +139,11 @@ class SettingView extends ConsumerWidget {
   }
 }
 
-Widget profileSection(BuildContext context, UserModel? userModel) {
-
+Widget profileSection(
+    BuildContext context, UserModel? userModel, WidgetRef ref) {
   return GestureDetector(
     onTap: () {
+      ref.read(createProfileProvider.notifier).setValueInControllers();
       toNamed(context, Routes.profileDetailView);
     },
     child: Container(

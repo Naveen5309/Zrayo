@@ -26,7 +26,7 @@ abstract class AuthRepository {
   });
 
   Future<Either<Failure, dynamic>> addAddress(
-      {required Map<String, dynamic> body});
+      {required Map<String, dynamic> body, required bool isUpdate});
 
   Future<Either<Failure, UserModel?>> forgotPassword(
       {required Map<String, dynamic> body});
@@ -131,9 +131,9 @@ class AuthRepoImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, dynamic>> addAddress(
-      {required Map<String, dynamic> body}) async {
+      {required Map<String, dynamic> body, required bool isUpdate}) async {
     try {
-      final data = await dataSource.addAddress(body: body);
+      final data = await dataSource.addAddress(body: body,isUpdate:isUpdate);
       if (data?.success == true) {
         toast(msg: data?.message ?? "", isError: false);
         return Right(data?.data);

@@ -65,7 +65,7 @@ class AddAddressView extends ConsumerWidget {
                     fromSettings ? AppString.update : AppString.saveAndContinue,
                 margin: const EdgeInsets.all(16),
                 loading: addAddressState is CreateProfileApiLoading,
-                onTap: () => addAddressNotifier.addAddressValidator(context))
+                onTap: () => addAddressNotifier.addAddressValidator(fromSettings))
           ],
         ),
       ),
