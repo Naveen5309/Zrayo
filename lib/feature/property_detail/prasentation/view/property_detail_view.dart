@@ -231,6 +231,8 @@ class PropertyDetailView extends StatelessWidget {
               textColor: AppColor.primary,
               borderColor: AppColor.transparent,
               margin: EdgeInsets.all(16.sp),
+              prefixWidget: SvgPicture.asset(Assets.editt),
+
             ),
             CommonAppBtn(
               title: "Property Sold",

@@ -129,4 +129,5 @@ class Assets {
   static const String stateJson = 'assets/json/state.json';
   static const String cityJson = 'assets/json/city.json';
   static const String soldImage = 'assets/images/sold_image.svg';
+  static const String editt = 'assets/icons/editt.svg';
 }
