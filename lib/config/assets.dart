@@ -19,6 +19,7 @@ class Assets {
   static const String backBtn = 'assets/icons/icback.svg';
   static const String x = 'assets/icons/x.svg';
   static const String edit = 'assets/icons/edit.svg';
+  static const String editt = 'assets/icons/editt.svg';
   static const String location = 'assets/icons/location_dark.svg';
   static const String city = 'assets/icons/city.svg';
   static const String state = 'assets/icons/state.svg';

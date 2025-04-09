@@ -115,10 +115,8 @@ class AddBankDetail extends ConsumerWidget {
                   borderColor: AppColor.transparent,
                   backGroundColor: AppColor.secondry,
                   textColor: AppColor.primary,
-                  loading: createProfileState is CreateProfileApiLoading,
                   onTap: () {
-                    // toNamed(context, Routes.subscriptionPlanView);)
-                    addBankDetailsNotifier.addBankDetailsValidator(context);
+                    offAllNamed(context, Routes.dashboard);
                   }),
           ],
         ),
