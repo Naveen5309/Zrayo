@@ -37,7 +37,6 @@ class OtpVerificationViewState extends ConsumerState<OtpVerificationView> {
   Widget build(BuildContext context) {
     final verifyEmailNotifier = ref.read(authProvider.notifier);
     final verifyEmailState = ref.watch(authProvider);
-
     ref.listen<LoginState>(authProvider, (previous, next) {
       if (next is OtpVerifySuccess) {
         toNamed(context, Routes.changePasswordView);
@@ -102,9 +101,7 @@ class OtpVerificationViewState extends ConsumerState<OtpVerificationView> {
                     ),
                     yHeight(20.sp),
                     Pinput(
-                      inputFormatters: [
-                        FilteringTextInputFormatter.digitsOnly
-                      ],
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                       keyboardType: TextInputType.number,
                       defaultPinTheme: defaultPinTheme,
                       focusedPinTheme: focusedPinTheme,
@@ -133,18 +130,41 @@ class OtpVerificationViewState extends ConsumerState<OtpVerificationView> {
                           fontFamily: AppFonts.satoshiRegular,
                         ),
                         verifyEmailNotifier.enableResend
-                            ? GestureDetector(
-                                onTap: () {
-                                  verifyEmailNotifier.cancelTimer();
-                                  verifyEmailNotifier.startTimer();
-                                  verifyEmailNotifier.resendOtp();
+                            ? Consumer(
+                                builder: (context, ref, _) {
+                                  final state = ref.watch(authProvider);
+                                  final notifier =
+                                      ref.read(authProvider.notifier);
+
+                                  return GestureDetector(
+                                    onTap: () async {
+                                      notifier.cancelTimer();
+                                      await notifier.resendOtp();
+
+                                      notifier.startTimer();
+                                    },
+                                    child: state is OtpResendApiLoading
+                                        ? Row(
+                                            children: [
+                                              xWidth(10),
+                                              SizedBox(
+                                                height: 20.sp,
+                                                width: 20.sp,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                        color: AppColor.primary,
+                                                        strokeWidth: 3),
+                                              ),
+                                            ],
+                                          )
+                                        : AppText(
+                                            text: "Resend OTP",
+                                            textSize: 14.sp,
+                                            fontFamily: AppFonts.satoshiBold,
+                                            color: AppColor.black000000,
+                                          ),
+                                  );
                                 },
-                                child: AppText(
-                                  text: "Resend OTP",
-                                  textSize: 14.sp,
-                                  fontFamily: AppFonts.satoshiBold,
-                                  color: AppColor.black000000,
-                                ),
                               )
                             : Consumer(builder: (BuildContext context,
                                 WidgetRef ref, Widget? child) {

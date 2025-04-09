@@ -175,7 +175,7 @@ class LoginNotifier extends StateNotifier<LoginState> {
   }
 
   Future<void> resendOtp() async {
-    state = LoginApiLoading();
+    state = OtpResendApiLoading();
     try {
       if (!(await Getters.networkInfo.isConnected)) {
         state = const LoginFailed(error: "No internet connection");
