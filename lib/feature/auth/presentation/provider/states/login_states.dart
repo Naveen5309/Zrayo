@@ -18,6 +18,11 @@ class LoginApiLoading extends LoginState {
   List<Object> get props => [];
 }
 
+class OtpResendApiLoading extends LoginState {
+  @override
+  List<Object> get props => [];
+}
+
 class LoginSuccess extends LoginState {
   final UserModel? userModel;
 
