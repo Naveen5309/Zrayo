@@ -143,7 +143,6 @@ Widget profileSection(
     BuildContext context, UserModel? userModel, WidgetRef ref) {
   return GestureDetector(
     onTap: () {
-      ref.read(createProfileProvider.notifier).setValueInControllers();
       toNamed(context, Routes.profileDetailView);
     },
     child: Container(

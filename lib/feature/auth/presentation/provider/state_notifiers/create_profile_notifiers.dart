@@ -334,11 +334,16 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
   }
 
   void uploadDocumentValidator() {
-    if (((uploadDocBackFile.path.isNotEmpty)) ||
+    if (((uploadDocBackFile.path.isNotEmpty)) &&
         ((uploadDocFrontFile.path.isNotEmpty))) {
       uploadDocument();
     } else {
-      toast(msg: "Please upload document");
+      if ((userModel?.detail?.idDocumentFront.notNullAndNotEmpty ?? false) ||
+          (userModel?.detail?.idDocumentBack.notNullAndNotEmpty ?? false)) {
+        toast(msg: "Please upload both new documents");
+      } else {
+        toast(msg: "Please upload both documents");
+      }
     }
   }
 
@@ -387,6 +392,7 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
     countryController.text = userModel?.detail?.country ?? "";
     countryController.text = userModel?.detail?.country ?? "";
     uploadDocFrontFile = File("");
+    pickedImage = null;
     uploadDocBackFile = File("");
     accountHolderController = TextEditingController();
     accountNumberController = TextEditingController();
