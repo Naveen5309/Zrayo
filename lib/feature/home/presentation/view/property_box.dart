@@ -157,7 +157,8 @@ class PropertyBox extends StatelessWidget {
     return Stack(
       children: [
         CustomCacheNetworkImage(
-          img: "https://cdn.pixabay.com/photo/2017/07/08/02/16/house-2483336_640.jpg",
+          img:
+              "https://cdn.pixabay.com/photo/2017/07/08/02/16/house-2483336_640.jpg",
           width: width,
           height: height,
           imageRadius: 12,
@@ -195,14 +196,13 @@ class PropertyBox extends StatelessWidget {
               right: 0,
               bottom: 0,
               child: Container(
-                padding: EdgeInsets.symmetric(vertical: 8,horizontal: 12),
+                padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                 decoration: BoxDecoration(
-                  color: AppColor.pinkFF2147,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(12.sp),
-                    bottomRight: Radius.circular(12),
-                  )
-                ),
+                    color: AppColor.pinkFF2147,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(12.sp),
+                      bottomRight: Radius.circular(12),
+                    )),
                 child: AppText(
                   text: "Sold out",
                   color: AppColor.whiteFFFFFF,

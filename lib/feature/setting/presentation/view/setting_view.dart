@@ -27,6 +27,7 @@ class SettingView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final settingNotifier = ref.read(settingViewProvider.notifier);
     ref.watch(settingViewProvider);
+
     final userModel = Getters.getLocalStorage.getLoginUser();
     return Scaffold(
       body: SingleChildScrollView(

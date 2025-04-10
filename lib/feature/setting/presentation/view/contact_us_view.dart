@@ -67,7 +67,8 @@ class ContactUsView extends ConsumerWidget {
                       loading: contactUsViewState is SettingApiLoading,
                       onTap: () =>
                           contactUsNotifier.contactUsValidator(context),
-                    )
+                    ),
+                    yHeight(10)
                   ],
                 ),
               ),
