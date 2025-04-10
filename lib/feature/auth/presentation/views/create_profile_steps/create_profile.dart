@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
 import 'package:zrayo_flutter/config/app_utils.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
@@ -75,11 +76,9 @@ class CreateProfile extends ConsumerWidget {
                           child: Stack(
                             alignment: Alignment.center,
                             children: [
-                              if (createProfileNotifier.pickedImage?.path !=
-                                      null &&
-                                  (createProfileNotifier
-                                          .pickedImage?.path.isNotEmpty ??
-                                      false)) ...{
+                              if (createProfileNotifier
+                                      .pickedImage?.path.notNullAndNotEmpty ??
+                                  false) ...{
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(100),
                                   child: Image.file(
@@ -95,9 +94,12 @@ class CreateProfile extends ConsumerWidget {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: CustomCacheNetworkImage(
-                                    img:
-                                        createProfileNotifier.profileImageUrl ??
-                                            "",
+                                    img: (createProfileNotifier
+                                            .profileImageUrl.notNullAndNotEmpty)
+                                        ? (createProfileNotifier
+                                                .profileImageUrl ??
+                                            "")
+                                        : "",
                                     size: 120.sp,
                                     imageRadius: 100.sp,
                                   ),
@@ -178,8 +180,9 @@ class CreateProfile extends ConsumerWidget {
                         onTap: () async {
                           final DateTime? picked = await showDatePicker(
                             context: context,
-                            initialDate:
-                                DateTime.now().subtract(Duration(days: 1)),
+                            initialDate: createProfileNotifier.dobController.text.notNullAndNotEmpty
+                                ? DateFormat('dd/MM/yyyy').parseStrict(createProfileNotifier.dobController.text)
+                                : DateTime.now().subtract(Duration(days: 1)),
                             firstDate: DateTime(1970, 8),
                             lastDate:
                                 DateTime.now().subtract(Duration(days: 1)),

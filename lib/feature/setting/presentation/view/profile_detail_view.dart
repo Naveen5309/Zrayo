@@ -44,7 +44,7 @@ class ProfileDetailView extends ConsumerWidget {
                   yHeight(context.height * 0.002),
 
                   /// Uploaded document
-                  uploadedDocDetail(context, userModel),
+                  uploadedDocDetail(context, userModel,createProfileNotifier),
                   yHeight(context.height * 0.02),
                 ],
               ),
@@ -72,6 +72,8 @@ class ProfileDetailView extends ConsumerWidget {
               ),
               GestureDetector(
                   onTap: () {
+                    createProfileNotifier.setValueInControllers();
+
                     toNamed(context, Routes.createProfile,
                         args: {"fromSettings": true});
                   },
@@ -192,6 +194,7 @@ class ProfileDetailView extends ConsumerWidget {
               ),
               GestureDetector(
                   onTap: () {
+                    createProfileNotifier.setValueInControllers();
 
                     toNamed(context, Routes.addAddressView,
                         args: {"fromSettings": true});
@@ -293,7 +296,7 @@ class ProfileDetailView extends ConsumerWidget {
   }
 
   /// Uploaded document detail widget
-  Widget uploadedDocDetail(BuildContext context, UserModel? userModel) {
+  Widget uploadedDocDetail(BuildContext context, UserModel? userModel, CreateProfileNotifiers createProfileNotifier) {
     final userDetail = userModel?.detail;
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
@@ -309,8 +312,12 @@ class ProfileDetailView extends ConsumerWidget {
                 fontFamily: AppFonts.satoshiBold,
               ),
               GestureDetector(
-                  onTap: () => toNamed(context, Routes.uploadDocument,
-                      args: {"fromSettings": true}),
+                  onTap: () {
+                    createProfileNotifier.setValueInControllers();
+
+                    toNamed(context, Routes.uploadDocument,
+                      args: {"fromSettings": true});
+                  },
                   child: SvgPicture.asset(Assets.edit)),
             ],
           ),
