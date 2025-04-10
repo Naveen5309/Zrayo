@@ -36,7 +36,7 @@ class ChatUsersListView extends StatelessWidget {
               itemCount: 10,
               itemBuilder: (context, index) {
                 return ChatTile(
-                  name: "Jenny Wilson",
+                  name: "Hexagon villa",
                   message: "Oh yes, please send your CV/Res  software company",
                   time: "8m ago",
                   unreadCount: 0,
