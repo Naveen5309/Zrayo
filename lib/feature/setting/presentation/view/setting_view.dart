@@ -71,7 +71,7 @@ class SettingView extends ConsumerWidget {
                   }),
                   SettingTile(
                     icon: Assets.personAdd,
-                    title: AppString.inviteFriend,
+                    title: AppString.inviteFriend.tr(),
                   ),
                   if (!Getters.isAgent())
                     SettingTile(
