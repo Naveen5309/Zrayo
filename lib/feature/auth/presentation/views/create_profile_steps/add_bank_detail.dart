@@ -72,23 +72,23 @@ class AddBankDetail extends ConsumerWidget {
                       CustomTextField(
                         controller:
                             addBankDetailsNotifier.accountHolderController,
-                        labelText: AppString.accountHolderName,
+                        labelText: AppString.accountHolderName.tr(),
                         keyboardType: TextInputType.name,
-                        hintText: AppString.enterAccountHolderName,
+                        hintText: AppString.enterAccountHolderName.tr(),
                       ),
                       CustomTextField(
                         controller:
                             addBankDetailsNotifier.accountNumberController,
-                        labelText: AppString.accountNumber,
+                        labelText: AppString.accountNumber.tr(),
                         keyboardType: TextInputType.number,
-                        hintText: AppString.enterAccountNumber,
+                        hintText: AppString.enterAccountNumber.tr(),
                       ),
                       CustomTextField(
                         controller:
                             addBankDetailsNotifier.routingNumberController,
-                        labelText: AppString.routingNumber,
+                        labelText: AppString.routingNumber.tr(),
                         keyboardType: TextInputType.number,
-                        hintText: AppString.enterRoutingNumber,
+                        hintText: AppString.enterRoutingNumber.tr(),
                       ),
                     ],
                   ),
@@ -101,7 +101,7 @@ class AddBankDetail extends ConsumerWidget {
               yHeight(context.height / 2.5),
             CommonAppBtn(
               title: fromSettings
-                  ? AppString.update
+                  ? AppString.update.tr()
                   : AppString.saveAndContinue.tr(),
               margin: const EdgeInsets.all(16),
               loading: createProfileState is CreateProfileApiLoading &&

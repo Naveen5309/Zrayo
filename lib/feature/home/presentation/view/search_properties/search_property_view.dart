@@ -55,9 +55,9 @@ class SearchPropertyView extends ConsumerWidget {
                         yHeight(10),
                         Row(
                           children: [
-                            _buildRadioButton(AppString.buy, context),
+                            _buildRadioButton(AppString.buy.tr(), context),
                             SizedBox(width: 20.w),
-                            _buildRadioButton(AppString.rent, context),
+                            _buildRadioButton(AppString.rent.tr(), context),
                           ],
                         ),
                       ],
@@ -82,7 +82,7 @@ class SearchPropertyView extends ConsumerWidget {
                           customBtn: IgnorePointer(
                             child: CustomTextField(
                               readOnly: true,
-                              hintText: AppString.selectCity,
+                              hintText: AppString.selectCity.tr(),
                               controller: TextEditingController(),
                               prefixIcon: SvgPicture.asset(Assets.city),
                               suffixIcon: SvgPicture.asset(Assets.arrowDown),
@@ -105,7 +105,7 @@ class SearchPropertyView extends ConsumerWidget {
                         CustomDropdownButton(
                           customBtn: IgnorePointer(
                             child: CustomTextField(
-                              hintText: AppString.selectSate,
+                              hintText: AppString.selectSate.tr(),
                               controller: TextEditingController(),
                               prefixIcon: SvgPicture.asset(Assets.state),
                               suffixIcon: SvgPicture.asset(Assets.arrowDown),

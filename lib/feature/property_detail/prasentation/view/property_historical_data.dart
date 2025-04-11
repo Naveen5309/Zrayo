@@ -11,7 +11,7 @@ class PropertyHistoricalData extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AppText(
-            text: AppString.historicalData,
+            text: AppString.historicalData.tr(),
             textSize: 16.sp,
             fontFamily: AppFonts.satoshiBold,
           ),

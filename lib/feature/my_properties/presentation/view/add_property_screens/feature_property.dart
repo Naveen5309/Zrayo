@@ -21,7 +21,7 @@ class FeaturePrpertyView extends ConsumerWidget {
       backgroundColor: AppColor.blackF7F8FB,
       body: Column(
         children: [
-          CustomAppBar(title: AppString.addProperty),
+          CustomAppBar(title: AppString.addProperty.tr()),
           yHeight(10.sp),
           Container(
             height: 5,
@@ -69,7 +69,7 @@ class FeaturePrpertyView extends ConsumerWidget {
                             children: [
                               SizedBox(height: 40),
                               Text(
-                                AppString.featureyourProperty,
+                                AppString.featureyourProperty.tr(),
                                 style: TextStyle(
                                   fontSize: 22.sp,
                                   fontFamily: AppFonts.satoshiBold,
@@ -133,8 +133,8 @@ class FeaturePrpertyView extends ConsumerWidget {
                     Utils.appBottomSheet(
                         context: context,
                         widget: SuccessSheet(
-                          title: AppString.propertySuccessfullyPosted,
-                          subTitle: AppString.propertyUploaded,
+                          title: AppString.propertySuccessfullyPosted.tr(),
+                          subTitle: AppString.propertyUploaded.tr(),
                           onTap: () {
                             offAllNamed(context, Routes.dashboard);
                           },

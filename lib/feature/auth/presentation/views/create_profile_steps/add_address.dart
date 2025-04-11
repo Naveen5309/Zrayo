@@ -36,7 +36,7 @@ class AddAddressView extends ConsumerWidget {
         child: Column(
           children: [
             CustomAppBar(
-                title: fromSettings ? AppString.address : AppString.addAddress),
+                title: fromSettings ? AppString.address.tr() : AppString.addAddress.tr()),
             yHeight(10.sp),
             fromSettings
                 ? SizedBox()
@@ -63,7 +63,7 @@ class AddAddressView extends ConsumerWidget {
             yHeight(context.height / 5),
             CommonAppBtn(
                 title: fromSettings
-                    ? AppString.update
+                    ? AppString.update.tr()
                     : AppString.saveAndContinue.tr(),
                 margin: const EdgeInsets.all(16),
                 loading: addAddressState is CreateProfileApiLoading &&
@@ -85,10 +85,10 @@ Widget formsFieldsSection(CreateProfileNotifiers addAddressNotifier) {
       Consumer(builder: (BuildContext context, WidgetRef ref, Widget? child) {
         ref.watch(createProfileProvider);
         return CustomTextField(
-          hintText: AppString.enterAddress,
+          hintText: AppString.enterAddress.tr(),
           prefixIcon: SvgPicture.asset(Assets.location),
           controller: addAddressNotifier.addressController,
-          labelText: AppString.address,
+          labelText: AppString.address.tr(),
         );
       }),
 
@@ -98,8 +98,8 @@ Widget formsFieldsSection(CreateProfileNotifiers addAddressNotifier) {
         return CustomDropdownButton(
           customBtn: IgnorePointer(
             child: CustomTextField(
-              labelText: AppString.country,
-              hintText: AppString.selectCountry,
+              labelText: AppString.country.tr(),
+              hintText: AppString.selectCountry.tr(),
               controller: addAddressNotifier.countryController,
               prefixIcon: SvgPicture.asset(Assets.global),
               suffixIcon: SvgPicture.asset(Assets.arrowDown),
@@ -127,8 +127,8 @@ Widget formsFieldsSection(CreateProfileNotifiers addAddressNotifier) {
           return CustomDropdownButton(
             customBtn: IgnorePointer(
               child: CustomTextField(
-                labelText: AppString.state,
-                hintText: AppString.selectSate,
+                labelText: AppString.state.tr(),
+                hintText: AppString.selectSate.tr(),
                 controller: addAddressNotifier.stateController,
                 prefixIcon: SvgPicture.asset(Assets.state),
                 suffixIcon: SvgPicture.asset(Assets.arrowDown),
@@ -156,8 +156,8 @@ Widget formsFieldsSection(CreateProfileNotifiers addAddressNotifier) {
           customBtn: IgnorePointer(
             child: CustomTextField(
               readOnly: true,
-              labelText: AppString.city,
-              hintText: AppString.selectCity,
+              labelText: AppString.city.tr(),
+              hintText: AppString.selectCity.tr(),
               controller: addAddressNotifier.cityController,
               prefixIcon: SvgPicture.asset(Assets.city),
               suffixIcon: SvgPicture.asset(Assets.arrowDown),

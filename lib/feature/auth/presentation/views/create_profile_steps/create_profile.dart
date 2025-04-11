@@ -149,33 +149,33 @@ class CreateProfile extends ConsumerWidget {
                             prefixIcon: SvgPicture.asset(
                               Assets.person,
                             ),
-                            labelText: AppString.firstName,
+                            labelText: AppString.firstName.tr(),
                             keyboardType: TextInputType.name,
                             controller:
                                 createProfileNotifier.firstNameController,
-                            hintText: AppString.enterFirstName,
+                            hintText: AppString.enterFirstName.tr(),
                             contentPadding: EdgeInsets.all(2),
                           )),
                           xWidth(20),
                           Expanded(
                               child: CustomTextField(
                             prefixIcon: SvgPicture.asset(Assets.person),
-                            labelText: AppString.lastName,
+                            labelText: AppString.lastName.tr(),
                             contentPadding: EdgeInsets.all(2),
                             controller:
                                 createProfileNotifier.lastNameController,
-                            hintText: AppString.enterLastName,
+                            hintText: AppString.enterLastName.tr(),
                           )),
                         ],
                       ),
                       CustomTextField(
                         prefixIcon: SvgPicture.asset(Assets.calling),
-                        labelText: AppString.mobileNumber,
+                        labelText: AppString.mobileNumber.tr(),
 
                         keyboardType: TextInputType.phone,
                         // maxLength: 10,
                         controller: createProfileNotifier.phoneController,
-                        hintText: AppString.enterPhoneNumber,
+                        hintText: AppString.enterPhoneNumber.tr(),
                       ),
                       CustomTextField(
                         onTap: () async {
@@ -210,7 +210,7 @@ class CreateProfile extends ConsumerWidget {
                         },
                         prefixIcon: SvgPicture.asset(Assets.cake),
                         readOnly: true,
-                        labelText: AppString.dateOfBirth,
+                        labelText: AppString.dateOfBirth.tr(),
                         hintText: "DD/MM/YYYY",
                         controller: createProfileNotifier.dobController,
 
@@ -218,10 +218,10 @@ class CreateProfile extends ConsumerWidget {
                       ),
                       CustomTextField(
                         prefixIcon: SvgPicture.asset(Assets.barcode),
-                        labelText: AppString.ninNumberOrBvnNumber,
+                        labelText: AppString.ninNumberOrBvnNumber.tr(),
                         keyboardType: TextInputType.number,
                         controller: createProfileNotifier.ninNumberController,
-                        hintText: AppString.enterNinNumberOrBvnNumber,
+                        hintText: AppString.enterNinNumberOrBvnNumber.tr(),
                       ),
                     ],
                   ),

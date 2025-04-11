@@ -31,7 +31,7 @@ class AddPropertyInfo extends ConsumerWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CustomAppBar(title: AppString.addProperty),
+            CustomAppBar(title: AppString.addProperty.tr()),
             yHeight(10.sp),
             Container(
               height: 5,
@@ -62,17 +62,17 @@ class AddPropertyInfo extends ConsumerWidget {
                   yHeight(5.h),
                   Row(
                     children: [
-                      _buildRadioButton(AppString.forSale, context),
+                      _buildRadioButton(AppString.forSale.tr(), context),
                       SizedBox(width: 20.w),
-                      _buildRadioButton(AppString.forRent, context),
+                      _buildRadioButton(AppString.forRent.tr(), context),
                     ],
                   ),
                   yHeight(5),
                   CustomDropdownButton(
                     customBtn: IgnorePointer(
                       child: CustomTextField(
-                        labelText: AppString.propertyType,
-                        hintText: AppString.selectPropertyType,
+                        labelText: AppString.propertyType.tr(),
+                        hintText: AppString.selectPropertyType.tr(),
                         controller: TextEditingController(),
                         suffixIcon: SvgPicture.asset(Assets.arrowDown),
                       ),
@@ -96,16 +96,16 @@ class AddPropertyInfo extends ConsumerWidget {
                     children: [
                       Expanded(
                         child: CustomTextField(
-                          labelText: AppString.bathroomSize,
-                          hintText: AppString.enterSq,
+                          labelText: AppString.bathroomSize.tr(),
+                          hintText: AppString.enterSq.tr(),
                           controller: TextEditingController(),
                         ),
                       ),
                       xWidth(context.width * 0.05),
                       Expanded(
                         child: CustomTextField(
-                          labelText: AppString.bedroomSize,
-                          hintText: AppString.enterSq,
+                          labelText: AppString.bedroomSize.tr(),
+                          hintText: AppString.enterSq.tr(),
                           controller: TextEditingController(),
                         ),
                       ),
@@ -161,8 +161,8 @@ class AddPropertyInfo extends ConsumerWidget {
                         ),
                         yHeight(11),
                         CustomTextField(
-                          labelText: AppString.other,
-                          hintText: AppString.enterPropertyFeature,
+                          labelText: AppString.other.tr(),
+                          hintText: AppString.enterPropertyFeature.tr(),
                           controller: TextEditingController(),
                         ),
                       ],

@@ -343,7 +343,7 @@ class PropertyDetailView extends StatelessWidget {
             yHeight(30.sp),
           },
           AppText(
-            text: AppString.propertyDetails,
+            text: AppString.propertyDetails.tr(),
             textSize: 16.sp,
             fontFamily: AppFonts.satoshiBold,
           ),
@@ -355,7 +355,7 @@ class PropertyDetailView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AppText(
-                  text: AppString.propertyType,
+                  text: AppString.propertyType.tr(),
                   textSize: 14.sp,
                   fontFamily: AppFonts.satoshiRegular,
                   lineHeight: 1.4,

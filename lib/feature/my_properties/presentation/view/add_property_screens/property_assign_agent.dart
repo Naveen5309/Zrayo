@@ -21,7 +21,7 @@ class AddPropertyAgentView extends ConsumerWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CustomAppBar(title: AppString.addProperty),
+            CustomAppBar(title: AppString.addProperty.tr()),
             yHeight(10.sp),
             Container(
               height: 5,
@@ -51,9 +51,9 @@ class AddPropertyAgentView extends ConsumerWidget {
                   yHeight(10),
                   Row(
                     children: [
-                      _buildRadioButton(AppString.yes, context),
+                      _buildRadioButton(AppString.yes.tr(), context),
                       SizedBox(width: 20.w),
-                      _buildRadioButton(AppString.no, context),
+                      _buildRadioButton(AppString.no.tr(), context),
                     ],
                   ),
                   yHeight(10.h),
@@ -67,8 +67,8 @@ class AddPropertyAgentView extends ConsumerWidget {
                   ),
                   yHeight(20.h),
                   CustomTextField(
-                    labelText: AppString.setCommissionPercentage,
-                    hintText: AppString.enterPercentage,
+                    labelText: AppString.setCommissionPercentage.tr(),
+                    hintText: AppString.enterPercentage.tr(),
                     controller: TextEditingController(),
                   ),
                   yHeight(context.height / 4.5),

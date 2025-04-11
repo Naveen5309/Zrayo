@@ -20,7 +20,7 @@ class AddPropertyBioView extends StatelessWidget {
     return Scaffold(
         body: SingleChildScrollView(
             child: Column(children: [
-      CustomAppBar(title: AppString.addProperty),
+      CustomAppBar(title: AppString.addProperty.tr()),
       yHeight(10.sp),
       Container(
         height: 5,
@@ -45,19 +45,19 @@ class AddPropertyBioView extends StatelessWidget {
               children: [
                 yHeight(0),
                 CustomTextField(
-                  labelText: AppString.tittle,
+                  labelText: AppString.tittle.tr(),
                   keyboardType: TextInputType.name,
-                  hintText: AppString.enterPropertyTittle,
+                  hintText: AppString.enterPropertyTittle.tr(),
                 ),
                 CustomTextField(
-                  labelText: AppString.price,
+                  labelText: AppString.price.tr(),
                   keyboardType: TextInputType.number,
-                  hintText: AppString.enterPropertyPrice,
+                  hintText: AppString.enterPropertyPrice.tr(),
                 ),
                 CustomTextField(
-                  labelText: AppString.addressStreet,
+                  labelText: AppString.addressStreet.tr(),
                   keyboardType: TextInputType.number,
-                  hintText: AppString.enterCompleteAddress,
+                  hintText: AppString.enterCompleteAddress.tr(),
                 ),
                 Row(
                   children: [
@@ -66,8 +66,8 @@ class AddPropertyBioView extends StatelessWidget {
                         customBtn: IgnorePointer(
                           child: CustomTextField(
                             readOnly: true,
-                            labelText: AppString.selectCity,
-                            hintText: AppString.city,
+                            labelText: AppString.selectCity.tr(),
+                            hintText: AppString.city.tr(),
                             controller: TextEditingController(),
                             suffixIcon: SvgPicture.asset(Assets.arrowDown),
                           ),
@@ -93,8 +93,8 @@ class AddPropertyBioView extends StatelessWidget {
                         customBtn: IgnorePointer(
                           child: CustomTextField(
                             readOnly: true,
-                            labelText: AppString.stateProvince,
-                            hintText: AppString.state,
+                            labelText: AppString.stateProvince.tr(),
+                            hintText: AppString.state.tr(),
                             controller: TextEditingController(),
                             suffixIcon: SvgPicture.asset(Assets.arrowDown),
                           ),
@@ -120,8 +120,8 @@ class AddPropertyBioView extends StatelessWidget {
                   children: [
                     Expanded(
                       child: CustomTextField(
-                        labelText: AppString.zIPCode,
-                        hintText: AppString.zIPCode,
+                        labelText: AppString.zIPCode.tr(),
+                        hintText: AppString.zIPCode.tr(),
                         controller: TextEditingController(),
                       ),
                     ),
@@ -131,8 +131,8 @@ class AddPropertyBioView extends StatelessWidget {
                         customBtn: IgnorePointer(
                           child: CustomTextField(
                             readOnly: true,
-                            labelText: AppString.selectCountry,
-                            hintText: AppString.country,
+                            labelText: AppString.selectCountry.tr(),
+                            hintText: AppString.country.tr(),
                             controller: TextEditingController(),
                             suffixIcon: SvgPicture.asset(Assets.arrowDown),
                           ),
@@ -194,11 +194,11 @@ class AddPropertyBioView extends StatelessWidget {
                   ),
                 ),
                 CustomTextField(
-                  labelText: AppString.description,
+                  labelText: AppString.description.tr(),
                   keyboardType: TextInputType.name,
                   maxLines: 5,
                   minLines: 5,
-                  hintText: AppString.enterDescription,
+                  hintText: AppString.enterDescription.tr(),
                 ),
                 CommonAppBtn(
                   title: AppString.next.tr(),

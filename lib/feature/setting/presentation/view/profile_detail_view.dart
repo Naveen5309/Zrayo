@@ -157,7 +157,7 @@ class ProfileDetailView extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     AppText(
-                        text: AppString.dateOfBirth,
+                        text: AppString.dateOfBirth.tr(),
                         textSize: 14.sp,
                         color: AppColor.black111111,
                         fontFamily: AppFonts.satoshiBlack),
@@ -313,7 +313,7 @@ class ProfileDetailView extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               AppText(
-                text: AppString.identityDocument,
+                text: AppString.identityDocument.tr(),
                 textSize: 19.sp,
                 fontFamily: AppFonts.satoshiBold,
               ),
