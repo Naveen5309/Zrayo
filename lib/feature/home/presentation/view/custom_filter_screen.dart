@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -50,7 +51,7 @@ class CustomFilterScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         AppText(
-                          text: "Location",
+                          text: AppString.location.tr(),
                           color: AppColor.black232323,
                         ),
                         yHeight(10.h),
@@ -70,7 +71,7 @@ class CustomFilterScreen extends StatelessWidget {
                   ),
                   yHeight(15.h),
                   CommonAppBtn(
-                    title: AppString.reset,
+                    title: AppString.reset.tr(),
                     onTap: () => back(context),
                     backGroundColor: AppColor.secondry,
                     borderColor: AppColor.transparent,

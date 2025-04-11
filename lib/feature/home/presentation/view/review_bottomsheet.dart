@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -39,13 +40,13 @@ class ReviewBottomsheet extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               AppText(
-                text: title ?? AppString.rateYourVisite,
+                text: title ?? AppString.rateYourVisite.tr(),
                 textSize: 20.sp,
                 fontFamily: AppFonts.satoshiBold,
               ),
               yHeight(10),
               AppText(
-                  text: subtitle ?? AppString.shareFeedback,
+                  text: subtitle ?? AppString.shareFeedback.tr(),
                   fontFamily: AppFonts.satoshiRegular,
                   color: AppColor.black000000.withValues(alpha: .6)),
               yHeight(20),
@@ -57,7 +58,7 @@ class ReviewBottomsheet extends ConsumerWidget {
                           size: 88,
                         ),
                         yHeight(12),
-                        AppText(text: name ?? '')
+                        AppText(text: name ?? ''.tr())
                       ],
                     )
                   : Card(
@@ -88,7 +89,7 @@ class ReviewBottomsheet extends ConsumerWidget {
               Row(
                 children: [
                   AppText(
-                    text: AppString.description,
+                    text: AppString.description.tr(),
                     color: AppColor.black232323,
                   ),
                 ],
@@ -101,7 +102,7 @@ class ReviewBottomsheet extends ConsumerWidget {
               ),
               yHeight(10),
               CommonAppBtn(
-                title: AppString.submit,
+                title: AppString.submit.tr(),
                 onTap: () {
                   back(context);
                   Utils.appBottomSheet(

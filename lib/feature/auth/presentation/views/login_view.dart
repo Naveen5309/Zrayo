@@ -170,7 +170,7 @@ class LoginView extends ConsumerWidget {
   Widget _buildLoginButton(LoginState loginState, LoginNotifier loginNotifier,
       BuildContext context) {
     return CommonAppBtn(
-      title: AppString.login,
+      title: AppString.login.tr(),
       loading:
           loginState is LoginApiLoading && loginState.route == Routes.loginView,
       onTap: () => loginNotifier.loginValidator(context),
@@ -184,7 +184,7 @@ class LoginView extends ConsumerWidget {
         Expanded(
           child: CommonAppBtn(
             prefixWidget: SvgPicture.asset(Assets.iconGoogle),
-            title: AppString.google,
+            title: AppString.google.tr(),
             backGroundColor: AppColor.orangeFFF9F5,
             borderColor: Colors.transparent,
             titleStyle: TextStyle(
@@ -199,7 +199,7 @@ class LoginView extends ConsumerWidget {
           Expanded(
             child: CommonAppBtn(
               prefixWidget: SvgPicture.asset(Assets.iconApple),
-              title: AppString.apple,
+              title: AppString.apple.tr(),
               backGroundColor: AppColor.orangeFFF9F5,
               borderColor: Colors.transparent,
               titleStyle: TextStyle(

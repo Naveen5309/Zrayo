@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -45,7 +46,7 @@ class BookYourDateView extends StatelessWidget {
                     yHeight(20.h),
 
                     AppText(
-                      text: "Choose Date",
+                      text: AppString.chooseDate,
                       fontFamily: AppFonts.satoshiBold,
                     ),
                     yHeight(15.h),
@@ -76,7 +77,7 @@ class BookYourDateView extends StatelessWidget {
                                     shape: BoxShape.circle,
                                   ),
                                   child: AppText(
-                                    text: '${date.day}',
+                                    text: '${date.day}'.tr(),
                                     color: Colors.white,
                                     fontFamily: AppFonts.satoshiBold,
                                   ),
@@ -103,7 +104,7 @@ class BookYourDateView extends StatelessWidget {
 
                     /// Available slots
                     AppText(
-                      text: "Available slots",
+                      text: AppString.availableSlots.tr(),
                       fontFamily: AppFonts.satoshiBold,
                     ),
                     yHeight(15.h),
@@ -174,7 +175,7 @@ class BookYourDateView extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               AppText(
-                text: "Total Price",
+                text: AppString.totalPrice.tr(),
                 fontFamily: AppFonts.satoshiBold,
               ),
               yHeight(6),
@@ -189,7 +190,7 @@ class BookYourDateView extends StatelessWidget {
           xWidth(30.w),
           Expanded(
             child: CommonAppBtn(
-              title: "Book Now",
+              title: AppString.bookNow.tr(),
               height: 45.h,
               onTap: () {
                 Utils.appBottomSheet(

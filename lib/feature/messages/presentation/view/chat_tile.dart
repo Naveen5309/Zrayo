@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zrayo_flutter/config/helper.dart';
@@ -64,7 +65,7 @@ class ChatTile extends StatelessWidget {
                         children: [
                           Expanded(
                             child: AppText(
-                              text: name,
+                              text: name.tr(),
                               textSize: 16.sp,
                               fontFamily: AppFonts.satoshiBold,
                               maxlines: 2,
@@ -78,7 +79,7 @@ class ChatTile extends StatelessWidget {
                         children: [
                           Expanded(
                             child: AppText(
-                                text: message,
+                                text: message.tr(),
                                 textSize: 14.sp,
                                 maxlines: 1,
                                 overflow: TextOverflow.ellipsis,
@@ -96,7 +97,7 @@ class ChatTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     AppText(
-                      text: time,
+                      text: time.tr(),
                       textSize: 12.sp,
                       fontFamily: AppFonts.satoshiRegular,
                       color: AppColor.greyAAA6B9,
@@ -110,7 +111,7 @@ class ChatTile extends StatelessWidget {
                           color: AppColor.primary,
                         ),
                         child: AppText(
-                          text: unreadCount.toString(),
+                          text: unreadCount.toString().tr(),
                           textSize: 10,
                         ),
                       ),

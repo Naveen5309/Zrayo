@@ -11,7 +11,7 @@ class PropertyFeaturesList extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AppText(
-            text: "Features",
+            text: AppString.features.tr(),
             textSize: 16.sp,
             fontFamily: AppFonts.satoshiBold,
           ),
@@ -33,7 +33,10 @@ class PropertyFeaturesList extends StatelessWidget {
                   children: [
                     SvgPicture.asset(Assets.circleCheckIcon),
                     xWidth(5),
-                    AppText(text: "Air Condition",textSize: 14.sp,),
+                    AppText(
+                      text: "Air Condition",
+                      textSize: 14.sp,
+                    ),
                   ],
                 );
               },

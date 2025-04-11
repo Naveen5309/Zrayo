@@ -1,4 +1,5 @@
 import 'package:bot_toast/bot_toast.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -49,7 +50,7 @@ void toast({required String msg, bool isError = true}) {
                       xWidth(10),
                       Flexible(
                         child: AppText(
-                          text: msg,
+                          text: msg.tr(),
                           textAlign: TextAlign.center,
                           textSize: 15.sp,
                           fontFamily: AppFonts.satoshiBold,

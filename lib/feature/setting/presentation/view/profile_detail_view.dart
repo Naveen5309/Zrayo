@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -68,7 +69,7 @@ class ProfileDetailView extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               AppText(
-                text: AppString.personalDetails,
+                text: AppString.personalDetails.tr(),
                 textSize: 19.sp,
                 fontFamily: AppFonts.satoshiBold,
               ),
@@ -93,14 +94,14 @@ class ProfileDetailView extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     AppText(
-                      text: AppString.name,
+                      text: AppString.name.tr(),
                       textSize: 14.sp,
                       color: AppColor.black111111,
                       fontFamily: AppFonts.satoshiBlack,
                     ),
                     yHeight(context.height * 0.01),
                     AppText(
-                      text: (userModel?.fullName ?? ""),
+                      text: (userModel?.fullName ?? "".tr()),
                       textSize: 14.sp,
                       color: AppColor.black111111,
                     ),
@@ -112,13 +113,13 @@ class ProfileDetailView extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     AppText(
-                        text: AppString.contactNumber,
+                        text: AppString.contactNumber.tr(),
                         textSize: 14.sp,
                         color: AppColor.black111111,
                         fontFamily: AppFonts.satoshiBlack),
                     yHeight(context.height * 0.01),
                     AppText(
-                      text: userModel?.phoneNumber ?? "",
+                      text: userModel?.phoneNumber ?? "".tr(),
                       textSize: 14.sp,
                       color: AppColor.black111111,
                     ),
@@ -134,14 +135,14 @@ class ProfileDetailView extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     AppText(
-                      text: AppString.email,
+                      text: AppString.email.tr(),
                       textSize: 14.sp,
                       color: AppColor.black111111,
                       fontFamily: AppFonts.satoshiBlack,
                     ),
                     yHeight(context.height * 0.01),
                     AppText(
-                      text: userModel?.email ?? "",
+                      text: userModel?.email ?? "".tr(),
                       maxlines: 2,
                       textSize: 14.sp,
                       color: AppColor.black111111,
@@ -162,7 +163,8 @@ class ProfileDetailView extends ConsumerWidget {
                         fontFamily: AppFonts.satoshiBlack),
                     yHeight(context.height * 0.01),
                     AppText(
-                      text: formatDOBDDMMYYYY(userModel?.dob ?? DateTime.now()),
+                      text: formatDOBDDMMYYYY(userModel?.dob ?? DateTime.now())
+                          .tr(),
                       textSize: 14.sp,
                       color: AppColor.black111111,
                     ),
@@ -190,7 +192,7 @@ class ProfileDetailView extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               AppText(
-                text: AppString.address,
+                text: AppString.address.tr(),
                 textSize: 19.sp,
                 fontFamily: AppFonts.satoshiBold,
               ),
@@ -213,7 +215,7 @@ class ProfileDetailView extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     AppText(
-                      text: AppString.country,
+                      text: AppString.country.tr(),
                       textSize: 14.sp,
                       color: AppColor.black111111,
                       fontFamily: AppFonts.satoshiBlack,
@@ -221,7 +223,7 @@ class ProfileDetailView extends ConsumerWidget {
                     yHeight(context.height * 0.01),
                     AppText(
                       maxlines: 2,
-                      text: userDetail?.country ?? "",
+                      text: userDetail?.country ?? "".tr(),
                       textSize: 14.sp,
                       color: AppColor.black111111,
                     ),
@@ -232,14 +234,14 @@ class ProfileDetailView extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AppText(
-                      text: AppString.state,
+                      text: AppString.state.tr(),
                       textSize: 14.sp,
                       color: AppColor.black111111,
                       fontFamily: AppFonts.satoshiBlack),
                   yHeight(context.height * 0.01),
                   AppText(
                     maxlines: 2,
-                    text: userDetail?.state ?? "",
+                    text: userDetail?.state ?? "".tr(),
                     textSize: 14.sp,
                     color: AppColor.black111111,
                   ),
@@ -254,14 +256,14 @@ class ProfileDetailView extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AppText(
-                    text: AppString.city,
+                    text: AppString.city.tr(),
                     textSize: 14.sp,
                     color: AppColor.black111111,
                     fontFamily: AppFonts.satoshiBlack,
                   ),
                   yHeight(context.height * 0.01),
                   AppText(
-                    text: userDetail?.city ?? "",
+                    text: userDetail?.city ?? "".tr(),
                     textSize: 14.sp,
                     color: AppColor.black111111,
                   ),
@@ -276,14 +278,15 @@ class ProfileDetailView extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AppText(
-                      text: AppString.completeAddress,
+                      text: AppString.completeAddress.tr(),
                       textSize: 14.sp,
                       color: AppColor.black111111,
                       fontFamily: AppFonts.satoshiBlack),
                   yHeight(context.height * 0.01),
                   AppText(
                     text:
-                        '${userDetail?.address},${userDetail?.city}, ${userDetail?.state},${userDetail?.country}',
+                        '${userDetail?.address},${userDetail?.city}, ${userDetail?.state},${userDetail?.country}'
+                            .tr(),
                     textSize: 14.sp,
                     lineHeight: 1.2,
                     color: AppColor.black111111,

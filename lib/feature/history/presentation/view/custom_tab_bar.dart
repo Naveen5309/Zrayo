@@ -43,7 +43,7 @@ class CustomTabBar extends StatelessWidget {
             borderRadius: BorderRadius.circular(6)),
         alignment: Alignment.center,
         child: AppText(
-          text: title,
+          text: title.tr(),
           fontFamily: isSelected ? AppFonts.satoshiBold : null,
           color: isSelected ? null : AppColor.color8E8E8E,
         ),

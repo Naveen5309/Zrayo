@@ -18,7 +18,7 @@ class SuccessSheet extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             AppText(
-              text: title ?? '',
+              text: title ?? ''.tr(),
               //  "Booked Successfully!",
               textAlign: TextAlign.center,
               textSize: 20.sp,
@@ -28,7 +28,7 @@ class SuccessSheet extends StatelessWidget {
         ),
         yHeight(10.sp),
         AppText(
-          text: subTitle ?? '',
+          text: subTitle ?? ''.tr(),
           // "Your property visit is successfully booked. Please reach at the location on time.",
           fontFamily: AppFonts.satoshiRegular,
           textAlign: TextAlign.center, textSize: 14.sp,
@@ -37,7 +37,7 @@ class SuccessSheet extends StatelessWidget {
         ),
         yHeight(20.sp),
         CommonAppBtn(
-          title: "Go Back",
+          title: AppString.goBack.tr(),
           onTap: onTap ??
               () {
                 back(context);

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zrayo_flutter/config/helper.dart';
@@ -18,7 +19,7 @@ class CommonPropertyTypeFilterContent extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             AppText(
-              text: "Filter Properties",
+              text: AppString.filterProperties.tr(),
               fontFamily: AppFonts.satoshiBold,
               textSize: 18.sp,
             ),
@@ -33,7 +34,7 @@ class CommonPropertyTypeFilterContent extends StatelessWidget {
             propertyTypeBox({"title": "Rental"}, false),
             yHeight(20.h),
             CommonAppBtn(
-              title: AppString.apply,
+              title: AppString.apply.tr(),
               onTap: () => back(context),
             ),
             yHeight(10),

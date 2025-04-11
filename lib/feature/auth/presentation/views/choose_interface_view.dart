@@ -40,14 +40,14 @@ class ChooseInterfaceView extends StatelessWidget {
             ),
             yHeight(0),
             CommonAppBtn(
-              title: AppString.customer,
+              title: AppString.customer.tr(),
               onTap: () {
                 Getters.getLocalStorage.saveUserType(UserTypeEnum.customer);
                 toNamed(context, Routes.loginView);
               },
             ),
             CommonAppBtn(
-              title: AppString.agent,
+              title: AppString.agent.tr(),
               borderColor: AppColor.transparent,
               backGroundColor: AppColor.secondry,
               textColor: AppColor.primary,

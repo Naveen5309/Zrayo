@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -76,7 +77,7 @@ class HistoryView extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return PropertyBox(
                         showFavorite: false,
-                        showSoldOut:true,
+                        showSoldOut: true,
                         onTap: () => toNamed(context, Routes.propertyDetailView,
                             args: {"isSold": true}),
                       );

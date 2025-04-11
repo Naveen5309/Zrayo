@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zrayo_flutter/config/helper.dart';
@@ -81,7 +82,7 @@ class CustomTextField extends StatelessWidget {
           Row(
             children: [
               AppText(
-                text: labelText ?? "",
+                text: labelText ?? "".tr(),
                 color: AppColor.black232323,
                 fontFamily: AppFonts.satoshiMedium,
               ),

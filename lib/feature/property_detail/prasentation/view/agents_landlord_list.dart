@@ -11,7 +11,7 @@ class AgentsLandlordList extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AppText(
-            text: "List of Agents & Landlord ",
+            text: AppString.listofAgentsLandlord.tr(),
             textSize: 16.sp,
             fontFamily: AppFonts.satoshiBold,
           ),
@@ -80,7 +80,7 @@ class AgentsLandlordList extends StatelessWidget {
                             padding: const EdgeInsets.all(6.0),
                             child: AppText(
                               color: AppColor.primary,
-                              text: AppString.landloard,
+                              text: AppString.landloard.tr(),
                               textSize: 8.sp,
                             ),
                           ),
@@ -121,19 +121,19 @@ class AgentsLandlordList extends StatelessWidget {
                   AppText(
                     textSize: 14.sp,
                     fontFamily: AppFonts.satoshiRegular,
-                    text: AppString.giveyourReviews,
+                    text: AppString.giveyourReviews.tr(),
                   ),
                   yHeight(5),
                   AppText(
                     fontFamily: AppFonts.satoshiBold,
-                    text: AppString.giveRatingtoLandloard,
+                    text: AppString.giveRatingtoLandloard.tr(),
                   )
                 ],
               ),
               CommonAppBtn(
                 width: screenWidth(context) / 4.5,
                 height: screenHeight(context) * 0.059,
-                title: AppString.giveRatings,
+                title: AppString.giveRatings.tr(),
                 onTap: () => Utils.appBottomSheet(
                     context: context,
                     widget: ReviewBottomsheet(
@@ -147,8 +147,7 @@ class AgentsLandlordList extends StatelessWidget {
             ],
           ),
           // Divider(),
-        }else
-        if (!isLast) ...{
+        } else if (!isLast) ...{
           yHeight(5),
           Divider(),
         },

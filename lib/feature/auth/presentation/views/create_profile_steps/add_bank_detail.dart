@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -99,8 +100,9 @@ class AddBankDetail extends ConsumerWidget {
             else
               yHeight(context.height / 2.5),
             CommonAppBtn(
-              title:
-                  fromSettings ? AppString.update : AppString.saveAndContinue,
+              title: fromSettings
+                  ? AppString.update
+                  : AppString.saveAndContinue.tr(),
               margin: const EdgeInsets.all(16),
               loading: createProfileState is CreateProfileApiLoading &&
                   createProfileState.route == Routes.addBankDetail,
@@ -110,7 +112,7 @@ class AddBankDetail extends ConsumerWidget {
             ),
             if (!fromSettings && !Getters.isAgent())
               CommonAppBtn(
-                  title: AppString.skip,
+                  title: AppString.skip.tr(),
                   margin:
                       const EdgeInsets.only(bottom: 16, left: 16, right: 16),
                   borderColor: AppColor.transparent,

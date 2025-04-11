@@ -66,7 +66,7 @@ class ForgotPasswordSheet extends ConsumerWidget {
           ),
           yHeight(10.sp),
           CommonAppBtn(
-            title: AppString.submit,
+            title: AppString.submit.tr(),
             loading: loginState is LoginApiLoading &&
                 loginState.route == Routes.forgetView,
             onTap: () {

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -49,7 +50,7 @@ class PlanCard extends StatelessWidget {
                 Row(
                   children: [
                     AppText(
-                      text: price,
+                      text: price.tr(),
                       textSize: 24.sp,
                       fontWeight: FontWeight.w900,
                       fontFamily: AppFonts.satoshiBold,
@@ -57,7 +58,7 @@ class PlanCard extends StatelessWidget {
                     ),
                     if (isHighlighted)
                       AppText(
-                        text: '/month',
+                        text: AppString.month.tr(),
                         fontFamily: AppFonts.satoshiMedium,
                         fontWeight: FontWeight.w600,
                         color: AppColor.black232323,
@@ -78,7 +79,7 @@ class PlanCard extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 11, vertical: 5),
                           child: AppText(
-                            text: title,
+                            text: title.tr(),
                             color: AppColor.primary,
                             textSize: 12.sp,
                           ),
@@ -87,7 +88,7 @@ class PlanCard extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 11, vertical: 5),
                           child: AppText(
-                              text: title,
+                              text: title.tr(),
                               fontFamily: AppFonts.satoshiMedium,
                               color: AppColor.whiteFFFFFF,
                               textSize: 12.sp),
@@ -107,14 +108,14 @@ class PlanCard extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 4.0),
                 child: AppText(
                   fontFamily: AppFonts.satoshiBold,
-                  text: trialText!,
+                  text: trialText!.tr(),
                   textSize: 11.sp,
                   color: AppColor.black232323,
                 ),
               ),
             yHeight(15),
             AppText(
-              text: description,
+              text: description.tr(),
               color: AppColor.black4A4A4A,
               textSize: 13.sp,
               lineHeight: 1.1,

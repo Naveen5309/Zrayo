@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -41,14 +42,14 @@ class LogoutConfirmationView extends ConsumerWidget {
           ),
           yHeight(context.height * 0.03),
           AppText(
-            text: AppString.logout,
+            text: AppString.logout.tr(),
             fontFamily: AppFonts.satoshiBold,
             textSize: 22.sp,
             textAlign: TextAlign.center,
           ),
           yHeight(context.height * 0.02),
           AppText(
-            text: AppString.areYouSureLogOut,
+            text: AppString.areYouSureLogOut.tr(),
             textAlign: TextAlign.center,
             color: AppColor.grey646464,
           ),
@@ -66,7 +67,7 @@ class LogoutConfirmationView extends ConsumerWidget {
                     onTap: () {
                       Navigator.pop(context);
                     },
-                    title: AppString.cancel,
+                    title: AppString.cancel.tr(),
                     borderColor: AppColor.transparent,
                     width: context.width,
                   ),
@@ -81,7 +82,7 @@ class LogoutConfirmationView extends ConsumerWidget {
                       ref.read(createProfileProvider.notifier).clearValues();
                       settingNotifier.logout();
                     },
-                    title: AppString.logout,
+                    title: AppString.logout.tr(),
                     width: context.width,
                   ),
                 ),

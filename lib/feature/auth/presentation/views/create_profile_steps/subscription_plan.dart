@@ -90,7 +90,7 @@ class SubscriptionPlanView extends StatelessWidget {
                 ),
                 yHeight(context.height / 7),
                 CommonAppBtn(
-                  title: AppString.continueText,
+                  title: AppString.continueText.tr(),
                   onTap: () => fromSettings
                       ? back(context)
                       : offAllNamed(context, Routes.dashboard),

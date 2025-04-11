@@ -14,7 +14,7 @@ class NotificationView extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          CustomAppBar(title: "Notification"),
+          CustomAppBar(title: AppString.notification.tr()),
           yHeight(10),
           Expanded(
             child: ListView.builder(
@@ -72,7 +72,7 @@ class NotificationView extends StatelessWidget {
                   ),
                 ),
                 AppText(
-                  text: "1 week ago".tr(),
+                  text: AppString.oneWeekAgo.tr(),
                   fontFamily: AppFonts.satoshiBold,
                   textSize: 12.sp,
                 ).align(alignment: Alignment.centerRight),

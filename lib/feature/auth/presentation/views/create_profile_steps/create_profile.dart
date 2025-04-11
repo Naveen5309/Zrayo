@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -227,8 +228,8 @@ class CreateProfile extends ConsumerWidget {
                   yHeight(30.h),
                   CommonAppBtn(
                       title: fromSettings
-                          ? AppString.update
-                          : AppString.saveAndContinue,
+                          ? AppString.update.tr()
+                          : AppString.saveAndContinue.tr(),
                       loading: createProfileState is CreateProfileApiLoading &&
                           createProfileState.route == Routes.createProfile,
                       onTap: () => createProfileNotifier.createProfileValidator(

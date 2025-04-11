@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -43,7 +44,7 @@ class AddPropertyAgentView extends ConsumerWidget {
                 children: [
                   yHeight(20.h),
                   AppText(
-                    text: AppString.assignAgent,
+                    text: AppString.assignAgent.tr(),
                     textSize: 15.sp,
                     fontFamily: AppFonts.satoshiBold,
                   ),
@@ -72,7 +73,7 @@ class AddPropertyAgentView extends ConsumerWidget {
                   ),
                   yHeight(context.height / 4.5),
                   CommonAppBtn(
-                    title: AppString.next,
+                    title: AppString.next.tr(),
                     onTap: () {
                       toNamed(context, Routes.featurePrpertyView);
                     },
@@ -102,7 +103,7 @@ class AddPropertyAgentView extends ConsumerWidget {
           ),
           xWidth(8),
           AppText(
-            text: name,
+            text: name.tr(),
             textSize: 14.sp,
           ),
           xWidth(8),
@@ -142,7 +143,7 @@ class AddPropertyAgentView extends ConsumerWidget {
               }
             },
             child: AppText(
-              text: label,
+              text: label.tr(),
               textSize: 14.sp,
               color: AppColor.black4A4A4A,
             ),
@@ -159,13 +160,13 @@ class AddPropertyAgentView extends ConsumerWidget {
         children: [
           yHeight(12),
           AppText(
-            text: AppString.chooseAgents,
+            text: AppString.chooseAgents.tr(),
             textSize: 20.sp,
             fontFamily: AppFonts.satoshiBold,
           ),
           yHeight(12),
           AppText(
-            text: AppString.slectAgent,
+            text: AppString.slectAgent.tr(),
             fontFamily: AppFonts.satoshiRegular,
             // textSize: 13.sp,
             lineHeight: 1.2,
@@ -223,7 +224,7 @@ class AddPropertyAgentView extends ConsumerWidget {
           ),
           // yHeight(15),
           CommonAppBtn(
-            title: AppString.continueText,
+            title: AppString.continueText.tr(),
             onTap: () => back(context),
           )
         ],

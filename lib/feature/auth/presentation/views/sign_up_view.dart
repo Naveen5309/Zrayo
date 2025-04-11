@@ -70,7 +70,7 @@ class SignUpView extends ConsumerWidget {
                     formsFieldsSection(signUpNotifier),
                     yHeight(context.height * 0.02),
                     CommonAppBtn(
-                      title: AppString.signUp,
+                      title: AppString.signUp.tr(),
                       loading: signUpState is SignUpApiLoading,
                       onTap: () => signUpNotifier.signUpValidator(context),
                       // onTap: () => toNamed(context, Routes.createProfile),

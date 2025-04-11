@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -74,7 +75,7 @@ class CameraBottomSheetView extends StatelessWidget {
         Align(
           alignment: Alignment.center,
           child: AppText(
-            text: title,
+            text: title.tr(),
             maxlines: 1,
             textAlign: TextAlign.center,
             textSize: 23.sp,
@@ -107,7 +108,7 @@ class CameraBottomSheetView extends StatelessWidget {
                     ),
                   ),
                   AppText(
-                    text: AppString.takePhoto,
+                    text: AppString.takePhoto.tr(),
                     textAlign: TextAlign.center,
                     fontFamily: AppFonts.satoshiMedium,
                     maxlines: 1,
@@ -151,7 +152,7 @@ class CameraBottomSheetView extends StatelessWidget {
                     ),
                   ),
                   AppText(
-                    text: AppString.uploadFromGallery,
+                    text: AppString.uploadFromGallery.tr(),
                     textAlign: TextAlign.center,
                     fontWeight: FontWeight.w600,
                     maxlines: 1,
