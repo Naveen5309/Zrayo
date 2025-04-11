@@ -22,7 +22,7 @@ class AgentHomeView extends StatelessWidget {
             children: [
               yHeight(25.h),
               AppText(
-                text: "Dashboard",
+                text: AppString.dashboard.tr(),
                 fontFamily: AppFonts.satoshiBold,
                 textSize: 17.sp,
               ),
@@ -71,15 +71,17 @@ class AgentHomeView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   AppText(
-                    text: "Recently Assigned Properties",
+                    text: AppString.recentlyAssignedProperties.tr(),
                     fontFamily: AppFonts.satoshiBold,
                     textSize: 17.sp,
                   ),
                   InkWell(
-                    onTap: () => toNamed(context, Routes.customViewAllScreen,
-                        args: {"title": "Assigned Properties",}),
+                    onTap: () =>
+                        toNamed(context, Routes.customViewAllScreen, args: {
+                      "title": AppString.assignedProperties,
+                    }),
                     child: AppText(
-                      text: "See all",
+                      text: AppString.seeAll.tr(),
                       color: AppColor.primary,
                       fontFamily: AppFonts.satoshiBold,
                     ),
@@ -136,7 +138,7 @@ class AgentHomeView extends StatelessWidget {
                 xWidth(5),
                 Expanded(
                   child: AppText(
-                    text: title,
+                    text: title.tr(),
                     textSize: 12.sp,
                   ),
                 ),
@@ -144,7 +146,7 @@ class AgentHomeView extends StatelessWidget {
             ),
             yHeight(10),
             AppText(
-              text: value,
+              text: value.tr(),
               fontFamily: AppFonts.satoshiBold,
               textSize: 30.sp,
             ),

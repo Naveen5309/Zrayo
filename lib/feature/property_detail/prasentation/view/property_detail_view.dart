@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -195,28 +196,28 @@ class PropertyDetailView extends StatelessWidget {
           ),
           if (isVisit) ...{
             CommonAppBtn(
-              title: "Cancel Booking",
+              title: AppString.cancelBooking.tr(),
               backGroundColor: AppColor.secondry,
               textColor: AppColor.primary,
               borderColor: AppColor.transparent,
               margin: EdgeInsets.all(16.sp),
             ),
             CommonAppBtn(
-              title: "Message",
+              title: AppString.message.tr(),
               margin: EdgeInsets.symmetric(horizontal: 16.sp),
               onTap: () => toNamed(context, Routes.chatView),
             ),
           },
           if (!Getters.isAgent() && !isVisit && !isMyProperty) ...{
             CommonAppBtn(
-                title: "Request a tour at \$20",
+                title: AppString.requestaTour.tr(),
                 margin: EdgeInsets.all(16.sp),
                 onTap: () => Utils.appBottomSheet(
                     context: context,
                     widget: bottomSheet(context),
                     isScrolled: true)),
             CommonAppBtn(
-              title: "Message",
+              title: AppString.message.tr(),
               backGroundColor: AppColor.secondry,
               textColor: AppColor.primary,
               borderColor: AppColor.transparent,
@@ -226,16 +227,15 @@ class PropertyDetailView extends StatelessWidget {
           },
           if (isMyProperty) ...{
             CommonAppBtn(
-              title: "Edit",
+              title: AppString.edit.tr(),
               backGroundColor: AppColor.secondry,
               textColor: AppColor.primary,
               borderColor: AppColor.transparent,
               margin: EdgeInsets.all(16.sp),
               prefixWidget: SvgPicture.asset(Assets.editt),
-
             ),
             CommonAppBtn(
-              title: "Property Sold",
+              title: AppString.propertySold.tr(),
               margin: EdgeInsets.symmetric(horizontal: 16.sp),
               onTap: () {
                 Utils.appBottomSheet(
@@ -247,8 +247,9 @@ class PropertyDetailView extends StatelessWidget {
                             context: context,
                             isDismissible: false,
                             widget: SuccessSheet(
-                              title: "Sold Successfully!",
-                              subTitle: "Your property is successfully sold.",
+                              title: AppString.soldSuccessfully.tr(),
+                              subTitle:
+                                  AppString.yourPropertyisSuccessfullySold.tr(),
                               onTap: () {
                                 back(context);
                                 back(context);
@@ -317,7 +318,7 @@ class PropertyDetailView extends StatelessWidget {
                         color: AppColor.blue046EC4.withValues(alpha: .10),
                         borderRadius: BorderRadius.circular(6)),
                     child: AppText(
-                      text: "For Sale",
+                      text: AppString.forSale.tr(),
                       textSize: 12.sp,
                       color: AppColor.blue046EC4,
                     ),
@@ -342,7 +343,7 @@ class PropertyDetailView extends StatelessWidget {
             yHeight(30.sp),
           },
           AppText(
-            text: "Property Details",
+            text: AppString.propertyDetails,
             textSize: 16.sp,
             fontFamily: AppFonts.satoshiBold,
           ),
@@ -354,7 +355,7 @@ class PropertyDetailView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AppText(
-                  text: "Property type",
+                  text: AppString.propertyType,
                   textSize: 14.sp,
                   fontFamily: AppFonts.satoshiRegular,
                   lineHeight: 1.4,
@@ -374,7 +375,7 @@ class PropertyDetailView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         AppText(
-                          text: "Bath",
+                          text: AppString.bath,
                           textSize: 14.sp,
                           fontFamily: AppFonts.satoshiRegular,
                           lineHeight: 1.4,
@@ -392,7 +393,7 @@ class PropertyDetailView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         AppText(
-                          text: "Bed",
+                          text: AppString.bed.tr(),
                           textSize: 14.sp,
                           fontFamily: AppFonts.satoshiRegular,
                           lineHeight: 1.4,
@@ -441,7 +442,7 @@ class PropertyDetailView extends StatelessWidget {
                                     padding: const EdgeInsets.all(6.0),
                                     child: AppText(
                                       color: AppColor.primary,
-                                      text: AppString.landloard,
+                                      text: AppString.landloard.tr(),
                                       textSize: 8.sp,
                                     ),
                                   ),
@@ -507,13 +508,13 @@ Widget bottomSheet(BuildContext context) {
     children: [
       yHeight(12),
       AppText(
-        text: AppString.chooseYourAgent,
+        text: AppString.chooseYourAgent.tr(),
         textSize: 20.sp,
         fontFamily: AppFonts.satoshiBold,
       ),
       yHeight(12),
       AppText(
-        text: AppString.minimumAgentAndFeedback,
+        text: AppString.minimumAgentAndFeedback.tr(),
         fontFamily: AppFonts.satoshiRegular,
         lineHeight: 1.2,
         textSize: 14.sp,
@@ -566,7 +567,7 @@ Widget bottomSheet(BuildContext context) {
       ),
       yHeight(15),
       CommonAppBtn(
-          title: AppString.continueText,
+          title: AppString.continueText.tr(),
           onTap: () {
             back(context);
             toNamed(context, Routes.bookYourDateView);

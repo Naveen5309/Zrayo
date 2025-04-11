@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -50,8 +51,8 @@ class FeaturePrpertyView extends ConsumerWidget {
                         Container(
                           margin: EdgeInsets.symmetric(horizontal: 16),
                           width: context.width,
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 22, vertical: 16),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 22, vertical: 16),
                           decoration: BoxDecoration(
                             color: AppColor.whiteFFFFFF,
                             borderRadius: BorderRadius.circular(12),
@@ -76,7 +77,7 @@ class FeaturePrpertyView extends ConsumerWidget {
                               ),
                               yHeight(8),
                               AppText(
-                                text: AppString.increaseVisibilityBuyer,
+                                text: AppString.increaseVisibilityBuyer.tr(),
                                 textAlign: TextAlign.center,
                                 color:
                                     AppColor.black000000.withValues(alpha: 0.6),
@@ -127,7 +128,7 @@ class FeaturePrpertyView extends ConsumerWidget {
             child: Column(
               children: [
                 CommonAppBtn(
-                  title: AppString.buyNow,
+                  title: AppString.buyNow.tr(),
                   onTap: () {
                     Utils.appBottomSheet(
                         context: context,
@@ -136,27 +137,23 @@ class FeaturePrpertyView extends ConsumerWidget {
                           subTitle: AppString.propertyUploaded,
                           onTap: () {
                             offAllNamed(context, Routes.dashboard);
-
                           },
                         ));
                   },
                 ),
                 yHeight(18),
                 CommonAppBtn(
-                  title: AppString.skip,
+                  title: AppString.skip.tr(),
                   textColor: AppColor.primary,
                   onTap: () {
                     offAllNamed(context, Routes.dashboard);
-
                   },
-                  backGroundColor:
-                  AppColor.orangeEA8913.withValues(alpha: .24),
+                  backGroundColor: AppColor.orangeEA8913.withValues(alpha: .24),
                 ),
                 yHeight(20.h),
               ],
             ),
           )
-          
         ],
       ),
     );

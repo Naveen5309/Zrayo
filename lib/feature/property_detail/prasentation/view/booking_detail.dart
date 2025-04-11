@@ -1,4 +1,5 @@
 part of 'property_detail_view.dart';
+
 class BookingDetail extends StatelessWidget {
   const BookingDetail({super.key});
 
@@ -8,7 +9,7 @@ class BookingDetail extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         AppText(
-          text: "Booking",
+          text: AppString.booking.tr(),
           textSize: 16.sp,
           fontFamily: AppFonts.satoshiBold,
         ),
@@ -34,7 +35,6 @@ class BookingDetail extends StatelessWidget {
                           fontFamily: AppFonts.satoshiBold,
                           // textSize: 18.sp,
                         ),
-
                         yHeight(3),
                         AppText(
                           text: "nevaeh.simmons@example.com",
@@ -61,7 +61,7 @@ class BookingDetail extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AppText(
-                        text: "Date",
+                        text: AppString.date.tr(),
                         textSize: 14.sp,
                         fontFamily: AppFonts.satoshiRegular,
                         lineHeight: 1.4,
@@ -79,7 +79,7 @@ class BookingDetail extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AppText(
-                        text: "Time",
+                        text: AppString.time.tr(),
                         textSize: 14.sp,
                         fontFamily: AppFonts.satoshiRegular,
                         lineHeight: 1.4,
@@ -97,7 +97,7 @@ class BookingDetail extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AppText(
-                        text: "Viewing Fees",
+                        text: AppString.viewingFees.tr(),
                         textSize: 14.sp,
                         fontFamily: AppFonts.satoshiRegular,
                         lineHeight: 1.4,

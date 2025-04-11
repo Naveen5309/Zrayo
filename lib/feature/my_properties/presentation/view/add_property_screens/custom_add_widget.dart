@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -31,7 +32,7 @@ class CustomAddWidget extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 AppText(
-                  text: AppString.uploadImage,
+                  text: AppString.uploadImage.tr(),
                   textSize: 11.sp,
                   color: AppColor.color7A7A7A,
                 ),

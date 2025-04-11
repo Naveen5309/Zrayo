@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -63,7 +64,7 @@ class ContactUsView extends ConsumerWidget {
                     ),
                     yHeight(context.height * 0.08),
                     CommonAppBtn(
-                      title: AppString.submit,
+                      title: AppString.submit.tr(),
                       loading: contactUsViewState is SettingApiLoading,
                       onTap: () =>
                           contactUsNotifier.contactUsValidator(context),

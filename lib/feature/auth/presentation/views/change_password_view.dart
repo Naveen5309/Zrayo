@@ -113,7 +113,7 @@ class ChangePasswordView extends ConsumerWidget {
           ),
           CommonAppBtn(
             margin: EdgeInsets.all(16.0),
-            title: AppString.change,
+            title: AppString.change.tr(),
             loading: changePassState is LoginApiLoading &&
                 changePassState.route == Routes.changePasswordView,
             onTap: () {

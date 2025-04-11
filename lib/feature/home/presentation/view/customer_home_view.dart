@@ -56,16 +56,16 @@ class CustomerHomeView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       AppText(
-                        text: "Featured Properties",
+                        text: AppString.featuredProperties.tr(),
                         fontFamily: AppFonts.satoshiBold,
                         textSize: 17.sp,
                       ),
                       InkWell(
                         onTap: () => toNamed(
                             context, Routes.customViewAllScreen,
-                            args: {"title": "Featured Properties"}),
+                            args: {"title": AppString.featuredProperties.tr()}),
                         child: AppText(
-                          text: "See all",
+                          text: AppString.seeAll.tr(),
                           color: AppColor.primary,
                           fontFamily: AppFonts.satoshiBold,
                         ),
@@ -92,16 +92,16 @@ class CustomerHomeView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       AppText(
-                        text: "Nearby Properties",
+                        text: AppString.nearbyProperties.tr(),
                         fontFamily: AppFonts.satoshiBold,
                         textSize: 17.sp,
                       ),
                       InkWell(
                         onTap: () => toNamed(
                             context, Routes.customViewAllScreen,
-                            args: {"title": "Nearby Properties"}),
+                            args: {"title": AppString.nearbyProperties.tr()}),
                         child: AppText(
-                          text: "See all",
+                          text: AppString.seeAll.tr(),
                           color: AppColor.primary,
                           fontFamily: AppFonts.satoshiBold,
                         ),

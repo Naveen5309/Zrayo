@@ -163,7 +163,7 @@ class AddPaymentCard extends StatelessWidget {
                   CommonAppBtn(
                     title: fromSettings
                         ? AppString.update
-                        : AppString.saveAndContinue,
+                        : AppString.saveAndContinue.tr(),
                     onTap: () => fromSettings
                         ? back(context)
                         : toNamed(context, Routes.subscriptionPlanView),

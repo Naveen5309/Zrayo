@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -27,14 +28,14 @@ class CommonYouSureSheetContent extends StatelessWidget {
           ),
           yHeight(context.height * 0.03),
           AppText(
-            text: AppString.areYouSure,
+            text: AppString.areYouSure.tr(),
             fontFamily: AppFonts.satoshiBold,
             textSize: 22.sp,
             textAlign: TextAlign.center,
           ),
           yHeight(context.height * 0.02),
           AppText(
-            text: AppString.doYouWantToMarkPropertyAsSold,
+            text: AppString.doYouWantToMarkPropertyAsSold.tr(),
             textAlign: TextAlign.center,
             color: AppColor.grey646464,
           ),
@@ -51,7 +52,7 @@ class CommonYouSureSheetContent extends StatelessWidget {
                     onTap: () {
                       back(context);
                     },
-                    title: AppString.no,
+                    title: AppString.no.tr(),
                     borderColor: AppColor.transparent,
                     width: context.width,
                   ),
@@ -62,7 +63,7 @@ class CommonYouSureSheetContent extends StatelessWidget {
                 Expanded(
                   child: CommonAppBtn(
                     onTap: onYes,
-                    title: AppString.yes,
+                    title: AppString.yes.tr(),
                     width: context.width,
                   ),
                 ),

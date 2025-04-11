@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -48,7 +49,7 @@ class SearchPropertyView extends ConsumerWidget {
                     child: Column(
                       children: [
                         AppText(
-                          text: AppString.wanttoSellProperty,
+                          text: AppString.wanttoSellProperty.tr(),
                           textSize: 15.sp,
                         ),
                         yHeight(10),
@@ -73,7 +74,7 @@ class SearchPropertyView extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         AppText(
-                          text: "Location",
+                          text: AppString.location.tr(),
                           color: AppColor.black232323,
                         ),
                         yHeight(10.h),
@@ -150,7 +151,7 @@ class SearchPropertyView extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         AppText(
-                          text: "Property Type",
+                          text: AppString.propertyType.tr(),
                           color: AppColor.black232323,
                         ),
                         yHeight(15.h),
@@ -180,7 +181,7 @@ class SearchPropertyView extends ConsumerWidget {
                   yHeight(20),
 
                   CommonAppBtn(
-                    title: AppString.search,
+                    title: AppString.search.tr(),
                     onTap: () => toNamed(context, Routes.searchResultsView),
                   )
                 ],
@@ -246,7 +247,7 @@ Widget _buildRadioButton(String label, BuildContext context) {
         GestureDetector(
           onTap: () {},
           child: AppText(
-            text: label,
+            text: label.tr(),
             textSize: 14.sp,
             color: AppColor.black4A4A4A.withValues(alpha: .6),
           ),

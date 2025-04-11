@@ -12,7 +12,7 @@ class PriceSlider extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         AppText(
-          text: "Price(\$500 - \$10000)",
+          text: "Price(\$500 - \$10000)".tr(),
           color: AppColor.black232323,
         ),
         yHeight(45.h),

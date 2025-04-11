@@ -65,8 +65,7 @@ class SettingView extends ConsumerWidget {
                             .read(settingViewProvider.notifier)
                             .notificationStatusChange(notificationValue: value);
                       },
-                      title: AppString.notifications
-                      ,
+                      title: AppString.notifications,
                     );
                   }),
                   SettingTile(
@@ -181,7 +180,7 @@ Widget profileSection(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AppText(
-                  text: userModel?.fullName?.toTitleCase() ?? "",
+                  text: userModel?.fullName?.toTitleCase() ?? "".tr(),
                   textSize: 15.sp,
                   fontWeight: FontWeight.w500,
                 ),
@@ -189,7 +188,7 @@ Widget profileSection(
                 5.verticalSpace,
                 //SUBTITLE
                 AppText(
-                  text: userModel?.email ?? "",
+                  text: userModel?.email ?? "".tr(),
                   textSize: 12.sp,
                   color: AppColor.grey646464,
                   fontWeight: FontWeight.w400,
@@ -235,7 +234,7 @@ Widget subscriptionSection(BuildContext context) {
               children: [
                 //TITLE
                 AppText(
-                  text: AppString.subscription,
+                  text: AppString.subscription.tr(),
                   textSize: 15.sp,
                   fontFamily: AppFonts.satoshiBold,
                 ),
@@ -243,7 +242,7 @@ Widget subscriptionSection(BuildContext context) {
                 yHeight(8),
                 //SUBTITLE
                 AppText(
-                  text: AppString.freeTriall,
+                  text: AppString.freeTriall.tr(),
                   textSize: 12.sp,
                   color: AppColor.grey646464,
                 ),
@@ -281,8 +280,8 @@ Widget premiumSection(BuildContext context) {
       children: [
         SvgPicture.asset(Assets.premium),
         const SizedBox(width: 8),
-        const AppText(
-          text: AppString.becomePremiumMember,
+        AppText(
+          text: AppString.becomePremiumMember.tr(),
           fontFamily: AppFonts.satoshiBold,
           color: AppColor.whiteFFFFFF,
         ),

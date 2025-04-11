@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -54,7 +55,7 @@ class AddPropertyInfo extends ConsumerWidget {
                 children: [
                   yHeight(20.h),
                   AppText(
-                    text: AppString.doYouWantToSellProperty,
+                    text: AppString.doYouWantToSellProperty.tr(),
                     textSize: 15.sp,
                     fontFamily: AppFonts.satoshiBold,
                   ),
@@ -111,7 +112,7 @@ class AddPropertyInfo extends ConsumerWidget {
                     ],
                   ),
                   yHeight(10.h),
-                  AppText(text: AppString.propertyFeatures),
+                  AppText(text: AppString.propertyFeatures.tr()),
                   yHeight(8),
                   Container(
                     margin: EdgeInsets.symmetric(vertical: 5),
@@ -169,7 +170,7 @@ class AddPropertyInfo extends ConsumerWidget {
                   ),
                   yHeight(8),
                   CommonAppBtn(
-                    title: AppString.next,
+                    title: AppString.next.tr(),
                     onTap: () => toNamed(context, Routes.addPropertyAgent),
                   ),
                   yHeight(5),
@@ -196,7 +197,7 @@ class AddPropertyInfo extends ConsumerWidget {
             onChanged: (value) {},
           ),
           AppText(
-            text: label,
+            text: label.tr(),
             textSize: 14.sp,
             color: AppColor.black4A4A4A,
           ),

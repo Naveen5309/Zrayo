@@ -74,7 +74,7 @@ class ChatAppBar extends StatelessWidget {
                             ),
                             yHeight(5),
                             AppText(
-                              text: "Active Now",
+                              text: AppString.activeNow.tr(),
                               textSize: 12.sp,
                               color: AppColor.whiteFFFFFF,
                             ),
@@ -140,7 +140,7 @@ class ChatAppBar extends StatelessWidget {
                     ),
                   ),
                   CommonAppBtn(
-                    title: "Book Visit @ \$20",
+                    title: AppString.bookVisit.tr(),
                     textSize: 14,
                     textPadding: 2,
                     margin: EdgeInsets.zero,

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -180,8 +181,10 @@ class CreateProfile extends ConsumerWidget {
                         onTap: () async {
                           final DateTime? picked = await showDatePicker(
                             context: context,
-                            initialDate: createProfileNotifier.dobController.text.notNullAndNotEmpty
-                                ? DateFormat('dd/MM/yyyy').parseStrict(createProfileNotifier.dobController.text)
+                            initialDate: createProfileNotifier
+                                    .dobController.text.notNullAndNotEmpty
+                                ? DateFormat('dd/MM/yyyy').parseStrict(
+                                    createProfileNotifier.dobController.text)
                                 : DateTime.now().subtract(Duration(days: 1)),
                             firstDate: DateTime(1970, 8),
                             lastDate:
@@ -227,7 +230,7 @@ class CreateProfile extends ConsumerWidget {
                   CommonAppBtn(
                       title: fromSettings
                           ? AppString.update
-                          : AppString.saveAndContinue,
+                          : AppString.saveAndContinue.tr(),
                       loading: createProfileState is CreateProfileApiLoading &&
                           createProfileState.route == Routes.createProfile,
                       onTap: () => createProfileNotifier.createProfileValidator(

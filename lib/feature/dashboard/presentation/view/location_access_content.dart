@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -50,13 +51,13 @@ class LocationAccessContent extends StatelessWidget {
             onTap: () {
               back(context);
             },
-            title: AppString.enableLocation,
+            title: AppString.enableLocation.tr(),
             backGroundColor: AppColor.primary,
           ),
           yHeight(10),
           CommonAppBtn(
             onTap: () => back(context),
-            title: AppString.deny,
+            title: AppString.deny.tr(),
             textColor: AppColor.primary,
             backGroundColor: AppColor.orangeF285000F,
             borderColor: AppColor.transparent,

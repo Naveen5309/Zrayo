@@ -1,4 +1,5 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -83,7 +84,7 @@ class CustomDropdownButton extends StatelessWidget {
               Container(
                   alignment: hintAlignment,
                   child: AppText(
-                    text: hint,
+                    text: hint.tr(),
                     textSize: 14.sp,
                   )),
             ],
@@ -95,7 +96,7 @@ class CustomDropdownButton extends StatelessWidget {
                     child: Container(
                         alignment: valueAlignment,
                         child: AppText(
-                          text: item,
+                          text: item.tr(),
                           textSize: 14.sp,
                           // color: AppColor.black000000,
                         )),

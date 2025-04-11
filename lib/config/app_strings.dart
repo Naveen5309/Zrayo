@@ -41,7 +41,8 @@ abstract final class AppString {
   static const String forgetPassword = "forgetPassword";
   static const String otpVerification = "otpVerification";
   static const String createNewPassword = "createNewPassword";
-  static const String yourNewPasswordMustBeUnique = "yourNewPasswordMustBeUnique";
+  static const String yourNewPasswordMustBeUnique =
+      "yourNewPasswordMustBeUnique";
   static const String or = "or";
   static const String login = "login";
   static const String google = "google";
@@ -53,7 +54,8 @@ abstract final class AppString {
   static const String confirmPassword = "confirmPassword";
   static const String alreadyHaveAccount = "alreadyHaveAccount";
   static const String startYourJourney = "startYourJourney";
-  static const String createAccountToAccessAllFeature = "createAccountToAccessAllFeature";
+  static const String createAccountToAccessAllFeature =
+      "createAccountToAccessAllFeature";
   static const String createProfile = "createProfile";
   static const String firstName = "firstName";
   static const String enterFirstName = "enterFirstName";
@@ -99,10 +101,13 @@ abstract final class AppString {
   static const String skip = "skip";
   static const String customer = "customer";
   static const String agent = "agent";
-  static const String logInAsACustomerToFindProperties = "logInAsACustomerToFindProperties";
+  static const String logInAsACustomerToFindProperties =
+      "logInAsACustomerToFindProperties";
   static const String chooseInterface = "chooseInterface";
-  static const String pleaseEnterEmailAddressAssociated = "pleaseEnterEmailAddressAssociated";
-  static const String pleaseEnterYourOtpCodeSentToYour = "pleaseEnterYourOtpCodeSentToYour";
+  static const String pleaseEnterEmailAddressAssociated =
+      "pleaseEnterEmailAddressAssociated";
+  static const String pleaseEnterYourOtpCodeSentToYour =
+      "pleaseEnterYourOtpCodeSentToYour";
   static const String submit = "submit";
   static const String choosePlan = "choosePlan";
   static const String oneMonthFreeTrial = "oneMonthFreeTrial";
@@ -130,6 +135,7 @@ abstract final class AppString {
   static const String visits = "visits";
   static const String next = "next";
   static const String notifications = "notifications";
+  static const String notification = "notification";
   static const String history = "history";
   static const String myProfile = "myProfile";
   static const String aboutUs = "aboutUs";
@@ -137,7 +143,8 @@ abstract final class AppString {
   static const String rateOurApp = "rateOurApp";
   static const String logout = "logout";
   static const String areYouSure = "areYouSure";
-  static const String doYouWantToMarkPropertyAsSold = "doYouWantToMarkPropertyAsSold";
+  static const String doYouWantToMarkPropertyAsSold =
+      "doYouWantToMarkPropertyAsSold";
   static const String tittle = "tittle";
   static const String enterPropertyTittle = "enterPropertyTittle";
   static const String enterPropertyPrice = "enterPropertyPrice";
@@ -190,7 +197,8 @@ abstract final class AppString {
   static const String successfullyBooked = "successfullyBooked";
   static const String uploadImage = "uploadImage";
   static const String buyNow = "buyNow";
-  static const String ratingSubmittedSuccessfully = "ratingSubmittedSuccessfully";
+  static const String ratingSubmittedSuccessfully =
+      "ratingSubmittedSuccessfully";
   static const String increaseVisibilityBuyer = "increaseVisibilityBuyer";
   static const String featureyourProperty = "featureyourProperty";
   static const String assignAgent = "assignAgent";
@@ -202,10 +210,12 @@ abstract final class AppString {
   static const String giveyourReviews = "giveyourReviews";
   static const String giveRatingtoLandloard = "giveRatingtoLandloard";
   static const String pleaseEnterEmailAddress = "pleaseEnterEmailAddress";
-  static const String pleaseEnterValidEmailAddress = "pleaseEnterValidEmailAddress";
+  static const String pleaseEnterValidEmailAddress =
+      "pleaseEnterValidEmailAddress";
   static const String pleaseEnterPassword = "pleaseEnterPassword";
   static const String pleaseEnterNewPassword = "pleaseEnterNewPassword";
-  static const String newPasswordShouldBeDifferent = "newPasswordShouldBeDifferent";
+  static const String newPasswordShouldBeDifferent =
+      "newPasswordShouldBeDifferent";
   static const String pleaseEnterCurrentPassword = "pleaseEnterCurrentPassword";
   static const String selectReason = "selectReason";
   static const String passwordShouldBe = "passwordShouldBe";
@@ -222,7 +232,42 @@ abstract final class AppString {
   static const String resendOTP = "resendOTP";
   static const String visaCard = "visaCard";
   static const String holderName = "holderName";
-  static const String noSuchScreenFound ="noSuchScreenFound";
+  static const String noSuchScreenFound = "noSuchScreenFound";
+  static const String oneWeekAgo = "oneWeekAgo";
+  static const String dashboard = "dashboard";
+  static const String recentlyAssignedProperties = "recentlyAssignedProperties";
+  static const String assignedProperties = "assignedProperties";
+  static const String seeAll = "seeAll";
+  static const String location = "location";
+  static const String featuredProperties = "featuredProperties";
+  static const String nearbyProperties = "nearbyProperties";
+  static const String activeNow = "activeNow";
+  static const String booking = "booking";
+  static const String viewingFees = "viewingFees";
+  static const String date = "date";
+  static const String time = "time";
+  static const String bath = "bath";
+  static const String bed = "bed";
+  static const String features = "features";
+  static const String event = "event";
+  static const String chooseDate = "chooseDate";
+  static const String totalPrice = "totalPrice";
+  static const String bookNow = "bookNow";
+  static const String edit = "edit";
+  static const String goBack = "goBack";
+  static const String yourPropertyisSuccessfullySold =
+      "yourPropertyisSuccessfullySold";
+  static const String soldSuccessfully = "soldSuccessfully";
+  static const String propertySold = "propertySold";
+  static const String requestaTour = "requestaTour";
+  static const String cancelBooking = "Cancel Booking";
+  static const String month = "/month";
+  static const String bookVisit = "bookVisit";
+  static const String filterProperties = "filterProperties";
+  static const String availableSlots = "availableSlots";
+  static const String historicalData = "historicalData";
+  static const String propertyDetails = "propertyDetails";
+  static const String listofAgentsLandlord = "listofAgentsLandlord";
 
 // static const String mMYY = "MM/YY";
 }
