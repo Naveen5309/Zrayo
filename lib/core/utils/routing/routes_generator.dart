@@ -129,9 +129,9 @@ class RouteGenerator {
 
       case Routes.propertyDetailView:
         return _fadeTransitionRoute(PropertyDetailView(
-          isSold: args?['isSold']??false,
-          isVisit: args?['isVisit']??false,
-          isMyProperty: args?['isMyProperty']??false,
+          isSold: args?['isSold'] ?? false,
+          isVisit: args?['isVisit'] ?? false,
+          isMyProperty: args?['isMyProperty'] ?? false,
         ));
       case Routes.featurePrpertyView:
         return _fadeTransitionRoute(const FeaturePrpertyView());
@@ -167,10 +167,10 @@ class ErrorRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const AppText(text: 'Error'),
+        title: const AppText(text: AppString.error),
       ),
       body: const Center(
-        child: AppText(text: 'No Such screen found in route generator'),
+        child: AppText(text: AppString.noSuchScreenFound),
       ),
     );
   }

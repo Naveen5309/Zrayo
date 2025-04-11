@@ -158,7 +158,7 @@ class OtpVerificationViewState extends ConsumerState<OtpVerificationView> {
                                             ],
                                           )
                                         : AppText(
-                                            text: "Resend OTP",
+                                            text: AppString.resendOTP,
                                             textSize: 14.sp,
                                             fontFamily: AppFonts.satoshiBold,
                                             color: AppColor.black000000,
