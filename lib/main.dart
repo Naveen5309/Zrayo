@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:bot_toast/bot_toast.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,37 +29,44 @@ class MyApp extends StatelessWidget {
     final botToastBuilder = BotToastInit();
     // AppImagesInitialize.assetsImagesInitialize(context);
 
-    return ScreenUtilInit(
-        designSize: const Size(360, 690),
-        minTextAdapt: true,
-        splitScreenMode: true,
-        // Use builder only if you need to use library outside ScreenUtilInit context
-        builder: (_, child) {
-          return MaterialApp(
-            title: AppConstants.appName,
-            debugShowCheckedModeBanner: false,
-            builder: (context, child) {
-              child = botToastBuilder(context, child);
-              return MediaQuery(
-                  data: MediaQuery.of(context)
-                      .copyWith(textScaler: const TextScaler.linear(1.0)),
-                  child: child);
-            },
-            theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-              useMaterial3: false,
-            ),
-            initialRoute: Routes.splash,
-            onGenerateRoute: RouteGenerator.generateRoute,
-            onGenerateInitialRoutes: (String initialRouteName) {
-              return [
-                RouteGenerator.generateRoute(RouteSettings(
-                  name: initialRouteName,
-                )),
-              ];
-            },
-          );
-        });
+    return EasyLocalization(
+      supportedLocales: [Locale('en')],
+      path: 'assets/translations',
+      fallbackLocale: Locale("en"),
+      startLocale: Locale("en"),
+      useOnlyLangCode: true,
+      child: ScreenUtilInit(
+          designSize: const Size(360, 690),
+          minTextAdapt: true,
+          splitScreenMode: true,
+          // Use builder only if you need to use library outside ScreenUtilInit context
+          builder: (_, child) {
+            return MaterialApp(
+              title: AppConstants.appName,
+              debugShowCheckedModeBanner: false,
+              builder: (context, child) {
+                child = botToastBuilder(context, child);
+                return MediaQuery(
+                    data: MediaQuery.of(context)
+                        .copyWith(textScaler: const TextScaler.linear(1.0)),
+                    child: child);
+              },
+              theme: ThemeData(
+                colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+                useMaterial3: false,
+              ),
+              initialRoute: Routes.splash,
+              onGenerateRoute: RouteGenerator.generateRoute,
+              onGenerateInitialRoutes: (String initialRouteName) {
+                return [
+                  RouteGenerator.generateRoute(RouteSettings(
+                    name: initialRouteName,
+                  )),
+                ];
+              },
+            );
+          }),
+    );
   }
 }
 

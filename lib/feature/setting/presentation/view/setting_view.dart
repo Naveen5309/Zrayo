@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,7 +17,6 @@ import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_cache_network_image.dart';
 
 import '../../../../core/network/http_service.dart';
-import '../../../auth/presentation/provider/create_profile_provider.dart';
 
 class SettingView extends ConsumerWidget {
   const SettingView({
@@ -35,7 +35,7 @@ class SettingView extends ConsumerWidget {
         child: Column(
           children: [
             CustomAppBar(
-              title: AppString.setting,
+              title: AppString.setting.tr(),
               showBackButton: false,
               centerTitle: true,
             ),
@@ -65,7 +65,8 @@ class SettingView extends ConsumerWidget {
                             .read(settingViewProvider.notifier)
                             .notificationStatusChange(notificationValue: value);
                       },
-                      title: AppString.notifications,
+                      title: AppString.notifications
+                      ,
                     );
                   }),
                   SettingTile(

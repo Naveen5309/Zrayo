@@ -24,7 +24,7 @@ class LocationAccessContent extends StatelessWidget {
                   color: AppColor.color0B0B0B),
               children: [
                 TextSpan(
-                  text: AppString.zrayoText,
+                  text: '"${AppString.zrayoText}"',
                   style: TextStyle(
                       fontSize: 18.sp,
                       fontFamily: AppFonts.satoshiBold,
