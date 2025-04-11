@@ -155,7 +155,8 @@ abstract final class AppString {
   static const String rateOurApp = "Rate our app";
   static const String logout = "Logout";
   static const String areYouSure = "Are you sure?";
-  static const String doYouWantToMarkPropertyAsSold = "Do you want to mark property as sold.";
+  static const String doYouWantToMarkPropertyAsSold =
+      "Do you want to mark property as sold.";
   static const String tittle = "Tittle";
   static const String enterPropertyTittle = "Enter property tittle";
   static const String enterPropertyPrice = "Enter property price";
@@ -252,6 +253,4 @@ abstract final class AppString {
   static const String pleaseEnterMessage = "Enter message";
   static const String pleaseEnterOtp = "Enter otp";
   static const String invalidOtp = "Invalid otp please check your opt";
-
-// static const String mMYY = "MM/YY";
 }

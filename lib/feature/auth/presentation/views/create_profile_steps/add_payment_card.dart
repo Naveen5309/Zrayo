@@ -74,10 +74,11 @@ class AddPaymentCard extends StatelessWidget {
                           ),
                           yHeight(3),
                           AppText(
-                              text: "Visa Card",
+                              text: AppString.visaCard,
                               fontFamily: AppFonts.satoshiRegular,
                               textSize: 14.sp,
-                              color: AppColor.color212121.withValues(alpha: .7)),
+                              color:
+                                  AppColor.color212121.withValues(alpha: .7)),
                         ],
                       ),
                     ),
@@ -100,7 +101,7 @@ class AddPaymentCard extends StatelessWidget {
                           textSize: 12.sp,
                           color: AppColor.color212121.withValues(alpha: .7),
                           fontFamily: AppFonts.satoshiRegular,
-                          text: 'Holder Name',
+                          text: AppString.holderName,
                         ),
                         yHeight(8),
                         AppText(
@@ -119,7 +120,7 @@ class AddPaymentCard extends StatelessWidget {
                           textSize: 12.sp,
                           color: AppColor.color212121.withValues(alpha: .7),
                           fontFamily: AppFonts.satoshiRegular,
-                          text: 'Exp.',
+                          text: AppString.exp,
                         ),
                         yHeight(8),
                         AppText(
