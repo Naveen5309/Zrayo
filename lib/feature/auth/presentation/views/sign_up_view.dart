@@ -79,11 +79,11 @@ class SignUpView extends ConsumerWidget {
                     yHeight(context.height * 0.14),
                     Text.rich(
                       TextSpan(
-                        text: "${AppString.alreadyHaveAccount} ",
+                        text: "${AppString.alreadyHaveAccount.tr()} ",
                         style: TextStyle(color: AppColor.black4A4A4A),
                         children: [
                           TextSpan(
-                            text: AppString.login,
+                            text: AppString.login.tr(),
                             style: TextStyle(
                               color: AppColor.primary,
                               fontFamily: AppFonts.satoshiBold,
@@ -109,10 +109,10 @@ Widget formsFieldsSection(SignUpNotifier signUpNotifier) {
     children: [
       //EMAIL ADDRESS
       CustomTextField(
-        hintText: AppString.exampleEamil,
+        hintText: AppString.exampleEamil.tr(),
         prefixIcon: SvgPicture.asset(Assets.email),
         controller: signUpNotifier.emailController,
-        labelText: AppString.emailAddress,
+        labelText: AppString.emailAddress.tr(),
       ),
       10.verticalSpace,
       //PASSWORD
@@ -124,9 +124,9 @@ Widget formsFieldsSection(SignUpNotifier signUpNotifier) {
             ref.read(isPassVisible.notifier).state =
                 !ref.read(isPassVisible.notifier).state;
           },
-          labelText: AppString.password,
+          labelText: AppString.password.tr(),
           isObscure: !isVisible,
-          hintText: '********',
+          hintText: '********'.tr(),
           controller: signUpNotifier.passwordController,
           prefixIcon: SvgPicture.asset(Assets.lock),
           suffixIcon: !isVisible
@@ -147,9 +147,9 @@ Widget formsFieldsSection(SignUpNotifier signUpNotifier) {
             ref.read(isConfirmPassVisible.notifier).state =
                 !ref.read(isConfirmPassVisible.notifier).state;
           },
-          labelText: AppString.confirmPassword,
+          labelText: AppString.confirmPassword.tr(),
           isObscure: !isVisible,
-          hintText: '********',
+          hintText: '********'.tr(),
           controller: signUpNotifier.confirmPasswordController,
           prefixIcon: SvgPicture.asset(Assets.lock),
           suffixIcon: !isVisible
