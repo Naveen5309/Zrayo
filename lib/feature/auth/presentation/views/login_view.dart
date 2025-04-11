@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -72,7 +73,7 @@ class LoginView extends ConsumerWidget {
                     SvgPicture.asset(Assets.zrayo),
                     yHeight(10),
                     AppText(
-                      text: AppString.welcomeBack,
+                      text: AppString.welcomeBack.tr(),
                       fontFamily: AppFonts.satoshiBold,
                       lineHeight: 1.2,
                       textSize: 24.sp,
@@ -80,7 +81,7 @@ class LoginView extends ConsumerWidget {
                     ),
                     yHeight(5),
                     AppText(
-                      text: AppString.loginToYourAccount,
+                      text: AppString.loginToYourAccount.tr(),
                       fontFamily: AppFonts.satoshiRegular,
                       color: AppColor.black4A4A4A,
                     ),
@@ -159,7 +160,7 @@ class LoginView extends ConsumerWidget {
             widget: ForgotPasswordSheet());
       },
       child: AppText(
-        text: AppString.forgetPassword,
+        text: AppString.forgetPassword.tr(),
         fontFamily: AppFonts.satoshiBold,
         color: AppColor.primary,
       ).align(alignment: Alignment.centerRight),

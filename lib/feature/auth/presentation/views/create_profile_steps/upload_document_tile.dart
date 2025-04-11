@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -65,14 +66,14 @@ class UploadDocumentTile extends StatelessWidget {
                     ),
                   yHeight(10),
                   AppText(
-                    text: title,
+                    text: title.tr(),
                     textAlign: TextAlign.center,
                     overflow: TextOverflow.ellipsis,
                     fontFamily: AppFonts.satoshiMedium,
                   ),
                   yHeight(10),
                   AppText(
-                    text: subTitle,
+                    text: subTitle.tr(),
                     textAlign: TextAlign.center,
                     overflow: TextOverflow.ellipsis,
                     fontFamily: AppFonts.satoshiMedium,

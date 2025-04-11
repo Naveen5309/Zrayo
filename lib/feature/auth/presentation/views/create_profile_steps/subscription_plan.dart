@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zrayo_flutter/config/helper.dart';
@@ -26,7 +27,7 @@ class SubscriptionPlanView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 AppText(
-                  text: AppString.choosePlan,
+                  text: AppString.choosePlan.tr(),
                   textSize: 24.sp,
                   fontFamily: AppFonts.satoshiBold,
                 ),

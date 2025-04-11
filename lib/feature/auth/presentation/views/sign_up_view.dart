@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -51,7 +52,7 @@ class SignUpView extends ConsumerWidget {
                     10.verticalSpace,
                     AppText(
                       textAlign: TextAlign.center,
-                      text: AppString.startYourJourney,
+                      text: AppString.startYourJourney.tr(),
                       fontFamily: AppFonts.satoshiBold,
                       lineHeight: 1.2,
                       textSize: 22.sp,
@@ -61,7 +62,7 @@ class SignUpView extends ConsumerWidget {
                     AppText(
                       lineHeight: 1.1,
                       textAlign: TextAlign.center,
-                      text: AppString.createAccountToAccessAllFeature,
+                      text: AppString.createAccountToAccessAllFeature.tr(),
                       fontFamily: AppFonts.satoshiRegular,
                       color: AppColor.black4A4A4A,
                     ),
