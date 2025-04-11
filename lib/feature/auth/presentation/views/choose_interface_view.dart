@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zrayo_flutter/config/assets.dart';
@@ -27,12 +28,12 @@ class ChooseInterfaceView extends StatelessWidget {
           spacing: 20.sp,
           children: [
             AppText(
-              text: AppString.chooseInterface,
+              text: AppString.chooseInterface.tr(),
               textSize: 24.sp,
               fontFamily: AppFonts.satoshiBold,
             ),
             AppText(
-              text: AppString.logInAsACustomerToFindProperties,
+              text: AppString.logInAsACustomerToFindProperties.tr(),
               fontFamily: AppFonts.satoshiRegular,
               textAlign: TextAlign.center,
               lineHeight: 1.2,

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -88,13 +89,13 @@ class OtpVerificationViewState extends ConsumerState<OtpVerificationView> {
                     SvgPicture.asset(Assets.otpView),
                     yHeight(15.sp),
                     AppText(
-                      text: AppString.otpVerification,
+                      text: AppString.otpVerification.tr(),
                       textSize: 22.sp,
                       fontFamily: AppFonts.satoshiBold,
                     ),
                     yHeight(10.sp),
                     AppText(
-                      text: AppString.pleaseEnterYourOtpCodeSentToYour,
+                      text: AppString.pleaseEnterYourOtpCodeSentToYour.tr(),
                       fontFamily: AppFonts.satoshiRegular,
                       textAlign: TextAlign.center,
                       lineHeight: 1.2,
@@ -118,7 +119,7 @@ class OtpVerificationViewState extends ConsumerState<OtpVerificationView> {
                     ),
                     yHeight(20.sp),
                     AppText(
-                      text: AppString.didNotReceiveTheOtp,
+                      text: AppString.didNotReceiveTheOtp.tr(),
                       fontFamily: AppFonts.satoshiRegular,
                     ),
                     yHeight(5.sp),
@@ -126,7 +127,7 @@ class OtpVerificationViewState extends ConsumerState<OtpVerificationView> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         AppText(
-                          text: AppString.youCanResendOtpIn,
+                          text: AppString.youCanResendOtpIn.tr(),
                           fontFamily: AppFonts.satoshiRegular,
                         ),
                         verifyEmailNotifier.enableResend
@@ -158,7 +159,7 @@ class OtpVerificationViewState extends ConsumerState<OtpVerificationView> {
                                             ],
                                           )
                                         : AppText(
-                                            text: AppString.resendOTP,
+                                            text: AppString.resendOTP.tr(),
                                             textSize: 14.sp,
                                             fontFamily: AppFonts.satoshiBold,
                                             color: AppColor.black000000,
@@ -178,7 +179,8 @@ class OtpVerificationViewState extends ConsumerState<OtpVerificationView> {
 
                                 return AppText(
                                   text:
-                                      ' (00:${seconds.toString().padLeft(2, '0')})',
+                                      ' (00:${seconds.toString().padLeft(2, '0')})'
+                                          .tr(),
                                   textSize: 14.sp,
                                   fontFamily: AppFonts.satoshiBold,
                                   color: AppColor.black000000,

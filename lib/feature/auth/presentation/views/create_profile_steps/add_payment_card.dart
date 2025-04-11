@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -65,7 +66,7 @@ class AddPaymentCard extends StatelessWidget {
                           Row(
                             children: [
                               AppText(
-                                  text: "xxxxxxxxx 3615".toUpperCase(),
+                                  text: "xxxxxxxxx 3615".toUpperCase().tr(),
                                   fontFamily: AppFonts.satoshiBold,
                                   textSize: 14.sp,
                                   color: AppColor.color212121),
@@ -74,7 +75,7 @@ class AddPaymentCard extends StatelessWidget {
                           ),
                           yHeight(3),
                           AppText(
-                              text: AppString.visaCard,
+                              text: AppString.visaCard.tr(),
                               fontFamily: AppFonts.satoshiRegular,
                               textSize: 14.sp,
                               color:
@@ -101,7 +102,7 @@ class AddPaymentCard extends StatelessWidget {
                           textSize: 12.sp,
                           color: AppColor.color212121.withValues(alpha: .7),
                           fontFamily: AppFonts.satoshiRegular,
-                          text: AppString.holderName,
+                          text: AppString.holderName.tr(),
                         ),
                         yHeight(8),
                         AppText(
@@ -120,7 +121,7 @@ class AddPaymentCard extends StatelessWidget {
                           textSize: 12.sp,
                           color: AppColor.color212121.withValues(alpha: .7),
                           fontFamily: AppFonts.satoshiRegular,
-                          text: AppString.exp,
+                          text: AppString.exp.tr(),
                         ),
                         yHeight(8),
                         AppText(

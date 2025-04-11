@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -45,13 +46,13 @@ class ForgotPasswordSheet extends ConsumerWidget {
           SvgPicture.asset(Assets.mailImage),
           yHeight(15.sp),
           AppText(
-            text: AppString.forgetPassword,
+            text: AppString.forgetPassword.tr(),
             textSize: 22.sp,
             fontFamily: AppFonts.satoshiBold,
           ),
           yHeight(10.sp),
           AppText(
-            text: AppString.pleaseEnterEmailAddressAssociated,
+            text: AppString.pleaseEnterEmailAddressAssociated.tr(),
             fontFamily: AppFonts.satoshiRegular,
             textAlign: TextAlign.center,
             lineHeight: 1.2,

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -43,14 +44,14 @@ class ChangePasswordView extends ConsumerWidget {
                 SvgPicture.asset(Assets.changePassIcon),
                 yHeight(15.sp),
                 AppText(
-                  text: AppString.createNewPassword,
+                  text: AppString.createNewPassword.tr(),
                   textSize: 22.sp,
                   color: AppColor.color1E2430,
                   fontFamily: AppFonts.satoshiBold,
                 ),
                 yHeight(10.sp),
                 AppText(
-                  text: AppString.yourNewPasswordMustBeUnique,
+                  text: AppString.yourNewPasswordMustBeUnique.tr(),
                   fontFamily: AppFonts.satoshiRegular,
                   textAlign: TextAlign.center,
                   color: AppColor.color465573,
