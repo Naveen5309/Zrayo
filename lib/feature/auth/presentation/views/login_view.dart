@@ -113,10 +113,10 @@ class LoginView extends ConsumerWidget {
       children: [
         // EMAIL ADDRESS
         CustomTextField(
-          hintText: AppString.exampleEamil,
+          hintText: AppString.exampleEamil.tr(),
           prefixIcon: SvgPicture.asset(Assets.email),
           controller: loginNotifier.emailController,
-          labelText: AppString.emailAddress,
+          labelText: AppString.emailAddress.tr(),
         ),
         yHeight(10),
 
@@ -128,7 +128,7 @@ class LoginView extends ConsumerWidget {
               onTapOnSuffixIcon: () {
                 ref.read(isPasswordVisible.notifier).state = !isVisible;
               },
-              labelText: AppString.password,
+              labelText: AppString.password.tr(),
               isObscure: !isVisible,
               hintText: '********',
               controller: loginNotifier.passwordController,
@@ -217,12 +217,12 @@ class LoginView extends ConsumerWidget {
   Widget _buildSignUpText(BuildContext context) {
     return Text.rich(
       TextSpan(
-        text: "${AppString.newUser} ",
+        text: "${AppString.newUser.tr()} ",
         style: TextStyle(
             color: AppColor.black4A4A4A, fontFamily: AppFonts.satoshiRegular),
         children: [
           TextSpan(
-            text: AppString.signUp,
+            text: AppString.signUp.tr(),
             style: TextStyle(
               color: AppColor.primary,
               fontFamily: AppFonts.satoshiBold,

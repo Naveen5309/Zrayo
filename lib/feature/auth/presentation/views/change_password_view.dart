@@ -36,92 +36,96 @@ class ChangePasswordView extends ConsumerWidget {
         children: [
           CustomAppBar(title: ""),
           yHeight(15.sp),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SvgPicture.asset(Assets.changePassIcon),
-                yHeight(15.sp),
-                AppText(
-                  text: AppString.createNewPassword.tr(),
-                  textSize: 22.sp,
-                  color: AppColor.color1E2430,
-                  fontFamily: AppFonts.satoshiBold,
-                ),
-                yHeight(10.sp),
-                AppText(
-                  text: AppString.yourNewPasswordMustBeUnique.tr(),
-                  fontFamily: AppFonts.satoshiRegular,
-                  textAlign: TextAlign.center,
-                  color: AppColor.color465573,
-                  lineHeight: 1.2,
-                ),
-                yHeight(20.sp),
-
-                Consumer(builder:
-                    (BuildContext context, WidgetRef ref, Widget? child) {
-                  var isVisible = ref.watch(isNewPassVisible);
-
-                  return CustomTextField(
-                    onTapOnSuffixIcon: () {
-                      ref.read(isNewPassVisible.notifier).state =
+          Expanded(child: SingleChildScrollView(
+            child: Column(children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(Assets.changePassIcon),
+                    yHeight(15.sp),
+                    AppText(
+                      text: AppString.createNewPassword.tr(),
+                      textSize: 22.sp,
+                      color: AppColor.color1E2430,
+                      fontFamily: AppFonts.satoshiBold,
+                    ),
+                    yHeight(10.sp),
+                    AppText(
+                      text: AppString.yourNewPasswordMustBeUnique.tr(),
+                      fontFamily: AppFonts.satoshiRegular,
+                      textAlign: TextAlign.center,
+                      color: AppColor.color465573,
+                      lineHeight: 1.2,
+                    ),
+                    yHeight(20.sp),
+            
+                    Consumer(builder:
+                        (BuildContext context, WidgetRef ref, Widget? child) {
+                      var isVisible = ref.watch(isNewPassVisible);
+            
+                      return CustomTextField(
+                        onTapOnSuffixIcon: () {
+                          ref.read(isNewPassVisible.notifier).state =
                           !ref.read(isNewPassVisible.notifier).state;
-                    },
-                    labelText: AppString.newPassword,
-                    isObscure: !isVisible,
-                    hintText: '********',
-                    controller: changePasswordNotifier.newPasswordController,
-                    prefixIcon: SvgPicture.asset(Assets.lock),
-                    suffixIcon: !isVisible
-                        ? SvgPicture.asset(Assets.eye)
-                        : SvgPicture.asset(
-                            Assets.eyeOff,
-                            colorFilter: ColorFilter.mode(
-                                AppColor.black4A4A4A, BlendMode.srcIn),
-                          ),
-                  );
-                }),
-                // Confirm PASSWORD
-                10.verticalSpace,
-                Consumer(builder:
-                    (BuildContext context, WidgetRef ref, Widget? child) {
-                  var isVisible = ref.watch(isConfirmPassVisible);
-
-                  return CustomTextField(
-                    onTapOnSuffixIcon: () {
-                      ref.read(isConfirmPassVisible.notifier).state =
+                        },
+                        labelText: AppString.newPassword.tr(),
+                        isObscure: !isVisible,
+                        hintText: '********',
+                        controller: changePasswordNotifier.newPasswordController,
+                        prefixIcon: SvgPicture.asset(Assets.lock),
+                        suffixIcon: !isVisible
+                            ? SvgPicture.asset(Assets.eye)
+                            : SvgPicture.asset(
+                          Assets.eyeOff,
+                          colorFilter: ColorFilter.mode(
+                              AppColor.black4A4A4A, BlendMode.srcIn),
+                        ),
+                      );
+                    }),
+                    // Confirm PASSWORD
+                    10.verticalSpace,
+                    Consumer(builder:
+                        (BuildContext context, WidgetRef ref, Widget? child) {
+                      var isVisible = ref.watch(isConfirmPassVisible);
+            
+                      return CustomTextField(
+                        onTapOnSuffixIcon: () {
+                          ref.read(isConfirmPassVisible.notifier).state =
                           !ref.read(isConfirmPassVisible.notifier).state;
-                    },
-                    labelText: AppString.confirmPassword,
-                    isObscure: !isVisible,
-                    hintText: '********',
-                    controller:
+                        },
+                        labelText: AppString.confirmPassword.tr(),
+                        isObscure: !isVisible,
+                        hintText: '********',
+                        controller:
                         changePasswordNotifier.confirmPasswordController,
-                    prefixIcon: SvgPicture.asset(Assets.lock),
-                    suffixIcon: !isVisible
-                        ? SvgPicture.asset(Assets.eye)
-                        : SvgPicture.asset(
-                            Assets.eyeOff,
-                            colorFilter: ColorFilter.mode(
-                                AppColor.black4A4A4A, BlendMode.srcIn),
-                          ),
-                  );
-                })
-              ],
-            ),
-          ),
-          CommonAppBtn(
-            margin: EdgeInsets.all(16.0),
-            title: AppString.change.tr(),
-            loading: changePassState is LoginApiLoading &&
-                changePassState.route == Routes.changePasswordView,
-            onTap: () {
-              changePasswordNotifier.changePasswordValidator(context);
-              // back(context);
-              // back(context);
-            },
-          )
+                        prefixIcon: SvgPicture.asset(Assets.lock),
+                        suffixIcon: !isVisible
+                            ? SvgPicture.asset(Assets.eye)
+                            : SvgPicture.asset(
+                          Assets.eyeOff,
+                          colorFilter: ColorFilter.mode(
+                              AppColor.black4A4A4A, BlendMode.srcIn),
+                        ),
+                      );
+                    })
+                  ],
+                ),
+              ),
+              CommonAppBtn(
+                margin: EdgeInsets.all(16.0),
+                title: AppString.change.tr(),
+                loading: changePassState is LoginApiLoading &&
+                    changePassState.route == Routes.changePasswordView,
+                onTap: () {
+                  changePasswordNotifier.changePasswordValidator(context);
+                  // back(context);
+                  // back(context);
+                },
+              )
+            ],),
+          ))
         ],
       ),
     );

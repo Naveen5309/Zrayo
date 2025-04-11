@@ -59,10 +59,10 @@ class ForgotPasswordSheet extends ConsumerWidget {
           ),
           yHeight(10.sp),
           CustomTextField(
-            hintText: AppString.exampleEamil,
+            hintText: AppString.exampleEamil.tr(),
             prefixIcon: SvgPicture.asset(Assets.email),
             controller: forgetPasswordNotifier.forgetEmailController,
-            labelText: AppString.emailAddress,
+            labelText: AppString.emailAddress.tr(),
           ),
           yHeight(10.sp),
           CommonAppBtn(
