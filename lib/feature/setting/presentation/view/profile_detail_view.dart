@@ -36,7 +36,7 @@ class ProfileDetailView extends ConsumerWidget {
                   yHeight(context.height * .02),
 
                   /// personal detail
-                  personalDetail(context, userModel,createProfileNotifier),
+                  personalDetail(context, userModel, createProfileNotifier),
                   yHeight(context.height * 0.002),
 
                   /// address detail
@@ -44,7 +44,7 @@ class ProfileDetailView extends ConsumerWidget {
                   yHeight(context.height * 0.002),
 
                   /// Uploaded document
-                  uploadedDocDetail(context, userModel,createProfileNotifier),
+                  uploadedDocDetail(context, userModel, createProfileNotifier),
                   yHeight(context.height * 0.02),
                 ],
               ),
@@ -56,7 +56,8 @@ class ProfileDetailView extends ConsumerWidget {
   }
 
   /// personal detail widget
-  Widget personalDetail(BuildContext context, UserModel? userModel, CreateProfileNotifiers createProfileNotifier) {
+  Widget personalDetail(BuildContext context, UserModel? userModel,
+      CreateProfileNotifiers createProfileNotifier) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       decoration: Utils.boxDecoWithShadow(),
@@ -296,7 +297,8 @@ class ProfileDetailView extends ConsumerWidget {
   }
 
   /// Uploaded document detail widget
-  Widget uploadedDocDetail(BuildContext context, UserModel? userModel, CreateProfileNotifiers createProfileNotifier) {
+  Widget uploadedDocDetail(BuildContext context, UserModel? userModel,
+      CreateProfileNotifiers createProfileNotifier) {
     final userDetail = userModel?.detail;
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
@@ -316,7 +318,7 @@ class ProfileDetailView extends ConsumerWidget {
                     createProfileNotifier.setValueInControllers();
 
                     toNamed(context, Routes.uploadDocument,
-                      args: {"fromSettings": true});
+                        args: {"fromSettings": true});
                   },
                   child: SvgPicture.asset(Assets.edit)),
             ],
