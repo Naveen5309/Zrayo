@@ -57,7 +57,7 @@ class CustomFilterScreen extends StatelessWidget {
                         yHeight(10.h),
                         CustomTextField(
                           readOnly: true,
-                          hintText: AppString.search,
+                          hintText: AppString.search.tr(),
                           prefixIcon: SvgPicture.asset(Assets.searchIcon),
                           controller: TextEditingController(),
                         ),
@@ -66,7 +66,7 @@ class CustomFilterScreen extends StatelessWidget {
                   ),
                   Spacer(),
                   CommonAppBtn(
-                    title: AppString.apply,
+                    title: AppString.apply.tr(),
                     onTap: () => back(context),
                   ),
                   yHeight(15.h),

@@ -43,24 +43,24 @@ class ContactUsView extends ConsumerWidget {
                     yHeight(18.h),
                     CustomTextField(
                       controller: contactUsNotifier.emailController,
-                      labelText: AppString.email,
+                      labelText: AppString.email.tr(),
                       prefixIcon: SvgPicture.asset(Assets.email),
-                      hintText: AppString.enterEmail,
+                      hintText: AppString.enterEmail.tr(),
                     ),
                     CustomTextField(
                       controller: contactUsNotifier.subjectController,
-                      labelText: AppString.subject,
+                      labelText: AppString.subject.tr(),
                       prefixIcon: SvgPicture.asset(Assets.write),
-                      hintText: AppString.subject,
+                      hintText: AppString.subject.tr(),
                     ),
                     CustomTextField(
                       controller: contactUsNotifier.messageController,
-                      labelText: AppString.message,
+                      labelText: AppString.message.tr(),
                       prefixIcon: SvgPicture.asset(Assets.check),
                       minLines: 4,
                       prefixIconPadding:
                           EdgeInsets.only(bottom: 55, left: 12, right: 12),
-                      hintText: AppString.message,
+                      hintText: AppString.message.tr(),
                     ),
                     yHeight(context.height * 0.08),
                     CommonAppBtn(

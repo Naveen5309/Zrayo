@@ -39,19 +39,19 @@ class SubscriptionPlanView extends StatelessWidget {
                       Expanded(
                         child: Text.rich(
                           TextSpan(
-                            text: AppString.getOneMonth,
+                            text: AppString.getOneMonth.tr(),
                             style: TextStyle(
                                 fontSize: 14.sp,
                                 fontFamily: AppFonts.satoshiRegular),
                             children: [
                               TextSpan(
-                                text: AppString.freeTrial,
+                                text: AppString.freeTrial.tr(),
                                 style: TextStyle(
                                     fontSize: 14.sp,
                                     fontFamily: AppFonts.satoshiBold),
                               ),
                               TextSpan(
-                                text: AppString.freeTrialEnds,
+                                text: AppString.freeTrialEnds.tr(),
                                 style: TextStyle(
                                   fontFamily: AppFonts.satoshiRegular,
                                   fontSize: 14.sp,
