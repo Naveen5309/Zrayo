@@ -80,7 +80,6 @@ class SettingRepoImpl implements SettingRepository {
     try {
       final data = await dataSource.aboutUs(body: body);
       if (data?.success == true) {
-        toast(msg: data?.message ?? "", isError: false);
         return Right(data?.data);
       } else {
         return Left(ServerFailure(message: data?.message ?? ""));

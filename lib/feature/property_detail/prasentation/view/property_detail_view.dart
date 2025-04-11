@@ -50,7 +50,7 @@ class PropertyDetailView extends StatelessWidget {
                   Stack(
                     children: [
                       CustomCacheNetworkImage(
-                        img: "",
+                        img: "https://cdn.pixabay.com/photo/2017/07/08/02/16/house-2483336_640.jpg",
                         width: double.infinity,
                         height: screenHeight(context) / 2.5,
                         imageBorderRadius: BorderRadius.only(
@@ -145,7 +145,7 @@ class PropertyDetailView extends StatelessWidget {
                             child: Stack(
                               children: [
                                 CustomCacheNetworkImage(
-                                  img: "",
+                                  img: "https://cdn.pixabay.com/photo/2017/07/08/02/16/house-2483336_640.jpg",
                                   size: 74.sp,
                                   imageRadius: 10.sp,
                                   imageBorder: Border.all(

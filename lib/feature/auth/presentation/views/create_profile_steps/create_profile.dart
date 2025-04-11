@@ -178,28 +178,29 @@ class CreateProfile extends ConsumerWidget {
                       ),
                       CustomTextField(
                         onTap: () async {
+                          final DateTime today = DateTime.now();
+                          final DateTime eighteenYearsAgo = DateTime(today.year - 18, today.month, today.day);
+
                           final DateTime? picked = await showDatePicker(
                             context: context,
                             initialDate: createProfileNotifier.dobController.text.notNullAndNotEmpty
                                 ? DateFormat('dd/MM/yyyy').parseStrict(createProfileNotifier.dobController.text)
-                                : DateTime.now().subtract(Duration(days: 1)),
+                                : eighteenYearsAgo,
                             firstDate: DateTime(1970, 8),
-                            lastDate:
-                                DateTime.now().subtract(Duration(days: 1)),
+                            lastDate: eighteenYearsAgo,
                             builder: (context, child) {
                               return Theme(
                                 data: ThemeData.light().copyWith(
                                   primaryColor: AppColor.primary,
                                   hintColor: AppColor.primary,
-                                  colorScheme: const ColorScheme.light(
-                                      primary: AppColor.primary),
-                                  buttonTheme: const ButtonThemeData(
-                                      textTheme: ButtonTextTheme.primary),
+                                  colorScheme: const ColorScheme.light(primary: AppColor.primary),
+                                  buttonTheme: const ButtonThemeData(textTheme: ButtonTextTheme.primary),
                                 ),
                                 child: child!,
                               );
                             },
                           );
+
 
                           if (picked != null) {
                             createProfileNotifier.dobController.text =

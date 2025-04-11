@@ -21,7 +21,7 @@ class AllPicturesView extends StatelessWidget {
                 mainAxisSpacing: 10),
             itemBuilder: (context, index) {
               return CustomCacheNetworkImage(
-                img: "",
+                img: "https://cdn.pixabay.com/photo/2017/07/08/02/16/house-2483336_640.jpg",
                 size: 74.sp,
                 imageRadius: 4.sp,
               );

@@ -37,7 +37,8 @@ class ChatTile extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(6),
                       child: CustomCacheNetworkImage(
-                        img: "",
+                        img:
+                            "https://cdn.pixabay.com/photo/2017/07/08/02/16/house-2483336_640.jpg",
                         size: 55,
                       ),
                     ),
@@ -45,7 +46,8 @@ class ChatTile extends StatelessWidget {
                       right: 0,
                       bottom: 0,
                       child: CustomCacheNetworkImage(
-                        img: "",
+                        img:
+                            "https://images.unsplash.com/photo-1633332755192-727a05c4013d?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGVyc29uYXxlbnwwfHwwfHx8MA%3D%3D",
                         size: 33,
                       ),
                     )

@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
             return MediaQuery(
               data: MediaQuery.of(context)
                   .copyWith(textScaler: const TextScaler.linear(1.0)),
-              child: child??SizedBox(),
+              child: child,
             );
           },
           theme: ThemeData(

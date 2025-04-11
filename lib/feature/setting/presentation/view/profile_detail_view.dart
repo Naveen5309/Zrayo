@@ -57,7 +57,8 @@ class ProfileDetailView extends ConsumerWidget {
 
   /// personal detail widget
   Widget personalDetail(BuildContext context, UserModel? userModel,
-      CreateProfileNotifiers createProfileNotifier) {
+      CreateProfileNotifiers createProfileNotifier)
+  {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       decoration: Utils.boxDecoWithShadow(),
@@ -68,7 +69,7 @@ class ProfileDetailView extends ConsumerWidget {
             children: [
               AppText(
                 text: AppString.personalDetails,
-                textSize: 20.sp,
+                textSize: 19.sp,
                 fontFamily: AppFonts.satoshiBold,
               ),
               GestureDetector(
@@ -190,7 +191,7 @@ class ProfileDetailView extends ConsumerWidget {
             children: [
               AppText(
                 text: AppString.address,
-                textSize: 20.sp,
+                textSize: 19.sp,
                 fontFamily: AppFonts.satoshiBold,
               ),
               GestureDetector(
@@ -310,7 +311,7 @@ class ProfileDetailView extends ConsumerWidget {
             children: [
               AppText(
                 text: AppString.identityDocument,
-                textSize: 20.sp,
+                textSize: 19.sp,
                 fontFamily: AppFonts.satoshiBold,
               ),
               GestureDetector(
