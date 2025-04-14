@@ -34,5 +34,4 @@ class Getters {
   static bool isAgent() =>
       GetIt.I.get<LocalStorage>().getUserType() == UserTypeEnum.agent;
 
-//static bool get hasProfileDate => GetIt.I.get<LocalStorage>().getLoginUser()?.firstName != null;
 }

@@ -1,16 +1,14 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:intl/intl.dart';
 import 'package:zrayo_flutter/config/app_utils.dart';
-import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/config/validator.dart';
 import 'package:zrayo_flutter/core/helpers/all_getter.dart';
+import 'package:zrayo_flutter/core/helpers/location_data_service.dart';
 import 'package:zrayo_flutter/core/network/http_service.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/auth/data/models/user_model.dart';
@@ -62,9 +60,9 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
   CreateProfileNotifiers({required this.authRepo})
       : super(CreateProfileInitial()) {
     getProfile(isRefresh: true);
-    loadCountriesFromAssets();
-    loadStatesFromAssets();
-    loadCitiesFromAssets();
+    countries = LocationDataService().countries;
+    allStates = LocationDataService().states;
+    cities = LocationDataService().cities;
   }
 
   /// Method to change the profile image
@@ -262,45 +260,6 @@ class CreateProfileNotifiers extends StateNotifier<CreateProfileStates> {
     } catch (e) {
       state = CreateProfileFailed(error: e.toString());
     }
-  }
-
-  /// Method to load country data from assets
-  Future<void> loadCountriesFromAssets() async {
-    String jsonString = await rootBundle.loadString(Assets.countryJson);
-    List<dynamic> jsonList = json.decode(jsonString);
-    countries = parseCountries(jsonList);
-    state = CreateProfileRefresh();
-  }
-
-  /// Method to load state data from assets
-  Future<void> loadStatesFromAssets() async {
-    String jsonString = await rootBundle.loadString(Assets.stateJson);
-    List<dynamic> jsonList = json.decode(jsonString);
-    allStates = parseStates(jsonList);
-    state = CreateProfileRefresh();
-  }
-
-  /// Method to load city data from assets
-  Future<void> loadCitiesFromAssets() async {
-    String jsonString = await rootBundle.loadString(Assets.cityJson);
-    List<dynamic> jsonList = json.decode(jsonString);
-    cities = parseCities(jsonList);
-    state = CreateProfileRefresh();
-  }
-
-  /// Helper method to parse country data
-  List<Country> parseCountries(List<dynamic> jsonList) {
-    return jsonList.map((json) => Country.fromJson(json)).toList();
-  }
-
-  /// Helper method to parse state data
-  List<StateModel> parseStates(List<dynamic> jsonList) {
-    return jsonList.map((json) => StateModel.fromJson(json)).toList();
-  }
-
-  /// Helper method to parse city data
-  List<City> parseCities(List<dynamic> jsonList) {
-    return jsonList.map((json) => City.fromJson(json)).toList();
   }
 
   /// Method to select a country and filter states based on the selected country

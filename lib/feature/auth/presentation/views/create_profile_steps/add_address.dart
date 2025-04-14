@@ -92,93 +92,82 @@ Widget formsFieldsSection(CreateProfileNotifiers addAddressNotifier) {
         );
       }),
 
-      Consumer(builder: (BuildContext context, WidgetRef ref, Widget? child) {
-        printLog(
-            "addAddressNotifier.countries.length-==>${addAddressNotifier.countries.length}");
-        return CustomDropdownButton(
-          customBtn: IgnorePointer(
-            child: CustomTextField(
-              labelText: AppString.country.tr(),
-              hintText: AppString.selectCountry.tr(),
-              controller: addAddressNotifier.countryController,
-              prefixIcon: SvgPicture.asset(Assets.global),
-              suffixIcon: SvgPicture.asset(Assets.arrowDown),
-            ),
-          ),
-          buttonDecoration: BoxDecoration(
-            color: AppColor.transparent,
-          ),
-          hint: 'Global',
-          value: addAddressNotifier.countryController.text.isNotEmpty
-              ? addAddressNotifier.countryController.text
-              : null,
-          dropdownItems:
-              addAddressNotifier.countries.map((e) => e.name).toList(),
-          onChanged: (String? value) {
-            if (value != null) {
-              addAddressNotifier.selectCountry(value);
-            }
-          },
-        );
-      }),
-      Consumer(
-        builder: (BuildContext context, WidgetRef ref, Widget? child) {
-          // var isVisible = ref.watch(isConfirmPswdVisible);
-          return CustomDropdownButton(
-            customBtn: IgnorePointer(
-              child: CustomTextField(
-                labelText: AppString.state.tr(),
-                hintText: AppString.selectSate.tr(),
-                controller: addAddressNotifier.stateController,
-                prefixIcon: SvgPicture.asset(Assets.state),
-                suffixIcon: SvgPicture.asset(Assets.arrowDown),
+      CustomDropdownButton(
+      customBtn: IgnorePointer(
+        child: CustomTextField(
+          labelText: AppString.country.tr(),
+          hintText: AppString.selectCountry.tr(),
+          controller: addAddressNotifier.countryController,
+          prefixIcon: SvgPicture.asset(Assets.global),
+          suffixIcon: SvgPicture.asset(Assets.arrowDown),
+        ),
+      ),
+      buttonDecoration: BoxDecoration(
+        color: AppColor.transparent,
+      ),
+      hint: 'Global',
+      value: addAddressNotifier.countryController.text.isNotEmpty
+          ? addAddressNotifier.countryController.text
+          : null,
+      dropdownItems:
+          addAddressNotifier.countries.map((e) => e.name).toList(),
+      onChanged: (String? value) {
+        if (value != null) {
+          addAddressNotifier.selectCountry(value);
+        }
+      },
               ),
-            ),
-            buttonDecoration: BoxDecoration(
-              color: AppColor.transparent,
-            ),
-            hint: 'State',
-            value: addAddressNotifier.stateController.text.isNotEmpty
-                ? addAddressNotifier.stateController.text
-                : null,
-            dropdownItems:
-                addAddressNotifier.filteredStates.map((e) => e.name).toList(),
-            onChanged: (String? value) {
-              if (value != null) {
-                addAddressNotifier.selectState(value);
-              }
-            },
-          );
+      CustomDropdownButton(
+        customBtn: IgnorePointer(
+          child: CustomTextField(
+            labelText: AppString.state.tr(),
+            hintText: AppString.selectSate.tr(),
+            controller: addAddressNotifier.stateController,
+            prefixIcon: SvgPicture.asset(Assets.state),
+            suffixIcon: SvgPicture.asset(Assets.arrowDown),
+          ),
+        ),
+        buttonDecoration: BoxDecoration(
+          color: AppColor.transparent,
+        ),
+        hint: 'State',
+        value: addAddressNotifier.stateController.text.isNotEmpty
+            ? addAddressNotifier.stateController.text
+            : null,
+        dropdownItems:
+            addAddressNotifier.filteredStates.map((e) => e.name).toList(),
+        onChanged: (String? value) {
+          if (value != null) {
+            addAddressNotifier.selectState(value);
+          }
         },
       ),
-      Consumer(builder: (BuildContext context, WidgetRef ref, Widget? child) {
-        return CustomDropdownButton(
-          customBtn: IgnorePointer(
-            child: CustomTextField(
-              readOnly: true,
-              labelText: AppString.city.tr(),
-              hintText: AppString.selectCity.tr(),
-              controller: addAddressNotifier.cityController,
-              prefixIcon: SvgPicture.asset(Assets.city),
-              suffixIcon: SvgPicture.asset(Assets.arrowDown),
-            ),
+      CustomDropdownButton(
+        customBtn: IgnorePointer(
+          child: CustomTextField(
+            readOnly: true,
+            labelText: AppString.city.tr(),
+            hintText: AppString.selectCity.tr(),
+            controller: addAddressNotifier.cityController,
+            prefixIcon: SvgPicture.asset(Assets.city),
+            suffixIcon: SvgPicture.asset(Assets.arrowDown),
           ),
-          buttonDecoration: BoxDecoration(
-            color: AppColor.transparent,
-          ),
-          hint: 'City',
-          value: addAddressNotifier.cityController.text.isNotEmpty
-              ? addAddressNotifier.cityController.text
-              : null,
-          dropdownItems:
-              addAddressNotifier.filteredCities.map((e) => e.name).toList(),
-          onChanged: (String? value) {
-            if (value != null) {
-              addAddressNotifier.cityController.text = value;
-            }
-          },
-        );
-      }),
+        ),
+        buttonDecoration: BoxDecoration(
+          color: AppColor.transparent,
+        ),
+        hint: 'City',
+        value: addAddressNotifier.cityController.text.isNotEmpty
+            ? addAddressNotifier.cityController.text
+            : null,
+        dropdownItems:
+            addAddressNotifier.filteredCities.map((e) => e.name).toList(),
+        onChanged: (String? value) {
+          if (value != null) {
+            addAddressNotifier.cityController.text = value;
+          }
+        },
+      ),
     ],
   );
 }

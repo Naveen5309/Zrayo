@@ -55,7 +55,7 @@ class CustomAppBar extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     AppText(
-                      text: title.tr(),
+                      text: title,
                       fontFamily: AppFonts.satoshiBold,
                       textSize: titleSize ?? 20.sp,
                       color: titleColor ?? AppColor.black232323,

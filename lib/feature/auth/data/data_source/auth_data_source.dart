@@ -15,15 +15,10 @@ abstract class AuthDataSource {
 
   Future<ResponseWrapper?> signUpUser({required Map<String, dynamic> body});
 
-  Future<ResponseWrapper?> createUpdateProfile({
-    required Map<String, dynamic> body,
-    required bool isUpdateCall,
-  });
+  Future<ResponseWrapper?> createUpdateProfile(
+      {required Map<String, dynamic> body, required bool isUpdateCall});
 
-  Future<ResponseWrapper?> uploadDocument({
-    File? frontSide,
-    File? backSide,
-  });
+  Future<ResponseWrapper?> uploadDocument({File? frontSide, File? backSide});
 
   Future<ResponseWrapper?> uploadFile({required File file});
 

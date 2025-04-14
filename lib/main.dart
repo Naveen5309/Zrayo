@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/config/provider_logs.dart';
 import 'package:zrayo_flutter/core/helpers/app_injector.dart';
+import 'package:zrayo_flutter/core/helpers/location_data_service.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 
 import 'core/utils/routing/routes_generator.dart';
@@ -15,6 +16,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
   await EasyLocalization.ensureInitialized();
+  await LocationDataService().loadLocationData();
 
   await AppInjector.init(
     appRunner: () => runApp(

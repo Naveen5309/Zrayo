@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
+import 'package:zrayo_flutter/feature/aProperty_related_data/data_source/customer_property_data_source.dart';
+import 'package:zrayo_flutter/feature/aProperty_related_data/repositories/customer_property_repo_implementation.dart';
 
 import '../../config/helper.dart';
 import '../../feature/auth/data/data_source/auth_data_source.dart';
@@ -33,6 +35,12 @@ class AppInjector {
         () => NetworkInfoImplementation(GetIt.I<Connectivity>()));
     GetIt.I.registerLazySingleton<ApiProvider>(() => ApiProvider());
     GetIt.I.registerLazySingleton<AuthDataSource>(() => AuthDataSourceImpl());
-    GetIt.I.registerLazySingleton<AuthRepository>(() => AuthRepoImpl(dataSource: GetIt.I<AuthDataSource>()));
+    GetIt.I.registerLazySingleton<AuthRepository>(
+        () => AuthRepoImpl(dataSource: GetIt.I<AuthDataSource>()));
+    GetIt.I.registerLazySingleton<CustomerPropertyDataSource>(
+        () => CustomerPropertyDataSourceImpl());
+    GetIt.I.registerLazySingleton<CustomerPropertyRepository>(() =>
+        CustomerPropertyRepoImpl(
+            customerPropertySource: GetIt.I<CustomerPropertyDataSource>()));
   }
 }
