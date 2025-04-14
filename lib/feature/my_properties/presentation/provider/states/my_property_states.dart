@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -11,6 +13,7 @@ class MyPropertyInitial extends MyPropertyState {
   @override
   List<Object> get props => [];
 }
+
 
 class MyPropertyApiLoading extends MyPropertyState {
   final String? route;

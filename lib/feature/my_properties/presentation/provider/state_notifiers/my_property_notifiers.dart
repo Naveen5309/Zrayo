@@ -1,4 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'dart:io';
+
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:zrayo_flutter/config/enums.dart';
 import 'package:zrayo_flutter/config/helper.dart';
@@ -25,6 +28,30 @@ class MyPropertyNotifier extends StateNotifier<MyPropertyState> {
   TextEditingController? otherFeature = TextEditingController();
   TextEditingController? bathroomSize = TextEditingController();
   TextEditingController? bedroomSize = TextEditingController();
+
+  TextEditingController propertyTitleController = TextEditingController();
+  TextEditingController propertyPriceController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+  TextEditingController commissionPercentageController =
+      TextEditingController();
+  TextEditingController otherPropertyFeatureController =
+      TextEditingController();
+  List<File> propertyImagesFiles = [];
+
+  void addImage(File image) {
+    propertyImagesFiles = [...propertyImagesFiles, image];
+    _updateState();
+  }
+
+  void removeImage(File image) {
+    propertyImagesFiles = propertyImagesFiles.where((img) => img != image).toList();
+    _updateState();
+  }
+
+  void _updateState() {
+    state = MyPropertyRefresh();
+  }
 
   void setSelectedPropertyType(String? value) {
     selectedPropertyType = propertyTypesAndFeatures?.firstWhereOrNull(

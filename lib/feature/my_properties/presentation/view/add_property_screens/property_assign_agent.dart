@@ -7,9 +7,11 @@ import 'package:zrayo_flutter/config/app_utils.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
+import 'package:zrayo_flutter/feature/my_properties/presentation/provider/my_property_provider.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/custom_cache_network_image.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_text_field.dart';
 
 class AddPropertyAgentView extends ConsumerWidget {
@@ -17,6 +19,8 @@ class AddPropertyAgentView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final myPropertyAssignAgentNotifier = ref.read(myPropertyProvider.notifier);
+    final myPropertyAssignAgentState = ref.watch(myPropertyProvider);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -62,14 +66,15 @@ class AddPropertyAgentView extends ConsumerWidget {
                     runSpacing: 12.0,
                     children: [0, 1, 2].map((user) {
                       return _buildUserChip("User name",
-                          "https://randomuser.me/api/portraits/women/2.jpg");
+                          "https://images.unsplash.com/photo-1633332755192-727a05c4013d?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGVyc29uYXxlbnwwfHwwfHx8MA%3D%3D");
                     }).toList(),
                   ),
                   yHeight(20.h),
                   CustomTextField(
                     labelText: AppString.setCommissionPercentage.tr(),
                     hintText: AppString.enterPercentage.tr(),
-                    controller: TextEditingController(),
+                    controller: myPropertyAssignAgentNotifier
+                        .commissionPercentageController,
                   ),
                   yHeight(context.height / 4.5),
                   CommonAppBtn(
@@ -97,9 +102,9 @@ class AddPropertyAgentView extends ConsumerWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          CircleAvatar(
-            backgroundImage: NetworkImage(imageUrl),
-            radius: 15,
+          CustomCacheNetworkImage(
+            img: imageUrl,
+            size: 32,
           ),
           xWidth(8),
           AppText(
@@ -125,7 +130,7 @@ class AddPropertyAgentView extends ConsumerWidget {
             groupValue: "",
             activeColor: AppColor.primary,
             onChanged: (value) {
-              if (value == AppString.yes) {
+              if (value == AppString.yes.tr()) {
                 Utils.appBottomSheet(
                     context: context,
                     widget: bottomSheet(context),
