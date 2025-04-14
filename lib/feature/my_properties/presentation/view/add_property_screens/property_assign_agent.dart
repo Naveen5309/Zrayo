@@ -11,6 +11,7 @@ import 'package:zrayo_flutter/feature/my_properties/presentation/provider/my_pro
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/custom_cache_network_image.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_text_field.dart';
 
 class AddPropertyAgentView extends ConsumerWidget {
@@ -101,9 +102,9 @@ class AddPropertyAgentView extends ConsumerWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          CircleAvatar(
-            backgroundImage: NetworkImage(imageUrl),
-            radius: 15,
+          CustomCacheNetworkImage(
+            img: imageUrl,
+            size: 32,
           ),
           xWidth(8),
           AppText(
