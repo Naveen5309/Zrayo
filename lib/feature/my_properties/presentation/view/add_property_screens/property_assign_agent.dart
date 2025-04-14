@@ -7,6 +7,7 @@ import 'package:zrayo_flutter/config/app_utils.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
+import 'package:zrayo_flutter/feature/my_properties/presentation/provider/my_property_provider.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
@@ -17,6 +18,8 @@ class AddPropertyAgentView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final myPropertyAssignAgentNotifier = ref.read(myPropertyProvider.notifier);
+    final myPropertyAssignAgentState = ref.watch(myPropertyProvider);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -69,7 +72,8 @@ class AddPropertyAgentView extends ConsumerWidget {
                   CustomTextField(
                     labelText: AppString.setCommissionPercentage.tr(),
                     hintText: AppString.enterPercentage.tr(),
-                    controller: TextEditingController(),
+                    controller: myPropertyAssignAgentNotifier
+                        .commissionPercentageController,
                   ),
                   yHeight(context.height / 4.5),
                   CommonAppBtn(

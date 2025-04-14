@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -8,6 +10,13 @@ sealed class MyPropertyState extends Equatable {
 }
 
 class MyPropertyInitial extends MyPropertyState {
+  @override
+  List<Object> get props => [];
+}
+
+class MyPropertyLoaded extends MyPropertyState {
+  final List<File> images;
+  const MyPropertyLoaded({required this.images});
   @override
   List<Object> get props => [];
 }

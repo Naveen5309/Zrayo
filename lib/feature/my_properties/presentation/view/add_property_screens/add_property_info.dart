@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
+import 'package:zrayo_flutter/feature/my_properties/presentation/provider/my_property_provider.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
@@ -27,6 +28,8 @@ class AddPropertyInfo extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final myPropertyInfoNotifier = ref.read(myPropertyProvider.notifier);
+    final myPropertyInfoState = ref.watch(myPropertyProvider);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -73,7 +76,8 @@ class AddPropertyInfo extends ConsumerWidget {
                       child: CustomTextField(
                         labelText: AppString.propertyType.tr(),
                         hintText: AppString.selectPropertyType.tr(),
-                        controller: TextEditingController(),
+                        controller:
+                            myPropertyInfoNotifier.propertyTypeController,
                         suffixIcon: SvgPicture.asset(Assets.arrowDown),
                       ),
                     ),
@@ -96,18 +100,18 @@ class AddPropertyInfo extends ConsumerWidget {
                     children: [
                       Expanded(
                         child: CustomTextField(
-                          labelText: AppString.bathroomSize.tr(),
-                          hintText: AppString.enterSq.tr(),
-                          controller: TextEditingController(),
-                        ),
+                            labelText: AppString.bathroomSize.tr(),
+                            hintText: AppString.enterSq.tr(),
+                            controller:
+                                myPropertyInfoNotifier.bathroomSizeController),
                       ),
                       xWidth(context.width * 0.05),
                       Expanded(
                         child: CustomTextField(
-                          labelText: AppString.bedroomSize.tr(),
-                          hintText: AppString.enterSq.tr(),
-                          controller: TextEditingController(),
-                        ),
+                            labelText: AppString.bedroomSize.tr(),
+                            hintText: AppString.enterSq.tr(),
+                            controller:
+                                myPropertyInfoNotifier.bedroomSizeController),
                       ),
                     ],
                   ),
@@ -163,7 +167,8 @@ class AddPropertyInfo extends ConsumerWidget {
                         CustomTextField(
                           labelText: AppString.other.tr(),
                           hintText: AppString.enterPropertyFeature.tr(),
-                          controller: TextEditingController(),
+                          controller: myPropertyInfoNotifier
+                              .otherPropertyFeatureController,
                         ),
                       ],
                     ),
