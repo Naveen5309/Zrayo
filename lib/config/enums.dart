@@ -3,7 +3,10 @@ enum UserTypeEnum {
   customer,
   agent,
 }
-
+enum PropertyListingType {
+  sell,
+  rent,
+}
 enum DataViewTypes {
   list,
   map,

@@ -1,22 +1,33 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
+import 'package:zrayo_flutter/feature/my_properties/presentation/provider/my_property_provider.dart';
+import 'package:zrayo_flutter/feature/my_properties/presentation/provider/states/my_property_states.dart';
 import 'package:zrayo_flutter/feature/my_properties/presentation/view/add_property_screens/custom_add_widget.dart';
 import 'package:zrayo_flutter/feature/my_properties/presentation/view/add_property_screens/custom_image.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_drop_down.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_text_field.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 
-class AddPropertyBioView extends StatelessWidget {
+class AddPropertyBioView extends ConsumerWidget {
   const AddPropertyBioView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(myPropertyProvider);
+    final myPropertyNotifier = ref.read(myPropertyProvider.notifier);
+    ref.listen<MyPropertyState>(myPropertyProvider, (previous, next) {
+      if (next is MyPropertyFailed) {
+        toast(msg: next.error, isError: true);
+      }
+    });
     return Scaffold(
         body: SingleChildScrollView(
             child: Column(children: [

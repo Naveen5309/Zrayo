@@ -1,39 +1,47 @@
+import 'dart:convert';
 
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/helpers/all_getter.dart';
 import 'package:zrayo_flutter/core/network/http_service.dart';
 import 'package:zrayo_flutter/core/response_wrapper/data_response.dart';
-import 'package:zrayo_flutter/feature/auth/data/models/user_model.dart';
+import 'package:zrayo_flutter/feature/aProperty_related_data/models/property_type_model.dart';
 
 abstract class CustomerPropertyDataSource {
-  Future<ResponseWrapper<UserModel>?> createProperty(
-      {required Map<String, dynamic> body});
+  Future<ResponseWrapper<List<PropertyTypeAndFeaturesModel>>?>
+      getPropertyTypesAndFeatures();
 }
 
 class CustomerPropertyDataSourceImpl extends CustomerPropertyDataSource {
   @override
-  Future<ResponseWrapper<UserModel>?> createProperty(
-      {required Map<String, dynamic> body}) async {
+  Future<ResponseWrapper<List<PropertyTypeAndFeaturesModel>>?>
+      getPropertyTypesAndFeatures() async {
     try {
-      final dataResponse = await Getters.getHttpService.request<UserModel>(
-        body: body,
-        url: ApiEndpoints.login,
-        fromJson: (json) => UserModel.fromJson(json),
+
+      final dataResponse = await Getters.getHttpService.request<dynamic>(
+        url: ApiEndpoints.propertyTypesAndFeatures,
+        body: {},
+        fromJson: (dynamic json) {
+          if (json != null && (json as List).isNotEmpty) {
+            return List<PropertyTypeAndFeaturesModel>.from(
+              json.map((x) => propertyTypeModelFromJson(jsonEncode(x))),
+            );
+          } else {
+            return <PropertyTypeAndFeaturesModel>[];
+          }
+        },
+
       );
       if (dataResponse.success == true) {
-        await Getters.getLocalStorage.saveToken(dataResponse.data?.token ?? "");
-        await Getters.getLocalStorage
-            .saveLoginUser(dataResponse.data ?? UserModel());
         return getSuccessResponseWrapper(dataResponse);
       } else {
         return getFailedResponseWrapper(dataResponse.message,
             response: dataResponse.data);
       }
     } catch (e, t) {
-      functionLog(msg: t.toString(), fun: "createProperty");
+      functionLog(msg: t.toString(), fun: "getPropertyTypesAndFeatures");
       return getFailedResponseWrapper(exceptionHandler(
         e: e,
-        functionName: "createProperty",
+        functionName: "getPropertyTypesAndFeatures",
       ));
     }
   }

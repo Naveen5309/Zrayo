@@ -1,5 +1,10 @@
 part of 'helper.dart';
 
+extension FirstWhereOrNull<T> on Iterable<T> {
+  T? firstWhereOrNull(bool Function(T) test) {
+    return firstWhere(test, orElse: () => null as T);
+  }
+}
 extension StringNullCheck on String? {
   bool get notNullAndNotEmpty => this != null && this!.isNotEmpty;
 }

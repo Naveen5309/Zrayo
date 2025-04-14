@@ -29,7 +29,7 @@ class CustomRatingBox extends StatelessWidget {
             ),
           ),
           AppText(
-            text: rating.tr(),
+            text: rating,
             textSize: 10.sp,
           ).align(),
         ],

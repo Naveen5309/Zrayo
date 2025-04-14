@@ -120,9 +120,9 @@ class CustomDropdownButton extends StatelessWidget {
             iconEnabledColor: iconEnabledColor,
             iconDisabledColor: iconDisabledColor,
           ),
+
           customButton: customBtn,
           dropdownStyleData: DropdownStyleData(
-            //Max height for the dropdown menu & becoming scrollable if there are more items. If you pass Null it will take max height possible for the items.
             maxHeight: dropdownHeight ?? 200,
             width: dropdownWidth ?? context.width * .9,
             padding: dropdownPadding,

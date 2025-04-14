@@ -25,3 +25,12 @@ class MyPropertyRefresh extends MyPropertyState {
   @override
   List<Object> get props => [];
 }
+
+class MyPropertyFailed extends MyPropertyState {
+  final String error;
+
+  const MyPropertyFailed({required this.error});
+
+  @override
+  List<Object> get props => [error];
+}
