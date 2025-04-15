@@ -8,6 +8,7 @@ import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/network/http_service.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
+import 'package:zrayo_flutter/feature/aProperty_related_data/models/property_agents_list_model.dart';
 import 'package:zrayo_flutter/feature/my_properties/presentation/provider/my_property_provider.dart';
 import 'package:zrayo_flutter/feature/my_properties/presentation/provider/state_notifiers/my_property_notifiers.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
@@ -23,6 +24,7 @@ class AddPropertyAgentView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final myPropertyAssignAgentNotifier = ref.read(myPropertyProvider.notifier);
     final myPropertyAssignAgentState = ref.watch(myPropertyProvider);
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -48,20 +50,37 @@ class AddPropertyAgentView extends ConsumerWidget {
                   yHeight(10),
                   Row(
                     children: [
-                      _buildRadioButton(AppString.yes.tr(), context,
-                          myPropertyAssignAgentNotifier),
+                      _buildRadioButton(
+                        label: AppString.yes.tr(),
+                        context: context,
+                        ref: ref,
+                        value: 0,
+                        myPropertyAssignAgentNotifier:
+                            myPropertyAssignAgentNotifier,
+                      ),
                       SizedBox(width: 20.w),
-                      _buildRadioButton(AppString.no.tr(), context,
-                          myPropertyAssignAgentNotifier),
+                      _buildRadioButton(
+                        label: AppString.no.tr(),
+                        context: context,
+                        value: 1,
+                        ref: ref,
+                        myPropertyAssignAgentNotifier:
+                            myPropertyAssignAgentNotifier,
+                      ),
                     ],
                   ),
                   yHeight(10.h),
                   Wrap(
                     spacing: 14.0,
                     runSpacing: 12.0,
-                    children: [0, 1, 2].map((user) {
-                      return _buildUserChip("User name",
-                          "https://images.unsplash.com/photo-1633332755192-727a05c4013d?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGVyc29uYXxlbnwwfHwwfHx8MA%3D%3D");
+                    children: myPropertyAssignAgentNotifier.selectedAgents
+                        .map((agent) {
+                      return _buildUserChip(
+                        '${agent.firstName} ${agent.lastName}',
+                        "${ApiEndpoints.profileImageUrl}${agent.userProfile}",
+                        agent,
+                        myPropertyAssignAgentNotifier,
+                      );
                     }).toList(),
                   ),
                   yHeight(20.h),
@@ -87,7 +106,11 @@ class AddPropertyAgentView extends ConsumerWidget {
     );
   }
 
-  Widget _buildUserChip(String name, String imageUrl) {
+  Widget _buildUserChip(
+      String name,
+      String imageUrl,
+      PropertyAgentsListsModel agent,
+      MyPropertyNotifier myPropertyAssignAgentNotifier) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
@@ -102,143 +125,161 @@ class AddPropertyAgentView extends ConsumerWidget {
             size: 32,
           ),
           xWidth(8),
-          AppText(
-            text: name.tr(),
-            textSize: 14.sp,
+          Flexible(
+            child: AppText(
+              text: name.tr(),
+              textSize: 14.sp,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
           xWidth(8),
-          GestureDetector(onTap: () {}, child: SvgPicture.asset(Assets.x)),
+          GestureDetector(
+              onTap: () {
+                myPropertyAssignAgentNotifier.toggleAgentSelection(agent!);
+              },
+              child: SvgPicture.asset(Assets.x)),
         ],
       ),
     );
   }
 
-  Widget _buildRadioButton(String label, BuildContext context,
-      MyPropertyNotifier myPropertyAssignAgentNotifier) {
+  Widget _buildRadioButton({
+    required String label,
+    required BuildContext context,
+    required WidgetRef ref,
+    required int value,
+    required MyPropertyNotifier myPropertyAssignAgentNotifier,
+  }) {
     return Theme(
       data: Theme.of(context).copyWith(
         unselectedWidgetColor: AppColor.colorB7B7B7,
       ),
       child: Row(
         children: [
-          Radio<String>(
-            value: label,
-            groupValue: "",
+          Radio<int>(
+            value: value,
+            groupValue: myPropertyAssignAgentNotifier.assignAgent,
             activeColor: AppColor.primary,
             onChanged: (value) {
-              if (value == AppString.yes.tr()) {
-                myPropertyAssignAgentNotifier.getPropertyAgentList();
+              myPropertyAssignAgentNotifier.assignAgentValue(value);
 
+              if (value == 0) {
                 Utils.appBottomSheet(
                     context: context,
-                    widget: bottomSheet(context, myPropertyAssignAgentNotifier),
+                    widget: bottomSheet(
+                      context: context,
+                    ),
                     isScrolled: true);
               }
             },
           ),
-          GestureDetector(
-            onTap: () {
-              if (label == AppString.yes) {
-                myPropertyAssignAgentNotifier.getPropertyAgentList();
-                Utils.appBottomSheet(
-                    context: context,
-                    widget: bottomSheet(context, myPropertyAssignAgentNotifier),
-                    isScrolled: true);
-              }
-            },
-            child: AppText(
-              text: label.tr(),
-              textSize: 14.sp,
-              color: AppColor.black4A4A4A,
-            ),
+          AppText(
+            text: label.tr(),
+            textSize: 14.sp,
+            color: AppColor.black4A4A4A,
           ),
         ],
       ),
     );
   }
 
-  Widget bottomSheet(
-      BuildContext context, MyPropertyNotifier myPropertyAssignAgentNotifier) {
-    return Container(
-      constraints: BoxConstraints(maxHeight: screenHeight(context) / 1.5),
-      child: Column(
-        children: [
-          yHeight(12),
-          AppText(
-            text: AppString.chooseAgents.tr(),
-            textSize: 20.sp,
-            fontFamily: AppFonts.satoshiBold,
-          ),
-          yHeight(12),
-          AppText(
-            text: AppString.slectAgent.tr(),
-            fontFamily: AppFonts.satoshiRegular,
-            // textSize: 13.sp,
-            lineHeight: 1.2,
-            textAlign: TextAlign.center,
-            color: AppColor.black000000.withValues(alpha: 0.6),
-          ),
-          yHeight(16.h),
-          CustomTextField(
-            hintText: AppString.search,
-            prefixIcon: SvgPicture.asset(Assets.searchIcon),
-          ),
-          Expanded(
-            child: ListView.builder(
-              padding: EdgeInsets.symmetric(vertical: 16.h),
-              shrinkWrap: true,
-              itemCount:
-                  myPropertyAssignAgentNotifier.propertyAgentsList!.length,
-              itemBuilder: (context, index) {
-                final isSelected = index == 1;
-                final agents =
-                    myPropertyAssignAgentNotifier.propertyAgentsList?[index];
-                return Column(
-                  children: [
-                    ListTile(
-                      minTileHeight: 8,
-                      contentPadding: EdgeInsets.symmetric(horizontal: 0),
-                      leading: CustomCacheNetworkImage(
-                        img:
-                            "${ApiEndpoints.profileImageUrl}${agents?.userProfile}",
-                        size: 50,
-                      ),
-                      title: AppText(
-                        text:
-                            '${agents?.firstName ?? ''} ${agents?.lastName ?? ''}',
-                        textSize: 14.sp,
-                        fontFamily: AppFonts.satoshiBold,
-                      ),
-                      subtitle: Padding(
-                        padding: const EdgeInsets.only(top: 5),
-                        child: AppText(
-                          text: agents?.phoneNumber ?? "",
-                          textSize: 12.sp,
-                          fontFamily: AppFonts.satoshiRegular,
-                          color: AppColor.color212121.withValues(alpha: 0.5),
+  Widget bottomSheet({required BuildContext context}) {
+    return Consumer(
+      builder: (BuildContext context, WidgetRef ref, Widget? child) {
+        final myPropertyAssignAgentNotifier =
+            ref.read(myPropertyProvider.notifier);
+        ref.watch(myPropertyProvider);
+
+        return Container(
+          constraints: BoxConstraints(maxHeight: screenHeight(context) / 1.5),
+          child: Column(
+            children: [
+              yHeight(12),
+              AppText(
+                text: AppString.chooseAgents.tr(),
+                textSize: 20.sp,
+                fontFamily: AppFonts.satoshiBold,
+              ),
+              yHeight(12),
+              AppText(
+                text: AppString.slectAgent.tr(),
+                fontFamily: AppFonts.satoshiRegular,
+                // textSize: 13.sp,
+                lineHeight: 1.2,
+                textAlign: TextAlign.center,
+                color: AppColor.black000000.withValues(alpha: 0.6),
+              ),
+              yHeight(16.h),
+              CustomTextField(
+                hintText: AppString.search,
+                prefixIcon: SvgPicture.asset(Assets.searchIcon),
+              ),
+              Expanded(
+                child: ListView.builder(
+                  padding: EdgeInsets.symmetric(vertical: 16.h),
+                  shrinkWrap: true,
+                  itemCount:
+                      myPropertyAssignAgentNotifier.propertyAgentsList!.length,
+                  itemBuilder: (context, index) {
+                    final agent = myPropertyAssignAgentNotifier
+                        .propertyAgentsList?[index];
+                    final isSelected =
+                        myPropertyAssignAgentNotifier.selectedAgents.any(
+                      (a) => a.id == agent?.id,
+                    );
+
+                    return Column(
+                      children: [
+                        ListTile(
+                          minTileHeight: 8,
+                          contentPadding: EdgeInsets.symmetric(horizontal: 0),
+                          leading: CustomCacheNetworkImage(
+                            img:
+                                "${ApiEndpoints.profileImageUrl}${agent?.userProfile}",
+                            size: 50,
+                          ),
+                          title: AppText(
+                            text:
+                                '${agent?.firstName ?? ''} ${agent?.lastName ?? ''}',
+                            textSize: 14.sp,
+                            fontFamily: AppFonts.satoshiBold,
+                          ),
+                          subtitle: Padding(
+                            padding: const EdgeInsets.only(top: 5),
+                            child: AppText(
+                              text: agent?.phoneNumber ?? "",
+                              textSize: 12.sp,
+                              fontFamily: AppFonts.satoshiRegular,
+                              color:
+                                  AppColor.color212121.withValues(alpha: 0.5),
+                            ),
+                          ),
+                          trailing: SvgPicture.asset(
+                            isSelected ? Assets.lucideTrue : Assets.lucide,
+                          ),
+                          onTap: () {
+                            myPropertyAssignAgentNotifier
+                                .toggleAgentSelection(agent!);
+                          },
                         ),
-                      ),
-                      trailing: SvgPicture.asset(
-                        (isSelected) ? Assets.lucideTrue : Assets.lucide,
-                      ),
-                      onTap: () {},
-                    ),
-                    if (index != 9)
-                      Divider(
-                        color: AppColor.colorDDDDDD.withValues(alpha: .9),
-                      ),
-                  ],
-                );
-              },
-            ),
+                        if (index != 9)
+                          Divider(
+                            color: AppColor.colorDDDDDD.withValues(alpha: .9),
+                          ),
+                      ],
+                    );
+                  },
+                ),
+              ),
+              // yHeight(15),
+              CommonAppBtn(
+                title: AppString.continueText.tr(),
+                onTap: () => back(context),
+              )
+            ],
           ),
-          // yHeight(15),
-          CommonAppBtn(
-            title: AppString.continueText.tr(),
-            onTap: () => back(context),
-          )
-        ],
-      ),
+        );
+      },
     );
   }
 }

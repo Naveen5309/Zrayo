@@ -13,7 +13,6 @@ class MyPropertyInitial extends MyPropertyState {
   List<Object> get props => [];
 }
 
-
 class MyPropertyApiLoading extends MyPropertyState {
   final String? route;
 

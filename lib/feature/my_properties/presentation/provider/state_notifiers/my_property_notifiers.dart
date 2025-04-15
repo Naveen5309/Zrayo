@@ -20,6 +20,7 @@ class MyPropertyNotifier extends StateNotifier<MyPropertyState> {
   MyPropertyNotifier({required this.customerPropertyRepo})
       : super(MyPropertyInitial()) {
     getPropertyTypesAndFeatures();
+    getPropertyAgentList();
     countries = LocationDataService().countries;
     allStates = LocationDataService().states;
     cities = LocationDataService().cities;
@@ -42,10 +43,12 @@ class MyPropertyNotifier extends StateNotifier<MyPropertyState> {
       <PropertyTypeAndFeaturesModel>[];
   List<PropertyAgentsListsModel>? propertyAgentsList =
       <PropertyAgentsListsModel>[];
+  List<PropertyAgentsListsModel> selectedAgents = [];
   PropertyTypeAndFeaturesModel? selectedPropertyType;
   List<PropertyTypeAndFeaturesModel>? selectedPropertyFeatures =
       <PropertyTypeAndFeaturesModel>[];
   PropertyListingType? sellOrRentType;
+  int? assignAgent;
   TextEditingController? otherFeature = TextEditingController();
   TextEditingController? bathroomSize = TextEditingController();
   TextEditingController? bedroomSize = TextEditingController();
@@ -136,6 +139,7 @@ class MyPropertyNotifier extends StateNotifier<MyPropertyState> {
         return false;
       }, (result) {
         propertyAgentsList = result;
+        state = MyPropertyRefresh();
         return true;
       });
     } catch (e) {
@@ -144,33 +148,50 @@ class MyPropertyNotifier extends StateNotifier<MyPropertyState> {
     }
   }
 
-  /// Method to select a country and filter states based on the selected country
-  void selectCountry(String countryName) {
-    final selectedCountry = countries.firstWhere((c) => c.name == countryName);
-    countryController.text = selectedCountry.name;
-
-    filteredStates = allStates
-        .where((state) =>
-            int.tryParse(state.countryId) == int.tryParse(selectedCountry.id))
-        .toList();
-
-    stateController.clear();
-    cityController.clear();
-    filteredCities = [];
+  void assignAgentValue(int? value) {
+    assignAgent = value;
     state = MyPropertyRefresh();
   }
 
-  /// Method to select a state and filter cities based on the selected state
-  void selectState(String stateName) {
-    final selectedState = filteredStates.firstWhere((s) => s.name == stateName);
-    stateController.text = selectedState.name;
+  void toggleAgentSelection(PropertyAgentsListsModel agent) {
+    final isSelected = selectedAgents.any((a) => a.id == agent.id);
 
-    filteredCities = cities
-        .where((city) =>
-            int.tryParse(city.stateId) == int.tryParse(selectedState.id))
-        .toList();
+    if (isSelected) {
+      selectedAgents.removeWhere((a) => a.id == agent.id);
+    } else {
+      selectedAgents.add(agent);
+    }
 
-    cityController.clear();
-    state = MyPropertyRefresh();
+    /// Method to select a country and filter states based on the selected country
+    void selectCountry(String countryName) {
+      final selectedCountry =
+          countries.firstWhere((c) => c.name == countryName);
+      countryController.text = selectedCountry.name;
+
+      filteredStates = allStates
+          .where((state) =>
+              int.tryParse(state.countryId) == int.tryParse(selectedCountry.id))
+          .toList();
+
+      stateController.clear();
+      cityController.clear();
+      filteredCities = [];
+      state = MyPropertyRefresh();
+    }
+
+    /// Method to select a state and filter cities based on the selected state
+    void selectState(String stateName) {
+      final selectedState =
+          filteredStates.firstWhere((s) => s.name == stateName);
+      stateController.text = selectedState.name;
+
+      filteredCities = cities
+          .where((city) =>
+              int.tryParse(city.stateId) == int.tryParse(selectedState.id))
+          .toList();
+
+      cityController.clear();
+      state = MyPropertyRefresh();
+    }
   }
 }
