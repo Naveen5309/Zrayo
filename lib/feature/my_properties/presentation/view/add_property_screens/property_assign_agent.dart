@@ -6,8 +6,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/config/app_utils.dart';
 import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
+import 'package:zrayo_flutter/core/network/http_service.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/my_properties/presentation/provider/my_property_provider.dart';
+import 'package:zrayo_flutter/feature/my_properties/presentation/provider/state_notifiers/my_property_notifiers.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
@@ -46,9 +48,11 @@ class AddPropertyAgentView extends ConsumerWidget {
                   yHeight(10),
                   Row(
                     children: [
-                      _buildRadioButton(AppString.yes.tr(), context),
+                      _buildRadioButton(AppString.yes.tr(), context,
+                          myPropertyAssignAgentNotifier),
                       SizedBox(width: 20.w),
-                      _buildRadioButton(AppString.no.tr(), context),
+                      _buildRadioButton(AppString.no.tr(), context,
+                          myPropertyAssignAgentNotifier),
                     ],
                   ),
                   yHeight(10.h),
@@ -109,7 +113,8 @@ class AddPropertyAgentView extends ConsumerWidget {
     );
   }
 
-  Widget _buildRadioButton(String label, BuildContext context) {
+  Widget _buildRadioButton(String label, BuildContext context,
+      MyPropertyNotifier myPropertyAssignAgentNotifier) {
     return Theme(
       data: Theme.of(context).copyWith(
         unselectedWidgetColor: AppColor.colorB7B7B7,
@@ -122,9 +127,11 @@ class AddPropertyAgentView extends ConsumerWidget {
             activeColor: AppColor.primary,
             onChanged: (value) {
               if (value == AppString.yes.tr()) {
+                myPropertyAssignAgentNotifier.getPropertyAgentList();
+
                 Utils.appBottomSheet(
                     context: context,
-                    widget: bottomSheet(context),
+                    widget: bottomSheet(context, myPropertyAssignAgentNotifier),
                     isScrolled: true);
               }
             },
@@ -132,9 +139,10 @@ class AddPropertyAgentView extends ConsumerWidget {
           GestureDetector(
             onTap: () {
               if (label == AppString.yes) {
+                myPropertyAssignAgentNotifier.getPropertyAgentList();
                 Utils.appBottomSheet(
                     context: context,
-                    widget: bottomSheet(context),
+                    widget: bottomSheet(context, myPropertyAssignAgentNotifier),
                     isScrolled: true);
               }
             },
@@ -148,8 +156,9 @@ class AddPropertyAgentView extends ConsumerWidget {
       ),
     );
   }
-// character
-  Widget bottomSheet(BuildContext context) {
+
+  Widget bottomSheet(
+      BuildContext context, MyPropertyNotifier myPropertyAssignAgentNotifier) {
     return Container(
       constraints: BoxConstraints(maxHeight: screenHeight(context) / 1.5),
       child: Column(
@@ -178,27 +187,32 @@ class AddPropertyAgentView extends ConsumerWidget {
             child: ListView.builder(
               padding: EdgeInsets.symmetric(vertical: 16.h),
               shrinkWrap: true,
-              itemCount: 10,
+              itemCount:
+                  myPropertyAssignAgentNotifier.propertyAgentsList!.length,
               itemBuilder: (context, index) {
                 final isSelected = index == 1;
+                final agents =
+                    myPropertyAssignAgentNotifier.propertyAgentsList?[index];
                 return Column(
                   children: [
                     ListTile(
                       minTileHeight: 8,
                       contentPadding: EdgeInsets.symmetric(horizontal: 0),
-                      leading: CircleAvatar(
-                        backgroundImage: NetworkImage(
-                            "https://randomuser.me/api/portraits/women/2.jpg"),
+                      leading: CustomCacheNetworkImage(
+                        img:
+                            "${ApiEndpoints.profileImageUrl}${agents?.userProfile}",
+                        size: 50,
                       ),
                       title: AppText(
-                        text: "User name",
+                        text:
+                            '${agents?.firstName ?? ''} ${agents?.lastName ?? ''}',
                         textSize: 14.sp,
                         fontFamily: AppFonts.satoshiBold,
                       ),
                       subtitle: Padding(
                         padding: const EdgeInsets.only(top: 5),
                         child: AppText(
-                          text: "(406) 555-0120",
+                          text: agents?.phoneNumber ?? "",
                           textSize: 12.sp,
                           fontFamily: AppFonts.satoshiRegular,
                           color: AppColor.color212121.withValues(alpha: 0.5),
