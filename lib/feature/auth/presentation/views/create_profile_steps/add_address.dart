@@ -36,7 +36,9 @@ class AddAddressView extends ConsumerWidget {
         child: Column(
           children: [
             CustomAppBar(
-                title: fromSettings ? AppString.address.tr() : AppString.addAddress.tr()),
+                title: fromSettings
+                    ? AppString.address.tr()
+                    : AppString.addAddress.tr()),
             yHeight(10.sp),
             fromSettings
                 ? SizedBox()
@@ -93,30 +95,29 @@ Widget formsFieldsSection(CreateProfileNotifiers addAddressNotifier) {
       }),
 
       CustomDropdownButton(
-      customBtn: IgnorePointer(
-        child: CustomTextField(
-          labelText: AppString.country.tr(),
-          hintText: AppString.selectCountry.tr(),
-          controller: addAddressNotifier.countryController,
-          prefixIcon: SvgPicture.asset(Assets.global),
-          suffixIcon: SvgPicture.asset(Assets.arrowDown),
+        customBtn: IgnorePointer(
+          child: CustomTextField(
+            labelText: AppString.country.tr(),
+            hintText: AppString.selectCountry.tr(),
+            controller: addAddressNotifier.countryController,
+            prefixIcon: SvgPicture.asset(Assets.global),
+            suffixIcon: SvgPicture.asset(Assets.arrowDown),
+          ),
         ),
+        buttonDecoration: BoxDecoration(
+          color: AppColor.transparent,
+        ),
+        hint: 'Global',
+        value: addAddressNotifier.countryController.text.isNotEmpty
+            ? addAddressNotifier.countryController.text
+            : null,
+        dropdownItems: addAddressNotifier.countries.map((e) => e.name).toList(),
+        onChanged: (String? value) {
+          if (value != null) {
+            addAddressNotifier.selectCountry(value);
+          }
+        },
       ),
-      buttonDecoration: BoxDecoration(
-        color: AppColor.transparent,
-      ),
-      hint: 'Global',
-      value: addAddressNotifier.countryController.text.isNotEmpty
-          ? addAddressNotifier.countryController.text
-          : null,
-      dropdownItems:
-          addAddressNotifier.countries.map((e) => e.name).toList(),
-      onChanged: (String? value) {
-        if (value != null) {
-          addAddressNotifier.selectCountry(value);
-        }
-      },
-              ),
       CustomDropdownButton(
         customBtn: IgnorePointer(
           child: CustomTextField(

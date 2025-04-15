@@ -51,25 +51,31 @@ class CustomAppBar extends StatelessWidget {
                 if ((centerTitle ?? false) && !(showBackButton ?? false)) ...{
                   const SizedBox()
                 },
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    AppText(
-                      text: title,
-                      fontFamily: AppFonts.satoshiBold,
-                      textSize: titleSize ?? 20.sp,
-                      color: titleColor ?? AppColor.black232323,
-                    ),
-                    if (subTitle != null) ...{
-                      yHeight(3),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                       AppText(
-                        text: subTitle ?? "".tr(),
-                        fontFamily: AppFonts.satoshiMedium,
-                        textSize: 12.sp,
-                        color: titleColor,
+                        text: title,
+                        fontFamily: AppFonts.satoshiBold,
+                        textSize: titleSize ?? 20.sp,
+                        color: titleColor ?? AppColor.black232323,
                       ),
-                    }
-                  ],
+                      if (subTitle != null) ...{
+                        yHeight(3),
+                        AppText(
+                          text: subTitle ?? "".tr(),
+                          fontFamily: AppFonts.satoshiMedium,
+                          textSize: 12.sp,
+                          color: titleColor,
+                        ),
+                      }
+                    ],
+                  ).align(
+                      alignment:
+                          ((centerTitle ?? false) || (showBackButton ?? false))
+                              ? Alignment.center
+                              : Alignment.centerLeft),
                 ),
                 action ??
                     ((showNotificationIcon ?? false)

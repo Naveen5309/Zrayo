@@ -108,7 +108,7 @@ class ReviewBottomsheet extends ConsumerWidget {
                   Utils.appBottomSheet(
                       context: context,
                       widget: SuccessSheet(
-                        title: AppString.ratingSubmittedSuccessfully,
+                        title: AppString.ratingSubmittedSuccessfully.tr(),
                       ));
                 },
               )

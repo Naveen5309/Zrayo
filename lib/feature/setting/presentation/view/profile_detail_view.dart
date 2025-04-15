@@ -28,7 +28,7 @@ class ProfileDetailView extends ConsumerWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CustomAppBar(title: AppString.myProfile),
+            CustomAppBar(title: AppString.myProfile.tr()),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(

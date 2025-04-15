@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:zrayo_flutter/config/assets.dart';
@@ -17,7 +18,7 @@ class ChatUsersListView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           CustomAppBar(
-            title: AppString.message,
+            title: AppString.message.tr(),
             showBackButton: false,
             showNotificationIcon: true,
           ),
@@ -25,7 +26,7 @@ class ChatUsersListView extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: CustomTextField(
-              hintText: AppString.search,
+              hintText: AppString.search.tr(),
               prefixIcon: SvgPicture.asset(Assets.searchIcon),
             ),
           ),

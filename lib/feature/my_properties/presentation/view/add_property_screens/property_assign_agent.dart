@@ -33,17 +33,8 @@ class AddPropertyAgentView extends ConsumerWidget {
             yHeight(10.sp),
             Container(
               height: 5,
-              color: AppColor.orangeFff9f0,
+              color: AppColor.primary,
               width: screenWidth(context),
-              child: Row(
-                children: [
-                  Container(
-                    height: 5,
-                    width: (screenWidth(context) / 5) * 5,
-                    color: AppColor.primary,
-                  ),
-                ],
-              ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 5),

@@ -40,9 +40,10 @@ class CreateProfile extends ConsumerWidget {
         child: Column(
           children: [
             CustomAppBar(
-                title: fromSettings
-                    ? AppString.personalDetails
-                    : AppString.createProfile),
+              title: fromSettings
+                  ? AppString.personalDetails.tr()
+                  : AppString.createProfile.tr(),
+            ),
             yHeight(10.sp),
             fromSettings
                 ? SizedBox()
@@ -148,6 +149,7 @@ class CreateProfile extends ConsumerWidget {
                             prefixIcon: SvgPicture.asset(
                               Assets.person,
                             ),
+                            maxLength: 20,
                             labelText: AppString.firstName.tr(),
                             keyboardType: TextInputType.name,
                             controller:
@@ -158,6 +160,7 @@ class CreateProfile extends ConsumerWidget {
                           xWidth(20),
                           Expanded(
                               child: CustomTextField(
+                            maxLength: 20,
                             prefixIcon: SvgPicture.asset(Assets.person),
                             labelText: AppString.lastName.tr(),
                             contentPadding: EdgeInsets.all(2),
@@ -179,12 +182,15 @@ class CreateProfile extends ConsumerWidget {
                       CustomTextField(
                         onTap: () async {
                           final DateTime today = DateTime.now();
-                          final DateTime eighteenYearsAgo = DateTime(today.year - 18, today.month, today.day);
+                          final DateTime eighteenYearsAgo =
+                              DateTime(today.year - 18, today.month, today.day);
 
                           final DateTime? picked = await showDatePicker(
                             context: context,
-                            initialDate: createProfileNotifier.dobController.text.notNullAndNotEmpty
-                                ? DateFormat('dd/MM/yyyy').parseStrict(createProfileNotifier.dobController.text)
+                            initialDate: createProfileNotifier
+                                    .dobController.text.notNullAndNotEmpty
+                                ? DateFormat('dd/MM/yyyy').parseStrict(
+                                    createProfileNotifier.dobController.text)
                                 : eighteenYearsAgo,
                             firstDate: DateTime(1970, 8),
                             lastDate: eighteenYearsAgo,
@@ -193,14 +199,15 @@ class CreateProfile extends ConsumerWidget {
                                 data: ThemeData.light().copyWith(
                                   primaryColor: AppColor.primary,
                                   hintColor: AppColor.primary,
-                                  colorScheme: const ColorScheme.light(primary: AppColor.primary),
-                                  buttonTheme: const ButtonThemeData(textTheme: ButtonTextTheme.primary),
+                                  colorScheme: const ColorScheme.light(
+                                      primary: AppColor.primary),
+                                  buttonTheme: const ButtonThemeData(
+                                      textTheme: ButtonTextTheme.primary),
                                 ),
                                 child: child!,
                               );
                             },
                           );
-
 
                           if (picked != null) {
                             createProfileNotifier.dobController.text =

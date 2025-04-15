@@ -41,7 +41,7 @@ class AddPropertyInfo extends ConsumerWidget {
                 children: [
                   Container(
                     height: 5,
-                    width: (screenWidth(context) / 5) * 3.5,
+                    width: (screenWidth(context) / 3) * 2,
                     color: AppColor.primary,
                   ),
                 ],

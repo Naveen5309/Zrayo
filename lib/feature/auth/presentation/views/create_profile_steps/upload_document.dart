@@ -40,9 +40,10 @@ class UploadDocument extends ConsumerWidget {
       body: Column(
         children: [
           CustomAppBar(
-              title: fromSettings
-                  ? AppString.identityDocument
-                  : AppString.uploadDocument),
+            title: fromSettings
+                ? AppString.identityDocument.tr()
+                : AppString.uploadDocument.tr(),
+          ),
           yHeight(10.sp),
           fromSettings
               ? SizedBox()

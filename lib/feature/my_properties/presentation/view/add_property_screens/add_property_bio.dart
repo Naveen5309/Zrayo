@@ -10,7 +10,6 @@ import 'package:zrayo_flutter/config/assets.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/my_properties/presentation/provider/my_property_provider.dart';
-import 'package:zrayo_flutter/feature/my_properties/presentation/provider/states/my_property_states.dart';
 import 'package:zrayo_flutter/feature/my_properties/presentation/view/add_property_screens/custom_add_widget.dart';
 import 'package:zrayo_flutter/feature/my_properties/presentation/view/add_property_screens/custom_image.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/camera_bottom_sheet_view.dart';
@@ -24,8 +23,9 @@ class AddPropertyBioView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(myPropertyProvider);
+
     final myPropertyNotifier = ref.read(myPropertyProvider.notifier);
-    final myPropertyState = ref.watch(myPropertyProvider);
     return Scaffold(
         body: SingleChildScrollView(
             child: Column(children: [
@@ -39,7 +39,7 @@ class AddPropertyBioView extends ConsumerWidget {
           children: [
             Container(
               height: 5,
-              width: (screenWidth(context) / 5) * 1.6,
+              width: (screenWidth(context) / 3),
               color: AppColor.primary,
             ),
           ],
@@ -80,7 +80,7 @@ class AddPropertyBioView extends ConsumerWidget {
                             readOnly: true,
                             labelText: AppString.selectCity.tr(),
                             hintText: AppString.city.tr(),
-                            controller: TextEditingController(),
+                            controller: myPropertyNotifier.cityController,
                             suffixIcon: SvgPicture.asset(Assets.arrowDown),
                           ),
                         ),
@@ -88,15 +88,17 @@ class AddPropertyBioView extends ConsumerWidget {
                           color: AppColor.transparent,
                         ),
                         hint: 'City',
-                        value: "New York",
-                        dropdownItems: [
-                          "New York",
-                          "Los Angeles",
-                          "Chicago",
-                          "Houston",
-                          "Miami"
-                        ],
-                        onChanged: (String? value) {},
+                        value: myPropertyNotifier.cityController.text.isNotEmpty
+                            ? myPropertyNotifier.cityController.text
+                            : null,
+                        dropdownItems: myPropertyNotifier.filteredCities
+                            .map((e) => e.name)
+                            .toList(),
+                        onChanged: (String? value) {
+                          if (value != null) {
+                            myPropertyNotifier.cityController.text = value;
+                          }
+                        },
                       ),
                     ),
                     xWidth(context.width * 0.05),
@@ -104,10 +106,9 @@ class AddPropertyBioView extends ConsumerWidget {
                       child: CustomDropdownButton(
                         customBtn: IgnorePointer(
                           child: CustomTextField(
-                            readOnly: true,
                             labelText: AppString.stateProvince.tr(),
                             hintText: AppString.state.tr(),
-                            controller: TextEditingController(),
+                            controller: myPropertyNotifier.stateController,
                             suffixIcon: SvgPicture.asset(Assets.arrowDown),
                           ),
                         ),
@@ -115,17 +116,20 @@ class AddPropertyBioView extends ConsumerWidget {
                           color: AppColor.transparent,
                         ),
                         hint: 'State',
-                        value: "California",
-                        dropdownItems: [
-                          "California",
-                          "Texas",
-                          "Florida",
-                          "New York",
-                          "Illinois"
-                        ],
-                        onChanged: (String? value) {},
+                        value:
+                            myPropertyNotifier.stateController.text.isNotEmpty
+                                ? myPropertyNotifier.stateController.text
+                                : null,
+                        dropdownItems: myPropertyNotifier.filteredStates
+                            .map((e) => e.name)
+                            .toList(),
+                        onChanged: (String? value) {
+                          if (value != null) {
+                            myPropertyNotifier.selectState(value);
+                          }
+                        },
                       ),
-                    ),
+                    )
                   ],
                 ),
                 Row(
@@ -134,6 +138,7 @@ class AddPropertyBioView extends ConsumerWidget {
                       child: CustomTextField(
                         labelText: AppString.zIPCode.tr(),
                         hintText: AppString.zIPCode.tr(),
+                        keyboardType: TextInputType.number,
                         controller: TextEditingController(),
                       ),
                     ),
@@ -142,28 +147,30 @@ class AddPropertyBioView extends ConsumerWidget {
                       child: CustomDropdownButton(
                         customBtn: IgnorePointer(
                           child: CustomTextField(
-                            readOnly: true,
                             labelText: AppString.selectCountry.tr(),
                             hintText: AppString.country.tr(),
-                            controller: TextEditingController(),
+                            controller: myPropertyNotifier.countryController,
                             suffixIcon: SvgPicture.asset(Assets.arrowDown),
                           ),
                         ),
                         buttonDecoration: BoxDecoration(
                           color: AppColor.transparent,
                         ),
-                        hint: 'Country',
-                        value: "India",
-                        dropdownItems: [
-                          "India",
-                          "Austraila",
-                          "England",
-                          "New York",
-                          "Japan"
-                        ],
-                        onChanged: (String? value) {},
+                        hint: AppString.country.tr(),
+                        value:
+                            myPropertyNotifier.countryController.text.isNotEmpty
+                                ? myPropertyNotifier.countryController.text
+                                : null,
+                        dropdownItems: myPropertyNotifier.countries
+                            .map((e) => e.name)
+                            .toList(),
+                        onChanged: (String? value) {
+                          if (value != null) {
+                            myPropertyNotifier.selectCountry(value);
+                          }
+                        },
                       ),
-                    ),
+                    )
                   ],
                 ),
                 GridView.builder(
@@ -179,7 +186,8 @@ class AddPropertyBioView extends ConsumerWidget {
                   ),
                   itemBuilder: (context, index) {
                     if (index < myPropertyNotifier.propertyImagesFiles.length) {
-                      final image = myPropertyNotifier.propertyImagesFiles[index];
+                      final image =
+                          myPropertyNotifier.propertyImagesFiles[index];
                       return Stack(
                         children: [
                           CustomParcelImageWidget(imgUrl: image),

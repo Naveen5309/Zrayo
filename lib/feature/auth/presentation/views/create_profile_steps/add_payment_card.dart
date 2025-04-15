@@ -22,7 +22,7 @@ class AddPaymentCard extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          CustomAppBar(title: AppString.addCardDetail),
+          CustomAppBar(title: AppString.addCardDetail.tr()),
           yHeight(10.sp),
           Container(
             height: 5,

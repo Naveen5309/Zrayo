@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:zrayo_flutter/config/helper.dart';
@@ -17,7 +18,7 @@ class AboutUsView extends ConsumerWidget {
     return Scaffold(
       body: Column(
         children: [
-          CustomAppBar(title: AppString.aboutUs),
+          CustomAppBar(title: AppString.aboutUs.tr()),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
