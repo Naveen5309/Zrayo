@@ -161,37 +161,37 @@ class MyPropertyNotifier extends StateNotifier<MyPropertyState> {
     } else {
       selectedAgents.add(agent);
     }
+    state = MyPropertyRefresh();
 
-    /// Method to select a country and filter states based on the selected country
-    void selectCountry(String countryName) {
-      final selectedCountry =
-          countries.firstWhere((c) => c.name == countryName);
-      countryController.text = selectedCountry.name;
+  }
 
-      filteredStates = allStates
-          .where((state) =>
-              int.tryParse(state.countryId) == int.tryParse(selectedCountry.id))
-          .toList();
+  /// Method to select a country and filter states based on the selected country
+  void selectCountry(String countryName) {
+    final selectedCountry = countries.firstWhere((c) => c.name == countryName);
+    countryController.text = selectedCountry.name;
 
-      stateController.clear();
-      cityController.clear();
-      filteredCities = [];
-      state = MyPropertyRefresh();
-    }
+    filteredStates = allStates
+        .where((state) =>
+            int.tryParse(state.countryId) == int.tryParse(selectedCountry.id))
+        .toList();
 
-    /// Method to select a state and filter cities based on the selected state
-    void selectState(String stateName) {
-      final selectedState =
-          filteredStates.firstWhere((s) => s.name == stateName);
-      stateController.text = selectedState.name;
+    stateController.clear();
+    cityController.clear();
+    filteredCities = [];
+    state = MyPropertyRefresh();
+  }
 
-      filteredCities = cities
-          .where((city) =>
-              int.tryParse(city.stateId) == int.tryParse(selectedState.id))
-          .toList();
+  /// Method to select a state and filter cities based on the selected state
+  void selectState(String stateName) {
+    final selectedState = filteredStates.firstWhere((s) => s.name == stateName);
+    stateController.text = selectedState.name;
 
-      cityController.clear();
-      state = MyPropertyRefresh();
-    }
+    filteredCities = cities
+        .where((city) =>
+            int.tryParse(city.stateId) == int.tryParse(selectedState.id))
+        .toList();
+
+    cityController.clear();
+    state = MyPropertyRefresh();
   }
 }
