@@ -17,6 +17,7 @@ import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_drop_down.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_text_field.dart';
+import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 
 class AddPropertyBioView extends ConsumerWidget {
   const AddPropertyBioView({super.key});
@@ -74,60 +75,67 @@ class AddPropertyBioView extends ConsumerWidget {
                 Row(
                   children: [
                     Expanded(
-                      child: CustomDropdownButton(
-                        customBtn: IgnorePointer(
-                          child: CustomTextField(
-                            readOnly: true,
-                            labelText: AppString.selectCity.tr(),
-                            hintText: AppString.city.tr(),
-                            controller: myPropertyNotifier.cityController,
-                            suffixIcon: SvgPicture.asset(Assets.arrowDown),
+                      child: GestureDetector(
+                        onTap: () => toast(msg: "Please select state"),
+                        child: CustomDropdownButton(
+                          customBtn: IgnorePointer(
+                            child: CustomTextField(
+                              readOnly: true,
+                              labelText: AppString.selectCity.tr(),
+                              hintText: AppString.city.tr(),
+                              controller: myPropertyNotifier.cityController,
+                              suffixIcon: SvgPicture.asset(Assets.arrowDown),
+                            ),
                           ),
+                          buttonDecoration: BoxDecoration(
+                            color: AppColor.transparent,
+                          ),
+                          hint: 'City',
+                          value:
+                              myPropertyNotifier.cityController.text.isNotEmpty
+                                  ? myPropertyNotifier.cityController.text
+                                  : null,
+                          dropdownItems: myPropertyNotifier.filteredCities
+                              .map((e) => e.name)
+                              .toList(),
+                          onChanged: (String? value) {
+                            if (value != null) {
+                              myPropertyNotifier.cityController.text = value;
+                            }
+                          },
                         ),
-                        buttonDecoration: BoxDecoration(
-                          color: AppColor.transparent,
-                        ),
-                        hint: 'City',
-                        value: myPropertyNotifier.cityController.text.isNotEmpty
-                            ? myPropertyNotifier.cityController.text
-                            : null,
-                        dropdownItems: myPropertyNotifier.filteredCities
-                            .map((e) => e.name)
-                            .toList(),
-                        onChanged: (String? value) {
-                          if (value != null) {
-                            myPropertyNotifier.cityController.text = value;
-                          }
-                        },
                       ),
                     ),
                     xWidth(context.width * 0.05),
                     Expanded(
-                      child: CustomDropdownButton(
-                        customBtn: IgnorePointer(
-                          child: CustomTextField(
-                            labelText: AppString.stateProvince.tr(),
-                            hintText: AppString.state.tr(),
-                            controller: myPropertyNotifier.stateController,
-                            suffixIcon: SvgPicture.asset(Assets.arrowDown),
+                      child: GestureDetector(
+                        onTap: () => toast(msg: "Please select country"),
+                        child: CustomDropdownButton(
+                          customBtn: IgnorePointer(
+                            child: CustomTextField(
+                              labelText: AppString.stateProvince.tr(),
+                              hintText: AppString.state.tr(),
+                              controller: myPropertyNotifier.stateController,
+                              suffixIcon: SvgPicture.asset(Assets.arrowDown),
+                            ),
                           ),
+                          buttonDecoration: BoxDecoration(
+                            color: AppColor.transparent,
+                          ),
+                          hint: 'State',
+                          value:
+                              myPropertyNotifier.stateController.text.isNotEmpty
+                                  ? myPropertyNotifier.stateController.text
+                                  : null,
+                          dropdownItems: myPropertyNotifier.filteredStates
+                              .map((e) => e.name)
+                              .toList(),
+                          onChanged: (String? value) {
+                            if (value != null) {
+                              myPropertyNotifier.selectState(value);
+                            }
+                          },
                         ),
-                        buttonDecoration: BoxDecoration(
-                          color: AppColor.transparent,
-                        ),
-                        hint: 'State',
-                        value:
-                            myPropertyNotifier.stateController.text.isNotEmpty
-                                ? myPropertyNotifier.stateController.text
-                                : null,
-                        dropdownItems: myPropertyNotifier.filteredStates
-                            .map((e) => e.name)
-                            .toList(),
-                        onChanged: (String? value) {
-                          if (value != null) {
-                            myPropertyNotifier.selectState(value);
-                          }
-                        },
                       ),
                     )
                   ],
