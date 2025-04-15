@@ -135,7 +135,7 @@ class AddPropertyAgentView extends ConsumerWidget {
           xWidth(8),
           GestureDetector(
               onTap: () {
-                myPropertyAssignAgentNotifier.toggleAgentSelection(agent!);
+                myPropertyAssignAgentNotifier.toggleAgentSelection(agent);
               },
               child: SvgPicture.asset(Assets.x)),
         ],
