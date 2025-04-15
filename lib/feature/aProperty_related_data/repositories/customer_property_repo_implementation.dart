@@ -60,12 +60,12 @@ class CustomerPropertyRepoImpl implements CustomerPropertyRepository {
       {required Map<String, dynamic> body,
       required List<File> propertyImages}) async {
     try {
-      final data =
-          await customerPropertySource.addPropertyBio(body: body,propertyImages:propertyImages);
-      if (data?.success == true) {
-        return Right(data?.data ?? <PropertyAgentsListsModel>[]);
+      final data = await customerPropertySource.addPropertyBio(
+          body: body, propertyImages: propertyImages);
+      if (data.success == true) {
+        return Right(data.data ?? <PropertyAgentsListsModel>[]);
       } else {
-        return Left(ServerFailure(message: data?.message ?? ""));
+        return Left(ServerFailure(message: data.message ?? ""));
       }
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));

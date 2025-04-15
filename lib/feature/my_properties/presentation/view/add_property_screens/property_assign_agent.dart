@@ -23,7 +23,7 @@ class AddPropertyAgentView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final myPropertyAssignAgentNotifier = ref.read(myPropertyProvider.notifier);
-    final myPropertyAssignAgentState = ref.watch(myPropertyProvider);
+    ref.watch(myPropertyProvider);
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -135,7 +135,7 @@ class AddPropertyAgentView extends ConsumerWidget {
           xWidth(8),
           GestureDetector(
               onTap: () {
-                myPropertyAssignAgentNotifier.toggleAgentSelection(agent!);
+                myPropertyAssignAgentNotifier.toggleAgentSelection(agent);
               },
               child: SvgPicture.asset(Assets.x)),
         ],
