@@ -18,16 +18,19 @@ class MyPropertyNotifier extends StateNotifier<MyPropertyState> {
   MyPropertyNotifier({required this.customerPropertyRepo})
       : super(MyPropertyInitial()) {
     getPropertyTypesAndFeatures();
+    getPropertyAgentList();
   }
 
   List<PropertyTypeAndFeaturesModel>? propertyTypesAndFeatures =
       <PropertyTypeAndFeaturesModel>[];
   List<PropertyAgentsListsModel>? propertyAgentsList =
       <PropertyAgentsListsModel>[];
+  List<PropertyAgentsListsModel> selectedAgents = [];
   PropertyTypeAndFeaturesModel? selectedPropertyType;
   List<PropertyTypeAndFeaturesModel>? selectedPropertyFeatures =
       <PropertyTypeAndFeaturesModel>[];
   PropertyListingType? sellOrRentType;
+  int? assignAgent;
   TextEditingController? otherFeature = TextEditingController();
   TextEditingController? bathroomSize = TextEditingController();
   TextEditingController? bedroomSize = TextEditingController();
@@ -120,11 +123,29 @@ class MyPropertyNotifier extends StateNotifier<MyPropertyState> {
         return false;
       }, (result) {
         propertyAgentsList = result;
+        state = MyPropertyRefresh();
         return true;
       });
     } catch (e) {
       state = MyPropertyFailed(error: e.toString());
       return false;
     }
+  }
+
+  void assignAgentValue(int? value) {
+    assignAgent = value;
+    state = MyPropertyRefresh();
+  }
+
+  void toggleAgentSelection(PropertyAgentsListsModel agent) {
+    final isSelected = selectedAgents.any((a) => a.id == agent.id);
+
+    if (isSelected) {
+      selectedAgents.removeWhere((a) => a.id == agent.id);
+    } else {
+      selectedAgents.add(agent);
+    }
+
+    state = MyPropertyRefresh();
   }
 }
