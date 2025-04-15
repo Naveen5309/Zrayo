@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:zrayo_flutter/config/enums.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/helpers/all_getter.dart';
+import 'package:zrayo_flutter/feature/aProperty_related_data/models/property_agents_list_model.dart';
 import 'package:zrayo_flutter/feature/aProperty_related_data/models/property_type_model.dart';
 import 'package:zrayo_flutter/feature/aProperty_related_data/repositories/customer_property_repo_implementation.dart';
 
@@ -21,6 +22,8 @@ class MyPropertyNotifier extends StateNotifier<MyPropertyState> {
 
   List<PropertyTypeAndFeaturesModel>? propertyTypesAndFeatures =
       <PropertyTypeAndFeaturesModel>[];
+  List<PropertyAgentsListsModel>? propertyAgentsList =
+      <PropertyAgentsListsModel>[];
   PropertyTypeAndFeaturesModel? selectedPropertyType;
   List<PropertyTypeAndFeaturesModel>? selectedPropertyFeatures =
       <PropertyTypeAndFeaturesModel>[];
@@ -45,7 +48,8 @@ class MyPropertyNotifier extends StateNotifier<MyPropertyState> {
   }
 
   void removeImage(File image) {
-    propertyImagesFiles = propertyImagesFiles.where((img) => img != image).toList();
+    propertyImagesFiles =
+        propertyImagesFiles.where((img) => img != image).toList();
     _updateState();
   }
 
@@ -96,5 +100,31 @@ class MyPropertyNotifier extends StateNotifier<MyPropertyState> {
       state = MyPropertyFailed(error: e.toString());
     }
     return false;
+  }
+
+  Future<bool?> getPropertyAgentList() async {
+    try {
+      if (!(await Getters.networkInfo.isConnected)) {
+        state = const MyPropertyFailed(error: "No internet connection");
+        return false;
+      }
+
+      Map<String, dynamic> body = {
+        "pageNo": 0,
+      };
+
+      final result = await customerPropertyRepo.propertyAgentsList(body: body);
+
+      return result?.fold((error) {
+        state = MyPropertyFailed(error: error.message);
+        return false;
+      }, (result) {
+        propertyAgentsList = result;
+        return true;
+      });
+    } catch (e) {
+      state = MyPropertyFailed(error: e.toString());
+      return false;
+    }
   }
 }
