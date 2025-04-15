@@ -9,6 +9,7 @@ import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/helpers/all_getter.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/auth/data/models/user_model.dart';
+import 'package:zrayo_flutter/feature/auth/presentation/provider/create_profile_provider.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/provider/setting_provider.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/view/confirm_logout.dart';
 import 'package:zrayo_flutter/feature/setting/presentation/view/custom_setting_tile.dart';
@@ -27,8 +28,10 @@ class SettingView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final settingNotifier = ref.read(settingViewProvider.notifier);
     ref.watch(settingViewProvider);
+    ref.watch(createProfileProvider);
 
-    final userModel = Getters.getLocalStorage.getLoginUser();
+    final userModel = ref.read(createProfileProvider.notifier).userModel ??
+        Getters.getLocalStorage.getLoginUser();
     return Scaffold(
       body: SingleChildScrollView(
         clipBehavior: Clip.none,

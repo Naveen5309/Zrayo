@@ -196,8 +196,8 @@ class BookYourDateView extends StatelessWidget {
                 Utils.appBottomSheet(
                     context: context,
                     widget: SuccessSheet(
-                      title: AppString.bookedSuccessfully,
-                      subTitle: AppString.successfullyBooked,
+                      title: AppString.bookedSuccessfully.tr(),
+                      subTitle: AppString.successfullyBooked.tr(),
                       onTap: () {
                         back(context);
                         back(context);

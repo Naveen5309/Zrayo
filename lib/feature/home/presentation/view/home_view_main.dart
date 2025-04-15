@@ -34,9 +34,8 @@ class HomeViewMain extends ConsumerWidget {
     ref.watch(customerHomeProvider);
     final homeNotifier = ref.read(customerHomeProvider.notifier);
     ref.watch(createProfileProvider);
-    ref.watch(createProfileProvider);
-    final createProfileNotifier = ref.read(createProfileProvider.notifier);
-    final userModel = createProfileNotifier.userModel;
+    final userModel = ref.read(createProfileProvider.notifier).userModel ??
+        Getters.getLocalStorage.getLoginUser();
     return Scaffold(
       floatingActionButton: Getters.isAgent()
           ? SizedBox.shrink()

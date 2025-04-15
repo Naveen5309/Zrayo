@@ -6,8 +6,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:zrayo_flutter/config/enums.dart';
 import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/helpers/all_getter.dart';
+import 'package:zrayo_flutter/core/helpers/location_data_service.dart';
 import 'package:zrayo_flutter/feature/aProperty_related_data/models/property_type_model.dart';
 import 'package:zrayo_flutter/feature/aProperty_related_data/repositories/customer_property_repo_implementation.dart';
+import 'package:zrayo_flutter/feature/auth/data/models/country_state_city_model.dart';
 
 import '../states/my_property_states.dart';
 
@@ -17,8 +19,24 @@ class MyPropertyNotifier extends StateNotifier<MyPropertyState> {
   MyPropertyNotifier({required this.customerPropertyRepo})
       : super(MyPropertyInitial()) {
     getPropertyTypesAndFeatures();
+    countries = LocationDataService().countries;
+    allStates = LocationDataService().states;
+    cities = LocationDataService().cities;
   }
 
+  TextEditingController addressController = TextEditingController();
+  TextEditingController cityController = TextEditingController();
+  TextEditingController stateController = TextEditingController();
+  TextEditingController countryController = TextEditingController();
+
+  /// Lists to hold country, state, and city data
+  List<Country> countries = <Country>[];
+  List<StateModel> allStates = <StateModel>[];
+  List<City> cities = <City>[];
+
+  /// Filters for states and cities based on selection
+  List<StateModel> filteredStates = <StateModel>[];
+  List<City> filteredCities = <City>[];
   List<PropertyTypeAndFeaturesModel>? propertyTypesAndFeatures =
       <PropertyTypeAndFeaturesModel>[];
   PropertyTypeAndFeaturesModel? selectedPropertyType;
@@ -31,11 +49,8 @@ class MyPropertyNotifier extends StateNotifier<MyPropertyState> {
 
   TextEditingController propertyTitleController = TextEditingController();
   TextEditingController propertyPriceController = TextEditingController();
-  TextEditingController addressController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   TextEditingController commissionPercentageController =
-      TextEditingController();
-  TextEditingController otherPropertyFeatureController =
       TextEditingController();
   List<File> propertyImagesFiles = [];
 
@@ -45,7 +60,8 @@ class MyPropertyNotifier extends StateNotifier<MyPropertyState> {
   }
 
   void removeImage(File image) {
-    propertyImagesFiles = propertyImagesFiles.where((img) => img != image).toList();
+    propertyImagesFiles =
+        propertyImagesFiles.where((img) => img != image).toList();
     _updateState();
   }
 
@@ -78,6 +94,7 @@ class MyPropertyNotifier extends StateNotifier<MyPropertyState> {
     state = MyPropertyRefresh();
   }
 
+  /// ============ Get Property Types And Features============///
   Future<bool?> getPropertyTypesAndFeatures() async {
     try {
       if (!(await Getters.networkInfo.isConnected)) {
@@ -96,5 +113,35 @@ class MyPropertyNotifier extends StateNotifier<MyPropertyState> {
       state = MyPropertyFailed(error: e.toString());
     }
     return false;
+  }
+
+  /// Method to select a country and filter states based on the selected country
+  void selectCountry(String countryName) {
+    final selectedCountry = countries.firstWhere((c) => c.name == countryName);
+    countryController.text = selectedCountry.name;
+
+    filteredStates = allStates
+        .where((state) =>
+            int.tryParse(state.countryId) == int.tryParse(selectedCountry.id))
+        .toList();
+
+    stateController.clear();
+    cityController.clear();
+    filteredCities = [];
+    state = MyPropertyRefresh();
+  }
+
+  /// Method to select a state and filter cities based on the selected state
+  void selectState(String stateName) {
+    final selectedState = filteredStates.firstWhere((s) => s.name == stateName);
+    stateController.text = selectedState.name;
+
+    filteredCities = cities
+        .where((city) =>
+            int.tryParse(city.stateId) == int.tryParse(selectedState.id))
+        .toList();
+
+    cityController.clear();
+    state = MyPropertyRefresh();
   }
 }

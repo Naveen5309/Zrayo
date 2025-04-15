@@ -42,8 +42,8 @@ class AddBankDetail extends ConsumerWidget {
           children: [
             CustomAppBar(
                 title: fromSettings
-                    ? AppString.bankDetails
-                    : AppString.addBankDetail),
+                    ? AppString.bankDetails.tr()
+                    : AppString.addBankDetail.tr()),
             yHeight(10.sp),
             Container(
               height: 5,

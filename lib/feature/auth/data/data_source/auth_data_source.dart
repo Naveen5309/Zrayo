@@ -20,7 +20,8 @@ abstract class AuthDataSource {
 
   Future<ResponseWrapper?> uploadDocument({File? frontSide, File? backSide});
 
-  Future<ResponseWrapper?> uploadFile({required File file});
+  Future<ResponseWrapper?> uploadFile(
+      {required File file, required String endPoint});
 
   Future<ResponseWrapper?> addAddress(
       {required Map<String, dynamic> body, required bool isUpdate});
@@ -145,14 +146,15 @@ class AuthDataSourceImpl extends AuthDataSource {
   }
 
   @override
-  Future<ResponseWrapper<String>?> uploadFile({required File file}) async {
+  Future<ResponseWrapper<String>?> uploadFile(
+      {required File file, required String endPoint}) async {
     try {
       Map<String, dynamic> map = {};
       final img = await Utils.makeMultipartFile(file.path);
       map.addAll({"image": img});
       final dataResponse = await Getters.getHttpService.request<String>(
         body: map,
-        url: ApiEndpoints.uploadFile,
+        url: endPoint,
         useFormData: true,
         fromJson: (json) => json['filename'],
       );
@@ -165,7 +167,7 @@ class AuthDataSourceImpl extends AuthDataSource {
     } catch (e) {
       return getFailedResponseWrapper(exceptionHandler(
         e: e,
-        functionName: "userProfile",
+        functionName: "uploadFile",
       ));
     }
   }
@@ -179,7 +181,8 @@ class AuthDataSourceImpl extends AuthDataSource {
       Map<String, dynamic> map = {};
 
       if (frontSide != null && (frontSide.path.isNotEmpty)) {
-        final uploadRes = await uploadFile(file: frontSide);
+        final uploadRes = await uploadFile(
+            file: frontSide, endPoint: ApiEndpoints.uploadFile);
         if (uploadRes?.success == true) {
           map["idDocumentFront"] = uploadRes?.data;
         } else {
@@ -188,7 +191,8 @@ class AuthDataSourceImpl extends AuthDataSource {
         }
       }
       if (backSide != null && (backSide.path.isNotEmpty)) {
-        final uploadRes = await uploadFile(file: backSide);
+        final uploadRes =
+            await uploadFile(file: backSide, endPoint: ApiEndpoints.uploadFile);
         if (uploadRes?.success == true) {
           map["idDocumentBack"] = uploadRes?.data;
         } else {

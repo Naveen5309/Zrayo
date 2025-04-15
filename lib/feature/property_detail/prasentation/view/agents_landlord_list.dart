@@ -139,7 +139,7 @@ class AgentsLandlordList extends StatelessWidget {
                     widget: ReviewBottomsheet(
                       name: "Paras",
                       isProperty: true,
-                      title: AppString.giveRatings.toTitleCase(),
+                      title: AppString.giveRatings.tr().toTitleCase(),
                       // subtitle: AppString.propertyDeleted,
                     )),
                 textSize: 13.sp,

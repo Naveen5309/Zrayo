@@ -29,7 +29,7 @@ class ContactUsView extends ConsumerWidget {
     return Scaffold(
       body: Column(
         children: [
-          CustomAppBar(title: AppString.contactUs),
+          CustomAppBar(title: AppString.contactUs.tr()),
           yHeight(25.h),
           Expanded(
             child: Padding(

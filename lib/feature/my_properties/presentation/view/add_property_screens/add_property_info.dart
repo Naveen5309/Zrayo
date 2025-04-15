@@ -9,13 +9,11 @@ import 'package:zrayo_flutter/config/helper.dart';
 import 'package:zrayo_flutter/core/utils/routing/routes.dart';
 import 'package:zrayo_flutter/feature/my_properties/presentation/provider/my_property_provider.dart';
 import 'package:zrayo_flutter/feature/my_properties/presentation/provider/state_notifiers/my_property_notifiers.dart';
-import 'package:zrayo_flutter/feature/my_properties/presentation/provider/states/my_property_states.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/app_text.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_app_bar.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_btn.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_drop_down.dart';
 import 'package:zrayo_flutter/feature/z_common_widgets/custom_text_field.dart';
-import 'package:zrayo_flutter/feature/z_common_widgets/custom_toast.dart';
 
 class AddPropertyInfo extends ConsumerWidget {
   const AddPropertyInfo({super.key});
@@ -43,7 +41,7 @@ class AddPropertyInfo extends ConsumerWidget {
                 children: [
                   Container(
                     height: 5,
-                    width: (screenWidth(context) / 5) * 3.5,
+                    width: (screenWidth(context) / 3) * 2,
                     color: AppColor.primary,
                   ),
                 ],
