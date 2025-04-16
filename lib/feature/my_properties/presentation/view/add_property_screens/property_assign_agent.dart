@@ -21,10 +21,13 @@ class AddPropertyAgentView extends ConsumerWidget {
   const AddPropertyAgentView({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(
+    BuildContext context,
+    WidgetRef ref,
+  ) {
     final myPropertyAssignAgentNotifier = ref.read(myPropertyProvider.notifier);
     ref.watch(myPropertyProvider);
-
+    PropertyAgentsListsModel? agent;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -55,6 +58,15 @@ class AddPropertyAgentView extends ConsumerWidget {
                         context: context,
                         ref: ref,
                         value: 0,
+                        agent: agent,
+                        onTap: () {
+                          myPropertyAssignAgentNotifier.assignAgent = 0;
+                          Utils.appBottomSheet(
+                            context: context,
+                            widget: bottomSheet(context: context),
+                            isScrolled: true,
+                          );
+                        },
                         myPropertyAssignAgentNotifier:
                             myPropertyAssignAgentNotifier,
                       ),
@@ -63,6 +75,7 @@ class AddPropertyAgentView extends ConsumerWidget {
                         label: AppString.no.tr(),
                         context: context,
                         value: 1,
+                        agent: agent,
                         ref: ref,
                         myPropertyAssignAgentNotifier:
                             myPropertyAssignAgentNotifier,
@@ -148,37 +161,43 @@ class AddPropertyAgentView extends ConsumerWidget {
     required BuildContext context,
     required WidgetRef ref,
     required int value,
+    required PropertyAgentsListsModel? agent,
+    Function()? onTap,
     required MyPropertyNotifier myPropertyAssignAgentNotifier,
   }) {
     return Theme(
       data: Theme.of(context).copyWith(
         unselectedWidgetColor: AppColor.colorB7B7B7,
       ),
-      child: Row(
-        children: [
-          Radio<int>(
-            value: value,
-            groupValue: myPropertyAssignAgentNotifier.assignAgent,
-            activeColor: AppColor.primary,
-            onChanged: (value) {
-              myPropertyAssignAgentNotifier.assignAgentValue(value);
+      child: GestureDetector(
+        onTap: onTap,
+        child: Row(
+          children: [
+            Radio<int>(
+              value: value,
+              groupValue: myPropertyAssignAgentNotifier.assignAgent,
+              activeColor: AppColor.primary,
+              onChanged: (value) {
+                myPropertyAssignAgentNotifier.assignAgentValue(value);
 
-              if (value == 0) {
-                Utils.appBottomSheet(
+                if (value == 0) {
+                  Utils.appBottomSheet(
                     context: context,
-                    widget: bottomSheet(
-                      context: context,
-                    ),
-                    isScrolled: true);
-              }
-            },
-          ),
-          AppText(
-            text: label.tr(),
-            textSize: 14.sp,
-            color: AppColor.black4A4A4A,
-          ),
-        ],
+                    widget: bottomSheet(context: context),
+                    isScrolled: true,
+                  );
+                } else if (value == 1) {
+                  myPropertyAssignAgentNotifier.clearSelectedAgents();
+                }
+              },
+            ),
+            AppText(
+              text: label.tr(),
+              textSize: 14.sp,
+              color: AppColor.black4A4A4A,
+            ),
+          ],
+        ),
       ),
     );
   }

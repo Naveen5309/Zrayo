@@ -53,7 +53,8 @@ class SettingNotifier extends StateNotifier<SettingState> {
     }
   }
 
-  Future<void> notificationStatusChange({required bool notificationValue}) async {
+  Future<void> notificationStatusChange(
+      {required bool notificationValue}) async {
     state = SettingApiLoading();
     try {
       if (!(await Getters.networkInfo.isConnected)) {
@@ -62,7 +63,7 @@ class SettingNotifier extends StateNotifier<SettingState> {
       }
       if (await Getters.networkInfo.isSlow) {}
       Map<String, dynamic> body = {
-        "isNotification": notificationValue?1:0,
+        "isNotification": notificationValue ? 1 : 0,
       };
       final result = await settingRepo.notificationStatusChange(body: body);
       state = result.fold((error) {

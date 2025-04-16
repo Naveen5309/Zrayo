@@ -1,4 +1,3 @@
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -23,6 +22,11 @@ class MyPropertyApiLoading extends MyPropertyState {
 }
 
 class MyPropertyRefresh extends MyPropertyState {
+  @override
+  List<Object> get props => [];
+}
+
+class MyPropertySuccess extends MyPropertyState {
   @override
   List<Object> get props => [];
 }

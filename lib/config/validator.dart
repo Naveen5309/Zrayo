@@ -162,7 +162,7 @@ class Validator {
       error = AppString.pleaseEnterPassword;
       return false;
     } else if (checkPassword(password)) {
-      error = AppString.passwordShouldBe;
+      error = AppString.newPasswordShouldBe;
       return false;
     } else if (confirmPassword.isEmpty) {
       error = AppString.pleaseEnterConfirmPassword;
@@ -182,7 +182,7 @@ class Validator {
       error = AppString.pleaseEnterNewPassword;
       return false;
     } else if (checkPassword(password)) {
-      error = AppString.passwordShouldBe;
+      error = AppString.newPasswordShouldBe;
       return false;
     } else if (confirmPassword.isEmpty) {
       error = AppString.pleaseEnterConfirmPassword;
@@ -227,5 +227,25 @@ class Validator {
     }
 
     return true;
+  }
+
+  bool addPropertyBioValidator({
+    required String title,
+    required int price,
+    required String address,
+  }) {
+    if (customValidator(title, "title")?.isNotEmpty ?? false) {
+      error = customValidator(title, "title") ?? "";
+      return false;
+    } else if (customValidator(price.toString(), "price")?.isNotEmpty ??
+        false) {
+      error = customValidator(price.toString(), "price") ?? "";
+      return false;
+    } else if (customValidator(address, "address")?.isNotEmpty ?? false) {
+      error = customValidator(address, "address") ?? "";
+      return false;
+    } else {
+      return true;
+    }
   }
 }

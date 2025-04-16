@@ -147,7 +147,7 @@ class AddPropertyBioView extends ConsumerWidget {
                         labelText: AppString.zIPCode.tr(),
                         hintText: AppString.zIPCode.tr(),
                         keyboardType: TextInputType.number,
-                        controller: TextEditingController(),
+                        controller: myPropertyNotifier.zipController,
                       ),
                     ),
                     xWidth(context.width * 0.05),

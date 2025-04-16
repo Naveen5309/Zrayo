@@ -12,11 +12,16 @@ abstract class CustomerPropertyRepository {
 
   Future<Either<Failure, List<PropertyAgentsListsModel>>?> propertyAgentsList(
       {required Map<String, dynamic> body});
+  Future<Either<Failure, dynamic>> addPropertyAgents(
+      {required Map<String, dynamic> body});
+  Future<Either<Failure, dynamic>> propertyAdd(
+      {required Map<String, dynamic> body});
 
   Future<Either<Failure, dynamic>> addPropertyBio({
     required Map<String, dynamic> body,
     required List<File> propertyImages,
   });
+  Future<Either<Failure, dynamic>> images({required Map<String, dynamic> body});
 }
 
 class CustomerPropertyRepoImpl implements CustomerPropertyRepository {
@@ -66,6 +71,51 @@ class CustomerPropertyRepoImpl implements CustomerPropertyRepository {
         return Right(data.data ?? <PropertyAgentsListsModel>[]);
       } else {
         return Left(ServerFailure(message: data.message ?? ""));
+      }
+    } catch (e) {
+      return Left(ServerFailure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, dynamic>> propertyAdd(
+      {required Map<String, dynamic> body}) async {
+    try {
+      final data = await customerPropertySource.getImages(body: body);
+      if (data?.success == true) {
+        return Right(data?.data);
+      } else {
+        return Left(ServerFailure(message: data?.message ?? ""));
+      }
+    } catch (e) {
+      return Left(ServerFailure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, dynamic>> addPropertyAgents(
+      {required Map<String, dynamic> body}) async {
+    try {
+      final data = await customerPropertySource.addPropertyAgents(body: body);
+      if (data?.success == true) {
+        return Right(data?.data);
+      } else {
+        return Left(ServerFailure(message: data?.message ?? ""));
+      }
+    } catch (e) {
+      return Left(ServerFailure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, dynamic>> images(
+      {required Map<String, dynamic> body}) async {
+    try {
+      final data = await customerPropertySource.getImages(body: body);
+      if (data?.success == true) {
+        return Right(data?.data);
+      } else {
+        return Left(ServerFailure(message: data?.message ?? ""));
       }
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));

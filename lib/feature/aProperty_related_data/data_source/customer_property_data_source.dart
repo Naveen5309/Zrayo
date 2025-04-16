@@ -19,6 +19,13 @@ abstract class CustomerPropertyDataSource {
 
   Future<ResponseWrapper<dynamic>> addPropertyBio(
       {required Map<String, dynamic> body, required List<File> propertyImages});
+
+  Future<ResponseWrapper<dynamic>?> getImages(
+      {required Map<String, dynamic> body});
+  Future<ResponseWrapper<dynamic>?> addPropertyAgents(
+      {required Map<String, dynamic> body});
+  Future<ResponseWrapper<dynamic>?> propertyAdd(
+      {required Map<String, dynamic> body});
 }
 
 class CustomerPropertyDataSourceImpl extends CustomerPropertyDataSource {
@@ -125,6 +132,81 @@ class CustomerPropertyDataSourceImpl extends CustomerPropertyDataSource {
       return getFailedResponseWrapper(exceptionHandler(
         e: e,
         functionName: "getPropertyAgentList",
+      ));
+    }
+  }
+
+  @override
+  Future<ResponseWrapper<dynamic>?> getImages(
+      {required Map<String, dynamic> body}) async {
+    try {
+      final dataResponse = await Getters.getHttpService.request<dynamic>(
+        body: body,
+        url: ApiEndpoints.images,
+        fromJson: (json) {
+          return json;
+        },
+      );
+      if (dataResponse.success == true) {
+        return getSuccessResponseWrapper(dataResponse);
+      } else {
+        return getFailedResponseWrapper(dataResponse.message,
+            response: dataResponse.data);
+      }
+    } catch (e) {
+      return getFailedResponseWrapper(exceptionHandler(
+        e: e,
+        functionName: "Images",
+      ));
+    }
+  }
+
+  @override
+  Future<ResponseWrapper<dynamic>?> addPropertyAgents(
+      {required Map<String, dynamic> body}) async {
+    try {
+      final dataResponse = await Getters.getHttpService.request<dynamic>(
+        body: body,
+        url: ApiEndpoints.addPropertyAgents,
+        fromJson: (json) {
+          return json;
+        },
+      );
+      if (dataResponse.success == true) {
+        return getSuccessResponseWrapper(dataResponse);
+      } else {
+        return getFailedResponseWrapper(dataResponse.message,
+            response: dataResponse.data);
+      }
+    } catch (e) {
+      return getFailedResponseWrapper(exceptionHandler(
+        e: e,
+        functionName: "Add Property Agents",
+      ));
+    }
+  }
+
+  @override
+  Future<ResponseWrapper<dynamic>?> propertyAdd(
+      {required Map<String, dynamic> body}) async {
+    try {
+      final dataResponse = await Getters.getHttpService.request<dynamic>(
+        body: body,
+        url: ApiEndpoints.propertyAdd,
+        fromJson: (json) {
+          return json;
+        },
+      );
+      if (dataResponse.success == true) {
+        return getSuccessResponseWrapper(dataResponse);
+      } else {
+        return getFailedResponseWrapper(dataResponse.message,
+            response: dataResponse.data);
+      }
+    } catch (e) {
+      return getFailedResponseWrapper(exceptionHandler(
+        e: e,
+        functionName: "Add Property ",
       ));
     }
   }

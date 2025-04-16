@@ -25,11 +25,14 @@ class MyPropertyNotifier extends StateNotifier<MyPropertyState> {
     allStates = LocationDataService().states;
     cities = LocationDataService().cities;
   }
+  bool isBottomSheetOpen = false;
 
   TextEditingController addressController = TextEditingController();
   TextEditingController cityController = TextEditingController();
   TextEditingController stateController = TextEditingController();
   TextEditingController countryController = TextEditingController();
+  TextEditingController imagesController = TextEditingController();
+  TextEditingController zipController = TextEditingController();
 
   /// Lists to hold country, state, and city data
   List<Country> countries = <Country>[];
@@ -162,7 +165,11 @@ class MyPropertyNotifier extends StateNotifier<MyPropertyState> {
       selectedAgents.add(agent);
     }
     state = MyPropertyRefresh();
+  }
 
+  void clearSelectedAgents() {
+    selectedAgents.clear();
+    state = MyPropertyRefresh();
   }
 
   /// Method to select a country and filter states based on the selected country
@@ -193,5 +200,85 @@ class MyPropertyNotifier extends StateNotifier<MyPropertyState> {
 
     cityController.clear();
     state = MyPropertyRefresh();
+  }
+
+  Future<void> uploadPropertyImages() async {
+    state = MyPropertyApiLoading();
+    try {
+      if (!(await Getters.networkInfo.isConnected)) {
+        state = const MyPropertyFailed(error: "No internet connection");
+        return;
+      }
+      if (await Getters.networkInfo.isSlow) {}
+      Map<String, dynamic> body = {
+        "images": imagesController.text,
+      };
+      final result = await customerPropertyRepo.images(body: body);
+      state = result.fold((error) {
+        return MyPropertyFailed(error: error.message);
+      }, (result) {
+        return MyPropertySuccess();
+      });
+    } catch (e) {
+      state = MyPropertyFailed(error: e.toString());
+    }
+  }
+
+  Future<void> addPropertyAgents() async {
+    state = MyPropertyApiLoading();
+    try {
+      if (!(await Getters.networkInfo.isConnected)) {
+        state = const MyPropertyFailed(error: "No internet connection");
+        return;
+      }
+      if (await Getters.networkInfo.isSlow) {}
+      Map<String, dynamic> body = {
+        "isAgents": 1,
+        "agents": 21,
+        "commission": 4,
+        "id": 21
+      };
+      final result = await customerPropertyRepo.addPropertyAgents(body: body);
+      state = result.fold((error) {
+        return MyPropertyFailed(error: error.message);
+      }, (result) {
+        return MyPropertySuccess();
+      });
+    } catch (e) {
+      state = MyPropertyFailed(error: e.toString());
+    }
+  }
+
+  Future<void> propertyAdd() async {
+    state = MyPropertyApiLoading();
+    try {
+      if (!(await Getters.networkInfo.isConnected)) {
+        state = const MyPropertyFailed(error: "No internet connection");
+        return;
+      }
+      if (await Getters.networkInfo.isSlow) {}
+      Map<String, dynamic> body = {
+        "title": propertyTitleController.text,
+        "price": propertyPriceController.text,
+        "address": addressController.text,
+        "city": "Mohali",
+        "state": stateController.text,
+        "country": countryController.text,
+        "zipcode": zipController.text,
+        "latitude": "",
+        "longitude": "",
+        "description": descriptionController.text,
+        "id": "",
+        "images": ""
+      };
+      final result = await customerPropertyRepo.propertyAdd(body: body);
+      state = result.fold((error) {
+        return MyPropertyFailed(error: error.message);
+      }, (result) {
+        return MyPropertySuccess();
+      });
+    } catch (e) {
+      state = MyPropertyFailed(error: e.toString());
+    }
   }
 }

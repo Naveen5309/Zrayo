@@ -208,7 +208,7 @@
   "pleaseEnterValidEmailAddress": "Please enter valid email",
   "pleaseEnterPassword": "Enter password",
   "pleaseEnterNewPassword": "Enter new password",
-  "newPasswordShouldBeDifferent": "New password must be different from current password",
+  "newPasswordShouldBeDifferent": "Password must be at least 8 characters, including uppercase, lowercase, numbers, and a special character",
   "pleaseEnterCurrentPassword": "Enter your current password",
   "selectReason": "Select reason",
   "passwordShouldBe": "Password must be at least 8 characters long and include letters, numbers, and special characters.",
